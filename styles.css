@@ -84,6 +84,122 @@ body.loading {
     color: #888;
 }
 
+/* Navbar */
+#main-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 20px 50px;
+    transition: all 0.4s ease;
+    backdrop-filter: blur(5px);
+}
+
+#main-nav.scrolled {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 15px 50px;
+    border-bottom: 1px solid var(--neon-green);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.nav-logo {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-link {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-family: var(--font-cyber);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    position: relative;
+    transition: color 0.3s;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--neon-green);
+    transition: width 0.3s;
+    box-shadow: 0 0 5px var(--neon-green);
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: #fff;
+    text-shadow: 0 0 5px var(--neon-green);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.nav-toggle span {
+    width: 25px;
+    height: 2px;
+    background: #fff;
+    transition: 0.3s;
+}
+
+/* Mobile Nav */
+@media screen and (max-width: 768px) {
+    #main-nav {
+        padding: 20px;
+    }
+
+    .nav-toggle {
+        display: flex;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.95);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: 0.4s ease;
+        z-index: -1;
+    }
+
+    .nav-links.open {
+        right: 0;
+    }
+}
+
 /* Sections */
 section {
     position: relative;
@@ -294,19 +410,6 @@ section {
     background: #000;
 }
 
-/* End Section */
-#end {
-    height: 50vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #000;
-    color: #fff;
-    text-align: center;
-    z-index: 2;
-}
-
-
 /* Media Queries */
 @media screen and (max-width: 768px) {
     #desktop-experience {
@@ -365,5 +468,414 @@ section {
     .mobile-card p {
         color: #aaa;
         font-size: 0.9rem;
+    }
+}
+
+/* --- HOME PAGE STYLES --- */
+
+/* Video Background / Starfield */
+.video-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    z-index: -1;
+    overflow: hidden;
+}
+
+/* Simple CSS Starfield for now */
+.stars,
+.twinkling {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.stars {
+    background: #000 url('http://www.script-tutorials.com/demos/360/images/stars.png') repeat top center;
+    z-index: 0;
+}
+
+.twinkling {
+    background: transparent url('http://www.script-tutorials.com/demos/360/images/twinkling.png') repeat top center;
+    z-index: 1;
+    animation: move-twink-back 200s linear infinite;
+    opacity: 0.5;
+}
+
+@keyframes move-twink-back {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: -10000px 5000px;
+    }
+}
+
+/* Home Hero */
+#home-hero {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    perspective: 1000px;
+    /* For 3D Tilt */
+}
+
+.hero-content {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 3rem;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 50px rgba(0, 255, 65, 0.1);
+    max-width: 900px;
+    width: 100%;
+    transform-style: preserve-3d;
+}
+
+.college-info {
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.club-logo {
+    width: 80px;
+    height: auto;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+}
+
+.college-info h3 {
+    font-family: var(--font-body);
+    font-weight: 300;
+    letter-spacing: 4px;
+    font-size: 1rem;
+    color: #aaa;
+}
+
+.hero-title {
+    font-family: var(--font-heading);
+    font-size: 6rem;
+    /* Big Title */
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(to right, #fff, #aaa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+}
+
+.hero-subtitle {
+    font-family: var(--font-cyber);
+    font-size: 1.5rem;
+    color: var(--neon-purple);
+    letter-spacing: 8px;
+    margin-bottom: 3rem;
+    text-shadow: 0 0 10px var(--neon-purple);
+}
+
+/* Countdown */
+.countdown-container {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.time-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1rem;
+    border-radius: 10px;
+    min-width: 100px;
+    border: 1px solid rgba(0, 255, 65, 0.2);
+}
+
+.time-block span {
+    font-family: var(--font-cyber);
+    font-size: 2.5rem;
+    color: #fff;
+    text-shadow: 0 0 10px var(--neon-green);
+}
+
+.time-block label {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    color: #aaa;
+    margin-top: 0.5rem;
+}
+
+/* Buttons */
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.cta-btn {
+    padding: 15px 40px;
+    background: var(--neon-green);
+    color: #000;
+    font-family: var(--font-cyber);
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
+    transition: all 0.3s ease;
+    border: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+    transition: 0.5s;
+}
+
+.cta-btn:hover::before {
+    left: 100%;
+}
+
+.cta-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(0, 255, 65, 0.5);
+}
+
+.cta-btn.secondary {
+    background: transparent;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.cta-btn.secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #fff;
+    box-shadow: 0 5px 20px rgba(255, 255, 255, 0.2);
+}
+
+/* Intro Overlay */
+.intro-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.intro-text span {
+    display: block;
+    font-family: var(--font-cyber);
+    font-size: 3rem;
+    color: #fff;
+    text-align: center;
+    opacity: 0;
+    animation: textFade 0.5s forwards;
+}
+
+.intro-text span:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+.intro-text span:nth-child(2) {
+    animation-delay: 0.6s;
+}
+
+.intro-text span:nth-child(3) {
+    animation-delay: 1s;
+}
+
+@keyframes textFade {
+    to {
+        opacity: 1;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .hero-title {
+        font-size: 3rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+
+    .countdown-container {
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .time-block {
+        min-width: 70px;
+        padding: 0.5rem;
+    }
+
+    .time-block span {
+        font-size: 1.5rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+    }
+}
+
+/* --- TIMELINE PAGE STYLES --- */
+#timeline-hero {
+    height: 40vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+}
+
+.page-title {
+    font-family: var(--font-heading);
+    font-size: 4rem;
+    color: #fff;
+    text-align: center;
+    text-shadow: 0 0 20px var(--neon-purple);
+}
+
+#timeline-container {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
+    min-height: 100vh;
+}
+
+.timeline-line {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--neon-purple);
+    box-shadow: 0 0 15px var(--neon-purple);
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+.timeline-item {
+    padding: 10px 40px;
+    position: relative;
+    background-color: inherit;
+    width: 50%;
+    box-sizing: border-box;
+    margin-bottom: 2rem;
+}
+
+.timeline-item.left {
+    left: 0;
+    text-align: right;
+}
+
+.timeline-item.right {
+    left: 50%;
+    text-align: left;
+}
+
+.timeline-dot {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: -12px;
+    background-color: var(--neon-green);
+    border: 4px solid #fff;
+    top: 20px;
+    border-radius: 50%;
+    z-index: 2;
+    box-shadow: 0 0 10px var(--neon-green);
+}
+
+.timeline-item.right .timeline-dot {
+    left: -12px;
+}
+
+.timeline-content {
+    padding: 20px 30px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(5px);
+    border-radius: 10px;
+    border: 1px solid rgba(188, 19, 254, 0.3);
+    color: #fff;
+    transition: 0.3s;
+}
+
+.timeline-content:hover {
+    background: rgba(188, 19, 254, 0.1);
+    border-color: var(--neon-purple);
+    transform: scale(1.02);
+}
+
+.timeline-content h2 {
+    font-family: var(--font-cyber);
+    color: var(--neon-green);
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.timeline-content h3 {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.timeline-content p {
+    font-family: var(--font-body);
+    font-weight: 300;
+    line-height: 1.6;
+    color: #ddd;
+}
+
+@media screen and (max-width: 768px) {
+    .timeline-line {
+        left: 30px;
+    }
+
+    .timeline-item {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+    }
+
+    .timeline-item.left,
+    .timeline-item.right {
+        left: 0;
+        text-align: left;
+    }
+
+    .timeline-item.left .timeline-dot,
+    .timeline-item.right .timeline-dot {
+        left: 20px;
+    }
+
+    .page-title {
+        font-size: 2.5rem;
     }
 }

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UPAGRAHA 2026 | Contact</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Michroma&family=Rajdhani:wght@300;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .contact-section {
+            padding: 4rem 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            color: #fff;
+            padding-top: 100px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            margin-bottom: 1rem;
+            color: #fff;
+            font-family: var(--font-body);
+            transition: 0.3s;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: var(--neon-green);
+            outline: none;
+            box-shadow: 0 0 10px rgba(0, 255, 65, 0.2);
+        }
+
+        .submit-btn {
+            background: var(--neon-purple);
+            color: #fff;
+            padding: 1rem 2rem;
+            border: none;
+            font-family: var(--font-cyber);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .submit-btn:hover {
+            box-shadow: 0 0 20px var(--neon-purple);
+        }
+
+        /* FAQ */
+        .faq-container {
+            margin-top: 4rem;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 1rem;
+        }
+
+        .faq-question {
+            width: 100%;
+            text-align: left;
+            background: none;
+            border: none;
+            color: #fff;
+            padding: 1rem 0;
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            color: #aaa;
+            line-height: 1.6;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            padding-bottom: 1rem;
+        }
+
+        .faq-item.active .faq-question {
+            color: var(--neon-green);
+        }
+
+        /* Socials */
+        .social-links {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-top: 4rem;
+        }
+
+        .social-icon {
+            font-size: 2rem;
+            color: #fff;
+            text-decoration: none;
+            transition: 0.3s;
+            font-family: var(--font-cyber);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .social-icon:hover {
+            color: var(--neon-green);
+            border-color: var(--neon-green);
+            box-shadow: 0 0 20px var(--neon-green);
+            transform: translateY(-5px);
+        }
+
+        @media screen and (max-width: 768px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="video-bg">
+        <div class="stars"></div>
+        <div class="twinkling"></div>
+    </div>
+
+    <section class="contact-section">
+        <h1 class="page-title" style="font-size: 3rem; margin-bottom: 3rem;">CONTACT THE TVA</h1>
+
+        <div class="contact-grid">
+            <div class="contact-info">
+                <h2 style="font-family: var(--font-cyber); margin-bottom: 1rem; color: var(--neon-purple);">HQ
+                    COORDINATES</h2>
+                <p style="margin-bottom: 0.5rem;">Department of ECE</p>
+                <p style="margin-bottom: 0.5rem;">College of Engineering</p>
+                <p style="margin-bottom: 2rem;">Multiverse Sector 7</p>
+
+                <h2 style="font-family: var(--font-cyber); margin-bottom: 1rem; color: var(--neon-purple);">EMAIL</h2>
+                <p><a href="mailto:upagraha2026@college.edu"
+                        style="color: #fff; text-decoration: none;">upagraha2026@college.edu</a></p>
+            </div>
+
+            <form class="contact-form" onsubmit="event.preventDefault(); alert('Transmission Sent!');">
+                <input type="text" placeholder="VARIANT NAME" required>
+                <input type="email" placeholder="COMM LINK ID (EMAIL)" required>
+                <textarea rows="5" placeholder="MESSAGE TO TIMELINE" required></textarea>
+                <button type="submit" class="submit-btn" size="large">SEND TRANSMISSION</button>
+            </form>
+        </div>
+
+        <div class="faq-container">
+            <h2 style="text-align: center; margin-bottom: 2rem; font-family: var(--font-cyber);">FREQUENTLY ASKED
+                QUESTIONS</h2>
+
+            <div class="faq-item">
+                <button class="faq-question">Who can participate? <span>+</span></button>
+                <div class="faq-answer">
+                    <p>All students from any department (universe) are welcome to participate in the Nexus Events.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">Is there a registration fee? <span>+</span></button>
+                <div class="faq-answer">
+                    <p>Registration is free for all TVA recruits. Workshops may have a nominal fee.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">Can I participate in multiple events? <span>+</span></button>
+                <div class="faq-answer">
+                    <p>Yes, as long as your timeline doesn't branch too much (no schedule clashes).</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="social-links">
+            <a href="#" class="social-icon">IG</a>
+            <a href="#" class="social-icon">FB</a>
+            <a href="#" class="social-icon">YT</a>
+            <a href="#" class="social-icon">IN</a>
+        </div>
+    </section>
+
+    <script src="js/navbar.js"></script>
+    <script>
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const faqItem = button.parentElement;
+                faqItem.classList.toggle('active');
+
+                const span = button.querySelector('span');
+                span.textContent = faqItem.classList.contains('active') ? '-' : '+';
+            });
+        });
+
+        // Animations
+        gsap.from(".contact-grid", {
+            duration: 1,
+            y: 50,
+            opacity: 0,
+            delay: 0.5,
+            ease: "power2.out"
+        });
+    </script>
+</body>
+
+</html>

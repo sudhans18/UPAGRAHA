@@ -12,8 +12,9 @@ const state = {
 };
 
 // DOM Elements
+// DOM Elements
 const canvas = document.getElementById('hero-canvas');
-const context = canvas.getContext('2d');
+const context = canvas ? canvas.getContext('2d') : null;
 const loader = document.getElementById('loader');
 const progressFill = document.getElementById('progress-fill');
 const loaderText = document.getElementById('loader-text');
@@ -26,6 +27,8 @@ const isMobile = window.innerWidth <= 768;
 // --- Initialization ---
 
 function init() {
+    if (!canvas) return; // Exit if not on events page
+
     if (isMobile) {
         console.log("Mobile device detected. Disabling cinematic scroll.");
         document.body.classList.remove('loading');
@@ -42,8 +45,8 @@ function init() {
 // --- Preloader ---
 
 function preloadImages() {
-    for (let i = 0; i < TOTAL_FRAMES; i++) { // Loop 0 to 89
-        // Original filename format: frame_00_delay-0.05s.webp
+    for (let i = 0; i < TOTAL_FRAMES; i++) { // Loop 0 to 77
+        // Original filename format: frame_00_delay-0.04s.webp
         // We need padding to '00', '01', etc.
         const frameIndex = i.toString().padStart(2, '0');
         const img = new Image();
@@ -157,7 +160,7 @@ function initScrollTrigger() {
             state.currentFrame = targetFrame;
         }
     });
-    
+
 }
 
 // Start
