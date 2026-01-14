@@ -1,6 +1,6 @@
 
 // Constants
-const TOTAL_FRAMES = 78;
+const TOTAL_FRAMES = 79;
 const BUTTON_FADE_FRAME = 70;
 const SCROLL_TRIGGER_END = "+=400%"; // 400% of viewport height scroll distance
 
@@ -50,7 +50,7 @@ function preloadImages() {
         // We need padding to '00', '01', etc.
         const frameIndex = i.toString().padStart(2, '0');
         const img = new Image();
-        img.src = `assets/frames2/frame_${frameIndex}_delay-0.04s.webp`;
+        img.src = `assets/frames3/frame_${frameIndex}_delay-0.067s.webp`;
 
         img.onload = () => {
             state.frames[i] = img;
@@ -59,7 +59,7 @@ function preloadImages() {
         };
 
         img.onerror = () => {
-            console.error(`Failed to load frame_${frameIndex}_delay-0.04s.webp`);
+            console.error(`Failed to load frame_${frameIndex}_delay-0.067s.webp`);
             state.framesLoaded++;
             updateLoader();
         }
