@@ -5,11 +5,12 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="nav-container">
             <a href="index.html" class="nav-logo">UPAGRAHA</a>
             <div class="nav-links">
-                <a href="index.html" class="nav-link" data-link="home">HOME</a>
-                <a href="events.html" class="nav-link" data-link="events">EVENTS</a>
-                <a href="timeline.html" class="nav-link" data-link="timeline">TIMELINE</a>
-                <a href="about.html" class="nav-link" data-link="about">ABOUT</a>
-                <a href="contact.html" class="nav-link" data-link="contact">CONTACT</a>
+                <a href="index.html#home" class="nav-link">HOME</a>
+                <a href="index.html#about" class="nav-link">ABOUT</a>
+                <a href="index.html#timeline" class="nav-link">TIMELINE</a>
+                <a href="index.html#events" class="nav-link">EVENTS</a>
+                <a href="index.html#sponsors" class="nav-link">SPONSORS</a>
+                <a href="index.html#contact" class="nav-link">CONTACT</a>
             </div>
             <div class="nav-toggle">
                 <span></span>

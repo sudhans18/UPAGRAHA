@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UPAGRAHA 2026 | The Multiverse Awaits</title>
+    <title>UPAGRAHA '26 | ECE Symposium</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,66 +15,291 @@
 
     <!-- GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
+    <!-- Styles -->
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Inline overrides until moved to styles.css */
+        body {
+            overflow-x: hidden;
+        }
+
+        /* Fixed Background */
+        #universe-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: url('assets/bg_green_space.png') no-repeat center center;
+            background-size: cover;
+            z-index: -2;
+        }
+
+        #stars-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.8;
+        }
+
+        /* Sections */
+        .spa-section {
+            min-height: 100vh;
+            padding: 80px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Footer moved to styles later */
+    </style>
 </head>
 
-<body>
+<body class="loading">
 
-    <!-- Intro Overlay -->
-    <div class="intro-overlay">
-        <div class="intro-text">
-            <span>ENTERING</span>
-            <span>THE</span>
-            <span>MULTIVERSE</span>
+    <!-- Preloader -->
+    <div id="loader">
+        <h2 class="glitch" data-text="LOADING UNIVERSE">LOADING UNIVERSE</h2>
+        <div class="progress-bar">
+            <div class="progress-fill" id="preloader-bar"></div>
         </div>
     </div>
 
-    <!-- Video Background -->
-    <div class="video-bg">
-        <!-- Placeholder for video, using a gradient for now, or a CSS animation -->
-        <div class="stars"></div>
-        <div class="twinkling"></div>
-    </div>
+    <!-- Backgrounds -->
+    <div id="universe-bg"></div>
+    <canvas id="stars-canvas"></canvas>
 
-    <section id="home-hero">
-        <div class="hero-content">
-            <div class="college-info">
-                <img src="assets/logo_placeholder.png" alt="Club Logo" class="club-logo">
-                <h3>DEPARTMENT OF ECE PRESENTS</h3>
+    <!-- Navigation -->
+    <nav id="main-nav">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo">UPAGRAHA</a>
+            <div class="nav-links">
+                <a href="#home" class="nav-link">HOME</a>
+                <a href="#about" class="nav-link">ABOUT</a>
+                <a href="#timeline" class="nav-link">TIMELINE</a>
+                <a href="#events" class="nav-link">EVENTS</a>
+                <a href="#sponsors" class="nav-link">SPONSORS</a>
+                <a href="#contact" class="nav-link">CONTACT</a>
             </div>
+            <div class="nav-toggle"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
 
-            <h1 class="hero-title">UPAGRAHA</h1>
-            <p class="hero-subtitle">BEYOND THE HORIZON</p>
+    <!-- HOME SECTION -->
+    <section id="home" class="spa-section">
+        <div class="home-logos-container">
+            <div class="placeholder-logo">LOGO 1</div>
+            <div class="placeholder-logo">LOGO 2</div>
+            <div class="placeholder-logo">LOGO 3</div>
+        </div>
 
-            <div class="countdown-container" id="countdown">
-                <div class="time-block">
-                    <span id="days">00</span>
+        <div class="hero-center">
+            <h3 class="dept-title">DEPARTMENT OF ELECTRONICS AND COMMUNICATION ENGINEERING</h3>
+            <h1 class="main-title glitch-hover" data-text="UPAGRAHA">UPAGRAHA</h1>
+            <div class="countdown-wrapper">
+                <div class="countdown-item">
+                    <span id="d-val">59</span>
                     <label>DAYS</label>
                 </div>
-                <div class="time-block">
-                    <span id="hours">00</span>
+                <div class="countdown-item">
+                    <span id="h-val">00</span>
                     <label>HOURS</label>
                 </div>
-                <div class="time-block">
-                    <span id="minutes">00</span>
+                <div class="countdown-item">
+                    <span id="m-val">00</span>
                     <label>MINS</label>
                 </div>
-                <div class="time-block">
-                    <span id="seconds">00</span>
+                <div class="countdown-item">
+                    <span id="s-val">00</span>
                     <label>SECS</label>
                 </div>
-            </div>
-
-            <div class="hero-buttons">
-                <a href="events.html" class="cta-btn">EXPLORE EVENTS</a>
-                <a href="timeline.html" class="cta-btn secondary">VIEW TIMELINE</a>
             </div>
         </div>
     </section>
 
-    <script src="js/navbar.js"></script>
-    <script src="js/home.js"></script>
+    <!-- ABOUT SECTION -->
+    <section id="about" class="spa-section">
+        <h2 class="section-title">OUR LEGACY</h2>
+        <div class="about-gallery">
+            <!-- 3D Gallery Grid -->
+            <div class="gallery-item t-1"><span>INNOVATION</span></div>
+            <div class="gallery-item t-2"><span>TECHNOLOGY</span></div>
+            <div class="gallery-item t-3"><span>FUTURE</span></div>
+            <div class="gallery-desc">
+                <p>We are the pioneers of the digital frontier. UPAGRAHA is not just an event; it is a convergence of
+                    realities.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- TIMELINE SECTION -->
+    <section id="timeline" class="spa-section">
+        <h2 class="section-title">THE TIMELINE</h2>
+        <div class="timeline-wrapper">
+            <div class="timeline-track"></div>
+            <div class="timeline-node" data-date="Jan 15">
+                <h3>REGISTRATION</h3>
+            </div>
+            <div class="timeline-node" data-date="Jan 30">
+                <h3>ABSTRACTS</h3>
+            </div>
+            <div class="timeline-node" data-date="Feb 05">
+                <h3>SHORTLIST</h3>
+            </div>
+            <div class="timeline-node" data-date="Feb 15">
+                <h3>THE EVENT</h3>
+            </div>
+            <div class="timeline-node" data-date="Feb 16">
+                <h3>PRIZE DAY</h3>
+            </div>
+            <div class="timeline-node" data-date="Mar 01">
+                <h3>CLOSING</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- EVENTS SECTION -->
+    <section id="events" class="spa-section cinematic-events">
+        <canvas id="events-canvas"></canvas>
+        <div class="events-overlay">
+            <h2 class="section-title">MULTIVERSE EVENTS</h2>
+            <p class="section-subtitle">SCROLL TO ENTER THE MULTIVERSE</p>
+        </div>
+
+        <div class="events-grid">
+            <a href="events/universe1.html" class="event-card">
+                <div class="card-inner">
+                    <h3>PAPYRUS</h3>
+                    <p>Paper Presentation</p>
+                </div>
+            </a>
+            <a href="events/universe2.html" class="event-card">
+                <div class="card-inner">
+                    <h3>CIRCUITRY</h3>
+                    <p>Circuit Debugging</p>
+                </div>
+            </a>
+            <a href="events/universe3.html" class="event-card">
+                <div class="card-inner">
+                    <h3>ROBO WARS</h3>
+                    <p>Robotics</p>
+                </div>
+            </a>
+            <a href="events/universe4.html" class="event-card">
+                <div class="card-inner">
+                    <h3>CODE MATRIX</h3>
+                    <p>Coding Event</p>
+                </div>
+            </a>
+            <a href="events/universe5.html" class="event-card">
+                <div class="card-inner">
+                    <h3>BRAIN STORM</h3>
+                    <p>Quiz</p>
+                </div>
+            </a>
+            <a href="events/universe6.html" class="event-card">
+                <div class="card-inner">
+                    <h3>TVA TRIALS</h3>
+                    <p>Debate</p>
+                </div>
+            </a>
+            <a href="events.html" class="event-card special">
+                <div class="card-inner">
+                    <h3>ENTER THE TREE</h3>
+                    <p>Cinematic Experience</p>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- SPONSORS SECTION -->
+    <section id="sponsors" class="spa-section">
+        <h2 class="section-title">OUR ALLIES</h2>
+        <div class="sponsors-grid">
+            <div class="sponsor-logo">SPONSOR 1</div>
+            <div class="sponsor-logo">SPONSOR 2</div>
+            <div class="sponsor-logo">SPONSOR 3</div>
+            <div class="sponsor-logo">SPONSOR 4</div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="spa-section">
+        <h2 class="section-title">ESTABLISH LINK</h2>
+        <div class="contact-container">
+            <div class="contact-details">
+                <h3>HQ COORDINATES</h3>
+                <p>ECE Department<br>University Campus<br>Sector 7</p>
+                <div class="socials">
+                    <a href="#">IG</a> <a href="#">FB</a> <a href="#">LI</a>
+                </div>
+            </div>
+            <form class="contact-form-main">
+                <input type="text" placeholder="NAME" required>
+                <input type="email" placeholder="EMAIL" required>
+                <textarea placeholder="MESSAGE"></textarea>
+                <button type="submit" class="submit-glow">TRANSMIT</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="main-footer">
+        <div class="footer-content">
+            <div class="footer-col branding">
+                <h3 style="color:var(--neon-green)">UPAGRAHA '26</h3>
+                <p>ECE SYMPOSIUM</p>
+                <p class="small">National Level Technical Symposium organized by the Department of Electronics &
+                    Communication Engineering.</p>
+                <div class="footer-icons">
+                    <span>GH</span> <span>IN</span> <span>IG</span> <span>TW</span>
+                </div>
+            </div>
+            <div class="footer-col links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#events">Events</a></li>
+                    <li><a href="#about">Gallery</a></li>
+                    <li><a href="#sponsors">Sponsors</a></li>
+                    <li><a href="#contact">Prizes</a></li>
+                </ul>
+            </div>
+            <div class="footer-col links">
+                <h4>Events</h4>
+                <ul>
+                    <li>Paper Presentation</li>
+                    <li>Project Expo</li>
+                    <li>Treasure Hunt</li>
+                    <li>Circuit Trade</li>
+                    <li>Hardware Hack</li>
+                    <li>Neural Quiz</li>
+                </ul>
+            </div>
+            <div class="footer-col contact">
+                <h4>Contact Us</h4>
+                <p>ECE Department, University Campus, Kanpur - 208024</p>
+                <p>upagraha@university.edu</p>
+                <p>+91 98765 43210</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 UPAGRAHA. All rights reserved.</p>
+            <div class="legal">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
 </body>
 
 </html>

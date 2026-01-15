@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universe 3: Robo Wars</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Michroma&family=Rajdhani:wght@300;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        :root {
+            --neon-green: #ff4d00;
+            /* Orange Override */
+            --glass-bg: rgba(50, 10, 0, 0.4);
+        }
+
+        body {
+            background: #050100;
+        }
+
+        .universe-hero {
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: radial-gradient(circle, #330a00 0%, #000000 80%);
+        }
+
+        .universe-title {
+            font-size: 5rem;
+            color: var(--neon-green);
+            font-family: var(--font-heading);
+            text-shadow: 0 0 20px var(--neon-green);
+        }
+
+        .universe-desc {
+            max-width: 800px;
+            padding: 2rem;
+            color: #ddd;
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        .back-link {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            color: #fff;
+            text-decoration: none;
+            font-family: var(--font-cyber);
+            border: 1px solid var(--neon-green);
+            padding: 10px 20px;
+            transition: 0.3s;
+        }
+
+        .back-link:hover {
+            background: var(--neon-green);
+            color: #000;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="../index.html" class="back-link">Return to Multiverse</a>
+
+    <section class="universe-hero">
+        <h1 class="universe-title">ROBO WARS</h1>
+        <p class="universe-desc">Welcome to The Forge. Steel clashes against steel. Only the strongest designs survive
+            the arena.</p>
+    </section>
+
+    <section class="spa-section">
+        <h2 style="color:var(--neon-green); font-family:var(--font-cyber)">ARENA RULES</h2>
+        <ul style="color:#aaa; text-align:left; line-height:2; font-size:1.1rem;">
+            <li>Weight Class: 15kg / 30kg</li>
+            <li>Weaponry: Active weapons required</li>
+            <li>Safety: Remote kill switch mandatory</li>
+        </ul>
+        <button
+            style="margin-top:3rem; padding:15px 40px; background:var(--neon-green); border:none; color:#000; font-family:var(--font-cyber); font-weight:bold; cursor:pointer;">ENTER
+            THE ARENA</button>
+    </section>
+</body>
+
+</html>
