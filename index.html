@@ -139,28 +139,90 @@
         </div>
     </section>
 
-    <!-- TIMELINE SECTION -->
-    <section id="timeline" class="spa-section">
-        <h2 class="section-title">THE TIMELINE</h2>
-        <div class="timeline-wrapper">
-            <div class="timeline-track"></div>
-            <div class="timeline-node" data-date="Jan 15">
-                <h3>REGISTRATION</h3>
-            </div>
-            <div class="timeline-node" data-date="Jan 30">
-                <h3>ABSTRACTS</h3>
-            </div>
-            <div class="timeline-node" data-date="Feb 05">
-                <h3>SHORTLIST</h3>
-            </div>
-            <div class="timeline-node" data-date="Feb 15">
-                <h3>THE EVENT</h3>
-            </div>
-            <div class="timeline-node" data-date="Feb 16">
-                <h3>PRIZE DAY</h3>
-            </div>
-            <div class="timeline-node" data-date="Mar 01">
-                <h3>CLOSING</h3>
+    <!-- TIMELINE SECTION - Full Frame Pinned -->
+    <section id="timeline" class="timeline-fullframe">
+        <!-- Monitor as Full Background -->
+        <div class="timeline-bg-container">
+            <img src="assets/timeline.png" alt="Timeline Monitor" class="timeline-bg-image">
+        </div>
+
+        <!-- Timeline Overlay Content -->
+        <div class="timeline-overlay">
+            <!-- Timeline Content (scrolls horizontally) -->
+            <div class="timeline-track-wrapper">
+                <!-- Section Labels -->
+                <div class="timeline-labels">
+                    <span class="label label-past">PAST</span>
+                    <span class="label label-present">PRESENT</span>
+                    <span class="label label-future">FUTURE</span>
+                </div>
+
+                <!-- Sacred Timeline Track -->
+                <div class="sacred-timeline">
+                    <!-- Branch Lines (decorative) -->
+                    <svg class="branch-lines" viewBox="0 0 2400 200" preserveAspectRatio="none">
+                        <!-- Main line -->
+                        <path class="main-line" d="M0,100 L2400,100" />
+                        <!-- Branches -->
+                        <path class="branch branch-1" d="M200,100 Q250,40 350,60" />
+                        <path class="branch branch-2" d="M500,100 Q550,150 650,130" />
+                        <path class="branch branch-3" d="M900,100 Q950,50 1050,70" />
+                        <path class="branch branch-4" d="M1200,100 Q1250,160 1350,140" />
+                        <path class="branch branch-5" d="M1600,100 Q1650,30 1750,50" />
+                        <path class="branch branch-6" d="M2000,100 Q2050,150 2150,130" />
+                    </svg>
+
+                    <!-- Event Nodes -->
+                    <div class="timeline-events">
+                        <!-- PAST Events -->
+                        <div class="timeline-event past" style="left: 10%;">
+                            <div class="event-dot"></div>
+                            <div class="event-info">
+                                <span class="event-date">Oct 15</span>
+                                <span class="event-name">PROJECT KICKOFF</span>
+                            </div>
+                        </div>
+                        <div class="timeline-event past" style="left: 25%;">
+                            <div class="event-dot"></div>
+                            <div class="event-info">
+                                <span class="event-date">Nov 01</span>
+                                <span class="event-name">PHASE 1 COMPLETE</span>
+                            </div>
+                        </div>
+
+                        <!-- PRESENT Event -->
+                        <div class="timeline-event current" style="left: 45%;">
+                            <div class="event-dot"></div>
+                            <div class="event-info">
+                                <span class="event-date">Nov 15</span>
+                                <span class="event-name">MID-TERM REVIEW</span>
+                            </div>
+                        </div>
+
+                        <!-- FUTURE Events -->
+                        <div class="timeline-event future" style="left: 60%;">
+                            <div class="event-dot"></div>
+                            <div class="event-info">
+                                <span class="event-date">Dec 01</span>
+                                <span class="event-name">FINAL SUBMISSION</span>
+                            </div>
+                        </div>
+                        <div class="timeline-event future" style="left: 78%;">
+                            <div class="event-dot"></div>
+                            <div class="event-info">
+                                <span class="event-date">Dec 10</span>
+                                <span class="event-name">SYMPOSIUM DAY</span>
+                            </div>
+                        </div>
+                        <div class="timeline-event future" style="left: 95%;">
+                            <div class="event-dot"></div>
+                            <div class="event-info">
+                                <span class="event-date">Dec 15</span>
+                                <span class="event-name">AWARDS CEREMONY</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

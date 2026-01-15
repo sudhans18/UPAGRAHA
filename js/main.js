@@ -175,14 +175,57 @@ function initAnimations() {
         });
     });
 
-    // Timeline Animation
-    gsap.from('.timeline-node', {
-        scrollTrigger: {
-            trigger: '#timeline',
-            start: 'top 60%'
-        },
-        y: 100, opacity: 0, stagger: 0.2, duration: 0.8
-    });
+    // --- TIMELINE: Pinned Horizontal Scroll ---
+    const timelineTrack = document.querySelector('.timeline-track-wrapper');
+    const timelineSection = document.querySelector('#timeline');
+
+    if (timelineTrack && timelineSection) {
+        // Calculate scroll distance
+        const getScrollDistance = () => {
+            return timelineTrack.scrollWidth - window.innerWidth * 0.8;
+        };
+
+        // Pin the entire section and animate horizontal scroll
+        gsap.to(timelineTrack, {
+            x: () => -getScrollDistance(),
+            ease: "none",
+            scrollTrigger: {
+                trigger: timelineSection,
+                start: "top top",
+                end: () => "+=" + getScrollDistance(),
+                pin: true,
+                scrub: 1,
+                anticipatePin: 1,
+                invalidateOnRefresh: true,
+                pinSpacing: true
+            }
+        });
+
+        // Animate events appearing
+        gsap.from('.timeline-event', {
+            scrollTrigger: {
+                trigger: timelineSection,
+                start: 'top 60%'
+            },
+            y: 20,
+            opacity: 0,
+            stagger: 0.08,
+            duration: 0.4
+        });
+
+        // Animate branch lines drawing
+        gsap.from('.branch-lines path', {
+            scrollTrigger: {
+                trigger: timelineSection,
+                start: 'top 60%'
+            },
+            strokeDashoffset: 500,
+            strokeDasharray: 500,
+            duration: 1,
+            stagger: 0.05,
+            ease: 'power2.out'
+        });
+    }
 
     // --- Cinematic Events ScrollTrigger ---
     eventsCanvas.width = window.innerWidth;
