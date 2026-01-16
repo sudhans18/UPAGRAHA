@@ -1,5 +1,6 @@
 // Main JS for SPA
 
+<<<<<<< HEAD
 // --- Preloader & Intro Animation ---
 const introCanvas = document.getElementById('intro-canvas');
 const introCtx = introCanvas.getContext('2d');
@@ -155,6 +156,32 @@ window.addEventListener('load', () => {
     });
 
     window.addEventListener('resize', initIntroResize);
+=======
+// --- Preloader ---
+window.addEventListener('load', () => {
+    const loader = document.getElementById('loader');
+    const fill = document.getElementById('preloader-bar');
+
+    // Simulate loading since we don't have heavy assets yet
+    let progress = 0;
+    const interval = setInterval(() => {
+        progress += Math.random() * 10;
+        if (progress > 100) progress = 100;
+        fill.style.width = `${progress}%`;
+
+        if (progress === 100) {
+            clearInterval(interval);
+            setTimeout(() => {
+                loader.style.opacity = 0;
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                    document.body.classList.remove('loading'); // Enable scrolling
+                    initAnimations(); // Start animations after load
+                }, 500);
+            }, 500);
+        }
+    }, 100);
+>>>>>>> origin/main
 });
 
 // --- Countdown ---
@@ -229,6 +256,7 @@ const frames = [];
 const eventsCanvas = document.getElementById('events-canvas');
 const eventCtx = eventsCanvas.getContext('2d');
 
+<<<<<<< HEAD
 // Hardcoded filenames to match exact assets (User requested NO renaming)
 // Generated from file list
 const assetNames = [
@@ -254,15 +282,31 @@ const assetNames = [
     "frame_76_delay-0.066s.webp", "frame_77_delay-0.067s.webp", "frame_78_delay-0.067s.webp"
 ];
 
+=======
+// Dynamic frame preloading (better approach - scalable and maintainable)
+>>>>>>> origin/main
 const eventImages = [];
 const eventsObj = { frame: 0 };
 
 function preloadEventImages() {
+<<<<<<< HEAD
     assetNames.forEach((name) => {
         const img = new Image();
         img.src = `assets/frames3/${name}`;
         eventImages.push(img);
     });
+=======
+    for (let i = 0; i < frameCount; i++) {
+        const img = new Image();
+        // Using simplified naming: "frame 0.webp", "frame 1.webp", etc.
+        img.src = `assets/frames3/frame ${i}.webp`;
+        eventImages[i] = img;
+
+        img.onerror = () => {
+            console.error(`Failed to load frame ${i}.webp`);
+        };
+    }
+>>>>>>> origin/main
 }
 
 function renderEventFrame() {
@@ -307,16 +351,24 @@ function initAnimations() {
     });
 
     // --- TIMELINE: Pinned Horizontal Scroll ---
+<<<<<<< HEAD
     // ENABLED: Using GSAP for horizontal scroll interaction
+=======
+>>>>>>> origin/main
     const timelineTrack = document.querySelector('.timeline-track-wrapper');
     const timelineSection = document.querySelector('#timeline');
 
     if (timelineTrack && timelineSection) {
         // Calculate scroll distance
+<<<<<<< HEAD
         // We want to scroll the entire width of the track minus the viewport width
         // But since we are clipped inside a monitor, let's just scroll enough to see the end
         const getScrollDistance = () => {
             return timelineTrack.scrollWidth - window.innerWidth;
+=======
+        const getScrollDistance = () => {
+            return timelineTrack.scrollWidth - window.innerWidth * 0.8;
+>>>>>>> origin/main
         };
 
         // Pin the entire section and animate horizontal scroll
@@ -334,6 +386,34 @@ function initAnimations() {
                 pinSpacing: true
             }
         });
+<<<<<<< HEAD
+=======
+
+        // Animate events appearing
+        gsap.from('.timeline-event', {
+            scrollTrigger: {
+                trigger: timelineSection,
+                start: 'top 60%'
+            },
+            y: 20,
+            opacity: 0,
+            stagger: 0.08,
+            duration: 0.4
+        });
+
+        // Animate branch lines drawing
+        gsap.from('.branch-lines path', {
+            scrollTrigger: {
+                trigger: timelineSection,
+                start: 'top 60%'
+            },
+            strokeDashoffset: 500,
+            strokeDasharray: 500,
+            duration: 1,
+            stagger: 0.05,
+            ease: 'power2.out'
+        });
+>>>>>>> origin/main
     }
 
     // --- Cinematic Events ScrollTrigger ---

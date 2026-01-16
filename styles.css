@@ -3,8 +3,12 @@
     --bg-color: #020b04;
     /* Deep Green Black */
     --text-color: #e0f2e9;
+<<<<<<< HEAD
     --neon-green: #39ff14;
     --dark-bg: #050505;
+=======
+    --neon-green: #00ff41;
+>>>>>>> origin/main
     --neon-dark: #008f11;
     --accent-gold: #ffd700;
     --glass-bg: rgba(0, 25, 5, 0.4);
@@ -47,13 +51,17 @@ body.loading {
     height: 100vh;
     background: #000;
     z-index: 9999;
+<<<<<<< HEAD
     /* Display flex is good for centering the progress bar */
+=======
+>>>>>>> origin/main
     display: flex;
     justify-content: center;
     align-items: center;
     transition: opacity 1s ease;
 }
 
+<<<<<<< HEAD
 #intro-canvas {
     position: absolute;
     top: 0;
@@ -65,13 +73,18 @@ body.loading {
     /* Behind content but valid */
 }
 
+=======
+>>>>>>> origin/main
 .loader-content {
     text-align: center;
     width: 80%;
     max-width: 400px;
+<<<<<<< HEAD
     position: relative;
     z-index: 2;
     /* On top of canvas */
+=======
+>>>>>>> origin/main
 }
 
 .glitch {
@@ -1024,6 +1037,7 @@ section {
     font-size: 1.2rem;
 }
 
+<<<<<<< HEAD
 /* TIMELINE SECTION */
 .timeline-fullframe {
     position: relative;
@@ -1037,21 +1051,41 @@ section {
 }
 
 /* Background Image Logic */
+=======
+/* Timeline Horizontal/Vertical */
+/* Full-Frame Pinned Sacred Timeline */
+
+.timeline-fullframe {
+    position: relative;
+    width: 100%;
+    height: 200vh;
+    /* Reduced from 300vh to match shorter scroll */
+    overflow: hidden;
+}
+
+/* Monitor as Full Background */
+>>>>>>> origin/main
 .timeline-bg-container {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
+<<<<<<< HEAD
     height: 100%;
     z-index: 1;
     opacity: 1;
     /* Removed opacity 0.3 to make image clear */
+=======
+    height: 100vh;
+    z-index: 1;
+>>>>>>> origin/main
 }
 
 .timeline-bg-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
+<<<<<<< HEAD
 }
 
 /* Scrollable Area - Clipped to Monitor */
@@ -1079,6 +1113,31 @@ section {
     transform: translateY(-50%);
     width: 300%;
     /* Restored width for horizontal scroll */
+=======
+    object-position: center;
+}
+
+/* Timeline Overlay - Contains all timeline content */
+.timeline-overlay {
+    position: absolute;
+    top: 7%;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 2;
+    /* Clip content to stay within monitor screen area */
+    clip-path: inset(28% 8% 25% 9%);
+    pointer-events: none;
+}
+
+/* Timeline Track Wrapper - THIS IS WHAT SCROLLS */
+.timeline-track-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    transform: translateY(-50%);
+    width: 200%;
+>>>>>>> origin/main
     height: 50%;
     display: flex;
     flex-direction: column;
@@ -1086,6 +1145,7 @@ section {
     pointer-events: auto;
 }
 
+<<<<<<< HEAD
 /* The container that holds the line and dots */
 .sacred-timeline {
     position: relative;
@@ -1214,11 +1274,18 @@ section {
     position: absolute;
     top: -20%;
     /* Moved up */
+=======
+/* Section Labels */
+.timeline-labels {
+    position: absolute;
+    top: 5%;
+>>>>>>> origin/main
     left: 0;
     width: 100%;
     display: flex;
     justify-content: space-between;
     padding: 0 5%;
+<<<<<<< HEAD
     font-family: var(--font-cyber);
     letter-spacing: 5px;
     text-transform: uppercase;
@@ -1228,11 +1295,30 @@ section {
     font-size: 2rem;
     color: var(--accent-gold);
     text-shadow: 0 0 10px var(--accent-gold);
+=======
+}
+
+.timeline-labels .label {
+    font-family: var(--font-cyber);
+    font-size: 2rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--accent-gold);
+    text-shadow:
+        0 0 10px var(--accent-gold),
+        0 0 20px var(--accent-gold),
+        0 0 40px rgba(255, 215, 0, 0.5);
+    animation: labelGlow 2s ease-in-out infinite alternate;
+>>>>>>> origin/main
 }
 
 .label-past {
     color: #aaa;
+<<<<<<< HEAD
     text-shadow: 0 0 10px #888;
+=======
+    text-shadow: 0 0 10px #888, 0 0 20px #666;
+>>>>>>> origin/main
 }
 
 .label-present {
@@ -1241,17 +1327,115 @@ section {
 
 .label-future {
     color: #00ffaa;
+<<<<<<< HEAD
     text-shadow: 0 0 10px #00ffaa;
+=======
+    text-shadow: 0 0 10px #00ffaa, 0 0 20px #00ff88;
+}
+
+@keyframes labelGlow {
+    0% {
+        opacity: 0.7;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Sacred Timeline Track */
+.sacred-timeline {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* SVG Branch Lines */
+.branch-lines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.branch-lines .main-line {
+    fill: none;
+    stroke: var(--accent-gold);
+    stroke-width: 4;
+    filter: drop-shadow(0 0 8px var(--accent-gold)) drop-shadow(0 0 16px var(--accent-gold));
+}
+
+.branch-lines .branch {
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+}
+
+.branch-1,
+.branch-3,
+.branch-5 {
+    stroke: rgba(255, 255, 255, 0.7);
+    filter: drop-shadow(0 0 4px #fff) drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
+}
+
+.branch-2,
+.branch-4,
+.branch-6 {
+    stroke: rgba(255, 215, 0, 0.6);
+    filter: drop-shadow(0 0 4px var(--accent-gold)) drop-shadow(0 0 8px rgba(255, 215, 0, 0.4));
+}
+
+/* Event Nodes Container */
+.timeline-events {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Individual Event - NO BACKGROUND, NO HOVER EFFECTS */
+.timeline-event {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: default;
+    /* No pointer since no interaction */
+}
+
+/* REMOVED: hover effect */
+
+/* Event Dot (circle on timeline) */
+.event-dot {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--accent-gold);
+    border: 3px solid #fff;
+    box-shadow:
+        0 0 10px var(--accent-gold),
+        0 0 20px var(--accent-gold),
+        0 0 30px rgba(255, 215, 0, 0.5);
+>>>>>>> origin/main
 }
 
 .timeline-event.past .event-dot {
     background: #888;
     border-color: #aaa;
+<<<<<<< HEAD
+=======
+    box-shadow: 0 0 10px #666, 0 0 20px rgba(136, 136, 136, 0.5);
+>>>>>>> origin/main
 }
 
 .timeline-event.future .event-dot {
     background: #00ffaa;
     border-color: #fff;
+<<<<<<< HEAD
     box-shadow: 0 0 15px #00ffaa;
 }
 
@@ -1262,6 +1446,147 @@ section {
     animation: pulseGlow 1.5s infinite;
 }
 
+=======
+    box-shadow: 0 0 10px #00ffaa, 0 0 20px #00ff88, 0 0 30px rgba(0, 255, 170, 0.5);
+}
+
+/* Current/Present Event - Special Highlight */
+.timeline-event.current .event-dot {
+    width: 28px;
+    height: 28px;
+    background: var(--accent-gold);
+    border: 4px solid #fff;
+    animation: pulseGlow 1.5s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+
+    0%,
+    100% {
+        box-shadow:
+            0 0 10px var(--accent-gold),
+            0 0 20px var(--accent-gold),
+            0 0 40px var(--accent-gold);
+        transform: scale(1);
+    }
+
+    50% {
+        box-shadow:
+            0 0 20px var(--accent-gold),
+            0 0 40px var(--accent-gold),
+            0 0 60px var(--accent-gold),
+            0 0 80px rgba(255, 215, 0, 0.3);
+        transform: scale(1.15);
+    }
+}
+
+/* Event Info (date + name) */
+.event-info {
+    margin-top: 25px;
+    /* More space to avoid overlap with line */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-width: 100px;
+}
+
+.event-date {
+    font-family: var(--font-cyber);
+    font-size: 0.7rem;
+    color: var(--accent-gold);
+    letter-spacing: 2px;
+    text-shadow: 0 0 5px var(--accent-gold);
+    margin-bottom: 4px;
+}
+
+.event-name {
+    font-family: var(--font-cyber);
+    font-size: 0.6rem;
+    color: #fff;
+    letter-spacing: 1px;
+    text-shadow: 0 0 3px #fff;
+    max-width: 90px;
+    line-height: 1.3;
+}
+
+.timeline-event.past .event-date,
+.timeline-event.past .event-name {
+    color: #aaa;
+    text-shadow: 0 0 3px #666;
+}
+
+.timeline-event.future .event-date {
+    color: #00ffaa;
+    text-shadow: 0 0 5px #00ffaa;
+}
+
+/* Responsive Adjustments */
+@media screen and (max-width: 1024px) {
+    .timeline-track-wrapper {
+        width: 300%;
+    }
+
+    .timeline-labels .label {
+        font-size: 1.1rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .timeline-track-wrapper {
+        width: 400%;
+        top: 40%;
+    }
+
+    .timeline-labels {
+        top: -20%;
+    }
+
+    .timeline-labels .label {
+        font-size: 0.8rem;
+        letter-spacing: 2px;
+    }
+
+    .event-dot {
+        width: 14px;
+        height: 14px;
+    }
+
+    .timeline-event.current .event-dot {
+        width: 20px;
+        height: 20px;
+    }
+
+    .event-date {
+        font-size: 0.55rem;
+    }
+
+    .event-name {
+        font-size: 0.5rem;
+        max-width: 70px;
+    }
+
+    .branch-lines .main-line {
+        stroke-width: 2;
+    }
+
+    .branch-lines .branch {
+        stroke-width: 1;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .timeline-track-wrapper {
+        width: 500%;
+    }
+
+    .timeline-labels .label {
+        font-size: 0.6rem;
+    }
+}
+
+/* Cinematic Events Section */
+>>>>>>> origin/main
 .cinematic-events {
     height: 100vh;
     overflow: hidden;
