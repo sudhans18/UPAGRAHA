@@ -81,7 +81,7 @@
         <div class="nav-container">
             <a href="#home" class="nav-logo">UPAGRAHA</a>
             <div class="nav-links">
-                <a href="#home" class="nav-link">HOME</a>
+                <a href="#hero-cinematic" class="nav-link">HOME</a>
                 <a href="#about" class="nav-link">ABOUT</a>
                 <a href="#timeline" class="nav-link">TIMELINE</a>
                 <a href="#events" class="nav-link">EVENTS</a>
@@ -92,52 +92,46 @@
         </div>
     </nav>
 
-    <!-- HOME SECTION -->
-    <section id="home" class="spa-section">
-        <div class="home-logos-container">
-            <div class="placeholder-logo">LOGO 1</div>
-            <div class="placeholder-logo">LOGO 2</div>
-            <div class="placeholder-logo">LOGO 3</div>
+    <!-- ============================================
+         HERO SECTION - Fullscreen with zoom-out transition
+         ============================================ -->
+    <section id="hero-cinematic" class="hero-cinematic-section">
+        <!-- Hero Image Container: Scales down on scroll -->
+        <div class="hero-image-container" id="hero-container">
+            <!-- Hero Background Image -->
+            <img src="assets/hero_main.png" alt="Loki Sacred Timeline" class="hero-bg-image" id="hero-image">
+            <!-- Vignette Overlay -->
+            <div class="hero-vignette"></div>
         </div>
 
-        <div class="hero-center">
-            <h3 class="dept-title">DEPARTMENT OF ELECTRONICS AND COMMUNICATION ENGINEERING</h3>
-            <h1 class="main-title glitch-hover" data-text="UPAGRAHA">UPAGRAHA</h1>
-            <div class="countdown-wrapper">
-                <div class="countdown-item">
-                    <span id="d-val">59</span>
-                    <label>DAYS</label>
-                </div>
-                <div class="countdown-item">
-                    <span id="h-val">00</span>
-                    <label>HOURS</label>
-                </div>
-                <div class="countdown-item">
-                    <span id="m-val">00</span>
-                    <label>MINS</label>
-                </div>
-                <div class="countdown-item">
-                    <span id="s-val">00</span>
-                    <label>SECS</label>
-                </div>
-            </div>
+        <!-- Scroll indicator -->
+        <div class="scroll-indicator">
+            <span>SCROLL</span>
+            <div class="scroll-arrow"></div>
         </div>
     </section>
 
-    <!-- ABOUT SECTION -->
-    <section id="about" class="spa-section">
-        <h2 class="section-title">OUR LEGACY</h2>
-        <div class="about-gallery">
-            <!-- 3D Gallery Grid -->
-            <div class="gallery-item t-1"><span>INNOVATION</span></div>
-            <div class="gallery-item t-2"><span>TECHNOLOGY</span></div>
-            <div class="gallery-item t-3"><span>FUTURE</span></div>
-            <div class="gallery-desc">
-                <p>We are the pioneers of the digital frontier. UPAGRAHA is not just an event; it is a convergence of
-                    realities.</p>
+    <!-- ABOUT SECTION - Text on left, hero card lands on right -->
+    <section id="about" class="spa-section about-section">
+        <div class="about-container">
+            <!-- About text - enters from left -->
+            <div class="about-text">
+                <h2 class="about-title">ABOUT US</h2>
+                <p class="about-description">
+                    UPAGRAHA is more than just a symposium — it's a convergence of minds,
+                    a fusion of technology and creativity. We bring together the brightest
+                    innovators to push the boundaries of what's possible.
+                </p>
+                <p class="about-description">
+                    Join us on a journey through the digital frontier, where every line of
+                    code writes a new chapter in the story of tomorrow.
+                </p>
             </div>
+            <!-- Empty space for the hero card to land in -->
+            <div class="about-card-space"></div>
         </div>
     </section>
+
 
     <!-- TIMELINE SECTION - Full Frame Pinned -->
     <section id="timeline" class="timeline-fullframe">

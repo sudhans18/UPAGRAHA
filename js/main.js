@@ -131,20 +131,180 @@ function renderEventFrame() {
     }
 }
 
+// ============================================
+// CINEMATIC HERO - Full Feature Set
+// ============================================
+// 
+// Features:
+// 1. Floating animation - subtle up/down drift
+// 2. Mouse parallax - pseudo-3D exploration
+// 3. Scroll-to-card transition - zooms out to bottom-right
+// 4. About text enters from left
+// ============================================
+
+const heroContainer = document.querySelector('#hero-container');
+const heroImage = document.querySelector('#hero-image');
+const heroSection = document.querySelector('#hero-cinematic');
+
+let isInCardMode = false;
+
+// --- Floating Animation State ---
+// We use a shared variable to track floating offset, combined with parallax
+let floatingOffset = { y: 0 };
+
+function initHeroFloating() {
+    if (!heroImage) return;
+
+    // Animate the offset value, not the element directly
+    gsap.to(floatingOffset, {
+        y: -20,          // 20px range (moves up)
+        duration: 6,     // Half of 12s cycle (yoyo doubles it)
+        ease: "sine.inOut",
+        yoyo: true,
+        repeat: -1
+    });
+    console.log('🎈 Floating animation initialized (12s cycle, 20px range)');
+}
+
+// --- Mouse Parallax Effect ---
+let mouseX = 0, mouseY = 0;
+let currentX = 0, currentY = 0;
+
+document.addEventListener('mousemove', (e) => {
+    mouseX = (e.clientX / window.innerWidth) - 0.5;
+    mouseY = (e.clientY / window.innerHeight) - 0.5;
+});
+
+function updateParallax() {
+    if (!heroImage) {
+        requestAnimationFrame(updateParallax);
+        return;
+    }
+
+    const lerpFactor = 0.05;
+    currentX += (mouseX - currentX) * lerpFactor;
+    currentY += (mouseY - currentY) * lerpFactor;
+
+    const rangeMultiplier = isInCardMode ? 0.3 : 1;
+    const xVal = currentX * 50 * rangeMultiplier;
+    const yVal = currentY * 30 * rangeMultiplier;
+
+    // COMBINE parallax with floating offset
+    gsap.set(heroImage, {
+        x: xVal,
+        y: yVal + floatingOffset.y  // Add floating offset to parallax
+    });
+
+    requestAnimationFrame(updateParallax);
+}
+
+// Start loops
+updateParallax();
+initHeroFloating();
+
+/**
+ * Initialize Hero Zoom-Out Transition
+ * Shrinks to bottom-right, About text enters from left horizontally
+ */
+function initHeroTransition() {
+    const scrollIndicator = document.querySelector('.scroll-indicator');
+    const aboutSection = document.querySelector('#about');
+    const aboutText = document.querySelector('.about-text');
+
+    if (!heroSection || !heroContainer) {
+        console.warn('Hero elements not found, skipping transition');
+        return;
+    }
+
+    // Larger card size (0.45 instead of 0.35)
+    const targetScale = 0.45;
+
+    // Create scroll-triggered animation
+    const heroTimeline = gsap.timeline({
+        scrollTrigger: {
+            trigger: heroSection,
+            start: "top top",
+            end: "bottom top",
+            scrub: 1.8,
+            onUpdate: (self) => {
+                isInCardMode = self.progress > 0.7;
+                if (self.progress > 0.8) {
+                    heroContainer.classList.add('is-card');
+                } else {
+                    heroContainer.classList.remove('is-card');
+                }
+            },
+            onLeave: () => {
+                // Switch to absolute for bottom-RIGHT positioning
+                // This makes it scroll with the About section
+                heroContainer.style.position = 'absolute';
+                heroContainer.style.top = 'auto';
+                heroContainer.style.bottom = '5vh';
+                heroContainer.style.left = 'auto';
+                heroContainer.style.right = '3vw';
+                heroContainer.style.transform = `scale(${targetScale})`;
+                heroContainer.classList.add('is-card');
+            },
+            onEnterBack: () => {
+                heroContainer.style.position = 'fixed';
+                heroContainer.style.top = '0';
+                heroContainer.style.left = '0';
+                heroContainer.style.bottom = 'auto';
+                heroContainer.style.right = 'auto';
+                heroContainer.style.transform = '';
+            }
+        }
+    });
+
+    // Hero shrinks and moves toward bottom-right
+    heroTimeline
+        .to(scrollIndicator, { opacity: 0, duration: 0.2 }, 0)
+        .to(heroContainer, {
+            scale: targetScale,
+            x: '25vw',  // Move right as it shrinks
+            y: '20vh',  // Move down as it shrinks
+            borderRadius: "20px",
+            ease: "none",
+            duration: 1
+        }, 0);
+
+    // About text enters from LEFT (horizontal only, x axis only)
+    if (aboutText) {
+        gsap.fromTo(aboutText,
+            { x: -300, opacity: 0 },  // Start: off-screen left
+            {
+                x: 0,                  // End: normal position
+                opacity: 1,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: aboutSection,
+                    start: "top 90%",
+                    end: "top 40%",
+                    scrub: 1.8
+                }
+            }
+        );
+    }
+
+    console.log('🎬 Hero zoom-out transition initialized');
+}
+
+
 // --- GSAP Animations ---
 function initAnimations() {
-    // Intro
-    gsap.from('.hero-center', {
-        duration: 2, pointerEvents: 'none',
-        scale: 2.5, opacity: 0, ease: 'power3.out', delay: 0.2
-    });
-
-    gsap.from('.home-logos-container', {
-        duration: 1, y: -50, opacity: 0, delay: 1
-    });
-
-    // Sections ScrollTrigger
+    // Register ScrollTrigger plugin first
     gsap.registerPlugin(ScrollTrigger);
+
+    // Initialize the cinematic hero transition
+    initHeroTransition();
+
+    // Scroll indicator fade in animation
+    gsap.from('.scroll-indicator', {
+        duration: 1,
+        opacity: 0,
+        y: 20,
+        delay: 1.5  // Slight delay after page load
+    });
 
     gsap.utils.toArray('.spa-section h2').forEach(title => {
         gsap.from(title, {

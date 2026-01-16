@@ -971,42 +971,31 @@ section {
     color: #aaa;
 }
 
-/* About Gallery */
-.about-gallery {
-    display: flex;
-    gap: 20px;
-    perspective: 1000px;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.gallery-item {
-    width: 200px;
-    height: 300px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid var(--neon-green);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: 0.5s;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-}
-
-.gallery-item:hover {
-    transform: translateZ(20px) scale(1.1);
-    background: rgba(0, 255, 65, 0.1);
-    box-shadow: 0 0 30px var(--neon-green);
-}
-
-.gallery-desc {
-    max-width: 600px;
+/* About Section Content */
+.about-content {
+    width: 100%;
+    max-width: 800px;
     text-align: center;
-    margin-top: 2rem;
-    line-height: 1.6;
-    font-size: 1.2rem;
+    padding: 2rem;
+    /* Leave room for the hero card on the right */
+    padding-right: 40vw;
 }
+
+.legacy-description {
+    font-size: 1.3rem;
+    line-height: 1.8;
+    color: var(--text-color);
+}
+
+.legacy-description p {
+    margin-bottom: 1.5rem;
+}
+
+/* About Gallery - Hidden as per user request */
+.about-gallery {
+    display: none;
+}
+
 
 /* Timeline Horizontal/Vertical */
 /* Full-Frame Pinned Sacred Timeline */
@@ -1626,5 +1615,315 @@ section {
 
     .footer-content {
         flex-direction: column;
+    }
+}
+
+/* ============================================
+   CINEMATIC HERO SECTION STYLES - ZOOM OUT EFFECT
+   ============================================
+   
+   Creates a fullscreen hero that zooms out (shrinks) to a card
+   as the user scrolls. The shrink is CENTERED (stays in center
+   while getting smaller), then repositions to bottom-center.
+   ============================================ */
+
+/* Main section container */
+.hero-cinematic-section {
+    position: relative;
+    width: 100%;
+    height: 200vh;
+    /* Extra height for scroll-based animation */
+    overflow: visible;
+    background: transparent;
+}
+
+/* Image container - FIXED during transition, then ABSOLUTE when done */
+.hero-image-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    z-index: 50;
+    /* KEY: Transform origin at CENTER for uniform shrink */
+    transform-origin: center center;
+    /* Start at full scale */
+    transform: scale(1);
+    /* Smooth transitions for border-radius */
+    border-radius: 0;
+    /* No clip initially */
+    clip-path: none;
+}
+
+/* When in card mode (applied by JS) */
+.hero-image-container.is-card {
+    border-radius: 20px;
+    clip-path: polygon(3% 0%, 97% 0%, 100% 3%, 100% 97%, 97% 100%, 3% 100%, 0% 97%, 0% 3%);
+    box-shadow:
+        0 10px 40px rgba(0, 0, 0, 0.6),
+        0 0 30px rgba(0, 255, 65, 0.2);
+}
+
+/* Hero Background Image - oversized for floating + parallax buffer */
+.hero-bg-image {
+    width: 115%;
+    /* 7.5% extra each side for horizontal parallax */
+    height: 130%;
+    /* 15% extra each side for floating + vertical parallax */
+    object-fit: cover;
+    object-position: center center;
+    /* Offset to center the oversized image */
+    margin-left: -10%;
+    /* More buffer on left than right */
+    margin-top: -15%;
+    /* Center vertically */
+    /* Prevent dragging */
+    user-select: none;
+    -webkit-user-drag: none;
+    pointer-events: none;
+    will-change: transform;
+}
+
+/* Vignette Overlay with breathing animation */
+.hero-vignette {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: radial-gradient(ellipse at center,
+            transparent 35%,
+            rgba(0, 0, 0, 0.25) 65%,
+            rgba(0, 0, 0, 0.5) 100%);
+    animation: vignetteBreathe 15s ease-in-out infinite;
+}
+
+@keyframes vignetteBreathe {
+
+    0%,
+    100% {
+        opacity: 0.6;
+    }
+
+    50% {
+        opacity: 0.85;
+    }
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 150;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0.8;
+    pointer-events: none;
+}
+
+.scroll-indicator span {
+    font-family: var(--font-cyber);
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.scroll-arrow {
+    width: 24px;
+    height: 24px;
+    border-right: 2px solid rgba(255, 255, 255, 0.7);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.7);
+    transform: rotate(45deg);
+    animation: scrollBounce 2s ease-in-out infinite;
+}
+
+@keyframes scrollBounce {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: rotate(45deg) translateY(0);
+    }
+
+    40% {
+        transform: rotate(45deg) translateY(10px);
+    }
+
+    60% {
+        transform: rotate(45deg) translateY(5px);
+    }
+}
+
+/* About Section - Side by side layout */
+.about-section {
+    position: relative;
+    z-index: 10;
+    background: var(--bg-color);
+    min-height: 100vh;
+    padding: 100px 5vw;
+    display: flex;
+    align-items: center;
+}
+
+.about-container {
+    display: flex;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    gap: 5vw;
+    align-items: center;
+}
+
+/* About text - left side */
+.about-text {
+    flex: 1;
+    max-width: 45%;
+    opacity: 1;
+    /* Will animate with GSAP */
+}
+
+.about-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    color: var(--neon-green);
+    margin-bottom: 2rem;
+    text-shadow: 0 0 20px rgba(0, 255, 65, 0.5);
+    letter-spacing: 0.1em;
+}
+
+.about-description {
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 1.5vw, 1.3rem);
+    line-height: 1.8;
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+}
+
+/* Empty space for hero card to land */
+.about-card-space {
+    flex: 1;
+    min-height: 50vh;
+    /* Card will be positioned absolutely over this area */
+}
+
+.scroll-indicator span {
+    font-family: var(--font-cyber);
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.scroll-arrow {
+    width: 24px;
+    height: 24px;
+    border-right: 2px solid rgba(255, 255, 255, 0.7);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.7);
+    transform: rotate(45deg);
+    animation: scrollBounce 2s ease-in-out infinite;
+}
+
+@keyframes scrollBounce {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: rotate(45deg) translateY(0);
+    }
+
+    40% {
+        transform: rotate(45deg) translateY(10px);
+    }
+
+    60% {
+        transform: rotate(45deg) translateY(5px);
+    }
+}
+
+/* 
+   Card Final State (Applied via JS)
+   ----------------------------------
+   Fancy hexagonal/crystal shape with glow effect.
+*/
+.hero-image-container.is-card {
+    /* Fancy hexagonal clip-path - crystal/gem shape */
+    clip-path: polygon(5% 0%, 95% 0%, 100% 5%, 100% 95%, 95% 100%, 5% 100%, 0% 95%, 0% 5%);
+    border-radius: 0;
+    /* Clip-path handles shape */
+    box-shadow:
+        0 10px 40px rgba(0, 0, 0, 0.6),
+        0 0 30px rgba(0, 255, 65, 0.3),
+        inset 0 0 20px rgba(0, 255, 65, 0.1);
+}
+
+/* Glow border effect for card state */
+.hero-image-container.is-card::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(135deg,
+            var(--neon-green) 0%,
+            transparent 30%,
+            transparent 70%,
+            var(--neon-dark) 100%);
+    clip-path: polygon(5% 0%, 95% 0%, 100% 5%, 100% 95%, 95% 100%, 5% 100%, 0% 95%, 0% 5%);
+    z-index: -1;
+    opacity: 0.6;
+}
+
+/* 
+   About Section - Receives the hero card
+   ---------------------------------------
+   Positioned to be visible underneath the hero
+*/
+#about {
+    position: relative;
+    z-index: 5;
+    background: var(--bg-color);
+    min-height: 100vh;
+    padding-top: 80px;
+    /* Space for nav */
+}
+
+/* Legacy section content area - where card lands */
+#about .section-title {
+    margin-bottom: 3rem;
+}
+
+/* Hide legacy gallery items to make room for hero card */
+.about-gallery {
+    display: none;
+    /* Removed as requested */
+}
+
+/* 
+   Mobile Responsiveness for Hero
+   ------------------------------
+*/
+@media screen and (max-width: 768px) {
+    .hero-bg-image {
+        width: 125%;
+        height: 140%;
+        margin-left: -12.5%;
+        margin-top: -15%;
+    }
+
+    .scroll-indicator {
+        bottom: 20px;
+    }
+
+    /* Card is larger on mobile */
+    .hero-image-container.is-card {
+        clip-path: polygon(3% 0%, 97% 0%, 100% 3%, 100% 97%, 97% 100%, 3% 100%, 0% 97%, 0% 3%);
     }
 }
