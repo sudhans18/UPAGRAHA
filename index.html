@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UPAGRAHA '26 | ECE Symposium</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Michroma&family=Rajdhani:wght@300;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Inline overrides until moved to styles.css */
+        body {
+            overflow-x: hidden;
+        }
+
+        /* Fixed Background */
+        #universe-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: url('assets/bg_green_space.png') no-repeat center center;
+            background-size: cover;
+            z-index: -2;
+        }
+
+        #stars-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.8;
+        }
+
+        /* Sections */
+        .spa-section {
+            min-height: 100vh;
+            padding: 80px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Footer moved to styles later */
+    </style>
+</head>
+
+<body class="loading">
+
+    <!-- Preloader -->
+    <div id="loader">
+        <canvas id="intro-canvas"></canvas>
+        <div class="loader-content">
+            <h2 class="glitch" data-text="LOADING UNIVERSE">LOADING UNIVERSE</h2>
+            <div class="progress-bar">
+                <div class="progress-fill" id="preloader-bar"></div>
+            </div>
+            <div id="loader-text">INITIALIZING...</div>
+        </div>
+    </div>
+
+    <!-- Backgrounds -->
+    <div id="universe-bg"></div>
+    <canvas id="stars-canvas"></canvas>
+
+    <!-- Navigation -->
+    <nav id="main-nav">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo">UPAGRAHA</a>
+            <div class="nav-links">
+                <a href="#home" class="nav-link">HOME</a>
+                <a href="#about" class="nav-link">ABOUT</a>
+                <a href="#timeline" class="nav-link">TIMELINE</a>
+                <a href="#events" class="nav-link">EVENTS</a>
+                <a href="#sponsors" class="nav-link">SPONSORS</a>
+                <a href="#contact" class="nav-link">CONTACT</a>
+            </div>
+            <div class="nav-toggle"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <!-- HOME SECTION -->
+    <section id="home" class="spa-section">
+        <div class="home-logos-container">
+            <div class="placeholder-logo">LOGO 1</div>
+            <div class="placeholder-logo">LOGO 2</div>
+            <div class="placeholder-logo">LOGO 3</div>
+        </div>
+
+        <div class="hero-center">
+            <h3 class="dept-title">DEPARTMENT OF ELECTRONICS AND COMMUNICATION ENGINEERING</h3>
+            <h1 class="main-title glitch-hover" data-text="UPAGRAHA">UPAGRAHA</h1>
+            <div class="countdown-wrapper">
+                <div class="countdown-item">
+                    <span id="d-val">59</span>
+                    <label>DAYS</label>
+                </div>
+                <div class="countdown-item">
+                    <span id="h-val">00</span>
+                    <label>HOURS</label>
+                </div>
+                <div class="countdown-item">
+                    <span id="m-val">00</span>
+                    <label>MINS</label>
+                </div>
+                <div class="countdown-item">
+                    <span id="s-val">00</span>
+                    <label>SECS</label>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="spa-section">
+        <h2 class="section-title">OUR LEGACY</h2>
+        <div class="about-gallery">
+            <!-- 3D Gallery Grid -->
+            <div class="gallery-item t-1"><span>INNOVATION</span></div>
+            <div class="gallery-item t-2"><span>TECHNOLOGY</span></div>
+            <div class="gallery-item t-3"><span>FUTURE</span></div>
+            <div class="gallery-desc">
+                <p>We are the pioneers of the digital frontier. UPAGRAHA is not just an event; it is a convergence of
+                    realities.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- TIMELINE SECTION - Full Frame Pinned -->
+    <section id="timeline" class="timeline-fullframe">
+        <!-- Monitor as Full Background -->
+        <div class="timeline-bg-container">
+            <img src="assets/timeline.jpeg" alt="Timeline Monitor" class="timeline-bg-image">
+        </div>
+
+        <!-- Timeline Overlay Content -->
+        <div class="timeline-overlay">
+            <!-- Timeline Content (scrolls horizontally) -->
+            <div class="timeline-track-wrapper">
+                <!-- Section Labels -->
+                <div class="timeline-labels">
+                    <span class="label label-past">PAST</span>
+                    <span class="label label-present">PRESENT</span>
+                    <span class="label label-future">FUTURE</span>
+                </div>
+
+                <!-- Sacred Timeline Track -->
+                <div class="sacred-timeline">
+                    <!-- Branch Lines (decorative) -->
+                    <svg class="branch-lines" viewBox="0 0 2400 200" preserveAspectRatio="none">
+                        <!-- Main line -->
+                        <path class="main-line" d="M0,100 L2400,100" />
+                        <!-- Branches -->
+                        <path class="branch branch-1" d="M200,100 Q250,40 350,60" />
+                        <path class="branch branch-2" d="M500,100 Q550,150 650,130" />
+                        <path class="branch branch-3" d="M900,100 Q950,50 1050,70" />
+                        <path class="branch branch-4" d="M1200,100 Q1250,160 1350,140" />
+                        <path class="branch branch-5" d="M1600,100 Q1650,30 1750,50" />
+                        <path class="branch branch-6" d="M2000,100 Q2050,150 2150,130" />
+                    </svg>
+
+                    <!-- Event Nodes -->
+                    <div class="timeline-events">
+                        <!-- PAST Events -->
+                        <!-- Branch 1: Start 200 (8.33%), End Y 60 (30%) -->
+                        <div class="timeline-event past" style="left: 8.33%;">
+                            <div class="event-dot"></div>
+                            <div class="event-info" style="top: 30%;">
+                                <span class="event-date">Oct 15</span>
+                                <span class="event-name">PROJECT KICKOFF</span>
+                            </div>
+                        </div>
+
+                        <!-- Branch 2: Start 500 (20.83%), End Y 130 (65%) -->
+                        <div class="timeline-event past" style="left: 20.83%;">
+                            <div class="event-dot"></div>
+                            <div class="event-info" style="top: 65%;">
+                                <span class="event-date">Nov 01</span>
+                                <span class="event-name">PHASE 1 COMPLETE</span>
+                            </div>
+                        </div>
+
+                        <!-- Branch 3: Start 900 (37.5%), End Y 70 (35%) -->
+                        <div class="timeline-event current" style="left: 37.5%;">
+                            <div class="event-dot"></div>
+                            <div class="event-info" style="top: 35%;">
+                                <span class="event-date">Nov 15</span>
+                                <span class="event-name">MID-TERM REVIEW</span>
+                            </div>
+                        </div>
+
+                        <!-- Branch 4: Start 1200 (50%), End Y 140 (70%) -->
+                        <div class="timeline-event future" style="left: 50%;">
+                            <div class="event-dot"></div>
+                            <div class="event-info" style="top: 70%;">
+                                <span class="event-date">Dec 01</span>
+                                <span class="event-name">FINAL SUBMISSION</span>
+                            </div>
+                        </div>
+
+                        <!-- Branch 5: Start 1600 (66.66%), End Y 50 (25%) -->
+                        <div class="timeline-event future" style="left: 66.66%;">
+                            <div class="event-dot"></div>
+                            <div class="event-info" style="top: 25%;">
+                                <span class="event-date">Dec 10</span>
+                                <span class="event-name">SYMPOSIUM DAY</span>
+                            </div>
+                        </div>
+
+                        <!-- Branch 6: Start 2000 (83.33%), End Y 130 (65%) -->
+                        <div class="timeline-event future" style="left: 83.33%;">
+                            <div class="event-dot"></div>
+                            <div class="event-info" style="top: 65%;">
+                                <span class="event-date">Dec 15</span>
+                                <span class="event-name">AWARDS CEREMONY</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EVENTS SECTION -->
+    <section id="events" class="spa-section cinematic-events">
+        <canvas id="events-canvas"></canvas>
+        <div class="events-overlay">
+            <h2 class="section-title">MULTIVERSE EVENTS</h2>
+            <p class="section-subtitle">SCROLL TO ENTER THE MULTIVERSE</p>
+        </div>
+
+        <div class="events-grid">
+            <a href="events/universe1.html" class="event-card">
+                <div class="card-inner">
+                    <h3>PAPYRUS</h3>
+                    <p>Paper Presentation</p>
+                </div>
+            </a>
+            <a href="events/universe2.html" class="event-card">
+                <div class="card-inner">
+                    <h3>CIRCUITRY</h3>
+                    <p>Circuit Debugging</p>
+                </div>
+            </a>
+            <a href="events/universe3.html" class="event-card">
+                <div class="card-inner">
+                    <h3>ROBO WARS</h3>
+                    <p>Robotics</p>
+                </div>
+            </a>
+            <a href="events/universe4.html" class="event-card">
+                <div class="card-inner">
+                    <h3>CODE MATRIX</h3>
+                    <p>Coding Event</p>
+                </div>
+            </a>
+            <a href="events/universe5.html" class="event-card">
+                <div class="card-inner">
+                    <h3>BRAIN STORM</h3>
+                    <p>Quiz</p>
+                </div>
+            </a>
+            <a href="events/universe6.html" class="event-card">
+                <div class="card-inner">
+                    <h3>TVA TRIALS</h3>
+                    <p>Debate</p>
+                </div>
+            </a>
+            <a href="events.html" class="event-card special">
+                <div class="card-inner">
+                    <h3>ENTER THE TREE</h3>
+                    <p>Cinematic Experience</p>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- SPONSORS SECTION -->
+    <section id="sponsors" class="spa-section">
+        <h2 class="section-title">OUR ALLIES</h2>
+        <div class="sponsors-grid">
+            <div class="sponsor-logo">SPONSOR 1</div>
+            <div class="sponsor-logo">SPONSOR 2</div>
+            <div class="sponsor-logo">SPONSOR 3</div>
+            <div class="sponsor-logo">SPONSOR 4</div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="spa-section">
+        <h2 class="section-title">ESTABLISH LINK</h2>
+        <div class="contact-container">
+            <div class="contact-details">
+                <h3>HQ COORDINATES</h3>
+                <p>ECE Department<br>University Campus<br>Sector 7</p>
+                <div class="socials">
+                    <a href="#">IG</a> <a href="#">FB</a> <a href="#">LI</a>
+                </div>
+            </div>
+            <form class="contact-form-main">
+                <input type="text" placeholder="NAME" required>
+                <input type="email" placeholder="EMAIL" required>
+                <textarea placeholder="MESSAGE"></textarea>
+                <button type="submit" class="submit-glow">TRANSMIT</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="main-footer">
+        <div class="footer-content">
+            <div class="footer-col branding">
+                <h3 style="color:var(--neon-green)">UPAGRAHA '26</h3>
+                <p>ECE SYMPOSIUM</p>
+                <p class="small">National Level Technical Symposium organized by the Department of Electronics &
+                    Communication Engineering.</p>
+                <div class="footer-icons">
+                    <span>GH</span> <span>IN</span> <span>IG</span> <span>TW</span>
+                </div>
+            </div>
+            <div class="footer-col links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#events">Events</a></li>
+                    <li><a href="#about">Gallery</a></li>
+                    <li><a href="#sponsors">Sponsors</a></li>
+                    <li><a href="#contact">Prizes</a></li>
+                </ul>
+            </div>
+            <div class="footer-col links">
+                <h4>Events</h4>
+                <ul>
+                    <li>Paper Presentation</li>
+                    <li>Project Expo</li>
+                    <li>Treasure Hunt</li>
+                    <li>Circuit Trade</li>
+                    <li>Hardware Hack</li>
+                    <li>Neural Quiz</li>
+                </ul>
+            </div>
+            <div class="footer-col contact">
+                <h4>Contact Us</h4>
+                <p>ECE Department, University Campus, Kanpur - 208024</p>
+                <p>upagraha@university.edu</p>
+                <p>+91 98765 43210</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 UPAGRAHA. All rights reserved.</p>
+            <div class="legal">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>

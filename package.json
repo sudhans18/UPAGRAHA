@@ -1,0 +1,12 @@
+{
+  "name": "upagraha-26",
+  "version": "1.0.0",
+  "description": "Cinematic Experience Website",
+  "scripts": {
+    "start": "npx http-server . -c-1 -o"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
