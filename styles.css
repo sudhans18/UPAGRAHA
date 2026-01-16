@@ -1619,25 +1619,23 @@ section {
 }
 
 /* ============================================
-   CINEMATIC HERO SECTION STYLES - ZOOM OUT EFFECT
+   HERO + ABOUT PINNED WRAPPER STYLES
    ============================================
    
-   Creates a fullscreen hero that zooms out (shrinks) to a card
-   as the user scrolls. The shrink is CENTERED (stays in center
-   while getting smaller), then repositions to bottom-center.
+   Both sections are inside a wrapper that gets pinned.
+   Hero shrinks while About content animates in simultaneously.
    ============================================ */
 
-/* Main section container */
-.hero-cinematic-section {
+/* Wrapper that contains both hero container and about section */
+.hero-about-wrapper {
     position: relative;
     width: 100%;
-    height: 200vh;
-    /* Extra height for scroll-based animation */
-    overflow: visible;
+    min-height: 100vh;
+    /* Background shows through */
     background: transparent;
 }
 
-/* Image container - FIXED during transition, then ABSOLUTE when done */
+/* Image container - FIXED during transition, then switches to ABSOLUTE when docked */
 .hero-image-container {
     position: fixed;
     top: 0;
@@ -1648,16 +1646,26 @@ section {
     z-index: 50;
     /* KEY: Transform origin at CENTER for uniform shrink */
     transform-origin: center center;
-    /* Start at full scale */
     transform: scale(1);
-    /* Smooth transitions for border-radius */
     border-radius: 0;
-    /* No clip initially */
     clip-path: none;
+}
+
+/* When docked to about section (applied by JS) */
+.hero-image-container.is-docked {
+    position: absolute;
+    top: auto;
+    left: auto;
+    right: 3vw;
+    bottom: 5vh;
+    z-index: 10;
+    /* LOW z-index so text appears above */
 }
 
 /* When in card mode (applied by JS) */
 .hero-image-container.is-card {
+    z-index: 10;
+    /* LOW z-index so text appears above */
     border-radius: 20px;
     clip-path: polygon(3% 0%, 97% 0%, 100% 3%, 100% 97%, 97% 100%, 3% 100%, 0% 97%, 0% 3%);
     box-shadow:
@@ -1669,15 +1677,16 @@ section {
 .hero-bg-image {
     width: 115%;
     /* 7.5% extra each side for horizontal parallax */
-    height: 130%;
-    /* 15% extra each side for floating + vertical parallax */
+    height: 125%;
+    /* Extra for floating + vertical parallax */
     object-fit: cover;
-    object-position: center center;
-    /* Offset to center the oversized image */
-    margin-left: -10%;
-    /* More buffer on left than right */
-    margin-top: -15%;
-    /* Center vertically */
+    object-position: center 30%;
+    /* Show more of top of image */
+    /* Offset to center the oversized image - balanced top/bottom */
+    margin-left: -7.5%;
+    /* Center horizontally */
+    margin-top: -5%;
+    /* Less top offset to prevent bottom gap */
     /* Prevent dragging */
     user-select: none;
     -webkit-user-drag: none;
@@ -1925,5 +1934,434 @@ section {
     /* Card is larger on mobile */
     .hero-image-container.is-card {
         clip-path: polygon(3% 0%, 97% 0%, 100% 3%, 100% 97%, 97% 100%, 3% 100%, 0% 97%, 0% 3%);
+    }
+}
+
+/* ============================================
+   HERO CONTENT OVERLAY STYLES
+   Multiverse Theme Design
+   ============================================ */
+
+.hero-content-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    padding: 80px 20px 40px;
+    pointer-events: none;
+    text-align: center;
+}
+
+.hero-content-overlay * {
+    pointer-events: auto;
+}
+
+/* Top Info - College & Department */
+.hero-top-info {
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.college-badge {
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    padding: 8px 24px;
+    border-radius: 30px;
+    border: 1px solid rgba(138, 43, 226, 0.4);
+}
+
+.college-name {
+    font-family: var(--font-cyber);
+    font-size: 0.9rem;
+    letter-spacing: 4px;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(138, 43, 226, 0.8);
+}
+
+.department-label {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.7);
+    text-transform: uppercase;
+}
+
+/* Title Block */
+.hero-title-block {
+    margin-bottom: 24px;
+}
+
+.hero-main-title {
+    font-family: var(--font-heading);
+    font-size: clamp(4rem, 12vw, 8rem);
+    font-weight: 700;
+    line-height: 1;
+    margin: 0;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 10px;
+}
+
+.title-main {
+    background: linear-gradient(135deg,
+            #fff 0%,
+            #e0b0ff 25%,
+            #bc13fe 50%,
+            #00f7ff 75%,
+            #fff 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: titleGradient 8s ease-in-out infinite;
+    filter: drop-shadow(0 0 30px rgba(188, 19, 254, 0.5)) drop-shadow(0 0 60px rgba(0, 247, 255, 0.3));
+    letter-spacing: 0.05em;
+}
+
+.title-year {
+    font-family: var(--font-cyber);
+    font-size: clamp(2rem, 6vw, 4rem);
+    color: #00f7ff;
+    text-shadow:
+        0 0 10px #00f7ff,
+        0 0 20px #00f7ff,
+        0 0 40px rgba(0, 247, 255, 0.5);
+    animation: yearPulse 2s ease-in-out infinite;
+}
+
+@keyframes titleGradient {
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+@keyframes yearPulse {
+
+    0%,
+    100% {
+        opacity: 1;
+        text-shadow:
+            0 0 10px #00f7ff,
+            0 0 20px #00f7ff,
+            0 0 40px rgba(0, 247, 255, 0.5);
+    }
+
+    50% {
+        opacity: 0.9;
+        text-shadow:
+            0 0 15px #00f7ff,
+            0 0 30px #00f7ff,
+            0 0 60px rgba(0, 247, 255, 0.7);
+    }
+}
+
+.hero-tagline {
+    font-family: var(--font-cyber);
+    font-size: clamp(0.7rem, 2vw, 1rem);
+    letter-spacing: 6px;
+    color: rgba(255, 255, 255, 0.8);
+    margin-top: 16px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+/* Club Logos */
+.hero-clubs {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+.club-placeholder {
+    width: 70px;
+    height: 70px;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    border: 2px solid transparent;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    /* Gradient border effect */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+        linear-gradient(135deg, #bc13fe, #00f7ff, #00ff41);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+}
+
+.club-placeholder span {
+    font-family: var(--font-cyber);
+    font-size: 0.65rem;
+    letter-spacing: 1px;
+    color: #fff;
+    text-shadow: 0 0 8px rgba(188, 19, 254, 0.8);
+}
+
+.club-placeholder:hover {
+    transform: scale(1.1);
+    box-shadow:
+        0 0 20px rgba(188, 19, 254, 0.5),
+        0 0 40px rgba(0, 247, 255, 0.3);
+}
+
+.club-placeholder::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(188, 19, 254, 0.3), rgba(0, 247, 255, 0.3));
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.club-placeholder:hover::before {
+    opacity: 1;
+}
+
+/* Countdown Timer */
+.hero-countdown {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 40px;
+}
+
+.countdown-block {
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(15px);
+    padding: 16px 20px;
+    border-radius: 12px;
+    border: 1px solid rgba(138, 43, 226, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 80px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.countdown-block::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #bc13fe, #00f7ff, transparent);
+}
+
+.countdown-block:hover {
+    border-color: rgba(0, 247, 255, 0.5);
+    box-shadow: 0 0 20px rgba(188, 19, 254, 0.3);
+}
+
+.count-value {
+    font-family: var(--font-cyber);
+    font-size: 2.5rem;
+    font-weight: 700;
+    background: linear-gradient(180deg, #fff 0%, #00f7ff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: none;
+    filter: drop-shadow(0 0 10px rgba(0, 247, 255, 0.5));
+    line-height: 1;
+}
+
+.count-label {
+    font-family: var(--font-body);
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 6px;
+}
+
+.countdown-divider {
+    font-family: var(--font-cyber);
+    font-size: 2rem;
+    color: rgba(188, 19, 254, 0.7);
+    animation: dividerPulse 1s ease-in-out infinite;
+}
+
+@keyframes dividerPulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.3;
+    }
+}
+
+/* Action Buttons */
+.hero-action-buttons {
+    display: flex;
+    gap: 20px;
+}
+
+.hero-btn {
+    font-family: var(--font-cyber);
+    font-size: 0.85rem;
+    letter-spacing: 3px;
+    text-decoration: none;
+    padding: 16px 40px;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.hero-btn.primary {
+    background: linear-gradient(135deg, #bc13fe, #8a2be2);
+    color: #fff;
+    border: none;
+    box-shadow:
+        0 4px 20px rgba(188, 19, 254, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.hero-btn.primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.hero-btn.primary:hover::before {
+    left: 100%;
+}
+
+.hero-btn.primary:hover {
+    transform: translateY(-3px);
+    box-shadow:
+        0 8px 30px rgba(188, 19, 254, 0.6),
+        0 0 40px rgba(188, 19, 254, 0.3);
+}
+
+.hero-btn.secondary {
+    background: transparent;
+    color: #fff;
+    border: 2px solid rgba(0, 247, 255, 0.6);
+    box-shadow: 0 0 15px rgba(0, 247, 255, 0.2);
+}
+
+.hero-btn.secondary:hover {
+    background: rgba(0, 247, 255, 0.1);
+    border-color: #00f7ff;
+    transform: translateY(-3px);
+    box-shadow:
+        0 0 25px rgba(0, 247, 255, 0.4),
+        0 8px 20px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 0 10px #00f7ff;
+}
+
+/* Mobile Responsiveness for Hero Content */
+@media screen and (max-width: 768px) {
+    .hero-content-overlay {
+        padding: 100px 15px 30px;
+    }
+
+    .hero-top-info {
+        top: 80px;
+    }
+
+    .college-name {
+        font-size: 0.75rem;
+        letter-spacing: 2px;
+    }
+
+    .department-label {
+        font-size: 0.6rem;
+        letter-spacing: 1px;
+    }
+
+    .hero-main-title {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .hero-tagline {
+        font-size: 0.6rem;
+        letter-spacing: 3px;
+    }
+
+    .hero-clubs {
+        gap: 16px;
+    }
+
+    .club-placeholder {
+        width: 55px;
+        height: 55px;
+    }
+
+    .club-placeholder span {
+        font-size: 0.55rem;
+    }
+
+    .hero-countdown {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 6px;
+    }
+
+    .countdown-block {
+        padding: 12px 14px;
+        min-width: 65px;
+    }
+
+    .count-value {
+        font-size: 1.8rem;
+    }
+
+    .count-label {
+        font-size: 0.55rem;
+    }
+
+    .countdown-divider {
+        font-size: 1.5rem;
+    }
+
+    .hero-action-buttons {
+        flex-direction: column;
+        gap: 12px;
+        width: 100%;
+        max-width: 280px;
+    }
+
+    .hero-btn {
+        padding: 14px 30px;
+        font-size: 0.75rem;
+        width: 100%;
+        text-align: center;
     }
 }

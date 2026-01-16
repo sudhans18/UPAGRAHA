@@ -26,27 +26,44 @@ window.addEventListener('load', () => {
     }, 100);
 });
 
-// --- Countdown ---
-const targetDate = new Date();
-targetDate.setDate(targetDate.getDate() + 59); // 59 Days from now
+// --- Countdown Timer for Hero Section ---
+// Target: February 19, 2026
+const countdownTargetDate = new Date('2026-02-19T00:00:00');
 
-function updateCountdown() {
+function updateHeroCountdown() {
     const now = new Date().getTime();
-    const distance = targetDate - now;
+    const distance = countdownTargetDate - now;
 
-    if (distance < 0) return;
+    // Elements
+    const daysEl = document.getElementById('countdown-days');
+    const hoursEl = document.getElementById('countdown-hours');
+    const minutesEl = document.getElementById('countdown-minutes');
+    const secondsEl = document.getElementById('countdown-seconds');
+
+    if (!daysEl || !hoursEl || !minutesEl || !secondsEl) return;
+
+    if (distance < 0) {
+        daysEl.innerText = '00';
+        hoursEl.innerText = '00';
+        minutesEl.innerText = '00';
+        secondsEl.innerText = '00';
+        return;
+    }
 
     const d = Math.floor(distance / (1000 * 60 * 60 * 24));
     const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     const s = Math.floor((distance % (1000 * 60)) / 1000);
 
-    document.getElementById('d-val').innerText = d.toString().padStart(2, '0');
-    document.getElementById('h-val').innerText = h.toString().padStart(2, '0');
-    document.getElementById('m-val').innerText = m.toString().padStart(2, '0');
-    document.getElementById('s-val').innerText = s.toString().padStart(2, '0');
+    daysEl.innerText = d.toString().padStart(2, '0');
+    hoursEl.innerText = h.toString().padStart(2, '0');
+    minutesEl.innerText = m.toString().padStart(2, '0');
+    secondsEl.innerText = s.toString().padStart(2, '0');
 }
-setInterval(updateCountdown, 1000);
+
+// Update countdown immediately and then every second
+updateHeroCountdown();
+setInterval(updateHeroCountdown, 1000);
 
 // --- Starfield Background ---
 const canvas = document.getElementById('stars-canvas');
@@ -204,89 +221,87 @@ initHeroFloating();
 
 /**
  * Initialize Hero Zoom-Out Transition
- * Shrinks to bottom-right, About text enters from left horizontally
+ * Pins wrapper, shrinks hero AND animates about text simultaneously
  */
 function initHeroTransition() {
     const scrollIndicator = document.querySelector('.scroll-indicator');
+    const heroAboutWrapper = document.querySelector('#hero-about-wrapper');
     const aboutSection = document.querySelector('#about');
     const aboutText = document.querySelector('.about-text');
 
-    if (!heroSection || !heroContainer) {
+    if (!heroAboutWrapper || !heroContainer) {
         console.warn('Hero elements not found, skipping transition');
         return;
     }
 
-    // Larger card size (0.45 instead of 0.35)
     const targetScale = 0.45;
 
-    // Create scroll-triggered animation
-    const heroTimeline = gsap.timeline({
+    // Create pinned scroll animation
+    // The wrapper gets pinned while both hero and about animate
+    const masterTimeline = gsap.timeline({
         scrollTrigger: {
-            trigger: heroSection,
+            trigger: heroAboutWrapper,
             start: "top top",
-            end: "bottom top",
+            end: "+=150%",      // 150vh of scroll for the transition
+            pin: true,          // PIN the wrapper (both hero + about visible)
             scrub: 1.8,
             onUpdate: (self) => {
-                isInCardMode = self.progress > 0.7;
-                if (self.progress > 0.8) {
+                isInCardMode = self.progress > 0.5;
+                if (self.progress > 0.7) {
                     heroContainer.classList.add('is-card');
                 } else {
                     heroContainer.classList.remove('is-card');
                 }
             },
             onLeave: () => {
-                // Switch to absolute for bottom-RIGHT positioning
-                // This makes it scroll with the About section
-                heroContainer.style.position = 'absolute';
-                heroContainer.style.top = 'auto';
-                heroContainer.style.bottom = '5vh';
-                heroContainer.style.left = 'auto';
-                heroContainer.style.right = '3vw';
+                // Dock the card to the about section
+                heroContainer.classList.add('is-docked');
                 heroContainer.style.transform = `scale(${targetScale})`;
-                heroContainer.classList.add('is-card');
             },
             onEnterBack: () => {
+                // Undock when scrolling back
+                heroContainer.classList.remove('is-docked');
                 heroContainer.style.position = 'fixed';
                 heroContainer.style.top = '0';
                 heroContainer.style.left = '0';
-                heroContainer.style.bottom = 'auto';
                 heroContainer.style.right = 'auto';
-                heroContainer.style.transform = '';
+                heroContainer.style.bottom = 'auto';
             }
         }
     });
 
-    // Hero shrinks and moves toward bottom-right
-    heroTimeline
-        .to(scrollIndicator, { opacity: 0, duration: 0.2 }, 0)
-        .to(heroContainer, {
-            scale: targetScale,
-            x: '25vw',  // Move right as it shrinks
-            y: '20vh',  // Move down as it shrinks
-            borderRadius: "20px",
-            ease: "none",
-            duration: 1
-        }, 0);
+    // PARALLEL ANIMATIONS (all happen during the same scroll):
 
-    // About text enters from LEFT (horizontal only, x axis only)
+    // 1. Scroll indicator fades out
+    masterTimeline.to(scrollIndicator, {
+        opacity: 0,
+        duration: 0.2
+    }, 0);
+
+    // 2. Hero shrinks and moves to bottom-right
+    masterTimeline.to(heroContainer, {
+        scale: targetScale,
+        x: '25vw',
+        y: '20vh',
+        borderRadius: "20px",
+        ease: "none",
+        duration: 1
+    }, 0);
+
+    // 3. About text enters from left (SAME timeline = parallel)
     if (aboutText) {
-        gsap.fromTo(aboutText,
-            { x: -300, opacity: 0 },  // Start: off-screen left
-            {
-                x: 0,                  // End: normal position
-                opacity: 1,
-                ease: "power2.out",
-                scrollTrigger: {
-                    trigger: aboutSection,
-                    start: "top 90%",
-                    end: "top 40%",
-                    scrub: 1.8
-                }
-            }
-        );
+        // Start invisible and off-screen left
+        gsap.set(aboutText, { x: -300, opacity: 0 });
+
+        masterTimeline.to(aboutText, {
+            x: 0,
+            opacity: 1,
+            ease: "power2.out",
+            duration: 0.8
+        }, 0.2);  // Slight delay so it starts after hero begins shrinking
     }
 
-    console.log('🎬 Hero zoom-out transition initialized');
+    console.log('🎬 Hero zoom-out + About parallel animation initialized');
 }
 
 

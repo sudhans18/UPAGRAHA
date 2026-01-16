@@ -93,15 +93,81 @@
     </nav>
 
     <!-- ============================================
-         HERO SECTION - Fullscreen with zoom-out transition
+         HERO + ABOUT PINNED WRAPPER
+         Both sections are visible simultaneously during transition
          ============================================ -->
-    <section id="hero-cinematic" class="hero-cinematic-section">
-        <!-- Hero Image Container: Scales down on scroll -->
+    <div id="hero-about-wrapper" class="hero-about-wrapper">
+
+        <!-- Hero Image Container: Fixed during scroll, then docks to About -->
         <div class="hero-image-container" id="hero-container">
-            <!-- Hero Background Image -->
             <img src="assets/hero_main.png" alt="Loki Sacred Timeline" class="hero-bg-image" id="hero-image">
-            <!-- Vignette Overlay -->
             <div class="hero-vignette"></div>
+
+            <!-- Hero Content Overlay -->
+            <div class="hero-content-overlay">
+                <!-- Top: College & Department -->
+                <div class="hero-top-info">
+                    <div class="college-badge">
+                        <span class="college-name">SVCE, Chennai</span>
+                    </div>
+                    <span class="department-label">Department of Electronics & Communication Engineering</span>
+                </div>
+
+                <!-- Center: Title with multiverse styling -->
+                <div class="hero-title-block">
+                    <h1 class="hero-main-title">
+                        <span class="title-main">UPAGRAHA</span>
+                        <span class="title-year">'26</span>
+                    </h1>
+                    <p class="hero-tagline">NATIONAL LEVEL TECHNICAL SYMPOSIUM</p>
+                </div>
+
+                <!-- Club Logos -->
+                <div class="hero-clubs">
+                    <div class="club-placeholder" data-club="IETE">
+                        <span>IETE</span>
+                    </div>
+                    <div class="club-placeholder" data-club="RACE">
+                        <span>RACE</span>
+                    </div>
+                    <div class="club-placeholder" data-club="ECEA">
+                        <span>ECEA</span>
+                    </div>
+                </div>
+
+                <!-- Countdown Timer -->
+                <div class="hero-countdown" id="hero-countdown">
+                    <div class="countdown-block">
+                        <span class="count-value" id="countdown-days">32</span>
+                        <span class="count-label">DAYS</span>
+                    </div>
+                    <div class="countdown-divider">:</div>
+                    <div class="countdown-block">
+                        <span class="count-value" id="countdown-hours">00</span>
+                        <span class="count-label">HOURS</span>
+                    </div>
+                    <div class="countdown-divider">:</div>
+                    <div class="countdown-block">
+                        <span class="count-value" id="countdown-minutes">00</span>
+                        <span class="count-label">MINS</span>
+                    </div>
+                    <div class="countdown-divider">:</div>
+                    <div class="countdown-block">
+                        <span class="count-value" id="countdown-seconds">00</span>
+                        <span class="count-label">SECS</span>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="hero-action-buttons">
+                    <a href="#register" class="hero-btn primary">
+                        <span>REGISTER</span>
+                    </a>
+                    <a href="#events" class="hero-btn secondary">
+                        <span>EVENTS</span>
+                    </a>
+                </div>
+            </div>
         </div>
 
         <!-- Scroll indicator -->
@@ -109,28 +175,28 @@
             <span>SCROLL</span>
             <div class="scroll-arrow"></div>
         </div>
-    </section>
 
-    <!-- ABOUT SECTION - Text on left, hero card lands on right -->
-    <section id="about" class="spa-section about-section">
-        <div class="about-container">
-            <!-- About text - enters from left -->
-            <div class="about-text">
-                <h2 class="about-title">ABOUT US</h2>
-                <p class="about-description">
-                    UPAGRAHA is more than just a symposium — it's a convergence of minds,
-                    a fusion of technology and creativity. We bring together the brightest
-                    innovators to push the boundaries of what's possible.
-                </p>
-                <p class="about-description">
-                    Join us on a journey through the digital frontier, where every line of
-                    code writes a new chapter in the story of tomorrow.
-                </p>
+        <!-- ABOUT SECTION - Visible during hero transition -->
+        <section id="about" class="about-section">
+            <div class="about-container">
+                <!-- About text - enters from left during hero shrink -->
+                <div class="about-text">
+                    <h2 class="about-title">ABOUT US</h2>
+                    <p class="about-description">
+                        UPAGRAHA is more than just a symposium — it's a convergence of minds,
+                        a fusion of technology and creativity. We bring together the brightest
+                        innovators to push the boundaries of what's possible.
+                    </p>
+                    <p class="about-description">
+                        Join us on a journey through the digital frontier, where every line of
+                        code writes a new chapter in the story of tomorrow.
+                    </p>
+                </div>
+                <!-- Card landing zone on right -->
+                <div class="about-card-space" id="card-landing-zone"></div>
             </div>
-            <!-- Empty space for the hero card to land in -->
-            <div class="about-card-space"></div>
-        </div>
-    </section>
+        </section>
+    </div>
 
 
     <!-- TIMELINE SECTION - Full Frame Pinned -->
