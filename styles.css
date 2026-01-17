@@ -1546,55 +1546,175 @@ section {
     border: 1px solid var(--neon-green);
 }
 
-/* Events Grid */
-.events-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
+/* Infinity Stones Overlay */
+.stones-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    max-width: 1200px;
-    /* Initially Hidden for Reveal */
-    opacity: 0;
+    height: 100%;
+    z-index: 10;
     pointer-events: none;
-    z-index: 3;
-    position: relative;
-    margin-top: 100vh;
-    /* Push down initially, handled by GSAP actually but safe to have */
+    /* Initially disabled, enabled by GSAP */
+    opacity: 0;
+    display: block;
 }
 
-.event-card {
-    background: rgba(0, 20, 5, 0.8);
-    /* Darker background for readability */
-    border: 1px solid var(--neon-dark);
-    height: 250px;
+.stone-btn {
+    position: absolute;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
     text-decoration: none;
-    color: #fff;
     transition: 0.3s;
-    position: relative;
-    overflow: hidden;
+    cursor: pointer;
+    z-index: 20;
 }
 
-.event-card:hover {
-    border-color: var(--neon-green);
-    box-shadow: 0 0 20px rgba(0, 255, 65, 0.5);
+.stone-btn img {
+    width: 80px;
+    height: auto;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+    transition: 0.3s ease-in-out;
+    animation: floatStone 8s infinite ease-in-out;
 }
 
-.event-card h3 {
+@keyframes floatStone {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.stone-btn:hover img {
+    transform: scale(1.3);
+    filter: drop-shadow(0 0 25px currentColor);
+}
+
+.stone-label {
+    margin-top: 10px;
     font-family: var(--font-cyber);
-    margin-bottom: 0.5rem;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: 0.3s;
+    border: 1px solid var(--neon-green);
+}
+
+.stone-btn:hover .stone-label {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Specific Stone Positioning & Colors */
+/* Left Branch */
+#stone-space {
+    top: 16%;
+    left: 30%;
+    color: #00e5ff;
+}
+
+/* Blue */
+#stone-mind {
+    top: 36%;
+    left: 15%;
+    color: #ffd700;
+}
+
+/* Yellow */
+#stone-reality {
+    top: 66%;
+    left: 17%;
+    color: #ff0000;
+}
+
+/* Red */
+
+/* Right Branch */
+#stone-soul {
+    top: 18%;
+    right: 30%;
+    color: #ff8c00;
+}
+
+/* Orange */
+#stone-time {
+    top: 36%;
+    right: 15%;
+    color: #00ff41;
+}
+
+/* Green */
+#stone-power {
+    top: 68%;
+    right: 13%;
+    color: #a020f0;
+}
+
+/* Purple */
+
+/* Mobile Adjustment for Stones */
+@media screen and (max-width: 768px) {
+    .stone-btn img {
+        width: 50px;
+    }
+
+    /* Stack them or keep relative? Keep relative but spread less */
+    #stone-space {
+        top: 20%;
+        left: 10%;
+    }
+
+    #stone-mind {
+        top: 40%;
+        left: 5%;
+    }
+
+    #stone-reality {
+        top: 60%;
+        left: 10%;
+    }
+
+    #stone-soul {
+        top: 20%;
+        right: 10%;
+    }
+
+    #stone-time {
+        top: 40%;
+        right: 5%;
+    }
+
+    #stone-power {
+        top: 60%;
+        right: 10%;
+    }
+}
+
+.revert-link {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #aaa;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    text-decoration: underline;
+    z-index: 30;
+    cursor: pointer;
+}
+
+.revert-link:hover {
     color: var(--neon-green);
-}
-
-.event-card.special {
-    background: linear-gradient(45deg, #001f05, #00330a);
-    border: 1px solid var(--accent-gold);
-}
-
-.event-card.special h3 {
-    color: var(--accent-gold);
 }
 
 /* Sponsors */

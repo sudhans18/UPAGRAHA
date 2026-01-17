@@ -445,7 +445,7 @@ function initAnimations() {
         duration: 2
     })
         .to('.events-overlay', { opacity: 0, duration: 0.2 }, "<") // Fade out text early
-        .to('.events-grid', { opacity: 1, pointerEvents: 'all', duration: 0.5 }); // Fade in grid at end
+        .to('#infinity-stones-container', { opacity: 1, pointerEvents: 'all', duration: 0.5 }); // Fade in grid at end
 
     // Initial render
     preloadEventImages();
