@@ -234,7 +234,7 @@ function initHeroTransition() {
         return;
     }
 
-    const targetScale = 0.45;
+    const targetScale = 0.5;
 
     // Create pinned scroll animation
     // The wrapper gets pinned while both hero and about animate
@@ -301,7 +301,47 @@ function initHeroTransition() {
         }, 0.2);  // Slight delay so it starts after hero begins shrinking
     }
 
+    // 4. Stats Animation (Decoupled from scroll, auto-play when hero is small)
+    // We add a callback to the master timeline when the hero shrink finishes (at time 1.0)
+    masterTimeline.call(animateStats, null, 0.8);
+
     console.log('🎬 Hero zoom-out + About parallel animation initialized');
+}
+
+// Separate function for automatic stats counting
+function animateStats() {
+    const statCards = document.querySelectorAll('.stat-card');
+    const statNumbers = document.querySelectorAll('.stat-number');
+
+    if (statCards.length > 0) {
+        // Cards slide up and fade in
+        gsap.to(statCards, {
+            y: 0,
+            opacity: 1,
+            stagger: 0.1,
+            duration: 0.6,
+            ease: "power2.out"
+        });
+    }
+
+    if (statNumbers.length > 0) {
+        statNumbers.forEach(stat => {
+            // Check if already animating or done to prevent restart
+            if (stat.classList.contains('counted')) return;
+            stat.classList.add('counted');
+
+            const target = +stat.getAttribute('data-target');
+            gsap.fromTo(stat,
+                { innerText: 0 },
+                {
+                    innerText: target,
+                    snap: { innerText: 1 },
+                    duration: 2.5, // Fast but visible counting
+                    ease: "power2.out"
+                }
+            );
+        });
+    }
 }
 
 
