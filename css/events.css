@@ -1,0 +1,194 @@
+/* ===========================================
+   EVENTS.CSS - Cinematic Events & Infinity Stones
+   =========================================== */
+
+/* Cinematic Events Section */
+.cinematic-events {
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    padding: 0;
+}
+
+#events-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+/* Events Title Overlay - Creative Design */
+.events-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    text-align: center;
+    background: transparent;
+    padding: 2rem;
+}
+
+.events-overlay .section-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    color: var(--neon-green);
+    text-shadow:
+        0 0 20px rgba(0, 255, 65, 0.6),
+        0 0 40px rgba(0, 255, 65, 0.4),
+        0 0 60px rgba(0, 255, 65, 0.2);
+    letter-spacing: 0.1em;
+    margin-bottom: 2rem;
+}
+
+.events-overlay .section-subtitle {
+    font-family: var(--font-cyber);
+    font-size: 0.9rem;
+    letter-spacing: 4px;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 1.5rem;
+}
+
+.events-scroll-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0.8;
+}
+
+.events-scroll-indicator .scroll-arrow {
+    width: 24px;
+    height: 24px;
+    border-right: 2px solid var(--neon-green);
+    border-bottom: 2px solid var(--neon-green);
+    transform: rotate(45deg);
+    animation: scrollBounce 2s ease-in-out infinite;
+}
+
+/* Infinity Stones Overlay */
+.stones-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    pointer-events: none;
+    opacity: 0;
+    display: block;
+}
+
+.stone-btn {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    transition: 0.3s;
+    cursor: pointer;
+    z-index: 20;
+}
+
+.stone-btn img {
+    width: 80px;
+    height: auto;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+    transition: 0.3s ease-in-out;
+    animation: floatStone 8s infinite ease-in-out;
+}
+
+@keyframes floatStone {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.stone-btn:hover img {
+    transform: scale(1.3);
+    filter: drop-shadow(0 0 25px currentColor);
+}
+
+.stone-label {
+    margin-top: 10px;
+    font-family: var(--font-cyber);
+    color: #fff;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: 0.3s;
+    border: 1px solid var(--neon-green);
+}
+
+.stone-btn:hover .stone-label {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Specific Stone Positioning & Colors */
+/* Left Branch */
+#stone-space {
+    top: 16%;
+    left: 30%;
+    color: #00e5ff;
+}
+
+#stone-mind {
+    top: 36%;
+    left: 15%;
+    color: #ffd700;
+}
+
+#stone-reality {
+    top: 66%;
+    left: 17%;
+    color: #ff0000;
+}
+
+/* Right Branch */
+#stone-soul {
+    top: 18%;
+    right: 30%;
+    color: #ff8c00;
+}
+
+#stone-time {
+    top: 36%;
+    right: 15%;
+    color: #00ff41;
+}
+
+#stone-power {
+    top: 68%;
+    right: 13%;
+    color: #a020f0;
+}
+
+.revert-link {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #aaa;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    text-decoration: underline;
+    z-index: 30;
+    cursor: pointer;
+}
+
+.revert-link:hover {
+    color: var(--neon-green);
+}

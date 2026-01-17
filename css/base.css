@@ -1,0 +1,58 @@
+/* ===========================================
+   BASE.CSS - Variables, Reset, Typography
+   =========================================== */
+
+/* Global Theme - Revamp */
+:root {
+    --bg-color: #020b04;
+    /* Deep Green Black */
+    --text-color: #e0f2e9;
+    --neon-green: #00ff41;
+    --neon-dark: #008f11;
+    --accent-gold: #ffd700;
+    --glass-bg: rgba(0, 25, 5, 0.4);
+    --glass-border: rgba(0, 255, 65, 0.2);
+    --font-heading: 'Cinzel', serif;
+    --font-cyber: 'Michroma', sans-serif;
+    --font-body: 'Rajdhani', sans-serif;
+}
+
+/* Custom Scrollbar - Neon Green Theme */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #050505;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--neon-dark);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--neon-green);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-body);
+    overflow-x: hidden;
+}
+
+body.loading {
+    overflow: hidden;
+}

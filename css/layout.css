@@ -1,0 +1,259 @@
+/* ===========================================
+   LAYOUT.CSS - Navigation, Sections, Grid
+   =========================================== */
+
+/* Navbar */
+#main-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 15px 40px;
+    transition: all 0.4s ease;
+    backdrop-filter: blur(8px);
+    background: rgba(0, 0, 0, 0.3);
+}
+
+#main-nav.scrolled {
+    background: rgba(0, 0, 0, 0.85);
+    padding: 12px 40px;
+    border-bottom: 1px solid rgba(188, 19, 254, 0.4);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+/* Logo Section: UPAGRAHA | SVCE */
+.nav-logo-section {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-logo-img {
+    height: 30px;
+    width: auto;
+    transition: all 0.3s ease;
+    mix-blend-mode: multiply;
+    filter: brightness(1.1);
+}
+
+/* Header Text Logo "UPAGRAHA" */
+.nav-logo-text {
+    font-family: var(--font-cyber);
+    font-size: 1.1rem;
+    color: transparent;
+    -webkit-text-stroke: 1px #fff;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(188, 19, 254, 0.3);
+}
+
+/* UPAGRAHA image logo hidden/removed */
+.nav-logo-img[data-logo="upagraha"] {
+    display: none;
+}
+
+/* SVCE logo keeps its blue color but smaller */
+.nav-logo-img[data-logo="svce"] {
+    height: 24px;
+}
+
+.nav-logo-img:hover {
+    transform: scale(1.08);
+    filter: brightness(1.3) drop-shadow(0 0 8px rgba(188, 19, 254, 0.5));
+}
+
+.nav-logo-img[data-logo="upagraha"]:hover {
+    filter: invert(1) brightness(1.4) drop-shadow(0 0 10px rgba(255, 255, 255, 0.8));
+}
+
+.nav-logo-section .logo-divider {
+    font-family: var(--font-cyber);
+    font-size: 1.8rem;
+    color: rgba(188, 19, 254, 0.6);
+    font-weight: 300;
+    margin: 0 4px;
+}
+
+/* Old logo-placeholder styles - kept for backward compatibility */
+.nav-logo-section .logo-placeholder {
+    width: 44px;
+    height: 44px;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(188, 19, 254, 0.5);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.nav-logo-section .logo-placeholder span {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 0 0 8px rgba(188, 19, 254, 0.8);
+}
+
+.nav-logo-section .logo-placeholder:hover {
+    border-color: #bc13fe;
+    box-shadow: 0 0 15px rgba(188, 19, 254, 0.5);
+    transform: scale(1.05);
+}
+
+/* Old nav-logo - deprecated but kept for compatibility */
+.nav-logo {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 32px;
+    margin-left: auto;
+    padding-right: 20px;
+    align-items: center;
+}
+
+.nav-link {
+    color: rgba(255, 255, 255, 0.75);
+    text-decoration: none;
+    font-family: var(--font-cyber);
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    position: relative;
+    transition: color 0.3s;
+    letter-spacing: 1px;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #bc13fe, #00f7ff);
+    transition: width 0.3s;
+    box-shadow: 0 0 8px rgba(188, 19, 254, 0.6);
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: #fff;
+    text-shadow: 0 0 8px rgba(188, 19, 254, 0.6);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+/* Nav Right Section: Register + Toggle */
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-register-btn {
+    font-family: var(--font-cyber);
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    text-decoration: none;
+    padding: 10px 20px;
+    background: #bc13fe;
+    color: #fff;
+    border: 2px solid #000;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    box-shadow: 4px 4px 0 #000;
+}
+
+.nav-register-btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 #000;
+    background: #d041ff;
+}
+
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.nav-toggle span {
+    width: 25px;
+    height: 2px;
+    background: #fff;
+    transition: 0.3s;
+}
+
+/* Sections */
+section {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+}
+
+/* Fixed Background Layer */
+#universe-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: var(--bg-color);
+    z-index: -2;
+}
+
+#stars-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.8;
+}
+
+/* SPA Sections */
+.spa-section {
+    min-height: 100vh;
+    padding: 80px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* Section Titles */
+.section-title {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    color: var(--neon-green);
+    margin-bottom: 2rem;
+    text-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+}
+
+.section-subtitle {
+    font-family: var(--font-cyber);
+    font-size: 0.9rem;
+    letter-spacing: 3px;
+    color: rgba(255, 255, 255, 0.7);
+}

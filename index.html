@@ -17,49 +17,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        /* Inline overrides until moved to styles.css */
-        body {
-            overflow-x: hidden;
-        }
-
-        /* Fixed Background */
-        #universe-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background: url('assets/bg_green_space.png') no-repeat center center;
-            background-size: cover;
-            z-index: -2;
-        }
-
-        #stars-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.8;
-        }
-
-        /* Sections */
-        .spa-section {
-            min-height: 100vh;
-            padding: 80px 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
-
-        /* Footer moved to styles later */
-    </style>
+    <!-- Styles (Load Order Critical) -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/hero.css">
+    <link rel="stylesheet" href="css/timeline.css">
+    <link rel="stylesheet" href="css/events.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/responsive.css">
 </head>
 
 <body class="loading">
@@ -82,11 +48,9 @@
             <!-- Logo Section: UPAGRAHA | SVCE -->
             <div class="nav-logo-section">
                 <span class="nav-logo-text">UPAGRAHA</span>
-                <span class="logo-divider">|</span>
-                <img src="assets/Logo/svce.png" alt="SVCE Logo" class="nav-logo-img" data-logo="svce">
             </div>
             <div class="nav-links">
-                <a href="#hero-cinematic" class="nav-link">HOME</a>
+                <a href="#hero-about-wrapper" class="nav-link">HOME</a>
                 <a href="#about" class="nav-link">ABOUT</a>
                 <a href="#timeline" class="nav-link">TIMELINE</a>
                 <a href="#events" class="nav-link">EVENTS</a>
@@ -333,7 +297,10 @@
         <canvas id="events-canvas"></canvas>
         <div class="events-overlay">
             <h2 class="section-title">MULTIVERSE EVENTS</h2>
-            <p class="section-subtitle">SCROLL TO ENTER THE MULTIVERSE</p>
+            <p class="section-subtitle">SCROLL TO ENTER</p>
+            <div class="events-scroll-indicator">
+                <div class="scroll-arrow"></div>
+            </div>
         </div>
 
         <div id="infinity-stones-container" class="stones-overlay">
@@ -449,7 +416,7 @@
         </div>
     </footer>
 
-    <script src="js/main.js"></script>
+    <script type="module" src="js/main.js"></script>
 </body>
 
 </html>
