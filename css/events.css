@@ -94,7 +94,7 @@
 }
 
 .stone-btn img {
-    width: 80px;
+    width: 60px;
     height: auto;
     filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
     transition: 0.3s ease-in-out;
@@ -141,18 +141,18 @@
 /* Left Branch */
 #stone-space {
     top: 16%;
-    left: 30%;
+    left: 28%;
     color: #00e5ff;
 }
 
 #stone-mind {
-    top: 36%;
+    top: 35%;
     left: 15%;
     color: #ffd700;
 }
 
 #stone-reality {
-    top: 66%;
+    top: 65%;
     left: 17%;
     color: #ff0000;
 }
@@ -160,7 +160,7 @@
 /* Right Branch */
 #stone-soul {
     top: 18%;
-    right: 30%;
+    right: 28%;
     color: #ff8c00;
 }
 
