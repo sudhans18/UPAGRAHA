@@ -4,86 +4,372 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Universe 2: Circuitry</title>
+    <title>Universe 2: The Iron Throne</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Michroma&family=Rajdhani:wght@300;500;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;800&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../css/base.css">
     <style>
         :root {
-            --neon-green: #00f3ff;
-            /* Cyan Override */
-            --glass-bg: rgba(0, 40, 50, 0.4);
+            --royal-gold: #D4AF37;
+            --royal-gold-dim: #C5A028;
+            --deep-crimson: #4a0000;
+            --blood-red: #8a0303;
+            --obsidian: #0a0a0a;
+            --parchment: #f0e6d2;
+            /* Optional contrast if needed, but going dark */
+            --steel: #b0c4de;
         }
 
         body {
-            background: #000205;
+            background-color: var(--obsidian);
+            color: var(--steel);
+            font-family: 'Cinzel', serif;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        /* Canvas Background */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            /* Behind everything */
+            pointer-events: none;
         }
 
         .universe-hero {
-            height: 60vh;
+            min-height: 80vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: radial-gradient(circle, #002233 0%, #000000 80%);
+            position: relative;
+            border-bottom: 2px solid var(--royal-gold);
+            box-shadow: 0 10px 50px rgba(212, 175, 55, 0.1);
+            background: radial-gradient(circle at 50% 40%, rgba(42, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.8) 90%);
+        }
+
+        .universe-hero::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%) rotate(45deg);
+            width: 20px;
+            height: 20px;
+            background: var(--royal-gold);
+            border: 2px solid #000;
         }
 
         .universe-title {
             font-size: 5rem;
-            color: var(--neon-green);
-            font-family: var(--font-heading);
-            text-shadow: 0 0 20px var(--neon-green);
+            color: var(--royal-gold);
+            font-family: 'Cinzel Decorative', cursive;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-bottom: 1rem;
+            text-shadow:
+                0 0 10px rgba(212, 175, 55, 0.5),
+                2px 2px 0px #000;
+            position: relative;
+            padding: 0 2rem;
+            opacity: 0;
+            animation: fadeInDown 1.5s ease-out forwards;
+        }
+
+        .universe-title::before,
+        .universe-title::after {
+            content: '⚔';
+            font-size: 3rem;
+            vertical-align: middle;
+            color: var(--blood-red);
+            margin: 0 20px;
+            text-shadow: 0 0 5px var(--deep-crimson);
         }
 
         .universe-desc {
             max-width: 800px;
             padding: 2rem;
-            color: #ddd;
-            font-size: 1.2rem;
-            line-height: 1.6;
+            color: #dcdcdc;
+            font-size: 1.4rem;
+            line-height: 1.8;
+            border-left: 3px solid var(--blood-red);
+            border-right: 3px solid var(--blood-red);
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            margin-top: 2rem;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+            opacity: 0;
+            animation: fadeInUp 1.5s ease-out 0.5s forwards;
         }
 
         .back-link {
             position: fixed;
-            top: 20px;
-            left: 20px;
-            color: #fff;
+            top: 30px;
+            left: 30px;
+            color: var(--royal-gold);
             text-decoration: none;
-            font-family: var(--font-cyber);
-            border: 1px solid var(--neon-green);
-            padding: 10px 20px;
-            transition: 0.3s;
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            border: 1px solid var(--royal-gold);
+            padding: 12px 25px;
+            transition: all 0.4s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 100;
         }
 
         .back-link:hover {
-            background: var(--neon-green);
+            background: var(--royal-gold);
             color: #000;
+            box-shadow: 0 0 20px var(--royal-gold);
+        }
+
+        .spa-section {
+            padding: 6rem 2rem;
+            text-align: center;
+            /* background is handled by canvas now, just overlay */
+            background: linear-gradient(180deg, rgba(10, 10, 10, 0.8) 0%, rgba(26, 5, 5, 0.9) 100%);
+            border-top: 1px solid #333;
+            min-height: 60vh;
+        }
+
+        .decree-list {
+            list-style: none;
+            padding: 0;
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .decree-list li {
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            background: rgba(10, 10, 10, 0.8);
+            color: #ccc;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            transition: 0.3s;
+        }
+
+        .decree-list li:hover {
+            border-color: var(--royal-gold);
+            transform: translateX(10px);
+            box-shadow: -5px 0 0 var(--blood-red);
+        }
+
+        .decree-list li::before {
+            content: '❖';
+            color: var(--royal-gold);
+            margin-right: 15px;
+            font-size: 1.5rem;
+        }
+
+        .cta-btn {
+            margin-top: 4rem;
+            padding: 20px 60px;
+            background: transparent;
+            border: 2px solid var(--royal-gold);
+            color: var(--royal-gold);
+            font-family: 'Cinzel Decorative', cursive;
+            font-size: 1.5rem;
+            font-weight: 900;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .cta-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.4), transparent);
+            transition: 0.5s;
+        }
+
+        .cta-btn:hover {
+            background: var(--royal-gold);
+            color: #2a0000;
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.6);
+        }
+
+        .cta-btn:hover::before {
+            left: 100%;
+        }
+
+        h2 {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 3rem;
+            color: var(--royal-gold);
+            margin-bottom: 3rem;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Scroll Reveal Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Keyframes */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
 
 <body>
-    <a href="../index.html" class="back-link">Return to Multiverse</a>
+    <canvas id="bg-canvas"></canvas>
+    <a href="../index.html" class="back-link">← Return to Realm</a>
 
     <section class="universe-hero">
-        <h1 class="universe-title">CIRCUITRY</h1>
-        <p class="universe-desc">Welcome to The Grid. Logic is absolute here. Debug the flaws in the system and restore
-            the flow of power.</p>
+        <h1 class="universe-title">The Iron Throne</h1>
+        <p class="universe-desc">
+            "In the Game of Code, you either optimize or you crash."<br>
+            Welcome to the High Court of Logic. Only the sharpest minds may sit upon the throne.
+            Will you bend the knee to bugs, or conquer them with iron will?
+        </p>
     </section>
 
     <section class="spa-section">
-        <h2 style="color:var(--neon-green); font-family:var(--font-cyber)">SYSTEM PROTOCOLS</h2>
-        <ul style="color:#aaa; text-align:left; line-height:2; font-size:1.1rem;">
-            <li>Team Size: 2 Nodes</li>
-            <li>Rounds: Screening (Quiz) -> Debugging</li>
-            <li>Tools: Multimeter provided. Bring your own logic.</li>
+        <h2 class="reveal">Royal Decrees</h2>
+        <ul class="decree-list">
+            <li class="reveal"><strong>The Vanguard:</strong> A team of 2 Knights.</li>
+            <li class="reveal"><strong>The Trial by Combat:</strong> Round 1 (Screening) & Round 2 (The Debugging).</li>
+            <li class="reveal"><strong>The Armory:</strong> Tools provided. Bring only your wits.</li>
         </ul>
-        <button
-            style="margin-top:3rem; padding:15px 40px; background:var(--neon-green); border:none; color:#000; font-family:var(--font-cyber); font-weight:bold; cursor:pointer;">INITIATE
-            SEQUENCE</button>
+        <button class="cta-btn reveal">Claim Your Right</button>
     </section>
+
+    <script>
+        // 1. Scroll Reveal Logic
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // 2. Rising Embers Particle System (Canvas)
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        let width, height;
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Ember {
+            constructor() {
+                this.reset();
+                // Start at random y to fill screen initially
+                this.y = Math.random() * height;
+            }
+
+            reset() {
+                this.x = Math.random() * width;
+                this.y = height + 10;
+                this.size = Math.random() * 3 + 1;
+                this.speed = Math.random() * 2 + 0.5;
+                this.vY = Math.random() * 0.5 - 0.25; // Slight horizontal drift
+                this.color = `rgba(212, 175, 55, ${Math.random() * 0.5 + 0.2})`; // Goldish
+                if (Math.random() > 0.7) {
+                    this.color = `rgba(255, 69, 0, ${Math.random() * 0.5 + 0.2})`; // Occasional red orange
+                }
+            }
+
+            update() {
+                this.y -= this.speed;
+                this.x += this.vY;
+
+                if (this.y < -10) {
+                    this.reset();
+                }
+            }
+
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        const embers = [];
+        for (let i = 0; i < 70; i++) { // 70 particles for good performance balance
+            embers.push(new Ember());
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+
+            // Subtle background gradient paint to create trails/depth? 
+            // Naah, clearRect is cleaner for high FPS.
+
+            embers.forEach(ember => {
+                ember.update();
+                ember.draw();
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+
+    </script>
 </body>
 
 </html>
