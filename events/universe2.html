@@ -18,8 +18,6 @@
             --deep-crimson: #4a0000;
             --blood-red: #8a0303;
             --obsidian: #0a0a0a;
-            --parchment: #f0e6d2;
-            /* Optional contrast if needed, but going dark */
             --steel: #b0c4de;
         }
 
@@ -31,29 +29,44 @@
             overflow-x: hidden;
         }
 
-        /* Canvas Background */
-        #bg-canvas {
+        /* Video Background - Persistent */
+        #bg-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+            pointer-events: none;
+            filter: brightness(0.5) contrast(1.2);
+            /* Kept visible but slightly darkened for text readability */
+        }
+
+        /* Ash Canvas - Overlay */
+        #ash-canvas {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: -1;
-            /* Behind everything */
+            /* Above video, below content */
             pointer-events: none;
         }
 
         .universe-hero {
-            min-height: 80vh;
+            min-height: 90vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
             position: relative;
-            border-bottom: 2px solid var(--royal-gold);
-            box-shadow: 0 10px 50px rgba(212, 175, 55, 0.1);
-            background: radial-gradient(circle at 50% 40%, rgba(42, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.8) 90%);
+            /* No solid background, just gradient for text pop */
+            background: radial-gradient(circle at center, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.8) 100%);
+            border-bottom: 3px solid var(--royal-gold);
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.8);
         }
 
         .universe-hero::after {
@@ -74,36 +87,52 @@
             font-family: 'Cinzel Decorative', cursive;
             text-transform: uppercase;
             letter-spacing: 5px;
-            margin-bottom: 1rem;
-            text-shadow:
-                0 0 10px rgba(212, 175, 55, 0.5),
-                2px 2px 0px #000;
+            margin-bottom: 2rem;
+            text-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
             position: relative;
-            padding: 0 2rem;
+            z-index: 10;
             opacity: 0;
             animation: fadeInDown 1.5s ease-out forwards;
         }
 
-        .universe-title::before,
-        .universe-title::after {
-            content: '⚔';
-            font-size: 3rem;
-            vertical-align: middle;
-            color: var(--blood-red);
+        /* Fire Sword Animation */
+        .fire-sword {
+            display: inline-block;
+            color: #ff4500;
+            text-shadow:
+                0 0 10px #ff0000,
+                0 0 20px #ff8800,
+                0 0 30px #ff4500;
+            animation: burn 2s infinite alternate;
             margin: 0 20px;
-            text-shadow: 0 0 5px var(--deep-crimson);
+        }
+
+        @keyframes burn {
+            0% {
+                text-shadow: 0 0 5px #ff0000, 0 0 15px #ff4500;
+                transform: scale(1);
+                filter: hue-rotate(0deg);
+            }
+
+            100% {
+                text-shadow: 0 0 20px #ff0000, 0 0 40px #ffcc00;
+                transform: scale(1.1);
+                filter: hue-rotate(15deg);
+            }
         }
 
         .universe-desc {
             max-width: 800px;
-            padding: 2rem;
-            color: #dcdcdc;
+            padding: 3rem;
+            color: #fff;
             font-size: 1.4rem;
             line-height: 1.8;
-            border-left: 3px solid var(--blood-red);
-            border-right: 3px solid var(--blood-red);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-left: 5px solid var(--blood-red);
+            border-right: 5px solid var(--blood-red);
+            /* Glassmorphism */
             background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(8px);
             margin-top: 2rem;
             box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
             opacity: 0;
@@ -120,11 +149,11 @@
             font-weight: 700;
             border: 1px solid var(--royal-gold);
             padding: 12px 25px;
-            transition: all 0.4s ease;
             text-transform: uppercase;
             letter-spacing: 2px;
             background: rgba(0, 0, 0, 0.8);
             z-index: 100;
+            transition: all 0.4s ease;
         }
 
         .back-link:hover {
@@ -134,91 +163,84 @@
         }
 
         .spa-section {
-            padding: 6rem 2rem;
+            padding-top: 8rem;
+            padding-bottom: 8rem;
             text-align: center;
-            /* background is handled by canvas now, just overlay */
-            background: linear-gradient(180deg, rgba(10, 10, 10, 0.8) 0%, rgba(26, 5, 5, 0.9) 100%);
-            border-top: 1px solid #333;
-            min-height: 60vh;
+            /* Transparent enough to see video/ash behind */
+            background: rgba(10, 10, 10, 0.7);
+        }
+
+        /* Glass Cards */
+        .round-container {
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 4rem;
+            border-radius: 8px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
         }
 
         .decree-list {
             list-style: none;
             padding: 0;
-            max-width: 600px;
-            margin: 0 auto;
             text-align: left;
+            margin-top: 2rem;
         }
 
         .decree-list li {
-            padding: 1.5rem;
-            margin-bottom: 1rem;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            background: rgba(10, 10, 10, 0.8);
-            color: #ccc;
-            font-size: 1.2rem;
-            display: flex;
-            align-items: center;
-            transition: 0.3s;
-        }
-
-        .decree-list li:hover {
-            border-color: var(--royal-gold);
-            transform: translateX(10px);
-            box-shadow: -5px 0 0 var(--blood-red);
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ddd;
+            font-size: 1.1rem;
         }
 
         .decree-list li::before {
             content: '❖';
             color: var(--royal-gold);
             margin-right: 15px;
-            font-size: 1.5rem;
         }
 
         .cta-btn {
-            margin-top: 4rem;
+            margin-top: 3rem;
             padding: 20px 60px;
-            background: transparent;
+            background: linear-gradient(45deg, var(--deep-crimson), var(--blood-red));
             border: 2px solid var(--royal-gold);
             color: var(--royal-gold);
             font-family: 'Cinzel Decorative', cursive;
             font-size: 1.5rem;
             font-weight: 900;
             cursor: pointer;
-            position: relative;
-            overflow: hidden;
+            box-shadow: 0 0 20px rgba(138, 3, 3, 0.5);
             transition: all 0.5s;
             text-transform: uppercase;
             letter-spacing: 3px;
         }
 
-        .cta-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.4), transparent);
-            transition: 0.5s;
-        }
-
         .cta-btn:hover {
-            background: var(--royal-gold);
-            color: #2a0000;
-            box-shadow: 0 0 40px rgba(212, 175, 55, 0.6);
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.8);
+            text-shadow: 0 0 10px #fff;
         }
 
-        .cta-btn:hover::before {
-            left: 100%;
+        /* Card Grid Styles */
+        .card-item {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(20, 20, 20, 0.6);
+            /* Semi-transparent */
+            backdrop-filter: blur(5px);
+            padding: 2rem;
+            transition: 0.3s;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
         }
 
-        h2 {
-            font-family: 'Cinzel Decorative', serif;
-            font-size: 3rem;
-            color: var(--royal-gold);
-            margin-bottom: 3rem;
-            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        .card-item:hover {
+            border-color: var(--royal-gold);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 25px rgba(212, 175, 55, 0.3);
+            background: rgba(30, 30, 30, 0.8);
         }
 
         /* Scroll Reveal Animation Classes */
@@ -261,35 +283,208 @@
 </head>
 
 <body>
-    <canvas id="bg-canvas"></canvas>
+    <!-- Persistent Backgrounds -->
+    <video id="bg-video" autoplay muted loop playsinline>
+        <source src="../assets/battle.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <canvas id="ash-canvas"></canvas>
+
     <a href="../index.html" class="back-link">← Return to Realm</a>
 
-    <section class="universe-hero">
-        <h1 class="universe-title">The Iron Throne</h1>
+    <section class="universe-hero" id="hero">
+        <h1 class="universe-title">
+            <span class="fire-sword">⚔</span> GAME OF CODES <span class="fire-sword">⚔</span>
+        </h1>
         <p class="universe-desc">
-            "In the Game of Code, you either optimize or you crash."<br>
-            Welcome to the High Court of Logic. Only the sharpest minds may sit upon the throne.
-            Will you bend the knee to bugs, or conquer them with iron will?
+            Step into a high-energy fusion of logic, electronics, and strategy with “GAME OF CODES”, a two-round
+            technical competition designed to test analytical thinking, multitasking ability, and teamwork.
+            <br><br>
+            From cracking logic puzzles to building circuits under unpredictable constraints, this event challenges
+            participants to stay sharp under pressure. With problem-solving on one side and strategic gameplay on the
+            other, success depends on communication, adaptability, and technical precision.
         </p>
     </section>
 
+    <!-- Content Sections (Preserved Text) -->
     <section class="spa-section">
-        <h2 class="reveal">Royal Decrees</h2>
-        <ul class="decree-list">
-            <li class="reveal"><strong>The Vanguard:</strong> A team of 2 Knights.</li>
-            <li class="reveal"><strong>The Trial by Combat:</strong> Round 1 (Screening) & Round 2 (The Debugging).</li>
-            <li class="reveal"><strong>The Armory:</strong> Tools provided. Bring only your wits.</li>
-        </ul>
-        <button class="cta-btn reveal">Claim Your Right</button>
+
+        <!-- Round 1 -->
+        <div class="round-container reveal"
+            style="margin-bottom: 6rem; max-width: 900px; margin-left: auto; margin-right: auto; text-align: left;">
+            <h2
+                style="text-align: center; margin-bottom: 2rem; color: var(--royal-gold); font-family: 'Cinzel Decorative', serif; font-size: 3rem;">
+                Round I: CROSSWORD CONQUEST</h2>
+            <p style="font-size: 1.2rem; line-height: 1.8; color: #ddd; margin-bottom: 1.5rem;">
+                In this round, teams take on a timed technical crossword puzzle focused on concepts from Electronics and
+                Communication Engineering. The crossword tests participants’ technical vocabulary, conceptual clarity,
+                and logical connections between topics. Team members must collaborate effectively to decode clues and
+                complete the grid within the stipulated time.
+            </p>
+            <p style="font-size: 1.2rem; line-height: 1.8; color: #ddd; margin-bottom: 2rem;">
+                The crossword puzzles are designed with increasing complexity, ensuring that only teams with strong
+                reasoning skills, coordination, and subject understanding advance.
+            </p>
+
+            <h3 style="color: var(--royal-gold); font-family: 'Cinzel', serif; margin-bottom: 1rem;">Evaluation
+                Criteria:</h3>
+            <ul class="decree-list" style="margin: 0;">
+                <li>Accuracy of answers</li>
+                <li>Number of correct entries</li>
+                <li>Time taken to complete the crossword</li>
+            </ul>
+            <p style="margin-top: 2rem; color: #aaa; font-style: italic;">
+                At the end of the round, the top-performing teams with the highest accuracy and fastest completion time
+                will qualify for Round 2.
+            </p>
+        </div>
+
+        <hr
+            style="border: 0; border-top: 1px solid var(--royal-gold); margin: 6rem auto; max-width: 300px; opacity: 0.5;">
+
+        <!-- Round 2 -->
+        <div class="round-container reveal"
+            style="margin-bottom: 6rem; max-width: 1000px; margin-left: auto; margin-right: auto;">
+            <h2
+                style="text-align: center; margin-bottom: 2rem; color: var(--royal-gold); font-family: 'Cinzel Decorative', serif; font-size: 3rem;">
+                Round II: UNO-CONTROLLED CIRCUIT CHALLENGE</h2>
+
+            <p
+                style="font-size: 1.3rem; line-height: 1.8; margin-bottom: 3rem; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto; color: #fff;">
+                Each team consists of two members with distinct roles:
+            </p>
+
+            <div style="display: flex; justify-content: center; gap: 3rem; margin-bottom: 4rem; flex-wrap: wrap;">
+                <div
+                    style="border: 1px solid var(--royal-gold); padding: 2rem; background: rgba(0,0,0,0.6); backdrop-filter: blur(5px); flex: 1; min-width: 300px; border-radius: 4px;">
+                    <h3
+                        style="color: var(--royal-gold); font-family: 'Cinzel', serif; font-size: 1.8rem; margin-bottom: 1rem;">
+                        Task Solver</h3>
+                    <p style="color: #ccc; font-size: 1.1rem; line-height: 1.6;">
+                        Works on a given electronics problem statement using simulation platforms such as (Wokwi or
+                        equivalent tools— yet to be decided ).
+                    </p>
+                </div>
+                <div
+                    style="border: 1px solid var(--blood-red); padding: 2rem; background: rgba(0,0,0,0.6); backdrop-filter: blur(5px); flex: 1; min-width: 300px; border-radius: 4px;">
+                    <h3
+                        style="color: var(--blood-red); font-family: 'Cinzel', serif; font-size: 1.8rem; margin-bottom: 1rem;">
+                        UNO Player</h3>
+                    <p style="color: #ccc; font-size: 1.1rem; line-height: 1.6;">
+                        Plays an active UNO game against opponents.
+                    </p>
+                </div>
+            </div>
+
+            <p
+                style="font-size: 1.2rem; line-height: 1.8; color: #dcdcdc; text-align: center; max-width: 800px; margin: 0 auto 4rem auto; border-left: 2px solid var(--royal-gold); border-right: 2px solid var(--royal-gold); padding: 0 2rem; background: rgba(0,0,0,0.4);">
+                <strong style="color: var(--royal-gold);">The Twist:</strong> every UNO card played directly affects the
+                task solver’s ability to work. While the UNO match and technical task run in parallel, the solver must
+                strictly follow the penalties and advantages imposed by the UNO gameplay.
+            </p>
+
+            <h3
+                style="color: var(--royal-gold); font-family: 'Cinzel Decorative', cursive; font-size: 2.5rem; margin-bottom: 3rem; text-align: center;">
+                UNO Card Effects</h3>
+
+            <div class="card-grid"
+                style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2rem; text-align: left;">
+
+                <div class="card-item reveal">
+                    <strong style="color: var(--royal-gold); font-size: 1.3rem;">Draw 2</strong><br>
+                    <span style="color: #ccc;">A random task solver freezes (no typing) for 2 minutes.</span>
+                </div>
+
+                <div class="card-item reveal">
+                    <strong style="color: var(--blood-red); font-size: 1.3rem;">Draw 4</strong><br>
+                    <span style="color: #ccc;">A random task solver freezes for 4 minutes.</span>
+                </div>
+
+                <div class="card-item reveal">
+                    <strong style="color: #b0c4de; font-size: 1.3rem;">Wild (Colour Change)</strong><br>
+                    <span style="color: #ccc;">Opponent team’s solver loses access to one specific key (e.g., spacebar,
+                        backspace, or enter) for 5 minutes.</span>
+                </div>
+
+                <div class="card-item reveal">
+                    <strong style="color: var(--royal-gold-dim); font-size: 1.3rem;">Reverse</strong><br>
+                    <span style="color: #ccc;">Roles swap: UNO player becomes the task solver and vice versa.</span>
+                </div>
+
+                <div class="card-item reveal">
+                    <strong style="color: #aaa; font-size: 1.3rem;">Skip</strong><br>
+                    <span style="color: #ccc;">All task solvers receive a 1-minute timeout.</span>
+                </div>
+
+                <div class="card-item reveal">
+                    <strong style="color: var(--royal-gold); font-size: 1.3rem;">UNO Call (at 1 card)</strong><br>
+                    <span style="color: #ccc;">Solver earns a Safe Round and becomes immune to the next penalty.</span>
+                </div>
+
+                <div class="card-item reveal">
+                    <strong style="color: #d44; font-size: 1.3rem;">Failure to Call UNO</strong><br>
+                    <span style="color: #ccc;">Team’s solver loses 30 seconds of active coding time.</span>
+                </div>
+
+                <div class="card-item reveal">
+                    <strong style="color: #a0f; font-size: 1.3rem;">Crazy 8</strong><br>
+                    <span style="color: #ccc;">Solver gains immunity from all timeouts for a limited duration.</span>
+                </div>
+
+            </div>
+
+            <p
+                style="margin-top: 4rem; font-size: 1.2rem; line-height: 1.8; color: #fff; background: rgba(50,10,10,0.5); backdrop-filter: blur(5px); padding: 1.5rem; border: 1px solid var(--royal-gold);">
+                The first team to successfully complete the given technical task wins the round. If no team completes
+                the task, the winner is decided based on maximum progress achieved with the fewest penalties incurred.
+            </p>
+        </div>
+
+        <hr
+            style="border: 0; border-top: 1px solid var(--royal-gold); margin: 6rem auto; max-width: 300px; opacity: 0.5;">
+
+        <!-- Rules & Register -->
+        <div class="reveal"
+            style="max-width: 800px; margin: 0 auto; background: rgba(0,0,0,0.6); padding: 3rem; border-radius: 8px;">
+            <h2 style="margin-bottom: 2rem; color: var(--royal-gold);">RULES</h2>
+            <ul class="decree-list" style="margin-bottom: 4rem;">
+                <li>Each team must consist of exactly two members.</li>
+                <li>Prior registration is mandatory through the official event portal. On-spot registrations will not be
+                    permitted.</li>
+                <li>The decision of the judges is final and binding. Any violation of rules may lead to immediate
+                    disqualification.</li>
+            </ul>
+
+            <h3 style="color: var(--royal-gold); font-family: 'Cinzel', serif; margin-bottom: 2rem;">TIMINGS: 10:45 AM -
+                2:00 PM</h3>
+
+            <button class="cta-btn">Register Alliance</button>
+        </div>
     </section>
+
+    <!-- Additional Styles for new content -->
+    <style>
+        .card-item {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(10, 10, 10, 0.9);
+            padding: 2rem;
+            transition: 0.3s;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .card-item:hover {
+            border-color: var(--royal-gold);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 25px rgba(212, 175, 55, 0.15);
+        }
+    </style>
 
     <script>
         // 1. Scroll Reveal Logic
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: "0px"
-        };
-
+        const observerOptions = { threshold: 0.1 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -297,11 +492,20 @@
                 }
             });
         }, observerOptions);
-
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        // 2. Rising Embers Particle System (Canvas)
-        const canvas = document.getElementById('bg-canvas');
+        // 2. Parallax Effect for Title
+        const heroTitle = document.querySelector('.universe-title');
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            if (scrollY < 800) {
+                heroTitle.style.transform = `translateY(${scrollY * 0.4}px)`;
+                heroTitle.style.opacity = `${1 - scrollY / 600}`;
+            }
+        });
+
+        // 3. Falling Ash Particle System (Canvas)
+        const canvas = document.getElementById('ash-canvas');
         const ctx = canvas.getContext('2d');
         let width, height;
 
@@ -312,63 +516,52 @@
         window.addEventListener('resize', resize);
         resize();
 
-        class Ember {
-            constructor() {
-                this.reset();
-                // Start at random y to fill screen initially
-                this.y = Math.random() * height;
-            }
+        class Ash {
+            constructor() { this.reset(); }
 
             reset() {
                 this.x = Math.random() * width;
-                this.y = height + 10;
-                this.size = Math.random() * 3 + 1;
-                this.speed = Math.random() * 2 + 0.5;
-                this.vY = Math.random() * 0.5 - 0.25; // Slight horizontal drift
-                this.color = `rgba(212, 175, 55, ${Math.random() * 0.5 + 0.2})`; // Goldish
-                if (Math.random() > 0.7) {
-                    this.color = `rgba(255, 69, 0, ${Math.random() * 0.5 + 0.2})`; // Occasional red orange
-                }
+                this.y = Math.random() * -100; // Start above screen
+                this.size = Math.random() * 2 + 1; // Small specks
+                this.speed = Math.random() * 1.5 + 0.5; // Slow drift
+                this.drift = Math.random() * 0.5 - 0.25; // Random side drift
+                this.rot = Math.random() * Math.PI * 2;
+                this.rotSpeed = Math.random() * 0.05 - 0.025;
+                this.color = `rgba(200, 200, 200, ${Math.random() * 0.3 + 0.1})`; // Gray/Whiteish transparent
             }
 
             update() {
-                this.y -= this.speed;
-                this.x += this.vY;
+                this.y += this.speed;
+                this.x += this.drift;
+                this.rot += this.rotSpeed;
 
-                if (this.y < -10) {
-                    this.reset();
-                }
+                if (this.y > height) this.reset();
             }
 
             draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.rot);
                 ctx.fillStyle = this.color;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
+                ctx.fillRect(-this.size / 2, -this.size / 2, this.size, this.size); // Squareish ash bits
+                ctx.restore();
             }
         }
 
-        const embers = [];
-        for (let i = 0; i < 70; i++) { // 70 particles for good performance balance
-            embers.push(new Ember());
+        const ashes = [];
+        for (let i = 0; i < 150; i++) { // More particles for ash effect
+            ashes.push(new Ash());
         }
 
         function animate() {
             ctx.clearRect(0, 0, width, height);
-
-            // Subtle background gradient paint to create trails/depth? 
-            // Naah, clearRect is cleaner for high FPS.
-
-            embers.forEach(ember => {
-                ember.update();
-                ember.draw();
+            ashes.forEach(ash => {
+                ash.update();
+                ash.draw();
             });
-
             requestAnimationFrame(animate);
         }
-
         animate();
-
     </script>
 </body>
 
