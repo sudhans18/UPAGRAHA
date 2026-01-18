@@ -39,11 +39,11 @@
             object-fit: cover;
             z-index: -2;
             pointer-events: none;
-            filter: brightness(0.5) contrast(1.2);
-            /* Kept visible but slightly darkened for text readability */
+            filter: brightness(0.8) contrast(1.1);
+            /* Enhanced brightness */
         }
 
-        /* Ash Canvas - Overlay */
+        /* Ash & Fire Canvas - Overlay */
         #ash-canvas {
             position: fixed;
             top: 0;
@@ -51,7 +51,6 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            /* Above video, below content */
             pointer-events: none;
         }
 
@@ -63,8 +62,7 @@
             align-items: center;
             text-align: center;
             position: relative;
-            /* No solid background, just gradient for text pop */
-            background: radial-gradient(circle at center, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.8) 100%);
+            background: radial-gradient(circle at center, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.7) 100%);
             border-bottom: 3px solid var(--royal-gold);
             box-shadow: 0 10px 50px rgba(0, 0, 0, 0.8);
         }
@@ -88,11 +86,16 @@
             text-transform: uppercase;
             letter-spacing: 5px;
             margin-bottom: 2rem;
+            margin-top: 8rem;
+            /* Brought down as requested */
             text-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
             position: relative;
             z-index: 10;
             opacity: 0;
             animation: fadeInDown 1.5s ease-out forwards;
+            display: flex;
+            align-items: center;
+            gap: 20px;
         }
 
         /* Fire Sword Animation */
@@ -121,6 +124,58 @@
             }
         }
 
+        /* CSS Real Torch Animation */
+        .torch {
+            position: relative;
+            width: 30px;
+            height: 100px;
+            background: linear-gradient(to bottom, #4a0000, #220000);
+            border-radius: 5px 5px 20px 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.8) inset;
+            border: 2px solid #5a2e00;
+        }
+
+        /* Torch Top/Holder */
+        .torch::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: -5px;
+            width: 40px;
+            height: 20px;
+            background: #444;
+            border: 2px solid #222;
+            border-radius: 4px;
+        }
+
+        .flame {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 50px;
+            background: radial-gradient(ellipse at bottom, #ffcc00 0%, #ff4500 50%, transparent 80%);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            filter: blur(2px);
+            animation: flicker 0.1s infinite alternate;
+            box-shadow: 0 -10px 30px #ff4500;
+        }
+
+        @keyframes flicker {
+            0% {
+                transform: translateX(-50%) scale(1);
+                opacity: 1;
+                height: 50px;
+            }
+
+            100% {
+                transform: translateX(-50%) scale(1.1);
+                opacity: 0.9;
+                height: 55px;
+            }
+        }
+
         .universe-desc {
             max-width: 800px;
             padding: 3rem;
@@ -139,19 +194,24 @@
             animation: fadeInUp 1.5s ease-out 0.5s forwards;
         }
 
+        /* Minimized Back Button - Arrow Only */
         .back-link {
             position: fixed;
             top: 30px;
             left: 30px;
             color: var(--royal-gold);
             text-decoration: none;
-            font-family: 'Cinzel', serif;
-            font-weight: 700;
-            border: 1px solid var(--royal-gold);
-            padding: 12px 25px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            background: rgba(0, 0, 0, 0.8);
+            font-size: 2rem;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--royal-gold);
+            border-radius: 50%;
+            /* Circle */
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
             z-index: 100;
             transition: all 0.4s ease;
         }
@@ -160,6 +220,7 @@
             background: var(--royal-gold);
             color: #000;
             box-shadow: 0 0 20px var(--royal-gold);
+            transform: scale(1.1);
         }
 
         .spa-section {
@@ -285,16 +346,23 @@
 <body>
     <!-- Persistent Backgrounds -->
     <video id="bg-video" autoplay muted loop playsinline>
-        <source src="../assets/game_of_codes_bg.mp4" type="video/mp4">
+        <source src="../assets/bg_video_final.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
     <canvas id="ash-canvas"></canvas>
 
-    <a href="../index.html" class="back-link">← Return to Realm</a>
+    <!-- Arrow only -->
+    <a href="../index.html" class="back-link">←</a>
 
     <section class="universe-hero" id="hero">
         <h1 class="universe-title">
-            <span class="fire-sword">⚔</span> GAME OF CODES <span class="fire-sword">⚔</span>
+            <div class="torch">
+                <div class="flame"></div>
+            </div>
+            GAME OF CODES
+            <div class="torch">
+                <div class="flame"></div>
+            </div>
         </h1>
         <p class="universe-desc">
             Step into a high-energy fusion of logic, electronics, and strategy with “GAME OF CODES”, a two-round
@@ -462,26 +530,6 @@
         </div>
     </section>
 
-    <!-- Additional Styles for new content -->
-    <style>
-        .card-item {
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            background: rgba(10, 10, 10, 0.9);
-            padding: 2rem;
-            transition: 0.3s;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .card-item:hover {
-            border-color: var(--royal-gold);
-            transform: translateY(-5px);
-            box-shadow: 0 5px 25px rgba(212, 175, 55, 0.15);
-        }
-    </style>
-
     <script>
         // 1. Scroll Reveal Logic
         const observerOptions = { threshold: 0.1 };
@@ -494,7 +542,7 @@
         }, observerOptions);
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        // 2. Parallax Effect for Title
+        // 2. Parallax
         const heroTitle = document.querySelector('.universe-title');
         window.addEventListener('scroll', () => {
             const scrollY = window.scrollY;
@@ -504,7 +552,7 @@
             }
         });
 
-        // 3. Falling Ash Particle System (Canvas)
+        // 3. Ash & Fire Particle System (Canvas)
         const canvas = document.getElementById('ash-canvas');
         const ctx = canvas.getContext('2d');
         let width, height;
@@ -516,48 +564,64 @@
         window.addEventListener('resize', resize);
         resize();
 
-        class Ash {
-            constructor() { this.reset(); }
+        class Particle {
+            constructor(type) {
+                this.type = type; // 'ash' or 'fire'
+                this.reset();
+            }
 
             reset() {
-                this.x = Math.random() * width;
-                this.y = Math.random() * -100; // Start above screen
-                this.size = Math.random() * 2 + 1; // Small specks
-                this.speed = Math.random() * 1.5 + 0.5; // Slow drift
-                this.drift = Math.random() * 0.5 - 0.25; // Random side drift
-                this.rot = Math.random() * Math.PI * 2;
-                this.rotSpeed = Math.random() * 0.05 - 0.025;
-                this.color = `rgba(200, 200, 200, ${Math.random() * 0.3 + 0.1})`; // Gray/Whiteish transparent
+                if (this.type === 'ash') {
+                    this.x = Math.random() * width;
+                    this.y = Math.random() * -100;
+                    this.size = Math.random() * 2 + 1;
+                    this.speed = Math.random() * 1.5 + 0.5; // Down
+                    this.drift = Math.random() * 0.5 - 0.25;
+                    this.color = `rgba(200, 200, 200, ${Math.random() * 0.3 + 0.1})`;
+                } else {
+                    // Fire Embers (Rising)
+                    this.x = Math.random() * width;
+                    this.y = height + Math.random() * 100; // Start below
+                    this.size = Math.random() * 3 + 1;
+                    this.speed = (Math.random() * 2 + 1) * -1; // Up
+                    this.drift = Math.random() * 1 - 0.5;
+                    this.color = `rgba(255, ${Math.floor(Math.random() * 100)}, 0, ${Math.random() * 0.6 + 0.4})`; // Orange/Red
+                    this.life = 1.0;
+                }
             }
 
             update() {
                 this.y += this.speed;
                 this.x += this.drift;
-                this.rot += this.rotSpeed;
 
-                if (this.y > height) this.reset();
+                if (this.type === 'ash') {
+                    if (this.y > height) this.reset();
+                } else {
+                    this.life -= 0.01;
+                    this.size *= 0.99; // Shrink
+                    if (this.y < -10 || this.life <= 0) this.reset();
+                }
             }
 
             draw() {
-                ctx.save();
-                ctx.translate(this.x, this.y);
-                ctx.rotate(this.rot);
-                ctx.fillStyle = this.color;
-                ctx.fillRect(-this.size / 2, -this.size / 2, this.size, this.size); // Squareish ash bits
-                ctx.restore();
+                ctx.fillStyle = this.type === 'ash' ? this.color : this.color.replace(')', `, ${this.life})`);
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
             }
         }
 
-        const ashes = [];
-        for (let i = 0; i < 150; i++) { // More particles for ash effect
-            ashes.push(new Ash());
-        }
+        const particles = [];
+        // 100 Ash particles
+        for (let i = 0; i < 100; i++) particles.push(new Particle('ash'));
+        // 50 Fire Embers
+        for (let i = 0; i < 50; i++) particles.push(new Particle('fire'));
 
         function animate() {
             ctx.clearRect(0, 0, width, height);
-            ashes.forEach(ash => {
-                ash.update();
-                ash.draw();
+            particles.forEach(p => {
+                p.update();
+                p.draw();
             });
             requestAnimationFrame(animate);
         }
