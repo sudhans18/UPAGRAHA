@@ -44,15 +44,32 @@
     filter: brightness(1.1);
 }
 
-/* Header Text Logo "UPAGRAHA" */
+/* Header Text Logo "UPAGRAHA" - REMOVED/HIDDEN */
 .nav-logo-text {
-    font-family: var(--font-cyber);
-    font-size: 1.1rem;
-    color: transparent;
-    -webkit-text-stroke: 1px #fff;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-shadow: 0 0 10px rgba(188, 19, 254, 0.3);
+    display: none;
+}
+
+/* Main Upagraha Logo Styling */
+.nav-logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.nav-logo-img-main {
+    height: 40px;
+    /* Adjust height to fit navbar */
+    width: auto;
+    /* CSS Trick to remove white background on dark theme:
+       1. Invert: White bg becomes Black bg. Dark text becomes Light text.
+       2. Mix-blend-mode Screen: Black bg becomes transparent. */
+    filter: invert(1);
+    mix-blend-mode: screen;
+    transition: transform 0.3s ease;
+}
+
+.nav-logo-img-main:hover {
+    transform: scale(1.05);
 }
 
 /* UPAGRAHA image logo hidden/removed */
