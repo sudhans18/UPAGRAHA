@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UPAGRAHA '26 | ECE Symposium</title>
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="css/timeline.css">
     <link rel="stylesheet" href="css/events.css">
     <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/gallery.css">
     <link rel="stylesheet" href="css/team.css">
     <link rel="stylesheet" href="css/responsive.css">
 </head>
@@ -60,7 +61,7 @@
                 <a href="#timeline" class="nav-link">TIMELINE</a>
                 <a href="#events" class="nav-link">EVENTS</a>
                 <a href="#sponsors" class="nav-link">SPONSORS</a>
-                <a href="#contact" class="nav-link">CONTACT</a>
+                <a href="#main-footer" class="nav-link">CONTACT</a>
                 <a href="#register" class="nav-register-btn">REGISTER</a>
             </div>
             <div class="nav-right">
@@ -297,263 +298,431 @@
         </div>
     </section>
 
-    <!-- EVENTS SECTION -->
-    <section id="events" class="spa-section cinematic-events">
-        <canvas id="events-canvas"></canvas>
-        <div class="events-overlay">
-            <h2 class="section-title">MULTIVERSE EVENTS</h2>
-            <p class="section-subtitle">SCROLL TO ENTER</p>
-            <div class="events-scroll-indicator">
-                <div class="scroll-arrow"></div>
-            </div>
+    <!-- GALLERY SECTION -->
+    <section id="gallery" class="gallery-section">
+        <div class="gallery-header-container">
+            <h2 class="gallery-title">MEMORIES</h2>
+            <p class="gallery-subtitle">ECHOES FROM THE PAST</p>
         </div>
 
-        <div id="infinity-stones-container" class="stones-overlay">
-            <!-- Left Branch -->
-            <a href="events/universe2.html" class="stone-btn" id="stone-space">
-                <img src="assets/stones/space.png" alt="Circuitry">
-                <span class="stone-label">CIRCUITRY</span>
-            </a>
-            <a href="events/universe1.html" class="stone-btn" id="stone-mind">
-                <img src="assets/stones/mind.png" alt="Papyrus">
-                <span class="stone-label">PAPYRUS</span>
-            </a>
-            <a href="events/universe6.html" class="stone-btn" id="stone-reality">
-                <img src="assets/stones/reality.png" alt="TVA Trials">
-                <span class="stone-label">TVA TRIALS</span>
-            </a>
+        <div class="gallery-marquee-wrapper">
+            <!-- Row 1: Left to Right (img_00 to img_13) -->
+            <div class="marquee-row scroll-left">
+                <div class="marquee-content">
+                    <!-- Set 1 -->
+                    <div class="gallery-img-container"><img src="assets/gallery/img_00.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_01.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_02.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_03.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_04.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_05.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_06.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_07.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_08.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_09.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_10.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_11.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_12.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_13.webp" class="gallery-img" loading="lazy"></div>
 
-            <!-- Right Branch -->
-            <a href="events/universe4.html" class="stone-btn" id="stone-time">
-                <img src="assets/stones/time.png" alt="Code Matrix">
-                <span class="stone-label">CODE MATRIX</span>
-            </a>
-            <a href="events/universe5.html" class="stone-btn" id="stone-power">
-                <img src="assets/stones/power.png" alt="Brain Storm">
-                <span class="stone-label">BRAIN STORM</span>
-            </a>
-            <a href="events/universe3.html" class="stone-btn" id="stone-soul">
-                <img src="assets/stones/soul.png" alt="Robo Wars">
-                <span class="stone-label">ROBO WARS</span>
-            </a>
-        </div>
-    </section>
-
-    <!-- PARTNERS & SPONSORS SECTION -->
-    <link rel="stylesheet" href="css/sponsorship.css">
-    <section id="sponsors">
-        <span class="sponsors-header-small">PARTNERS & SPONSORS</span>
-        <h2 class="sponsors-main-title">
-            Powered by <span class="highlight-green">Industry</span> <span class="highlight-purple">Leaders</span>
-        </h2>
-
-        <!-- Why Sponsor Container -->
-        <div class="why-sponsor-container">
-            <h3 class="why-sponsor-title">
-                <span class="handshake-icon">🤝</span> Why Sponsor UPAGRAHA'26?
-            </h3>
-
-            <div class="sponsor-features-grid">
-                <!-- 500+ Participants -->
-                <div class="feature-card">
-                    <div class="feature-icon-circle">
-                        <!-- SVG Icon for People -->
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                            <circle cx="9" cy="7" r="4"></circle>
-                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                        </svg>
-                    </div>
-                    <div class="feature-title">500+ PARTICIPANTS</div>
-                    <p class="feature-desc">Direct access to top engineering talent</p>
-                </div>
-
-                <!-- Brand Visibility -->
-                <div class="feature-card">
-                    <div class="feature-icon-circle">
-                        <!-- SVG Icon for Trophy/Brand -->
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path>
-                            <path d="M18 9h1.5a2.5 2.5 0 0 1 0-5H18"></path>
-                            <path d="M4 22h16"></path>
-                            <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path>
-                            <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path>
-                            <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path>
-                        </svg>
-                    </div>
-                    <div class="feature-title">BRAND VISIBILITY</div>
-                    <p class="feature-desc">Premium placement across all events</p>
-                </div>
-
-                <!-- Industry Connect -->
-                <div class="feature-card">
-                    <div class="feature-icon-circle">
-                        <!-- SVG Icon for Megaphone -->
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="m3 11 18-5v12L3 14v-3z"></path>
-                            <path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"></path>
-                        </svg>
-                    </div>
-                    <div class="feature-title">INDUSTRY CONNECT</div>
-                    <p class="feature-desc">Network with future innovators</p>
-                </div>
-
-                <!-- Innovation Hub -->
-                <div class="feature-card">
-                    <div class="feature-icon-circle">
-                        <!-- SVG Icon for Stars/Sparkle -->
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path
-                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
-                            </path>
-                        </svg>
-                    </div>
-                    <div class="feature-title">INNOVATION HUB</div>
-                    <p class="feature-desc">Associate with cutting-edge projects</p>
+                    <!-- Duplicate Set -->
+                    <div class="gallery-img-container"><img src="assets/gallery/img_00.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_01.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_02.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_03.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_04.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_05.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_06.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_07.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_08.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_09.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_10.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_11.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_12.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_13.webp" class="gallery-img" loading="lazy"></div>
                 </div>
             </div>
 
-            <p class="sponsor-cta-text">
-                Join us in powering the next generation of tech innovators. Partner with ECE Symposium and connect with
-                brilliant minds shaping the future of electronics and communication.
-            </p>
+            <!-- Row 2: Right to Left (img_14 to img_27) -->
+            <div class="marquee-row scroll-right">
+                <div class="marquee-content">
+                    <!-- Set 1 -->
+                    <div class="gallery-img-container"><img src="assets/gallery/img_14.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_15.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_16.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_17.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_18.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_19.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_20.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_21.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_22.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_23.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_24.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_25.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_26.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_27.webp" class="gallery-img" loading="lazy"></div>
 
-            <div class="view-tiers-btn-container">
-                <a href="sponsorship_tiers.html" class="view-tiers-btn">
-                    View Sponsorship Tiers <span>→</span>
+                    <!-- Duplicate Set -->
+                    <div class="gallery-img-container"><img src="assets/gallery/img_14.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_15.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_16.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_17.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_18.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_19.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_20.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_21.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_22.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_23.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_24.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_25.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_26.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_27.webp" class="gallery-img" loading="lazy"></div>
+                </div>
+            </div>
+
+            <!-- Row 3: Left to Right (img_28 to img_42) -->
+            <div class="marquee-row scroll-left">
+                <div class="marquee-content">
+                    <!-- Set 1 -->
+                    <div class="gallery-img-container"><img src="assets/gallery/img_28.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_29.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_30.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_31.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_32.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_33.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_34.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_35.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_36.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_37.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_38.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_39.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_40.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_41.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_42.webp" class="gallery-img" loading="lazy"></div>
+
+                    <!-- Duplicate Set -->
+                    <div class="gallery-img-container"><img src="assets/gallery/img_28.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_29.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_30.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_31.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_32.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_33.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_34.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_35.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_36.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_37.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_38.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_39.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_40.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_41.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_42.webp" class="gallery-img" loading="lazy"></div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- EVENTS SECTION -->
+        <section id="events" class="spa-section cinematic-events">
+            <canvas id="events-canvas"></canvas>
+            <div class="events-overlay">
+                <h2 class="section-title">MULTIVERSE EVENTS</h2>
+                <p class="section-subtitle">SCROLL TO ENTER</p>
+                <div class="events-scroll-indicator">
+                    <div class="scroll-arrow"></div>
+                </div>
+            </div>
+
+            <div id="infinity-stones-container" class="stones-overlay">
+                <!-- Left Branch -->
+                <a href="events/universe2.html" class="stone-btn" id="stone-space">
+                    <img src="assets/stones/space.png" alt="Game of Codes">
+                    <span class="stone-label">Game of Codes</span>
+                </a>
+                <a href="events/universe1.html" class="stone-btn" id="stone-mind">
+                    <img src="assets/stones/mind.png" alt="Fast and Curious">
+                    <span class="stone-label">Fast and Curious</span>
+                </a>
+                <a href="events/universe6.html" class="stone-btn" id="stone-reality">
+                    <img src="assets/stones/reality.png" alt="Wolf of Tech Street">
+                    <span class="stone-label">Wolf of Tech Street</span>
+                </a>
+
+                <!-- Right Branch -->
+                <a href="events/universe4.html" class="stone-btn" id="stone-time">
+                    <img src="assets/stones/time.png" alt="Tech Tank">
+                    <span class="stone-label">Tech Tank</span>
+                </a>
+                <a href="events/universe5.html" class="stone-btn" id="stone-power">
+                    <img src="assets/stones/power.png" alt="Sorcerer Realm">
+                    <span class="stone-label">Sorcerer Realm</span>
+                </a>
+                <a href="events/universe3.html" class="stone-btn" id="stone-soul">
+                    <img src="assets/stones/soul.png" alt="Signal Gambit">
+                    <span class="stone-label">Signal Gambit</span>
                 </a>
             </div>
-        </div>
+        </section>
 
-        <!-- Our Sponsors - Coming Soon -->
-        <div class="our-sponsors-section">
-            <h3 class="our-sponsors-title">PARTNERS</h3>
-            <div class="coming-soon-card">
-                <p class="coming-soon-text">REVEALING SOON...</p>
-            </div>
-        </div>
+        <!-- PARTNERS & SPONSORS SECTION -->
+        <link rel="stylesheet" href="css/sponsorship.css">
+        <section id="sponsors">
+            <span class="sponsors-header-small">PARTNERS & SPONSORS</span>
+            <h2 class="sponsors-main-title">
+                Powered by <span class="highlight-green">Industry</span> <span class="highlight-purple">Leaders</span>
+            </h2>
 
-    </section>
+            <!-- Why Sponsor Container -->
+            <div class="why-sponsor-container">
+                <h3 class="why-sponsor-title">
+                    <span class="handshake-icon">🤝</span> Why Sponsor UPAGRAHA'26?
+                </h3>
 
-    <!-- TEAM SECTION -->
-    <section id="team">
-        <div class="team-header">
-            <div class="team-subtitle">Meet the Warriors Behind UPAGRAHA '26</div>
-            <h2 class="team-title">THE SQUAD</h2>
-            <div class="team-desc"></div>
-        </div>
+                <div class="sponsor-features-grid">
+                    <!-- 500+ Participants -->
+                    <div class="feature-card">
+                        <div class="feature-icon-circle">
+                            <!-- SVG Icon for People -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                        </div>
+                        <div class="feature-title">500+ PARTICIPANTS</div>
+                        <p class="feature-desc">Direct access to top engineering talent</p>
+                    </div>
 
-        <!-- Filter Tabs -->
-        <div class="team-tabs-container">
-            <button class="team-tab-btn active" data-club="ECEA">
-                <!-- Shield Icon -->
-                <svg class="tab-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                </svg>
-                ECEA
-            </button>
-            <button class="team-tab-btn" data-club="IETE">
-                <!-- Lightning Icon -->
-                <svg class="tab-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-                </svg>
-                IETE-SF
-            </button>
-            <button class="team-tab-btn" data-club="RACE">
-                <!-- Users Icon -->
-                <svg class="tab-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                    <circle cx="9" cy="7" r="4"></circle>
-                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                </svg>
-                RACE
-            </button>
-        </div>
+                    <!-- Brand Visibility -->
+                    <div class="feature-card">
+                        <div class="feature-icon-circle">
+                            <!-- SVG Icon for Trophy/Brand -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path>
+                                <path d="M18 9h1.5a2.5 2.5 0 0 1 0-5H18"></path>
+                                <path d="M4 22h16"></path>
+                                <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path>
+                                <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path>
+                                <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path>
+                            </svg>
+                        </div>
+                        <div class="feature-title">BRAND VISIBILITY</div>
+                        <p class="feature-desc">Premium placement across all events</p>
+                    </div>
 
-        <!-- Populated by JS -->
-        <div class="team-grid"></div>
-    </section>
+                    <!-- Industry Connect -->
+                    <div class="feature-card">
+                        <div class="feature-icon-circle">
+                            <!-- SVG Icon for Megaphone -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="m3 11 18-5v12L3 14v-3z"></path>
+                                <path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"></path>
+                            </svg>
+                        </div>
+                        <div class="feature-title">INDUSTRY CONNECT</div>
+                        <p class="feature-desc">Network with future innovators</p>
+                    </div>
 
-    <!-- CONTACT SECTION -->
-    <section id="contact" class="spa-section">
-        <h2 class="section-title">ESTABLISH LINK</h2>
-        <div class="contact-container">
-            <div class="contact-details">
-                <h3>HQ COORDINATES</h3>
-                <p>ECE Department<br>University Campus<br>Sector 7</p>
-                <div class="socials">
-                    <a href="#">IG</a> <a href="#">FB</a> <a href="#">LI</a>
+                    <!-- Innovation Hub -->
+                    <div class="feature-card">
+                        <div class="feature-icon-circle">
+                            <!-- SVG Icon for Stars/Sparkle -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path
+                                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div class="feature-title">INNOVATION HUB</div>
+                        <p class="feature-desc">Associate with cutting-edge projects</p>
+                    </div>
+                </div>
+
+                <p class="sponsor-cta-text">
+                    Join us in powering the next generation of tech innovators. Partner with ECE Symposium and connect
+                    with
+                    brilliant minds shaping the future of electronics and communication.
+                </p>
+
+                <div class="view-tiers-btn-container">
+                    <a href="sponsorship_tiers.html" class="view-tiers-btn">
+                        View Sponsorship Tiers <span>→</span>
+                    </a>
                 </div>
             </div>
-            <form class="contact-form-main">
-                <input type="text" placeholder="NAME" required>
-                <input type="email" placeholder="EMAIL" required>
-                <textarea placeholder="MESSAGE"></textarea>
-                <button type="submit" class="submit-glow">TRANSMIT</button>
-            </form>
-        </div>
-    </section>
 
-    <!-- FOOTER -->
-    <footer id="main-footer">
-        <div class="footer-content">
-            <div class="footer-col branding">
-                <h3 style="color:var(--neon-green)">UPAGRAHA '26</h3>
-                <p>ECE SYMPOSIUM</p>
-                <p class="small">National Level Technical Symposium organized by the Department of Electronics &
-                    Communication Engineering.</p>
-                <div class="footer-icons">
-                    <span>GH</span> <span>IN</span> <span>IG</span> <span>TW</span>
+            <!-- Our Sponsors - Coming Soon -->
+            <div class="our-sponsors-section">
+                <h3 class="our-sponsors-title">PARTNERS</h3>
+                <div class="coming-soon-card">
+                    <p class="coming-soon-text">REVEALING SOON...</p>
                 </div>
             </div>
-            <div class="footer-col links">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#events">Events</a></li>
-                    <li><a href="#about">Gallery</a></li>
-                    <li><a href="#sponsors">Sponsors</a></li>
-                    <li><a href="#contact">Prizes</a></li>
-                </ul>
-            </div>
-            <div class="footer-col links">
-                <h4>Events</h4>
-                <ul>
-                    <li>Paper Presentation</li>
-                    <li>Project Expo</li>
-                    <li>Treasure Hunt</li>
-                    <li>Circuit Trade</li>
-                    <li>Hardware Hack</li>
-                    <li>Neural Quiz</li>
-                </ul>
-            </div>
-            <div class="footer-col contact">
-                <h4>Contact Us</h4>
-                <p>ECE Department, University Campus, Kanpur - 208024</p>
-                <p>upagraha@university.edu</p>
-                <p>+91 98765 43210</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 UPAGRAHA. All rights reserved.</p>
-            <div class="legal">
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
-            </div>
-        </div>
-    </footer>
 
-    <script type="module" src="js/main.js"></script>
-    <script src="js/team.js"></script>
+        </section>
+
+        <!-- TEAM SECTION -->
+        <section id="team">
+            <div class="team-header">
+                <div class="team-subtitle">Meet the Warriors Behind UPAGRAHA '26</div>
+                <h2 class="team-title">THE SQUAD</h2>
+                <div class="team-desc"></div>
+            </div>
+
+            <!-- Filter Tabs -->
+            <div class="team-tabs-container">
+                <button class="team-tab-btn active" data-club="ECEA">
+                    <!-- Shield Icon -->
+                    <svg class="tab-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    </svg>
+                    ECEA
+                </button>
+                <button class="team-tab-btn" data-club="IETE">
+                    <!-- Lightning Icon -->
+                    <svg class="tab-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                    </svg>
+                    IETE-SF
+                </button>
+                <button class="team-tab-btn" data-club="RACE">
+                    <!-- Users Icon -->
+                    <svg class="tab-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                    RACE
+                </button>
+            </div>
+
+            <!-- Populated by JS -->
+            <div class="team-grid"></div>
+        </section>
+
+        <!-- FOOTER LINKED DIRECTLY FROM NAV -->
+
+        <!-- FOOTER -->
+        <footer id="main-footer">
+            <div class="footer-container">
+                <!-- Col 1: Branding & Map -->
+                <div class="footer-col branding-col">
+                    <div class="brand-info">
+                        <h3 class="footer-logo-text">UPAGRAHA '26</h3>
+                        <p class="footer-tagline">ECE SYMPOSIUM</p>
+                        <p class="footer-desc">National Level Technical Symposium organized by the Department of
+                            Electronics
+                            & Communication Engineering.</p>
+                    </div>
+                    <!-- Google Map -->
+                    <div class="footer-map">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.041079782295!2d79.99042231535783!3d12.969223190857322!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a52f928e0861757%3A0xe9f04db358f9188d!2sSri%20Venkateswara%20College%20of%20Engineering!5e0!3m2!1sen!2sin!4v1705646347000!5m2!1sen!2sin"
+                            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+
+                <!-- Col 2: Quick Links & Events -->
+                <div class="footer-col links-col">
+                    <div class="link-group">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="#hero-about-wrapper">Home</a></li>
+                            <li><a href="#events">Events</a></li>
+                            <li><a href="#team">Team</a></li>
+                            <li><a href="#sponsors">Sponsors</a></li>
+                        </ul>
+                    </div>
+                    <div class="link-group">
+                        <h4>Events</h4>
+                        <ul>
+                            <li><a href="events/universe1.html">Fast and Curious</a></li>
+                            <li><a href="events/universe2.html">Game of Codes</a></li>
+                            <li><a href="events/universe3.html">Signal Gambit</a></li>
+                            <li><a href="events/universe4.html">Tech Tank</a></li>
+                            <li><a href="events/universe5.html">Sorcerer Realm</a></li>
+                            <li><a href="events/universe6.html">Wolf of Tech Street</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Col 3: Contact Info -->
+                <div class="footer-col contact-col">
+                    <h4>Contact Us</h4>
+                    <div class="address-box">
+                        <p>Sri Venkateswara College of Engineering</p>
+                        <p>Post Bag No.1, Pennalur Village</p>
+                        <p>Chennai - Bengaluru Highways</p>
+                        <p>Sriperumbudur (off Chennai) Tk. - 602 117</p>
+                        <p>Tamil Nadu, India</p>
+                    </div>
+
+                    <div class="contact-methods">
+                        <p><a href="mailto:upagraha@svce.ac.in">upagraha@svce.ac.in</a></p>
+                    </div>
+
+                    <div class="footer-socials">
+                        <!-- Instagram -->
+                        <a href="#" class="social-icon" aria-label="Instagram">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </a>
+                        <!-- LinkedIn -->
+                        <a href="#" class="social-icon" aria-label="LinkedIn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path
+                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
+                                </path>
+                                <rect x="2" y="9" width="4" height="12"></rect>
+                                <circle cx="4" cy="4" r="2"></circle>
+                            </svg>
+                        </a>
+                        <!-- Website/Globe -->
+                        <a href="#" class="social-icon" aria-label="Website">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="2" y1="12" x2="22" y2="12"></line>
+                                <path
+                                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+                                </path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 UPAGRAHA. All rights reserved.</p>
+            </div>
+        </footer>
+
+        <script type="module" src="js/main.js"></script>
+        <script src="js/team.js"></script>
 </body>
 
 </html>
