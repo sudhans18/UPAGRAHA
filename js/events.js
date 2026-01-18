@@ -2,7 +2,7 @@
 // EVENTS.JS - Cinematic Events Frame Scrubbing
 // ===========================================
 
-const frameCount = 79;
+const frameCount = 83;
 const eventsCanvas = document.getElementById('events-canvas');
 const eventCtx = eventsCanvas ? eventsCanvas.getContext('2d') : null;
 const eventImages = [];
@@ -11,7 +11,7 @@ const eventsObj = { frame: 0 };
 function preloadEventImages() {
     for (let i = 0; i < frameCount; i++) {
         const img = new Image();
-        img.src = `assets/frames3/frame ${i}.webp`;
+        img.src = `assets/frames/frame ${i}.webp`;
         eventImages[i] = img;
         img.onerror = () => {
             console.error(`Failed to load frame ${i}.webp`);

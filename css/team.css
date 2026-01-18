@@ -1,0 +1,346 @@
+/* =========================================
+   OUR TEAM SECTION - MULTIVERSE THEME
+   Styles for the Team/Squad Grid
+   ========================================= */
+
+#team {
+    position: relative;
+    padding: 80px 20px;
+    min-height: 100vh;
+    width: 100%;
+    z-index: 10;
+    overflow: hidden;
+    /* Transparent background to show starfield */
+    background: transparent;
+}
+
+/* --- Section Header --- */
+.team-header {
+    text-align: center;
+    margin-bottom: 50px;
+    position: relative;
+}
+
+.team-subtitle {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 4px;
+    color: var(--neon-purple);
+    /* Using global var if avail, else fallback */
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.team-subtitle::before,
+.team-subtitle::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--neon-purple, #b026ff);
+    box-shadow: 0 0 5px var(--neon-purple, #b026ff);
+}
+
+.team-title {
+    font-family: 'Michroma', sans-serif;
+    /* Tech/Modern font */
+    font-size: 2.5rem;
+    /* Reduced from 3.5rem */
+    color: var(--neon-gold);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    margin: 0;
+    position: relative;
+    display: inline-block;
+}
+
+/* Glitch effect on hover for title */
+.team-title:hover {
+    animation: glitch-text 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
+    color: var(--neon-green, #0f0);
+}
+
+.team-desc {
+    font-family: 'Rajdhani', sans-serif;
+    color: #ccc;
+    font-size: 1.1rem;
+    margin-top: 15px;
+    letter-spacing: 1px;
+}
+
+/* --- Filter Tabs (Clubs) --- */
+.team-tabs-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 60px;
+    flex-wrap: wrap;
+}
+
+.team-tab-btn {
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid var(--neon-green, #0f0);
+    padding: 10px 25px;
+    /* Reduced padding */
+    color: #fff;
+    font-family: 'Michroma', sans-serif;
+    font-size: 0.9rem;
+    /* Reduced font size */
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    clip-path: polygon(10% 0, 100% 0, 100% 80%, 90% 100%, 0 100%, 0 20%);
+    position: relative;
+    overflow: hidden;
+}
+
+.team-tab-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.team-tab-btn:hover::before {
+    left: 100%;
+}
+
+.team-tab-btn:hover {
+    background: rgba(0, 255, 0, 0.1);
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.4);
+    text-shadow: 0 0 5px var(--neon-green, #0f0);
+}
+
+.team-tab-btn.active {
+    background: rgba(176, 38, 255, 0.2);
+    /* Purple tint */
+    border-color: var(--neon-purple, #b026ff);
+    box-shadow: 0 0 20px rgba(176, 38, 255, 0.6);
+    color: #fff;
+}
+
+/* Icons for tabs */
+.tab-icon {
+    margin-right: 8px;
+    font-size: 1.1em;
+}
+
+/* --- Team Grid --- */
+.team-grid {
+    display: grid;
+    /* Force 5 columns on large screens (1024px+) */
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+    /* Reduced gap */
+    max-width: 100%;
+    /* Use full available width */
+    margin: 0 auto;
+    padding: 20px 40px;
+    align-items: stretch;
+    /* Explicitly stretch items to same height */
+}
+
+/* --- Member Card --- */
+.member-card {
+    background: rgba(10, 10, 15, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    position: relative;
+    transition: all 0.4s ease;
+    backdrop-filter: blur(5px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* Ensure content spacing */
+    height: 100%;
+    /* Fix uneven heights */
+    width: 100%;
+    /* Ensure full width */
+    box-sizing: border-box;
+    /* Include padding in size */
+    align-items: center;
+    /* Corner accents */
+    --card-accent: var(--neon-green, #0f0);
+}
+
+.member-card::before,
+.member-card::after,
+.member-card-corners::before,
+.member-card-corners::after {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+/* Top Left */
+.member-card::before {
+    top: -1px;
+    left: -1px;
+    border-top-color: var(--card-accent);
+    border-left-color: var(--card-accent);
+}
+
+/* Top Right */
+.member-card::after {
+    top: -1px;
+    right: -1px;
+    border-top-color: var(--card-accent);
+    border-right-color: var(--card-accent);
+}
+
+/* Bottom Left */
+.member-card-corners::before {
+    bottom: -1px;
+    left: -1px;
+    border-bottom-color: var(--card-accent);
+    border-left-color: var(--card-accent);
+    position: absolute;
+}
+
+/* Bottom Right */
+.member-card-corners::after {
+    bottom: -1px;
+    right: -1px;
+    border-bottom-color: var(--card-accent);
+    border-right-color: var(--card-accent);
+    position: absolute;
+}
+
+.member-card:hover {
+    transform: translateY(-5px);
+    background: rgba(20, 20, 30, 0.8);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    border-color: var(--card-accent);
+    --card-accent: var(--neon-purple, #b026ff);
+    /* Change accent color on hover */
+}
+
+/* Image */
+.member-img-box {
+    width: 100%;
+    aspect-ratio: 1;
+    /* Square */
+    overflow: hidden;
+    margin-bottom: 20px;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.member-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%) contrast(1.2);
+    transition: all 0.5s ease;
+}
+
+.member-card:hover .member-img {
+    filter: grayscale(0%) contrast(1);
+    transform: scale(1.05);
+}
+
+/* Info */
+.member-info {
+    text-align: center;
+    width: 100%;
+}
+
+.member-name {
+    font-family: 'Michroma', sans-serif;
+    font-size: 0.9rem;
+    /* Smaller font */
+    color: #fff;
+    margin: 10px 0 2px 0;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.member-role {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.8rem;
+    /* Smaller font */
+    color: var(--neon-purple, #b026ff);
+    margin-bottom: 10px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* Socials - Hidden by default, slide up on hover */
+.member-socials {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    opacity: 0;
+    transform: translateY(15px);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    height: 0;
+    /* Collapse height initially to save space */
+    overflow: hidden;
+}
+
+.member-card:hover .member-socials {
+    opacity: 1;
+    transform: translateY(0);
+    height: 35px;
+    /* Expand on hover */
+}
+
+.social-link {
+    color: #fff;
+    font-size: 1rem;
+    transition: all 0.3s;
+    /* Use SVG icons or text fallback */
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    /* Smaller icons */
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.social-link:hover {
+    color: var(--neon-green, #0f0);
+    background: rgba(0, 255, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+    transform: translateY(-2px);
+}
+
+/* --- Responsive --- */
+@media (max-width: 1024px) {
+    .team-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .team-tabs-container {
+        gap: 15px;
+    }
+
+    .team-tab-btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+
+    .team-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 20px;
+    }
+}

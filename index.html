@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UPAGRAHA '26 | ECE Symposium</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,6 +26,7 @@
     <link rel="stylesheet" href="css/timeline.css">
     <link rel="stylesheet" href="css/events.css">
     <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/team.css">
     <link rel="stylesheet" href="css/responsive.css">
 </head>
 
@@ -49,7 +51,7 @@
             <div class="nav-logo-section">
                 <!-- Replaced text with Logo Image -->
                 <a href="#hero-about-wrapper" class="nav-logo-link">
-                    <img src="assets/Logo/upagraha.png" alt="UPAGRAHA Logo" class="nav-logo-img-main">
+                    <img src="assets/Logo/logo.png" alt="UPAGRAHA Logo" class="nav-logo-img-main">
                 </a>
             </div>
             <div class="nav-links">
@@ -430,12 +432,55 @@
 
         <!-- Our Sponsors - Coming Soon -->
         <div class="our-sponsors-section">
-            <h3 class="our-sponsors-title">OUR SPONSORS</h3>
+            <h3 class="our-sponsors-title">PARTNERS</h3>
             <div class="coming-soon-card">
                 <p class="coming-soon-text">REVEALING SOON...</p>
             </div>
         </div>
 
+    </section>
+
+    <!-- TEAM SECTION -->
+    <section id="team">
+        <div class="team-header">
+            <div class="team-subtitle">Meet the Warriors Behind UPAGRAHA '26</div>
+            <h2 class="team-title">THE SQUAD</h2>
+            <div class="team-desc"></div>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="team-tabs-container">
+            <button class="team-tab-btn active" data-club="ECEA">
+                <!-- Shield Icon -->
+                <svg class="tab-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+                ECEA
+            </button>
+            <button class="team-tab-btn" data-club="IETE">
+                <!-- Lightning Icon -->
+                <svg class="tab-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                </svg>
+                IETE-SF
+            </button>
+            <button class="team-tab-btn" data-club="RACE">
+                <!-- Users Icon -->
+                <svg class="tab-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+                RACE
+            </button>
+        </div>
+
+        <!-- Populated by JS -->
+        <div class="team-grid"></div>
     </section>
 
     <!-- CONTACT SECTION -->
@@ -508,6 +553,7 @@
     </footer>
 
     <script type="module" src="js/main.js"></script>
+    <script src="js/team.js"></script>
 </body>
 
 </html>
