@@ -562,6 +562,8 @@
         const canvas = document.getElementById('ash-canvas');
         const ctx = canvas.getContext('2d');
         let w, h;
+        let mouseX = 0, mouseY = 0;
+        let points = [];
 
         function resize() {
             w = canvas.width = window.innerWidth;
@@ -570,26 +572,67 @@
         window.addEventListener('resize', resize);
         resize();
 
+        // Track Mouse
+        window.addEventListener('mousemove', e => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            // Add point to trail
+            points.push({ x: mouseX, y: mouseY, age: 0 });
+        });
+
         const particles = Array.from({ length: 150 }, () => ({
             x: Math.random() * w,
             y: Math.random() * h,
             r: Math.random() * 2 + 1,
             s: Math.random() * 2 + 0.5,
-            color: Math.random() > 0.8 ? '#ff0000' : '#4a0000' // Vivid red and dark red mix
+            color: Math.random() > 0.8 ? '#ff0000' : '#4a0000'
         }));
 
         function animate() {
             ctx.clearRect(0, 0, w, h);
 
+            // 1. Animate Particles (Background)
             particles.forEach(p => {
                 p.y += p.s;
                 if (p.y > h) p.y = 0;
                 ctx.beginPath();
                 ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
                 ctx.fillStyle = p.color;
-                ctx.globalAlpha = Math.random() * 0.5 + 0.2; // Flickering effect
+                ctx.globalAlpha = Math.random() * 0.5 + 0.2;
                 ctx.fill();
             });
+
+            // 2. Animate Electric Cursor Trail
+            if (points.length > 2) {
+                ctx.beginPath();
+                ctx.moveTo(points[0].x, points[0].y);
+
+                for (let i = 1; i < points.length; i++) {
+                    const p = points[i];
+                    p.age++;
+
+                    // Jitter for electric effect
+                    const jitterX = (Math.random() - 0.5) * 10;
+                    const jitterY = (Math.random() - 0.5) * 10;
+
+                    ctx.lineTo(p.x + jitterX, p.y + jitterY);
+                }
+
+                ctx.strokeStyle = '#ff0000';
+                ctx.lineWidth = 2;
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = '#ff0000';
+                ctx.globalAlpha = 0.8;
+                ctx.stroke();
+
+                // Reset shadow/alpha for loops
+                ctx.shadowBlur = 0;
+                ctx.globalAlpha = 1;
+
+                // Remove old points
+                points = points.filter(p => p.age < 15);
+            }
+
             requestAnimationFrame(animate);
         }
         animate();
