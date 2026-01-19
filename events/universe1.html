@@ -4,97 +4,360 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Universe 1: Fast And Curious</title>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Michroma&family=Rajdhani:wght@300;500;700&display=swap"
+    <title>FAST & CURIOUS | Wasteland Arena</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;800&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="../styles.css">
+
     <style>
         :root {
-            --neon-green: #ffd700;
-            /* Gold Override */
-            --glass-bg: rgba(50, 40, 0, 0.4);
+            --rust-orange: #c1440e;
+            --burnt-rust: #8b2f0a;
+            --sand-beige: #e6d3a3;
+            --dust-yellow: #f4c430;
+            --dark-sand: #1a120b;
+            --oxidized-brown: #3b1f0f;
+            --metal-grey: #9a9a9a;
         }
 
         body {
-            background: #050200;
+            margin: 0;
+            background: var(--dark-sand);
+            color: var(--sand-beige);
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
         }
 
+        /* Background Video */
+        #bg-video {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+            filter: brightness(0.6) contrast(1.2) sepia(0.4);
+        }
+
+        /* Dust Canvas */
+        #ash-canvas {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Back Button */
+        .back-link {
+            position: fixed;
+            top: 25px;
+            left: 25px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid var(--rust-orange);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--rust-orange);
+            text-decoration: none;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 100;
+            transition: 0.3s;
+        }
+
+        .back-link:hover {
+            background: var(--rust-orange);
+            color: #000;
+            box-shadow: 0 0 20px var(--rust-orange);
+        }
+
+        /* Hero */
         .universe-hero {
-            height: 60vh;
+            min-height: 90vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: radial-gradient(circle, #332000 0%, #000000 80%);
+            padding: 4rem 2rem;
+            background: radial-gradient(circle, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.9));
+            border-bottom: 3px solid var(--rust-orange);
         }
 
         .universe-title {
+            font-family: 'Bebas Neue', sans-serif;
             font-size: 5rem;
-            color: var(--neon-green);
-            font-family: var(--font-heading);
-            text-shadow: 0 0 20px var(--neon-green);
+            letter-spacing: 6px;
+            color: var(--rust-orange);
+            text-shadow: 0 0 20px rgba(193, 68, 14, 0.6);
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInDown 1.5s forwards;
         }
 
         .universe-desc {
-            max-width: 800px;
-            padding: 2rem;
-            color: #ddd;
-            font-size: 1.2rem;
-            line-height: 1.6;
+            max-width: 850px;
+            font-size: 1.4rem;
+            line-height: 1.8;
+            padding: 2.5rem;
+            background: rgba(30, 20, 10, 0.65);
+            border-left: 5px solid var(--burnt-rust);
+            border-right: 5px solid var(--burnt-rust);
+            backdrop-filter: blur(8px);
+            opacity: 0;
+            animation: fadeInUp 1.5s 0.5s forwards;
         }
 
-        .back-link {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            color: #fff;
-            text-decoration: none;
-            font-family: var(--font-cyber);
-            border: 1px solid var(--neon-green);
-            padding: 10px 20px;
+        /* Sections */
+        .spa-section {
+            padding: 8rem 2rem;
+            background: linear-gradient(to bottom, rgba(26, 18, 11, 0.95), rgba(59, 31, 15, 0.95));
+        }
+
+        .round-container {
+            max-width: 1000px;
+            margin: 0 auto 6rem auto;
+            padding: 4rem;
+            background: rgba(30, 20, 10, 0.7);
+            border: 1px solid rgba(193, 68, 14, 0.4);
+            backdrop-filter: blur(8px);
+        }
+
+        h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3rem;
+            letter-spacing: 4px;
+            color: var(--rust-orange);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        h3 {
+            color: var(--dust-yellow);
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #ddd;
+        }
+
+        .decree-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .decree-list li {
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .decree-list li::before {
+            content: "▸";
+            color: var(--rust-orange);
+            margin-right: 10px;
+        }
+
+        /* Card Grid */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 2rem;
+        }
+
+        .card-item {
+            background: rgba(20, 15, 10, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem;
             transition: 0.3s;
         }
 
-        .back-link:hover {
-            background: var(--neon-green);
-            color: #000;
+        .card-item:hover {
+            border-color: var(--rust-orange);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(193, 68, 14, 0.3);
+        }
+
+        /* CTA */
+        .cta-btn {
+            display: block;
+            margin: 3rem auto 0;
+            padding: 20px 60px;
+            background: linear-gradient(45deg, var(--burnt-rust), var(--rust-orange));
+            border: 2px solid var(--dust-yellow);
+            color: var(--sand-beige);
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.6rem;
+            letter-spacing: 4px;
+            cursor: pointer;
+            transition: 0.4s;
+        }
+
+        .cta-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(244, 196, 48, 0.7);
+        }
+
+        /* Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: 1s;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
 
 <body>
-    <a href="../index.html" class="back-link">Return to Multiverse</a>
+
+    <video id="bg-video" autoplay muted loop playsinline>
+        <source src="../assets/bg_video_final.mp4" type="video/mp4">
+    </video>
+
+    <canvas id="ash-canvas"></canvas>
+
+    <a href="../index.html" class="back-link">←</a>
 
     <section class="universe-hero">
-        <h1 class="universe-title">Fast And Curious</h1>
-        <p class="universe-desc">Welcome to The Archive. Here, knowledge is currency. Present your research papers and
-            etch your name into the history of the multiverse.</p>
+        <h1 class="universe-title">FAST & CURIOUS</h1>
+        <p class="universe-desc">
+            FAST & CURIOUS is a two-round technical battlefield where observation,
+            reasoning, and instinct decide survival. Designed for Electronics and
+            Communication Engineering enthusiasts, the event strips away obvious clues
+            and forces teams to read between the signals.
+            <br><br>
+            Under relentless time pressure and limited information, participants must
+            analyze visuals, trust their technical memory, and act with confidence.
+            Speed, strategy, and sharp thinking are the only resources that matter.
+        </p>
     </section>
 
     <section class="spa-section">
-        <h2 style="color:var(--neon-green); font-family:var(--font-cyber)">RULES OF ENGAGEMENT</h2>
-        <ul style="color:#aaa; text-align:left; line-height:2; font-size:1.1rem;">
-            <li>Max 3 authors per paper (Variant Teams allowed)</li>
-            <li>Abstract deadline: Jan 30th</li>
-            <li>presentation time: 8 mins + 2 mins QA</li>
-        </ul>
-        <button id="registerBtn"
-            style="margin-top:3rem; padding:15px 40px; background:var(--neon-green); border:none; color:#000; font-family:var(--font-cyber); font-weight:bold; cursor:pointer;">REGISTER
-            TEAM</button>
-        <video id="entryVideo" src="../entry.mp4" style="display:none; width:100%; max-height:80vh;" controls></video>
-        <script>
-            document.getElementById('registerBtn').addEventListener('click', function () {
-                var video = document.getElementById('entryVideo');
-                video.style.display = 'block';
-                video.play();
-                video.onended = function () {
-                    window.location.href = 'universe1.html';
-                };
-            });
-        </script>
+
+        <div class="round-container reveal">
+            <h2>ROUND I: QUIZ CHALLENGE</h2>
+            <p>
+                A pen-and-paper elimination round testing foundational and advanced
+                concepts of Electronics and Communication Engineering.
+            </p>
+            <ul class="decree-list">
+                <li>20 questions × 1 mark</li>
+                <li>5 challenge questions × 3 marks</li>
+                <li>Total duration: 30 minutes</li>
+                <li>No negative marking</li>
+                <li>Internet usage strictly prohibited</li>
+            </ul>
+        </div>
+
+        <div class="round-container reveal">
+            <h2>ROUND II: BID THE REVEAL</h2>
+            <p>
+                Three teams enter a high-stakes reveal-and-bidding arena.
+                Confidence, component knowledge, and reaction speed determine victory.
+            </p>
+
+            <div class="card-grid">
+                <div class="card-item"><strong>Reveal 1</strong><br>Highly blurred image</div>
+                <div class="card-item"><strong>Reveal 2</strong><br>Slightly clearer view</div>
+                <div class="card-item"><strong>Reveal 3</strong><br>Clear image without labels</div>
+                <div class="card-item"><strong>Reveal 4</strong><br>Pins or symbol close-up</div>
+                <div class="card-item"><strong>Reveal 5</strong><br>Real-world usage hint</div>
+            </div>
+
+            <p style="margin-top: 3rem;">
+                After identification, teams must complete a cup pyramid speed challenge
+                before announcing their answer.
+            </p>
+        </div>
+
+        <div class="round-container reveal">
+            <h2>FINAL RULES</h2>
+            <ul class="decree-list">
+                <li>Teams consist of exactly two members</li>
+                <li>Judges’ decisions are final</li>
+                <li>Only Round II scores decide the winner</li>
+            </ul>
+            <button class="cta-btn">ENTER THE WASTELAND</button>
+        </div>
+
     </section>
+
+    <script>
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        const canvas = document.getElementById('ash-canvas');
+        const ctx = canvas.getContext('2d');
+        let w, h;
+
+        function resize() {
+            w = canvas.width = window.innerWidth;
+            h = canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        const particles = Array.from({ length: 120 }, () => ({
+            x: Math.random() * w,
+            y: Math.random() * h,
+            r: Math.random() * 2 + 1,
+            s: Math.random() * 1 + 0.5
+        }));
+
+        function animate() {
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = "rgba(220,200,170,0.15)";
+            particles.forEach(p => {
+                p.y += p.s;
+                if (p.y > h) p.y = 0;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                ctx.fill();
+            });
+            requestAnimationFrame(animate);
+        }
+        animate();
+    </script>
+
 </body>
 
 </html>
