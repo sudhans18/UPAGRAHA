@@ -210,90 +210,69 @@
     </div>
 
 
-    <!-- TIMELINE SECTION - Full Frame Pinned -->
-    <section id="timeline" class="timeline-fullframe">
-        <!-- Monitor as Full Background -->
-        <div class="timeline-bg-container">
-            <img src="assets/timeline.png" alt="Timeline Monitor" class="timeline-bg-image">
-        </div>
+    <!-- TIMELINE SECTION - The Sacred Timeline -->
+    <section id="timeline" class="timeline-section">
+        <h2 class="sacred-title">THE SACRED TIMELINE</h2>
 
-        <!-- Timeline Overlay Content -->
-        <div class="timeline-overlay">
-            <!-- Timeline Content (scrolls horizontally) -->
-            <div class="timeline-track-wrapper">
-                <!-- Section Labels -->
-                <div class="timeline-labels">
-                    <span class="label label-past">PAST</span>
-                    <span class="label label-present">PRESENT</span>
-                    <span class="label label-future">FUTURE</span>
-                </div>
+        <div class="monitor-container">
+            <!-- Monitor Image -->
+            <img src="assets/new_timeline.jpg" alt="Sacred Timeline Monitor" class="monitor-bg">
 
-                <!-- Sacred Timeline Track -->
-                <div class="sacred-timeline">
-                    <!-- Branch Lines (decorative) -->
-                    <svg class="branch-lines" viewBox="0 0 2400 200" preserveAspectRatio="none">
-                        <!-- Main line -->
-                        <path class="main-line" d="M0,100 L2400,100" />
-                        <!-- Branches -->
-                        <path class="branch branch-1" d="M200,100 Q250,40 350,60" />
-                        <path class="branch branch-2" d="M500,100 Q550,150 650,130" />
-                        <path class="branch branch-3" d="M900,100 Q950,50 1050,70" />
-                        <path class="branch branch-4" d="M1200,100 Q1250,160 1350,140" />
-                        <path class="branch branch-5" d="M1600,100 Q1650,30 1750,50" />
-                        <path class="branch branch-6" d="M2000,100 Q2050,150 2150,130" />
-                    </svg>
+            <!-- Screen Area (Scrollable) -->
+            <div class="monitor-screen">
+                <div class="timeline-scroll-track">
+                    <!-- The horizontal line -->
+                    <div class="timeline-line"></div>
 
-                    <!-- Event Nodes -->
-                    <div class="timeline-events">
-                        <!-- PAST Events -->
-                        <div class="timeline-event past" style="left: 10%;">
-                            <div class="event-dot"></div>
-                            <div class="event-info">
-                                <span class="event-date">Oct 15</span>
-                                <span class="event-name">PROJECT KICKOFF</span>
-                            </div>
+                    <!-- Events: Jan 21 to Feb 19 -->
+                    <div class="timeline-event" data-date="2026-01-21">
+                        <div class="timeline-node"></div>
+                        <div class="event-label">
+                            <span class="t-date">JAN 21</span>
+                            <span class="t-title">INITIALIZATION</span>
                         </div>
-                        <div class="timeline-event past" style="left: 25%;">
-                            <div class="event-dot"></div>
-                            <div class="event-info">
-                                <span class="event-date">Nov 01</span>
-                                <span class="event-name">PHASE 1 COMPLETE</span>
-                            </div>
+                    </div>
+                    <div class="timeline-event" data-date="2026-01-25">
+                        <div class="timeline-node"></div>
+                        <div class="event-label">
+                            <span class="t-date">JAN 25</span>
+                            <span class="t-title">DATA SYNC</span>
                         </div>
-
-                        <!-- PRESENT Event -->
-                        <div class="timeline-event current" style="left: 45%;">
-                            <div class="event-dot"></div>
-                            <div class="event-info">
-                                <span class="event-date">Nov 15</span>
-                                <span class="event-name">MID-TERM REVIEW</span>
-                            </div>
+                    </div>
+                    <div class="timeline-event" data-date="2026-02-02">
+                        <div class="timeline-node"></div>
+                        <div class="event-label">
+                            <span class="t-date">FEB 02</span>
+                            <span class="t-title">SYSTEM CORE</span>
                         </div>
-
-                        <!-- FUTURE Events -->
-                        <div class="timeline-event future" style="left: 60%;">
-                            <div class="event-dot"></div>
-                            <div class="event-info">
-                                <span class="event-date">Dec 01</span>
-                                <span class="event-name">FINAL SUBMISSION</span>
-                            </div>
+                    </div>
+                    <div class="timeline-event" data-date="2026-02-10">
+                        <div class="timeline-node"></div>
+                        <div class="event-label">
+                            <span class="t-date">FEB 10</span>
+                            <span class="t-title">NEXUS EVENT</span>
                         </div>
-                        <div class="timeline-event future" style="left: 78%;">
-                            <div class="event-dot"></div>
-                            <div class="event-info">
-                                <span class="event-date">Dec 10</span>
-                                <span class="event-name">SYMPOSIUM DAY</span>
-                            </div>
+                    </div>
+                    <div class="timeline-event" data-date="2026-02-14">
+                        <div class="timeline-node"></div>
+                        <div class="event-label">
+                            <span class="t-date">FEB 14</span>
+                            <span class="t-title">CONVERGENCE</span>
                         </div>
-                        <div class="timeline-event future" style="left: 95%;">
-                            <div class="event-dot"></div>
-                            <div class="event-info">
-                                <span class="event-date">Dec 15</span>
-                                <span class="event-name">AWARDS CEREMONY</span>
-                            </div>
+                    </div>
+                    <div class="timeline-event" data-date="2026-02-19">
+                        <div class="timeline-node"></div>
+                        <div class="event-label">
+                            <span class="t-date">FEB 19</span>
+                            <span class="t-title">FINALITY</span>
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <!-- Horizontal Scroll Indicator -->
+            <div class="scroll-hint">
+                <span>SCROLL &rarr;</span>
             </div>
         </div>
     </section>
@@ -310,36 +289,64 @@
             <div class="marquee-row scroll-left">
                 <div class="marquee-content">
                     <!-- Set 1 -->
-                    <div class="gallery-img-container"><img src="assets/gallery/img_00.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_01.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_02.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_03.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_04.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_05.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_06.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_07.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_08.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_09.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_10.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_11.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_12.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_13.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_00.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_01.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_02.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_03.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_04.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_05.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_06.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_07.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_08.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_09.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_10.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_11.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_12.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_13.webp" class="gallery-img"
+                            loading="lazy"></div>
 
                     <!-- Duplicate Set -->
-                    <div class="gallery-img-container"><img src="assets/gallery/img_00.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_01.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_02.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_03.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_04.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_05.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_06.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_07.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_08.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_09.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_10.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_11.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_12.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_13.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_00.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_01.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_02.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_03.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_04.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_05.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_06.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_07.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_08.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_09.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_10.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_11.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_12.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_13.webp" class="gallery-img"
+                            loading="lazy"></div>
                 </div>
             </div>
 
@@ -347,36 +354,64 @@
             <div class="marquee-row scroll-right">
                 <div class="marquee-content">
                     <!-- Set 1 -->
-                    <div class="gallery-img-container"><img src="assets/gallery/img_14.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_15.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_16.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_17.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_18.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_19.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_20.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_21.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_22.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_23.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_24.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_25.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_26.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_27.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_14.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_15.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_16.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_17.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_18.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_19.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_20.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_21.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_22.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_23.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_24.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_25.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_26.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_27.webp" class="gallery-img"
+                            loading="lazy"></div>
 
                     <!-- Duplicate Set -->
-                    <div class="gallery-img-container"><img src="assets/gallery/img_14.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_15.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_16.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_17.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_18.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_19.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_20.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_21.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_22.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_23.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_24.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_25.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_26.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_27.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_14.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_15.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_16.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_17.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_18.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_19.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_20.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_21.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_22.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_23.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_24.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_25.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_26.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_27.webp" class="gallery-img"
+                            loading="lazy"></div>
                 </div>
             </div>
 
@@ -384,38 +419,68 @@
             <div class="marquee-row scroll-left">
                 <div class="marquee-content">
                     <!-- Set 1 -->
-                    <div class="gallery-img-container"><img src="assets/gallery/img_28.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_29.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_30.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_31.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_32.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_33.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_34.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_35.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_36.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_37.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_38.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_39.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_40.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_41.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_42.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_28.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_29.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_30.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_31.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_32.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_33.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_34.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_35.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_36.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_37.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_38.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_39.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_40.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_41.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_42.webp" class="gallery-img"
+                            loading="lazy"></div>
 
                     <!-- Duplicate Set -->
-                    <div class="gallery-img-container"><img src="assets/gallery/img_28.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_29.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_30.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_31.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_32.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_33.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_34.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_35.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_36.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_37.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_38.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_39.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_40.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_41.webp" class="gallery-img" loading="lazy"></div>
-                    <div class="gallery-img-container"><img src="assets/gallery/img_42.webp" class="gallery-img" loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_28.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_29.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_30.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_31.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_32.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_33.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_34.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_35.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_36.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_37.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_38.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_39.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_40.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_41.webp" class="gallery-img"
+                            loading="lazy"></div>
+                    <div class="gallery-img-container"><img src="assets/gallery/img_42.webp" class="gallery-img"
+                            loading="lazy"></div>
                 </div>
             </div>
         </div>
@@ -631,9 +696,9 @@
                     </div>
                     <!-- Google Map -->
                     <div class="footer-map">
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.041079782295!2d79.99042231535783!3d12.969223190857322!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a52f928e0861757%3A0xe9f04db358f9188d!2sSri%20Venkateswara%20College%20of%20Engineering!5e0!3m2!1sen!2sin!4v1705646347000!5m2!1sen!2sin"
-                            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                        <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0"
+                            marginwidth="0"
+                            src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=Sri%20Venkateswara%20College%20of%20Engineering,%20Pennalur&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">
                         </iframe>
                     </div>
                 </div>
@@ -644,9 +709,18 @@
                         <h4>Quick Links</h4>
                         <ul>
                             <li><a href="#hero-about-wrapper">Home</a></li>
-                            <li><a href="#events">Events</a></li>
-                            <li><a href="#team">Team</a></li>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#timeline">Timeline</a></li>
                             <li><a href="#sponsors">Sponsors</a></li>
+                            <!-- Assuming Gallery is part of About or own section, will link to #about if no #gallery -->
+                            <!-- Checking if there is a gallery section. User asked to add quick links to gallery. 
+                             I see 'css/gallery.css' so likely a gallery section exists or will exist. 
+                             I'll modify the href if I find the section ID. 
+                             Wait, I don't see a #gallery section in index.html yet. 
+                             Maybe it's loaded dynamically or user plans to add it. 
+                             I will add the link to #gallery for now as requested. -->
+                            <li><a href="#gallery">Gallery</a></li>
+                            <li><a href="#team">Team</a></li>
                         </ul>
                     </div>
                     <div class="link-group">
@@ -679,7 +753,8 @@
 
                     <div class="footer-socials">
                         <!-- Instagram -->
-                        <a href="#" class="social-icon" aria-label="Instagram">
+                        <a href="https://www.instagram.com/eceasvce?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                            class="social-icon" aria-label="Instagram">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round">
@@ -689,7 +764,7 @@
                             </svg>
                         </a>
                         <!-- LinkedIn -->
-                        <a href="#" class="social-icon" aria-label="LinkedIn">
+                        <a href="linkedin.com/in/ecea-svce-2b49062b7" class="social-icon" aria-label="LinkedIn">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round">
@@ -701,7 +776,7 @@
                             </svg>
                         </a>
                         <!-- Website/Globe -->
-                        <a href="#" class="social-icon" aria-label="Website">
+                        <a href="https://ecea-iete-sf-race.vercel.app/" class="social-icon" aria-label="Website">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round">

@@ -1,260 +1,408 @@
 /* ===========================================
    TIMELINE.CSS - Sacred Timeline Section
+   Loki-style with horizontal line and nodes
    =========================================== */
 
-/* Full-Frame Pinned Sacred Timeline */
-.timeline-fullframe {
+/* Main Section Container */
+.timeline-section {
     position: relative;
     width: 100%;
-    height: 100vh;
-    overflow: hidden;
-}
-
-/* Monitor as Full Background */
-.timeline-bg-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    z-index: 1;
-}
-
-.timeline-bg-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-}
-
-/* Timeline Overlay - Contains all timeline content */
-.timeline-overlay {
-    position: absolute;
-    top: 7%;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    z-index: 2;
-    clip-path: inset(28% 8% 25% 9%);
-    pointer-events: none;
-}
-
-/* Timeline Track Wrapper - THIS IS WHAT SCROLLS */
-.timeline-track-wrapper {
-    position: absolute;
-    top: 50%;
-    left: 10%;
-    transform: translateY(-50%);
-    width: 200%;
-    height: 50%;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    pointer-events: auto;
-}
-
-/* Section Labels */
-.timeline-labels {
-    position: absolute;
-    top: 5%;
-    left: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 5%;
-}
-
-.timeline-labels .label {
-    font-family: var(--font-cyber);
-    font-size: 2rem;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    color: var(--accent-gold);
-    text-shadow:
-        0 0 10px var(--accent-gold),
-        0 0 20px var(--accent-gold),
-        0 0 40px rgba(255, 215, 0, 0.5);
-    animation: labelGlow 2s ease-in-out infinite alternate;
-}
-
-.label-past {
-    color: #aaa;
-    text-shadow: 0 0 10px #888, 0 0 20px #666;
-}
-
-.label-present {
-    color: var(--accent-gold);
-}
-
-.label-future {
-    color: #00ffaa;
-    text-shadow: 0 0 10px #00ffaa, 0 0 20px #00ff88;
-}
-
-@keyframes labelGlow {
-    0% {
-        opacity: 0.7;
-    }
-
-    100% {
-        opacity: 1;
-    }
-}
-
-/* Sacred Timeline Track */
-.sacred-timeline {
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
-
-/* SVG Branch Lines */
-.branch-lines {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-.branch-lines .main-line {
-    fill: none;
-    stroke: var(--accent-gold);
-    stroke-width: 4;
-    filter: drop-shadow(0 0 8px var(--accent-gold)) drop-shadow(0 0 16px var(--accent-gold));
-}
-
-.branch-lines .branch {
-    fill: none;
-    stroke-width: 2;
-    stroke-linecap: round;
-}
-
-.branch-1,
-.branch-3,
-.branch-5 {
-    stroke: rgba(255, 255, 255, 0.7);
-    filter: drop-shadow(0 0 4px #fff) drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
-}
-
-.branch-2,
-.branch-4,
-.branch-6 {
-    stroke: rgba(255, 215, 0, 0.6);
-    filter: drop-shadow(0 0 4px var(--accent-gold)) drop-shadow(0 0 8px rgba(255, 215, 0, 0.4));
-}
-
-/* Event Nodes Container */
-.timeline-events {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-/* Individual Event */
-.timeline-event {
-    position: absolute;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    flex-direction: column;
     align-items: center;
-    cursor: default;
+    background-color: #000;
+    padding: 2rem 0;
+    overflow: hidden;
 }
 
-/* Event Dot (circle on timeline) */
-.event-dot {
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    background: var(--accent-gold);
-    border: 3px solid #fff;
+.sacred-title {
+    font-family: var(--font-cinzel);
+    font-size: 3rem;
+    color: var(--accent-gold);
+    text-align: center;
+    margin-bottom: 2rem;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+    z-index: 10;
+}
+
+/* Monitor Container - Wrapper for the image and screen */
+.monitor-container {
+    position: relative;
+    width: 90%;
+    max-width: 1200px;
+    aspect-ratio: 16 / 9;
+    margin: 0 auto;
+}
+
+.monitor-bg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    pointer-events: none;
+    z-index: 1;
+    /* Send background back */
+    /* Bring frame forward above screen content */
+    position: relative;
+}
+
+/* The "Screen" Area - This is where content scrolls */
+.monitor-screen {
+    position: absolute;
+    /* Adjusted to avoid bezel overlap - tighter bounds */
+    /* Bezel fix dimensions retained */
+    top: 18%;
+    left: 10.2%;
+    width: 78.5%;
+    height: 58%;
+    background: transparent;
+    /* Reverted to transparent */
+    overflow-x: auto;
+    overflow-y: hidden;
+    z-index: 5;
+    /* Keep content above background */
+    /* Below the monitor frame */
+
+    /* Hide scrollbar for cleaner look */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.monitor-screen::-webkit-scrollbar {
+    display: none;
+}
+
+/* === THE SACRED TIMELINE LINE DESIGN === */
+
+.timeline-scroll-track {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    /* Alignment handled by absolute positioning inside */
+    justify-content: flex-start;
+    height: 100%;
+    padding: 0 80px;
+    /* Padding for first/last items */
+    min-width: max-content;
+    /* Ensure it grows horizontally */
+    position: relative;
+    z-index: 6;
+    /* Content above background */
+
+    /* Sacred Timeline Grid Lines */
+    background-image:
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 100% 20%, 100% 10%;
+    /* Primary and secondary grid lines */
+    background-position: 0 59%;
+    /* Align grid relative to the main line if possible */
+}
+
+/* The main horizontal timeline line */
+.timeline-line {
+    position: absolute;
+    top: 59%;
+    left: 0;
+    width: 100%;
+    /* Spans the full scroll track */
+    height: 3px;
+    background: linear-gradient(90deg,
+            rgba(255, 215, 0, 0.1) 0%,
+            #ffd700 20%,
+            #ffd700 80%,
+            rgba(255, 215, 0, 0.1) 100%);
+    transform: translateY(-50%);
+    z-index: 1;
     box-shadow:
-        0 0 10px var(--accent-gold),
-        0 0 20px var(--accent-gold),
-        0 0 30px rgba(255, 215, 0, 0.5);
+        0 0 10px rgba(255, 215, 0, 0.5),
+        0 0 20px rgba(255, 215, 0, 0.2);
 }
 
-.timeline-event.past .event-dot {
-    background: #888;
-    border-color: #aaa;
-    box-shadow: 0 0 10px #666, 0 0 20px rgba(136, 136, 136, 0.5);
+/* Individual Event Node */
+.timeline-event {
+    position: relative;
+    display: block;
+    /* Use block to allow absolute positioning of children relative to full height */
+    width: 160px;
+    height: 100%;
+    /* Take full height of track */
+    margin: 0 25px;
+    flex-shrink: 0;
+    z-index: 2;
 }
 
-.timeline-event.future .event-dot {
-    background: #00ffaa;
+/* DECORATIVE CURVES / BRANCHES (Sacred Timeline Style) */
+
+/* 1. White Arch over "Present" / Current Node */
+.timeline-event.current::before {
+    content: '';
+    position: absolute;
+    /* Centered on the 59% line */
+    top: 59%;
+    left: 50%;
+    width: 140px;
+    height: 140px;
+
+    /* Arch shape */
+    border: 2px solid transparent;
+    border-top-color: rgba(255, 255, 255, 0.9);
+    /* Bright white arch */
+
+    border-radius: 50%;
+    transform: translate(-50%, -50%) rotate(0deg);
+    /* Rotate to center arch on top */
+
+    opacity: 1;
+    z-index: 0;
+    pointer-events: none;
+    box-shadow: 0 -5px 15px rgba(255, 255, 255, 0.3);
+    /* Glow upwards */
+}
+
+/* 2. Yellow Swoops/Branches for other events (simulating the reference image) */
+
+/* Branch Down (e.g., for Past events) - Swoop under the line */
+.timeline-event.past:nth-child(odd)::before {
+    content: '';
+    position: absolute;
+    top: 59%;
+    left: 0%;
+    width: 100px;
+    height: 80px;
+    border: 2px solid transparent;
+    border-bottom-color: rgba(255, 215, 0, 0.6);
+    /* Gold swoop */
+    border-right-color: rgba(255, 215, 0, 0.3);
+    border-radius: 50%;
+    transform: translateY(-10%) rotate(20deg);
+    z-index: 0;
+}
+
+/* Branch Down Alternate (e.g. for Future events) */
+.timeline-event.future:nth-child(even)::before {
+    content: '';
+    position: absolute;
+    top: 59%;
+    right: 10%;
+    width: 90px;
+    height: 90px;
+    border: 2px solid transparent;
+    border-bottom-color: rgba(255, 215, 0, 0.6);
+    border-left-color: rgba(255, 215, 0, 0.3);
+    border-radius: 50%;
+    transform: translateY(-10%) rotate(-20deg);
+    z-index: 0;
+}
+
+/* The node/dot on the line */
+.timeline-node {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+
+    /* Precise alignment to the line */
+    position: absolute;
+    top: 59%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background: #2a2a2a;
+    border: 2px solid #aaa;
+    z-index: 3;
+    transition: all 0.3s ease;
+}
+
+/* Node states - Past (grey/white) */
+.timeline-event.past .timeline-node {
+    background: #444;
+    border-color: #888;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+}
+
+/* Node states - Current (glowing yellow) */
+.timeline-event.current .timeline-node {
+    width: 24px;
+    height: 24px;
+    background: #ffd700;
     border-color: #fff;
-    box-shadow: 0 0 10px #00ffaa, 0 0 20px #00ff88, 0 0 30px rgba(0, 255, 170, 0.5);
+    box-shadow:
+        0 0 15px rgba(255, 215, 0, 0.8),
+        0 0 30px rgba(255, 215, 0, 0.4);
+    animation: pulse-glow 2s ease-in-out infinite;
 }
 
-/* Current/Present Event - Special Highlight */
-.timeline-event.current .event-dot {
-    width: 28px;
-    height: 28px;
-    background: var(--accent-gold);
-    border: 4px solid #fff;
-    animation: pulseGlow 1.5s ease-in-out infinite;
+/* Node states - Future (green) */
+.timeline-event.future .timeline-node {
+    background: #002211;
+    border-color: #00ff88;
+    box-shadow: 0 0 8px rgba(0, 255, 136, 0.3);
 }
 
-@keyframes pulseGlow {
+
+/* "PRESENT" label above current event */
+.present-label {
+    position: absolute;
+    top: 35%;
+    /* Fixed percentage relative to container height */
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-michroma);
+    font-size: 1rem;
+    color: #ffd700;
+    letter-spacing: 3px;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+    white-space: nowrap;
+}
+
+/* Event label container (below the node) */
+.event-label {
+    position: absolute;
+    top: 66%;
+    /* Positioned below the 59% line */
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    width: 140px;
+}
+
+/* Date styling */
+.t-date {
+    font-family: var(--font-michroma);
+    font-size: 0.8rem;
+    display: block;
+    margin-bottom: 4px;
+    letter-spacing: 2px;
+}
+
+/* Title styling */
+.t-title {
+    font-family: var(--font-rajdhani);
+    font-size: 0.95rem;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 600;
+    line-height: 1.1;
+}
+
+/* Date colors based on state */
+.timeline-event.past .t-date {
+    color: #666;
+}
+
+.timeline-event.current .t-date {
+    color: #ffd700;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.timeline-event.future .t-date {
+    color: #00ff88;
+}
+
+/* Title colors based on state */
+.timeline-event.past .t-title {
+    color: #888;
+}
+
+.timeline-event.current .t-title {
+    color: #fff;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+.timeline-event.future .t-title {
+    color: #aaa;
+}
+
+/* Pulse animation for current event */
+@keyframes pulse-glow {
 
     0%,
     100% {
         box-shadow:
-            0 0 10px var(--accent-gold),
-            0 0 20px var(--accent-gold),
-            0 0 40px var(--accent-gold);
-        transform: scale(1);
+            0 0 15px rgba(255, 215, 0, 0.8),
+            0 0 30px rgba(255, 215, 0, 0.4);
     }
 
     50% {
         box-shadow:
-            0 0 20px var(--accent-gold),
-            0 0 40px var(--accent-gold),
-            0 0 60px var(--accent-gold),
-            0 0 80px rgba(255, 215, 0, 0.3);
-        transform: scale(1.15);
+            0 0 20px rgba(255, 215, 0, 1),
+            0 0 45px rgba(255, 215, 0, 0.6);
     }
 }
 
-/* Event Info (date + name) */
-.event-info {
-    margin-top: 25px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    min-width: 100px;
+/* Connecting line segments between nodes with color transitions */
+.timeline-event::after {
+    content: '';
+    position: absolute;
+    top: 59%;
+    left: 50%;
+    /* Start from center */
+    width: calc(100% + 50px);
+    /* Reach to next node (width + margin * 2) roughly */
+    height: 3px;
+    transform: translateY(-50%);
+    z-index: 1;
+    pointer-events: none;
+    /* Default hidden, only show specific coloring if needed, otherwise main line handles it. 
+       Actually, the prompt asks for alignment. The main line is continuous. 
+       Let's keep these as "overlays" if we want segment coloring, or rely on the main background line.
+       Ref design: Main line is continuous yellow.
+       Let's hide these per-event lines effectively to clean up, or make them very subtle.
+    */
+    display: none;
 }
 
-.event-date {
-    font-family: var(--font-cyber);
-    font-size: 0.7rem;
-    color: var(--accent-gold);
-    letter-spacing: 2px;
-    text-shadow: 0 0 5px var(--accent-gold);
-    margin-bottom: 4px;
-}
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .monitor-container {
+        width: 100%;
+        aspect-ratio: auto;
+        min-height: 400px;
+    }
 
-.event-name {
-    font-family: var(--font-cyber);
-    font-size: 0.6rem;
-    color: #fff;
-    letter-spacing: 1px;
-    text-shadow: 0 0 3px #fff;
-    max-width: 90px;
-    line-height: 1.3;
-}
+    .monitor-screen {
+        top: 18%;
+        left: 5%;
+        width: 90%;
+        height: 55%;
+    }
 
-.timeline-event.past .event-date,
-.timeline-event.past .event-name {
-    color: #aaa;
-    text-shadow: 0 0 3px #666;
-}
+    .timeline-event {
+        width: 120px;
+        margin: 0 25px;
+    }
 
-.timeline-event.future .event-date {
-    color: #00ffaa;
-    text-shadow: 0 0 5px #00ffaa;
+    .timeline-node {
+        width: 16px;
+        height: 16px;
+    }
+
+    .timeline-event.current .timeline-node {
+        width: 22px;
+        height: 22px;
+    }
+
+    .t-date {
+        font-size: 0.75rem;
+    }
+
+    .t-title {
+        font-size: 0.85rem;
+    }
+
+    .event-label {
+        bottom: -70px;
+        width: 110px;
+    }
+
+    .present-label {
+        font-size: 0.9rem;
+        top: -80px;
+    }
+
+    .sacred-title {
+        font-size: 2rem;
+    }
 }

@@ -7,6 +7,11 @@
     padding: 2rem 5%;
     border-top: 1px solid #111;
     font-family: 'Rajdhani', sans-serif;
+    position: relative;
+    z-index: 20;
+    /* Ensure it sits above other sections */
+    width: 100%;
+    margin-bottom: 0;
 }
 
 .footer-container {
