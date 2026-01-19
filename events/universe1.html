@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Universe 1: Papyrus</title>
+    <title>Universe 1: Fast And Curious</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Michroma&family=Rajdhani:wght@300;500;700&display=swap"
         rel="stylesheet">
@@ -68,7 +68,7 @@
     <a href="../index.html" class="back-link">Return to Multiverse</a>
 
     <section class="universe-hero">
-        <h1 class="universe-title">PAPYRUS</h1>
+        <h1 class="universe-title">Fast And Curious</h1>
         <p class="universe-desc">Welcome to The Archive. Here, knowledge is currency. Present your research papers and
             etch your name into the history of the multiverse.</p>
     </section>
@@ -80,9 +80,20 @@
             <li>Abstract deadline: Jan 30th</li>
             <li>presentation time: 8 mins + 2 mins QA</li>
         </ul>
-        <button
+        <button id="registerBtn"
             style="margin-top:3rem; padding:15px 40px; background:var(--neon-green); border:none; color:#000; font-family:var(--font-cyber); font-weight:bold; cursor:pointer;">REGISTER
             TEAM</button>
+        <video id="entryVideo" src="../entry.mp4" style="display:none; width:100%; max-height:80vh;" controls></video>
+        <script>
+            document.getElementById('registerBtn').addEventListener('click', function () {
+                var video = document.getElementById('entryVideo');
+                video.style.display = 'block';
+                video.play();
+                video.onended = function () {
+                    window.location.href = 'universe1.html';
+                };
+            });
+        </script>
     </section>
 </body>
 
