@@ -354,6 +354,34 @@
     display: none;
 }
 
+/* Scroll Hint Indicator */
+.scroll-hint {
+    position: absolute;
+    bottom: 30%;
+    /* Positioned strictly inside the screen */
+    right: 45%;
+    /* Positioned strictly inside the screen */
+    color: rgba(255, 215, 0, 0.7);
+    font-family: var(--font-rajdhani);
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    z-index: 6;
+    animation: flashHint 2s infinite;
+    pointer-events: none;
+}
+
+@keyframes flashHint {
+
+    0%,
+    100% {
+        opacity: 0.4;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .monitor-container {
