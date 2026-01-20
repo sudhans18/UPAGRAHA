@@ -12,9 +12,9 @@
     --accent-gold: #ffd700;
     --glass-bg: rgba(0, 25, 5, 0.4);
     --glass-border: rgba(0, 255, 65, 0.2);
-    --font-heading: 'Cinzel', serif;
-    --font-cyber: 'Michroma', sans-serif;
-    --font-body: 'Rajdhani', sans-serif;
+    --font-heading: 'Playfair Display', serif;
+    --font-cyber: 'Playfair Display', serif;
+    --font-body: 'Playfair Display', serif;
 }
 
 /* Custom Scrollbar - Neon Green Theme */
