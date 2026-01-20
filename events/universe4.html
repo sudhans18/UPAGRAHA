@@ -1,9 +1,647 @@
+Content is user-generated and unverified.
+2
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
+    <title>The Sorcerer's Realm - Paper Presentation Event</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cinzel', 'Georgia', serif;
+            background: linear-gradient(rgba(10, 10, 30, 0.85), rgba(20, 10, 40, 0.85)),
+                url('https://images.unsplash.com/photo-1551269901-5c5e14c25df7?q=80&w=2069') center/cover fixed;
+            color: #f4e8d0;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(ellipse at top, rgba(139, 0, 0, 0.15), transparent 50%),
+                radial-gradient(ellipse at bottom, rgba(25, 25, 112, 0.2), transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        .floating-candle {
+            position: fixed;
+            width: 8px;
+            height: 30px;
+            background: linear-gradient(to bottom, #f4e8d0 0%, #d4af37 50%, #8b4513 100%);
+            border-radius: 4px;
+            animation: float 8s ease-in-out infinite;
+            z-index: 1;
+        }
+
+        .floating-candle::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 12px;
+            height: 12px;
+            background: radial-gradient(circle, #ffeb3b, #ff9800, transparent);
+            border-radius: 50%;
+            filter: blur(2px);
+            animation: flicker 0.5s infinite alternate;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) translateX(0);
+            }
+
+            25% {
+                transform: translateY(-20px) translateX(10px);
+            }
+
+            50% {
+                transform: translateY(-10px) translateX(-10px);
+            }
+
+            75% {
+                transform: translateY(-25px) translateX(5px);
+            }
+        }
+
+        @keyframes flicker {
+            0% {
+                opacity: 0.8;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes twinkle {
+
+            0%,
+            100% {
+                opacity: 0.3;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        header {
+            text-align: center;
+            padding: 50px 20px;
+            margin-bottom: 50px;
+            border-bottom: 3px solid #d4af37;
+            animation: fadeInDown 1s ease-out;
+            position: relative;
+        }
+
+        header::after {
+            content: '✨';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2em;
+            background: rgba(20, 10, 40, 0.95);
+            padding: 0 20px;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 4.5em;
+            color: #d4af37;
+            text-shadow:
+                0 0 20px rgba(212, 175, 55, 0.8),
+                0 0 40px rgba(212, 175, 55, 0.4),
+                2px 2px 4px rgba(0, 0, 0, 0.8);
+            margin-bottom: 15px;
+            letter-spacing: 5px;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow:
+                    0 0 20px rgba(212, 175, 55, 0.8),
+                    0 0 40px rgba(212, 175, 55, 0.4),
+                    2px 2px 4px rgba(0, 0, 0, 0.8);
+            }
+
+            to {
+                text-shadow:
+                    0 0 30px rgba(212, 175, 55, 1),
+                    0 0 60px rgba(212, 175, 55, 0.6),
+                    2px 2px 4px rgba(0, 0, 0, 0.8);
+            }
+        }
+
+        .subtitle {
+            font-size: 1.6em;
+            color: #c0a776;
+            font-style: italic;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        /* Main Content Layout */
+        .main-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        /* Domains Section - Full Width */
+        .domains-section {
+            margin-bottom: 40px;
+        }
+
+        /* Bottom Section */
+        .bottom-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: linear-gradient(145deg, rgba(30, 20, 50, 0.95), rgba(20, 10, 40, 0.95));
+            border: 2px solid #d4af37;
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow:
+                0 10px 40px rgba(212, 175, 55, 0.3),
+                inset 0 1px 0 rgba(212, 175, 55, 0.2);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            animation: fadeInUp 1s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .card:hover::before {
+            left: 100%;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow:
+                0 20px 60px rgba(212, 175, 55, 0.5),
+                0 0 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .card h2 {
+            color: #d4af37;
+            font-size: 2em;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #c0a776;
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card h3 {
+            color: #c0a776;
+            font-size: 1.4em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card p,
+        .card li {
+            line-height: 1.9;
+            color: #e8d7b8;
+            margin-bottom: 12px;
+            font-size: 1.05em;
+        }
+
+        .card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .card ul li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .card ul li:last-child {
+            border-bottom: none;
+        }
+
+        .card ul li:before {
+            content: "⚡ ";
+            color: #d4af37;
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+
+        /* Tall Card for Rules */
+        .tall-card {
+            height: 100%;
+        }
+
+        /* Domains Grid */
+        .domains-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .domain-item {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(139, 0, 0, 0.1));
+            padding: 25px;
+            border-radius: 15px;
+            border: 2px solid #d4af37;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            font-weight: 600;
+            z-index: 1;
+            font-size: 1.1em;
+        }
+
+        .domain-item::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.3), transparent);
+            transform: translate(-50%, -50%);
+            transition: width 0.4s ease, height 0.4s ease;
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        .domain-item:hover::before {
+            width: 200%;
+            height: 200%;
+        }
+
+        .domain-item:hover {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.3), rgba(139, 0, 0, 0.2));
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.5);
+            border-color: #f4e8d0;
+        }
+
+        /* Register Section */
+        .register-section {
+            background: linear-gradient(135deg, rgba(74, 0, 0, 0.95), rgba(20, 0, 40, 0.95));
+            border: 3px solid #d4af37;
+            border-radius: 25px;
+            padding: 60px;
+            text-align: center;
+            box-shadow:
+                0 20px 80px rgba(212, 175, 55, 0.4),
+                inset 0 2px 10px rgba(212, 175, 55, 0.2);
+            animation: pulse 2s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+            grid-column: 1 / -1;
+        }
+
+        .register-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            animation: rotate 10s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                box-shadow:
+                    0 20px 80px rgba(212, 175, 55, 0.4),
+                    inset 0 2px 10px rgba(212, 175, 55, 0.2);
+            }
+
+            50% {
+                box-shadow:
+                    0 20px 100px rgba(212, 175, 55, 0.6),
+                    inset 0 2px 15px rgba(212, 175, 55, 0.3);
+            }
+        }
+
+        .register-section h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .register-section p {
+            font-size: 1.3em;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .register-btn {
+            background: linear-gradient(45deg, #d4af37, #f4e8d0, #d4af37);
+            background-size: 200% 200%;
+            color: #1a1a2e;
+            font-size: 1.6em;
+            padding: 22px 70px;
+            border: 3px solid #8b6914;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            transition: all 0.4s ease;
+            box-shadow:
+                0 8px 25px rgba(212, 175, 55, 0.6),
+                inset 0 2px 5px rgba(255, 255, 255, 0.3);
+            margin-top: 10px;
+            position: relative;
+            z-index: 1;
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .register-btn:hover {
+            transform: scale(1.15) translateY(-5px);
+            box-shadow:
+                0 15px 50px rgba(212, 175, 55, 0.9),
+                0 0 30px rgba(212, 175, 55, 0.6);
+            border-color: #d4af37;
+        }
+
+        .register-btn:active {
+            transform: scale(1.05);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, rgba(20, 20, 40, 0.98), rgba(40, 20, 60, 0.98));
+            margin: 5% auto;
+            padding: 40px;
+            border: 3px solid #d4af37;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 20px 80px rgba(212, 175, 55, 0.5);
+            animation: slideDown 0.5s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .close {
+            color: #d4af37;
+            float: right;
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close:hover {
+            color: #f4e8d0;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #d4af37;
+            font-size: 1.1em;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #d4af37;
+            border-radius: 8px;
+            background: rgba(0, 0, 0, 0.5);
+            color: #f4e8d0;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            font-family: 'Cinzel', 'Georgia', serif;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #f4e8d0;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+        }
+
+        .submit-btn {
+            background: linear-gradient(45deg, #d4af37, #f4e8d0);
+            color: #1a1a2e;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.6);
+        }
+
+        @media (max-width: 1024px) {
+            .main-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .domains-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            .hero-section,
+            .bottom-section {
+                grid-template-columns: 1fr;
+            }
+
+            .domains-grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 2.8em;
+            }
+
+            .register-section {
+                padding: 30px 20px;
+            }
+
+            .register-btn {
+                font-size: 1.3em;
+                padding: 18px 40px;
+            }
+
+            .modal-content {
+                width: 95%;
+                padding: 25px;
+            }
+=======
     <title>TECH TANK | Steel Forge</title>
 
     <!-- Fonts -->
@@ -249,11 +887,246 @@
             .dashboard-grid {
                 grid-template-columns: 1fr;
             }
+>>>>>>> 7d527157837e67127a59fac58ee75784889b8aca
         }
     </style>
 </head>
 
 <body>
+<<<<<<< HEAD
+    <div class="stars" id="stars"></div>
+    <div id="candles"></div>
+
+    <div class="container">
+        <header>
+            <h1>⚡ THE SORCERER'S REALM ⚡</h1>
+            <p class="subtitle">🪄 Where Knowledge Becomes Magic 🪄</p>
+        </header>
+
+        <!-- Hero Section: About & Format -->
+        <div class="hero-section">
+            <div class="card">
+                <h2>📜 About the Event</h2>
+                <p>Unleash your innovation and technical ideas in the Paper Presentation event. This event offers a
+                    platform for students and researchers to showcase their cutting-edge ideas, research findings, and
+                    innovative solutions in the field of Electronics and Communication Engineering and related domains.
+                </p>
+                <p>Join fellow sorcerers of science as we explore the mystical realms of technology and innovation!</p>
+            </div>
+
+            <div class="card">
+                <h2>🎯 Event Format</h2>
+                <h3>📝 Round 1: Abstract Submission</h3>
+                <p>Submit an abstract for initial evaluation. Shortlisted abstracts advance to Round 2. Full papers must
+                    be submitted prior to the event in IEEE format.</p>
+
+                <h3>🎤 Round 2: Final Presentation</h3>
+                <p>Present before a panel of judges. Each presentation: 10 minutes + 3 minutes Q&A. Results based on
+                    judges' decision.</p>
+            </div>
+        </div>
+
+        <!-- Domains Section - Full Width -->
+        <div class="domains-section">
+            <div class="card">
+                <h2>🔮 Domains of Exploration</h2>
+                <div class="domains-grid">
+                    <div class="domain-item">💎 VLSI Design</div>
+                    <div class="domain-item">🧠 Machine Learning</div>
+                    <div class="domain-item">🌐 Internet of Things</div>
+                    <div class="domain-item">📡 Antenna Design & Application</div>
+                    <div class="domain-item">📊 Signal Processing & Communication</div>
+                    <div class="domain-item">💫 Optical Communication</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Layout: Rules (left larger) -->
+        <div class="main-layout">
+            <div class="card">
+                <h2>📖 Rules of Enchantment</h2>
+                <ul>
+                    <li><strong>Team Size:</strong> Maximum of 2-3 members per team. Choose your companions wisely!</li>
+                    <li><strong>Registration Deadline:</strong> All participants must register before the specified
+                        deadline. No late entries will be accepted.</li>
+                    <li><strong>Punctuality:</strong> Arrive at least 30 minutes before your scheduled session for
+                        check-in and preparation.</li>
+                    <li><strong>Professional Conduct:</strong> Maintain academic integrity and professional behavior
+                        throughout the event.</li>
+                    <li><strong>Recording Policy:</strong> Audio or video recording is strictly prohibited without prior
+                        permission from organizers.</li>
+                    <li><strong>Presentation Guidelines:</strong> All presentations must be original work and properly
+                        cited sources.</li>
+                </ul>
+            </div>
+
+            <div class="card tall-card">
+                <h2>🏆 Rewards</h2>
+                <p style="text-align: center; font-size: 3em; margin: 30px 0;">🥇</p>
+                <p><strong>1st Place:</strong> Certificate of Excellence + Cash Prize</p>
+                <p style="text-align: center; font-size: 2.5em; margin: 25px 0;">🥈</p>
+                <p><strong>2nd Place:</strong> Certificate of Merit + Cash Prize</p>
+                <p style="text-align: center; font-size: 2em; margin: 20px 0;">🥉</p>
+                <p><strong>3rd Place:</strong> Certificate of Recognition + Cash Prize</p>
+                <p style="margin-top: 20px; text-align: center; color: #d4af37;">✨ All participants receive certificates
+                    ✨</p>
+            </div>
+        </div>
+
+        <!-- Register Section -->
+        <div class="register-section">
+            <h2>✨ Cast Your Registration Spell</h2>
+            <p>Join the ranks of innovative sorcerers and showcase your technical prowess to the world!</p>
+            <button class="register-btn" onclick="openModal()">🪄 REGISTER NOW 🪄</button>
+        </div>
+    </div>
+
+    <div id="registrationModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 style="color: #d4af37; text-align: center; margin-bottom: 30px;">🪄 Registration Form</h2>
+            <form id="registrationForm" onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <label>Team Name *</label>
+                    <input type="text" name="teamName" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Team Leader Name *</label>
+                    <input type="text" name="leaderName" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Email *</label>
+                    <input type="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Phone Number *</label>
+                    <input type="tel" name="phone" required>
+                </div>
+
+                <div class="form-group">
+                    <label>College/University *</label>
+                    <input type="text" name="college" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Number of Team Members *</label>
+                    <select name="teamSize" required>
+                        <option value="">Select...</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Domain *</label>
+                    <select name="domain" required>
+                        <option value="">Select Domain...</option>
+                        <option value="vlsi">VLSI Design</option>
+                        <option value="ml">Machine Learning</option>
+                        <option value="iot">Internet of Things</option>
+                        <option value="antenna">Antenna Design & Application</option>
+                        <option value="signal">Signal Processing & Communication</option>
+                        <option value="optical">Optical Communication</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Paper Title *</label>
+                    <input type="text" name="paperTitle" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Abstract (Brief Description) *</label>
+                    <textarea name="abstract" rows="4" required></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit Registration</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Create twinkling stars
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            for (let i = 0; i < 150; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // Create floating candles
+        function createCandles() {
+            const candlesContainer = document.getElementById('candles');
+            for (let i = 0; i < 12; i++) {
+                const candle = document.createElement('div');
+                candle.className = 'floating-candle';
+                candle.style.left = Math.random() * 100 + '%';
+                candle.style.top = Math.random() * 80 + 10 + '%';
+                candle.style.animationDelay = Math.random() * 4 + 's';
+                candle.style.animationDuration = (6 + Math.random() * 4) + 's';
+                candlesContainer.appendChild(candle);
+            }
+        }
+
+        function openModal() {
+            document.getElementById('registrationModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('registrationModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function handleSubmit(e) {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const data = {};
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
+
+            console.log('Registration Data:', data);
+            alert('✨ Registration Successful! Your magical application has been submitted. You will receive a confirmation email via owl post shortly. 🦉');
+            closeModal();
+            e.target.reset();
+        }
+
+        window.onclick = function (event) {
+            const modal = document.getElementById('registrationModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+        // Initialize stars and candles on page load
+        createStars();
+        createCandles();
+
+        // Add card animation on scroll
+        const cards = document.querySelectorAll('.card');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        cards.forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+=======
 
     <video id="bg-video" autoplay muted loop playsinline>
         <source src="../assets/Transformers.mp4" type="video/mp4">
@@ -366,6 +1239,7 @@
         animate();
     </script>
 
+>>>>>>> 7d527157837e67127a59fac58ee75784889b8aca
 </body>
 
 </html>
