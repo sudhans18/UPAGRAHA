@@ -16,28 +16,47 @@ import { debounce } from './utils.js';
 // --- Preloader ---
 function initPreloader() {
     const loader = document.getElementById('loader');
-    const fill = document.getElementById('preloader-bar');
 
-    if (!loader || !fill) return;
+    // SKIP PRELOADER IF RETURNING (HASH EXISTS)
+    if (window.location.hash && loader) {
+        loader.style.display = 'none';
+        document.body.classList.remove('loading');
+        initAnimations();
 
-    let progress = 0;
-    const interval = setInterval(() => {
-        progress += Math.random() * 10;
-        if (progress > 100) progress = 100;
-        fill.style.width = `${progress}%`;
+        // Scroll to hash immediately
+        const target = document.querySelector(window.location.hash);
+        if (target) setTimeout(() => target.scrollIntoView(), 100);
+        return;
+    }
 
-        if (progress === 100) {
-            clearInterval(interval);
-            setTimeout(() => {
-                loader.style.opacity = 0;
-                setTimeout(() => {
-                    loader.style.display = 'none';
-                    document.body.classList.remove('loading');
-                    initAnimations();
-                }, 500);
-            }, 500);
+    if (!loader) return;
+
+    const text = document.getElementById('loader-text');
+
+
+
+    // New "Energy" Steps
+    setTimeout(() => {
+        if (text) text.innerText = "SYNCHRONIZING";
+    }, 1500);
+
+    setTimeout(() => {
+        if (text) {
+            text.innerText = "READY";
+            text.style.color = "#00ff41";
+            text.style.textShadow = "0 0 10px #00ff41";
         }
-    }, 100);
+    }, 2800);
+
+    setTimeout(() => {
+        loader.style.opacity = 0;
+        loader.style.pointerEvents = 'none';
+        setTimeout(() => {
+            loader.style.display = 'none';
+            document.body.classList.remove('loading');
+            initAnimations();
+        }, 800);
+    }, 3300);
 }
 
 // --- GSAP Animations ---

@@ -1,51 +1,71 @@
 // ===========================================
-// TIMELINE.JS - Sacred Timeline Horizontal Scroll
+// TIMELINE.JS - Sacred Timeline Logic
+// Assigns past/current/future states and adds PRESENT label
 // ===========================================
 
 export function initTimelineAnimation() {
-    const timelineTrack = document.querySelector('.timeline-track-wrapper');
-    const timelineSection = document.querySelector('#timeline');
+    const timelineEvents = document.querySelectorAll('.timeline-event');
+    const scrollContainer = document.querySelector('.monitor-screen');
 
-    if (!timelineTrack || !timelineSection) return;
+    if (!timelineEvents.length || !scrollContainer) return;
 
-    // Cache scroll distance at init time for better performance
-    const scrollDistance = timelineTrack.scrollWidth - window.innerWidth * 0.8;
+    // Current date - Jan 19, 2026 for demo, use new Date() in production
+    const today = new Date('2026-01-19T00:00:00');
+    // const today = new Date();
 
-    gsap.to(timelineTrack, {
-        x: -scrollDistance,
-        ease: "none",
-        scrollTrigger: {
-            trigger: timelineSection,
-            start: "top top",
-            end: "+=" + scrollDistance,
-            pin: true,
-            scrub: 1,
-            anticipatePin: 1,
-            invalidateOnRefresh: true,
-            pinSpacing: true
+    let closestUpcomingEvent = null;
+    let closestUpcomingDiff = Infinity;
+
+    // First pass: classify all events and find the closest upcoming one
+    timelineEvents.forEach(event => {
+        const dateStr = event.getAttribute('data-date');
+        if (!dateStr) return;
+
+        const eventDate = new Date(dateStr);
+        const diff = eventDate - today; // positive = future, negative = past
+
+        // Remove any existing state classes
+        event.classList.remove('past', 'current', 'future');
+
+        if (diff < 0) {
+            // Event is in the past
+            event.classList.add('past');
+        } else {
+            // Event is in the future (or today)
+            event.classList.add('future');
+
+            // Track closest upcoming event
+            if (diff < closestUpcomingDiff) {
+                closestUpcomingDiff = diff;
+                closestUpcomingEvent = event;
+            }
         }
     });
 
-    gsap.from('.timeline-event', {
-        scrollTrigger: {
-            trigger: timelineSection,
-            start: 'top 60%'
-        },
-        y: 20,
-        opacity: 0,
-        stagger: 0.08,
-        duration: 0.4
-    });
+    // Mark the closest upcoming event as "current"
+    if (closestUpcomingEvent) {
+        closestUpcomingEvent.classList.remove('future');
+        closestUpcomingEvent.classList.add('current');
 
-    gsap.from('.branch-lines path', {
-        scrollTrigger: {
-            trigger: timelineSection,
-            start: 'top 60%'
-        },
-        strokeDashoffset: 500,
-        strokeDasharray: 500,
-        duration: 1,
-        stagger: 0.05,
-        ease: 'power2.out'
-    });
+        // Add "PRESENT" label to current event
+        const presentLabel = document.createElement('span');
+        presentLabel.className = 'present-label';
+        presentLabel.textContent = 'PRESENT';
+        closestUpcomingEvent.appendChild(presentLabel);
+
+        // Scroll to center the current event
+        setTimeout(() => {
+            const containerWidth = scrollContainer.clientWidth;
+            const eventLeft = closestUpcomingEvent.offsetLeft;
+            const eventWidth = closestUpcomingEvent.clientWidth;
+
+            // Calculate scroll position to center the element
+            const scrollPos = eventLeft - (containerWidth / 2) + (eventWidth / 2);
+
+            scrollContainer.scrollTo({
+                left: Math.max(0, scrollPos),
+                behavior: 'smooth'
+            });
+        }, 500);
+    }
 }

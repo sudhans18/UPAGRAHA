@@ -4,86 +4,639 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Universe 3: Robo Wars</title>
+    <title>SIGNAL SYNDICATE | Redline Arena</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Michroma&family=Rajdhani:wght@300;500;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;800&family=Share+Tech+Mono&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="../styles.css">
+
     <style>
         :root {
-            --neon-green: #ff4d00;
-            /* Orange Override */
-            --glass-bg: rgba(50, 10, 0, 0.4);
+            --blood-red: #ff0000;
+            --deep-blood: #8a0000;
+            --black-void: #000000;
+            --dark-coal: #0a0a0a;
+            --signal-white: rgba(255, 230, 230, 0.9);
+            --glass-panel: rgba(20, 0, 0, 0.7);
+            --border-glow: rgba(255, 0, 0, 0.6);
         }
 
         body {
-            background: #050100;
+            margin: 0;
+            background: var(--black-void);
+            color: var(--signal-white);
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+            cursor: crosshair;
+            /* Thematic cursor */
         }
 
+        /* Scanline Overlay */
+        .scanlines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom,
+                    rgba(255, 0, 0, 0),
+                    rgba(255, 0, 0, 0) 50%,
+                    rgba(0, 0, 0, 0.2) 50%,
+                    rgba(0, 0, 0, 0.2));
+            background-size: 100% 4px;
+            z-index: 999;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        /* Background Video */
+        #bg-video {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+            opacity: 0.4;
+            filter: contrast(1.4) saturate(1.5) hue-rotate(-10deg);
+        }
+
+        /* Ash Canvas */
+        #ash-canvas {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Back Button */
+        .back-link {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid var(--blood-red);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--blood-red);
+            text-decoration: none;
+            z-index: 1000;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: 0 0 15px var(--deep-blood);
+        }
+
+        .back-link:hover {
+            background: var(--blood-red);
+            color: #000;
+            box-shadow: 0 0 40px var(--blood-red);
+            transform: rotate(90deg) scale(1.1);
+        }
+
+        /* Hero */
         .universe-hero {
-            height: 60vh;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: radial-gradient(circle, #330a00 0%, #000000 80%);
+            padding: 4rem 2rem;
+            background: radial-gradient(circle, rgba(50, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.95) 80%);
+            position: relative;
+        }
+
+        .glitch-wrapper {
+            position: relative;
         }
 
         .universe-title {
-            font-size: 5rem;
-            color: var(--neon-green);
-            font-family: var(--font-heading);
-            text-shadow: 0 0 20px var(--neon-green);
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 7rem;
+            line-height: 0.9;
+            color: var(--blood-red);
+            margin-bottom: 2rem;
+            text-shadow: 4px 4px 0px var(--deep-blood);
+            position: relative;
+            animation: pulseText 3s infinite;
+        }
+
+        /* Glitch Effect */
+        .universe-title::before,
+        .universe-title::after {
+            content: "SIGNAL SYNDICATE";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--black-void);
+        }
+
+        .universe-title::before {
+            left: 2px;
+            text-shadow: -1px 0 #00ffff;
+            animation: glitch-anim-1 2s infinite linear alternate-reverse;
+            clip-path: inset(0 0 0 0);
+            mix-blend-mode: hard-light;
+        }
+
+        .universe-title::after {
+            left: -2px;
+            text-shadow: -1px 0 #ff00ff;
+            animation: glitch-anim-2 3s infinite linear alternate-reverse;
+            clip-path: inset(0 0 0 0);
+            mix-blend-mode: hard-light;
         }
 
         .universe-desc {
             max-width: 800px;
-            padding: 2rem;
-            color: #ddd;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             line-height: 1.6;
+            padding: 2.5rem;
+            background: var(--glass-panel);
+            border: 1px solid var(--blood-red);
+            border-radius: 30px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+            border-left: 6px solid var(--blood-red);
         }
 
-        .back-link {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            color: #fff;
-            text-decoration: none;
-            font-family: var(--font-cyber);
-            border: 1px solid var(--neon-green);
-            padding: 10px 20px;
+        .universe-desc::before {
+            content: "WARNING: SYSTEM CRITICAL";
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--blood-red);
+            color: black;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.8rem;
+            padding: 4px 12px;
+            border-bottom-left-radius: 15px;
+            font-weight: bold;
+        }
+
+        /* Marquee Bar */
+        .marquee-bar {
+            background: var(--blood-red);
+            color: black;
+            font-family: 'Share Tech Mono', monospace;
+            padding: 8px 0;
+            font-weight: bold;
+            font-size: 1.1rem;
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+            z-index: 10;
+            border-top: 2px solid black;
+            border-bottom: 2px solid black;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: scroll-left 15s linear infinite;
+        }
+
+        /* Sections */
+        .spa-section {
+            padding: 6rem 2rem;
+            position: relative;
+        }
+
+        .round-container {
+            max-width: 900px;
+            margin: 0 auto 5rem auto;
+            padding: 4rem;
+            background: rgba(15, 0, 0, 0.85);
+            border-radius: 40px;
+            border: 1px solid rgba(255, 0, 0, 0.3);
+            position: relative;
+            box-shadow: 0 0 50px rgba(138, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .round-container:hover {
+            transform: scale(1.01);
+            border-color: var(--blood-red);
+            box-shadow: 0 0 60px rgba(255, 0, 0, 0.2);
+        }
+
+        h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 4rem;
+            color: var(--blood-red);
+            text-align: center;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px var(--deep-blood);
+        }
+
+        p {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+            color: #ccc;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .decree-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .decree-list li {
+            background: rgba(40, 0, 0, 0.6);
+            padding: 1rem 1.5rem;
+            border-radius: 100px;
+            /* Fully rounded pills */
+            border: 1px solid var(--deep-blood);
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 1rem;
+            color: #ffcccc;
             transition: 0.3s;
         }
 
-        .back-link:hover {
-            background: var(--neon-green);
-            color: #000;
+        .decree-list li:hover {
+            background: var(--blood-red);
+            color: black;
+            box-shadow: 0 0 15px var(--blood-red);
+            transform: translateY(-2px);
+        }
+
+        /* Card Grid */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .card-item {
+            background: linear-gradient(145deg, #1a0505, #0a0000);
+            border: 1px solid var(--deep-blood);
+            border-radius: 25px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--blood-red);
+            box-shadow: 0 0 25px rgba(255, 0, 0, 0.3);
+        }
+
+        .card-item::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 0, 0, 0.1) 0%, transparent 60%);
+            opacity: 0;
+            transition: 0.4s;
+        }
+
+        .card-item:hover::before {
+            opacity: 1;
+            transform: rotate(45deg);
+        }
+
+        .card-item strong {
+            display: block;
+            color: var(--blood-red);
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* CTA */
+        .cta-btn {
+            display: block;
+            margin: 4rem auto 0;
+            padding: 25px 80px;
+            background: transparent;
+            border: 3px solid var(--blood-red);
+            border-radius: 100px;
+            color: var(--blood-red);
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.2rem;
+            letter-spacing: 3px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(196, 0, 0, 0.2);
+            text-transform: uppercase;
+        }
+
+        .cta-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--blood-red);
+            z-index: -1;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .cta-btn:hover {
+            color: black;
+            box-shadow: 0 0 50px var(--blood-red);
+            text-shadow: none;
+        }
+
+        .cta-btn:hover::before {
+            transform: scaleX(1);
+        }
+
+        /* Animations */
+        @keyframes scroll-left {
+            0% {
+                transform: translateX(100%);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        @keyframes pulseText {
+
+            0%,
+            100% {
+                text-shadow: 4px 4px 0px var(--deep-blood);
+            }
+
+            50% {
+                text-shadow: 6px 6px 10px var(--blood-red);
+            }
+        }
+
+        @keyframes glitch-anim-1 {
+            0% {
+                clip-path: inset(20% 0 80% 0);
+            }
+
+            20% {
+                clip-path: inset(60% 0 10% 0);
+            }
+
+            40% {
+                clip-path: inset(40% 0 50% 0);
+            }
+
+            60% {
+                clip-path: inset(80% 0 5% 0);
+            }
+
+            80% {
+                clip-path: inset(10% 0 70% 0);
+            }
+
+            100% {
+                clip-path: inset(30% 0 20% 0);
+            }
+        }
+
+        @keyframes glitch-anim-2 {
+            0% {
+                clip-path: inset(10% 0 60% 0);
+            }
+
+            20% {
+                clip-path: inset(80% 0 5% 0);
+            }
+
+            40% {
+                clip-path: inset(35% 0 45% 0);
+            }
+
+            60% {
+                clip-path: inset(5% 0 85% 0);
+            }
+
+            80% {
+                clip-path: inset(65% 0 10% 0);
+            }
+
+            100% {
+                clip-path: inset(45% 0 35% 0);
+            }
+        }
+
+        /* Footer Filler */
+        .bio-footer {
+            text-align: center;
+            padding: 3rem;
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--deep-blood);
+            font-size: 0.9rem;
+            opacity: 0.7;
         }
     </style>
 </head>
 
 <body>
-    <a href="../index.html" class="back-link">Return to Multiverse</a>
+
+    <div class="scanlines"></div>
+
+    <video id="bg-video" autoplay muted loop playsinline>
+        <source src="../assets/strangerthings.mp4" type="video/mp4">
+    </video>
+
+    <canvas id="ash-canvas"></canvas>
+
+    <a href="../index.html#events" class="back-link">←</a>
 
     <section class="universe-hero">
-        <h1 class="universe-title">ROBO WARS</h1>
-        <p class="universe-desc">Welcome to The Forge. Steel clashes against steel. Only the strongest designs survive
-            the arena.</p>
+        <div class="glitch-wrapper">
+            <h1 class="universe-title">SIGNAL SYNDICATE</h1>
+        </div>
+        <div class="universe-desc">
+            <p style="margin:0; text-align: left;">
+                <strong style="color:var(--blood-red)">[INCOMING TRANSMISSION]</strong><br><br>
+                Signal Syndicate is a high-intensity technical battleground fusing Electronics fundamentals with
+                strategic risk management.
+                Teams must analyze signals, circuits, and systems while betting on their confidence under extreme time
+                constraints.
+                <br><br>
+                Precision. Speed. Instinct. Every choice carries a consequence. Do you have the nerve to bet it all?
+            </p>
+        </div>
     </section>
 
+    <!-- Marquee Filler -->
+    <div class="marquee-bar">
+        <div class="marquee-content">
+            ⚠ WARNING: HIGH VOLTAGE DETECTED // UNAUTHORIZED SIGNAL // DO NOT PROCEED WITHOUT CLEARANCE // SYSTEM
+            OVERLOAD IMMINENT // ⚠
+        </div>
+        <div class="marquee-content" style="position:absolute; top:8px; left:100%;">
+            ⚠ WARNING: HIGH VOLTAGE DETECTED // UNAUTHORIZED SIGNAL // DO NOT PROCEED WITHOUT CLEARANCE // SYSTEM
+            OVERLOAD IMMINENT // ⚠
+        </div>
+    </div>
+
     <section class="spa-section">
-        <h2 style="color:var(--neon-green); font-family:var(--font-cyber)">ARENA RULES</h2>
-        <ul style="color:#aaa; text-align:left; line-height:2; font-size:1.1rem;">
-            <li>Weight Class: 15kg / 30kg</li>
-            <li>Weaponry: Active weapons required</li>
-            <li>Safety: Remote kill switch mandatory</li>
-        </ul>
-        <button
-            style="margin-top:3rem; padding:15px 40px; background:var(--neon-green); border:none; color:#000; font-family:var(--font-cyber); font-weight:bold; cursor:pointer;">ENTER
-            THE ARENA</button>
+
+        <div class="round-container">
+            <h2>ROUND I: TOLERANCE TEST</h2>
+            <p>Compute outcome. Lock tolerance band. Survive the cut.</p>
+            <ul class="decree-list">
+                <li>⚪ Silver (±5%) :: +10 PTS</li>
+                <li>🟠 Copper (±20%) :: +5 PTS</li>
+                <li>⚫ Iron (±50%) :: +2 PTS</li>
+                <li>❌ ERROR :: 0 PTS</li>
+            </ul>
+        </div>
+
+        <div class="round-container">
+            <h2>ROUND II: BID & SOLVE</h2>
+            <p>8 Problems. High Stakes. Bet your survival points.</p>
+
+            <div class="card-grid">
+                <div class="card-item">
+                    <strong>01 // REVEAL</strong>
+                    Topic & Difficulty exposed.
+                </div>
+                <div class="card-item">
+                    <strong>02 // BET</strong>
+                    Stake your Round I points.
+                </div>
+                <div class="card-item">
+                    <strong>03 // SOLVE</strong>
+                    60-second countdown.
+                </div>
+                <div class="card-item">
+                    <strong>04 // EXECUTE</strong>
+                    Win: Double Bet | Lose: Zero.
+                </div>
+            </div>
+
+            <p style="margin-top: 3rem; font-family: 'Share Tech Mono', monospace; color: var(--blood-red);">
+                >>> FINAL OVERDRIVE: FIRST RESPONSE WINS ALL <<< </p>
+        </div>
+
+        <div class="round-container" style="text-align: center;">
+            <h2>PROTOCOL</h2>
+            <ul class="decree-list">
+                <li>Team Size: 2-3 Units</li>
+                <li>Valid ID Required</li>
+                <li>Calculators: Authorized</li>
+                <li>Decision: Final</li>
+            </ul>
+            <button class="cta-btn">ENTER THE SYNDICATE</button>
+        </div>
+
     </section>
+
+    <div class="bio-footer">
+        SIGNAL SYNDICATE // SYSTEM ID: UNIVERSE-03 // AUTHORIZED PERSONNEL ONLY
+    </div>
+
+    <script>
+        // Particles tailored for "Redline" theme
+        const canvas = document.getElementById('ash-canvas');
+        const ctx = canvas.getContext('2d');
+        let w, h;
+        let mouseX = 0, mouseY = 0;
+        let points = [];
+
+        function resize() {
+            w = canvas.width = window.innerWidth;
+            h = canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        // Track Mouse
+        window.addEventListener('mousemove', e => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            // Add point to trail
+            points.push({ x: mouseX, y: mouseY, age: 0 });
+        });
+
+        const particles = Array.from({ length: 150 }, () => ({
+            x: Math.random() * w,
+            y: Math.random() * h,
+            r: Math.random() * 2 + 1,
+            s: Math.random() * 2 + 0.5,
+            color: Math.random() > 0.8 ? '#ff0000' : '#4a0000'
+        }));
+
+        function animate() {
+            ctx.clearRect(0, 0, w, h);
+
+            // 1. Animate Particles (Background)
+            particles.forEach(p => {
+                p.y += p.s;
+                if (p.y > h) p.y = 0;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                ctx.fillStyle = p.color;
+                ctx.globalAlpha = Math.random() * 0.5 + 0.2;
+                ctx.fill();
+            });
+
+            // 2. Animate Electric Cursor Trail
+            if (points.length > 2) {
+                ctx.beginPath();
+                ctx.moveTo(points[0].x, points[0].y);
+
+                for (let i = 1; i < points.length; i++) {
+                    const p = points[i];
+                    p.age++;
+
+                    // Jitter for electric effect
+                    const jitterX = (Math.random() - 0.5) * 10;
+                    const jitterY = (Math.random() - 0.5) * 10;
+
+                    ctx.lineTo(p.x + jitterX, p.y + jitterY);
+                }
+
+                ctx.strokeStyle = '#ff0000';
+                ctx.lineWidth = 2;
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = '#ff0000';
+                ctx.globalAlpha = 0.8;
+                ctx.stroke();
+
+                // Reset shadow/alpha for loops
+                ctx.shadowBlur = 0;
+                ctx.globalAlpha = 1;
+
+                // Remove old points
+                points = points.filter(p => p.age < 15);
+            }
+
+            requestAnimationFrame(animate);
+        }
+        animate();
+    </script>
 </body>
 
 </html>

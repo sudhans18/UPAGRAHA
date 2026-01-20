@@ -1,0 +1,158 @@
+/* Gallery Section Styles */
+#gallery {
+    position: relative;
+    width: 100%;
+    /* Min-height to ensure it takes up space, adjustable based on content */
+    padding: 0 0 6rem 0;
+    overflow: hidden;
+    /* Transparent background to show the global starfield/universe-bg */
+    background: transparent;
+    z-index: 2;
+    /* Ensure it's above background but below fixed elements if any */
+}
+
+/* Header Styling */
+.gallery-header-container {
+    text-align: center;
+    margin-bottom: 4rem;
+    margin-top: 4rem;
+    position: relative;
+    z-index: 3;
+}
+
+.gallery-title {
+    font-family: 'Cinzel', serif;
+    font-size: 3rem;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    margin: 0;
+    letter-spacing: 2px;
+}
+
+.gallery-subtitle {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.2rem;
+    color: var(--color-gold);
+    /* Assuming var(--color-gold) exists from base.css, else use #d4af37 */
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-top: 0.5rem;
+    position: relative;
+    display: inline-block;
+}
+
+/* Decorative line for subtitle */
+.gallery-subtitle::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 2px;
+    background: var(--color-gold, #d4af37);
+    margin: 10px auto 0;
+}
+
+/* Marquee Wrapper */
+.gallery-marquee-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    /* Space between rows */
+    margin-bottom: 4rem;
+    width: 100%;
+}
+
+/* Marquee Row */
+.marquee-row {
+    display: flex;
+    overflow: hidden;
+    user-select: none;
+    width: 100%;
+    position: relative;
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.marquee-content {
+    display: flex;
+    gap: 1.5rem;
+    /* Space between images */
+    flex-shrink: 0;
+    width: max-content;
+    /* Ensure container fits all images */
+}
+
+/* Images */
+.gallery-img-container {
+    width: 300px;
+    height: 180px;
+    /* Landscape aspect ratio */
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-img-container:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(var(--color-neon-blue-rgb, 0, 243, 255), 0.4);
+    z-index: 10;
+    border-color: var(--color-neon-blue, #00f3ff);
+}
+
+.gallery-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Animations */
+.scroll-left .marquee-content {
+    animation: scrollLeft 40s linear infinite;
+}
+
+.scroll-right .marquee-content {
+    animation: scrollRight 40s linear infinite;
+}
+
+/* Hover pause removed */
+
+@keyframes scrollLeft {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        /* Move by 50% because we duplicate content. 
+           (Original set) + (Duplicate set). 
+           Moving -50% shifts exactly one full set length. */
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes scrollRight {
+    from {
+        transform: translateX(-50%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .gallery-title {
+        font-size: 2rem;
+    }
+
+    .gallery-img-container {
+        width: 220px;
+        height: 130px;
+    }
+
+    .gallery-marquee-wrapper {
+        gap: 1rem;
+    }
+}
