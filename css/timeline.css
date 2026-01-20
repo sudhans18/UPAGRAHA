@@ -382,190 +382,55 @@
     }
 }
 
-/* Responsive adjustments - Mobile Vertical Timeline */
-/* Responsive adjustments - Mobile Vertical Timeline */
+/* Responsive adjustments */
 @media (max-width: 768px) {
-    .timeline-section {
-        height: auto;
-        min-height: 100vh;
-        padding-top: 100px;
-        background-color: transparent;
-        /* Show global starfield */
-    }
-
-    .sacred-title {
-        font-size: 2rem;
-        margin-bottom: 3rem;
-    }
-
-    /* Hide Monitor & Scroll Hint elements */
-    .monitor-bg,
-    .scroll-hint,
-    .present-label {
-        display: none;
-    }
-
-    /* Reset Container for vertical flow */
     .monitor-container {
         width: 100%;
-        max-width: 100%;
         aspect-ratio: auto;
-        margin: 0;
-        padding: 0 20px;
-        overflow: hidden;
-        /* Ensure content doesn't spill */
+        min-height: 400px;
     }
 
     .monitor-screen {
-        position: relative;
-        top: auto;
-        left: auto;
-        width: 100%;
-        height: auto;
-        background: transparent !important;
-        /* Ensure no bg blocks stars */
-        overflow: visible;
-        padding-bottom: 100px;
+        top: 18%;
+        left: 5%;
+        width: 90%;
+        height: 55%;
     }
 
-    /* Vertical Track */
-    .timeline-scroll-track {
-        flex-direction: column;
-        height: auto;
-        width: 100%;
-        padding: 0;
-        position: relative;
-    }
-
-    /* Vertical Line - Centered */
-    .timeline-line {
-        width: 3px;
-        height: 100%;
-        top: 0;
-        left: 50%;
-        /* Center the line */
-        transform: translateX(-50%);
-        bottom: 0;
-        background: linear-gradient(180deg,
-                rgba(255, 215, 0, 0.1) 0%,
-                #ffd700 20%,
-                #ffd700 80%,
-                rgba(255, 215, 0, 0.1) 100%);
-    }
-
-    /* Hide extra horizontal bounds */
-    .timeline-scroll-track::before,
-    .timeline-scroll-track::after {
-        display: none;
-    }
-
-    /* Individual Events - Stacked & Alternating */
     .timeline-event {
-        width: 50%;
-        /* Half width */
-        height: auto;
-        margin-bottom: 60px;
-        display: flex;
-        align-items: center;
-        padding: 0 20px;
-        /* Space from center line */
-        box-sizing: border-box;
-
-        /* Animation Base State */
-        opacity: 0;
-        transform: translateY(30px);
-        transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        width: 120px;
+        margin: 0 25px;
     }
 
-    .timeline-event.visible {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    /* ODD items -> RIGHT side */
-    .timeline-event:nth-child(odd) {
-        margin-left: 50%;
-        text-align: left;
-        flex-direction: row;
-        justify-content: flex-start;
-    }
-
-    /* EVEN items -> LEFT side */
-    .timeline-event:nth-child(even) {
-        margin-left: 0;
-        text-align: right;
-        flex-direction: row-reverse;
-        /* Flip so node is near center */
-        justify-content: flex-start;
-        /* Because row-reverse, start is right side */
-    }
-
-    /* Adjust Node positioning to sit on center line */
     .timeline-node {
-        position: absolute;
-        flex-shrink: 0;
-        /* Reset from desktop */
-        top: auto;
-        left: auto;
-        transform: none;
+        width: 16px;
+        height: 16px;
     }
 
-    /* Odd Nodes (Left edge of Right block) */
-    .timeline-event:nth-child(odd) .timeline-node {
-        left: -8px;
-        /* Half of width (16px) to center on line */
-    }
-
-    /* Even Nodes (Right edge of Left block) */
-    .timeline-event:nth-child(even) .timeline-node {
-        right: -8px;
-        /* Half of width (16px) to center on line */
-    }
-
-    /* Current Event Node Sizing */
     .timeline-event.current .timeline-node {
         width: 22px;
         height: 22px;
     }
 
-    .timeline-event:nth-child(odd).current .timeline-node {
-        left: -11px;
-        /* Adjust for larger size */
-    }
-
-    .timeline-event:nth-child(even).current .timeline-node {
-        right: -11px;
-    }
-
-    /* Remove decorative curves on mobile for cleanliness */
-    .timeline-event.current::before,
-    .timeline-event.past:nth-child(odd)::before,
-    .timeline-event.future:nth-child(even)::before {
-        display: none;
-    }
-
-    /* Content Layout */
-    .event-label {
-        position: static;
-        transform: none;
-        width: auto;
-    }
-
     .t-date {
-        font-size: 0.85rem;
-        color: var(--accent-gold);
-        margin-bottom: 2px;
+        font-size: 0.75rem;
     }
 
     .t-title {
-        font-size: 1.1rem;
+        font-size: 0.85rem;
     }
 
-    /* Connecting lines - vertical segments if needed? 
-       The main .timeline-line handles the continuous track. 
-    */
-    .timeline-event::after {
-        display: none;
-        /* Hide per-event lines */
+    .event-label {
+        bottom: -70px;
+        width: 110px;
+    }
+
+    .present-label {
+        font-size: 0.9rem;
+        top: -80px;
+    }
+
+    .sacred-title {
+        font-size: 2rem;
     }
 }

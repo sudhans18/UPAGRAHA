@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="../css/base.css">
     <style>
@@ -24,7 +24,7 @@
         body {
             background-color: var(--obsidian);
             color: var(--steel);
-            font-family: 'Playfair Display', serif;
+            font-family: 'Cinzel', serif;
             margin: 0;
             overflow-x: hidden;
         }
@@ -82,7 +82,7 @@
         .universe-title {
             font-size: 5rem;
             color: var(--royal-gold);
-            font-family: 'Playfair Display', serif;
+            font-family: 'Cinzel Decorative', cursive;
             text-transform: uppercase;
             letter-spacing: 5px;
             margin-bottom: 2rem;
@@ -267,7 +267,7 @@
             background: linear-gradient(45deg, var(--deep-crimson), var(--blood-red));
             border: 2px solid var(--royal-gold);
             color: var(--royal-gold);
-            font-family: 'Playfair Display', serif;
+            font-family: 'Cinzel Decorative', cursive;
             font-size: 1.5rem;
             font-weight: 900;
             cursor: pointer;
@@ -346,13 +346,13 @@
 <body>
     <!-- Persistent Backgrounds -->
     <video id="bg-video" autoplay muted loop playsinline>
-        <source src="../assets/got.mp4" type="video/mp4">
+        <source src="../assets/bg_video_final.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
     <canvas id="ash-canvas"></canvas>
 
     <!-- Arrow only -->
-    <a href="../index.html#events" class="back-link" onclick="if(document.referrer.indexOf(window.location.host) !== -1) { event.preventDefault(); history.back(); }">←</a>
+    <a href="../index.html#events" class="back-link">←</a>
 
     <section class="universe-hero" id="hero">
         <h1 class="universe-title">
@@ -381,7 +381,7 @@
         <div class="round-container reveal"
             style="margin-bottom: 6rem; max-width: 900px; margin-left: auto; margin-right: auto; text-align: left;">
             <h2
-                style="text-align: center; margin-bottom: 2rem; color: var(--royal-gold); font-family: 'Playfair Display', serif; font-size: 3rem;">
+                style="text-align: center; margin-bottom: 2rem; color: var(--royal-gold); font-family: 'Cinzel Decorative', serif; font-size: 3rem;">
                 Round I: CROSSWORD CONQUEST</h2>
             <p style="font-size: 1.2rem; line-height: 1.8; color: #ddd; margin-bottom: 1.5rem;">
                 In this round, teams take on a timed technical crossword puzzle focused on concepts from Electronics and
@@ -394,8 +394,7 @@
                 reasoning skills, coordination, and subject understanding advance.
             </p>
 
-            <h3 style="color: var(--royal-gold); font-family: 'Playfair Display', serif; margin-bottom: 1rem;">
-                Evaluation
+            <h3 style="color: var(--royal-gold); font-family: 'Cinzel', serif; margin-bottom: 1rem;">Evaluation
                 Criteria:</h3>
             <ul class="decree-list" style="margin: 0;">
                 <li>Accuracy of answers</li>
@@ -415,7 +414,7 @@
         <div class="round-container reveal"
             style="margin-bottom: 6rem; max-width: 1000px; margin-left: auto; margin-right: auto;">
             <h2
-                style="text-align: center; margin-bottom: 2rem; color: var(--royal-gold); font-family: 'Playfair Display', serif; font-size: 3rem;">
+                style="text-align: center; margin-bottom: 2rem; color: var(--royal-gold); font-family: 'Cinzel Decorative', serif; font-size: 3rem;">
                 Round II: UNO-CONTROLLED CIRCUIT CHALLENGE</h2>
 
             <p
@@ -427,7 +426,7 @@
                 <div
                     style="border: 1px solid var(--royal-gold); padding: 2rem; background: rgba(0,0,0,0.6); backdrop-filter: blur(5px); flex: 1; min-width: 300px; border-radius: 4px;">
                     <h3
-                        style="color: var(--royal-gold); font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 1rem;">
+                        style="color: var(--royal-gold); font-family: 'Cinzel', serif; font-size: 1.8rem; margin-bottom: 1rem;">
                         Task Solver</h3>
                     <p style="color: #ccc; font-size: 1.1rem; line-height: 1.6;">
                         Works on a given electronics problem statement using simulation platforms such as (Wokwi or
@@ -437,7 +436,7 @@
                 <div
                     style="border: 1px solid var(--blood-red); padding: 2rem; background: rgba(0,0,0,0.6); backdrop-filter: blur(5px); flex: 1; min-width: 300px; border-radius: 4px;">
                     <h3
-                        style="color: var(--blood-red); font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 1rem;">
+                        style="color: var(--blood-red); font-family: 'Cinzel', serif; font-size: 1.8rem; margin-bottom: 1rem;">
                         UNO Player</h3>
                     <p style="color: #ccc; font-size: 1.1rem; line-height: 1.6;">
                         Plays an active UNO game against opponents.
@@ -453,7 +452,7 @@
             </p>
 
             <h3
-                style="color: var(--royal-gold); font-family: 'Playfair Display', cursive; font-size: 2.5rem; margin-bottom: 3rem; text-align: center;">
+                style="color: var(--royal-gold); font-family: 'Cinzel Decorative', cursive; font-size: 2.5rem; margin-bottom: 3rem; text-align: center;">
                 UNO Card Effects</h3>
 
             <div class="card-grid"
@@ -524,8 +523,7 @@
                     disqualification.</li>
             </ul>
 
-            <h3 style="color: var(--royal-gold); font-family: 'Playfair Display', serif; margin-bottom: 2rem;">TIMINGS:
-                10:45 AM -
+            <h3 style="color: var(--royal-gold); font-family: 'Cinzel', serif; margin-bottom: 2rem;">TIMINGS: 10:45 AM -
                 2:00 PM</h3>
 
             <button class="cta-btn">Register Alliance</button>

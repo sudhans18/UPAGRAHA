@@ -1,0 +1,55 @@
+/* Glitch Background Transition Styles */
+.hero-image-container {
+    transition: background 0.3s ease;
+}
+
+/* Glitch state - Loki-Red */
+.hero-image-container.glitch-red {
+    background: url('../assets/Loki-Red.png') center center / cover no-repeat !important;
+}
+
+/* Glitch state - Back to Loki-Green */
+.hero-image-container.glitch-green {
+    background: url('../assets/Loki-Green.png') center center / cover no-repeat !important;
+}
+
+/* Glitch animation - applies to BOTH transitions */
+.hero-image-container.glitching {
+    animation: backgroundGlitch 0.5s ease-in-out;
+}
+
+@keyframes backgroundGlitch {
+
+    0%,
+    100% {
+        filter: none;
+    }
+
+    10% {
+        filter: hue-rotate(180deg) brightness(1.2);
+    }
+
+    20% {
+        filter: hue-rotate(-180deg) contrast(1.5);
+    }
+
+    30% {
+        filter: hue-rotate(90deg) brightness(0.8);
+    }
+
+    40% {
+        filter: hue-rotate(-90deg);
+    }
+
+    50% {
+        filter: invert(1);
+    }
+
+    60% {
+        filter: hue-rotate(45deg);
+    }
+
+    80% {
+        filter: none;
+    }
+}
