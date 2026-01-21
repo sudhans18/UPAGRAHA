@@ -27,7 +27,7 @@
 
         body {
             margin: 0;
-            background: var(--sand-beige);
+            background: #000;
             color: var(--dark-sand);
             font-family: 'Montserrat', sans-serif;
             overflow-x: hidden;
@@ -42,9 +42,7 @@
             height: 100%;
             object-fit: cover;
             z-index: -2;
-            opacity: 0.2;
-            /* Faded for light theme */
-            filter: contrast(1.1) sepia(0.2) brightness(1.2);
+            opacity: 1;
         }
 
         /* Dust Canvas */
@@ -93,7 +91,7 @@
             align-items: center;
             text-align: center;
             padding: 4rem 2rem;
-            background: radial-gradient(circle at center, rgba(230, 211, 163, 0.2), rgba(230, 211, 163, 0.95));
+            /* background: radial-gradient(circle at center, rgba(230, 211, 163, 0.2), rgba(230, 211, 163, 0.95)); */
             /* Light radial fade */
         }
 
@@ -323,12 +321,13 @@
 <body>
 
     <video id="bg-video" autoplay muted loop playsinline>
-        <source src="../assets/entry.mp4" type="video/mp4">
+        <source src="../assets/universe1_bg.mp4" type="video/mp4">
     </video>
 
     <canvas id="ash-canvas"></canvas>
 
-    <a href="../index.html#events" class="back-link" onclick="if(document.referrer.indexOf(window.location.host) !== -1) { event.preventDefault(); history.back(); }">←</a>
+    <a href="../index.html#events" class="back-link"
+        onclick="if(document.referrer.indexOf(window.location.host) !== -1) { event.preventDefault(); history.back(); }">←</a>
 
     <section class="universe-hero">
         <h1 class="universe-title">FAST & CURIOUS</h1>

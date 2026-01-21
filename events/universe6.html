@@ -4,36 +4,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Universe 6: Wolf of Tech Street</title>
+    <title>Wolf of Tech Street | UPAGRAHA</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;800&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;700&family=Cinzel+Decorative:wght@700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="../css/base.css">
     <style>
         :root {
-            /* Switched to Silver/Slate for a sophisticated, non-green look */
-            --money-green: #c0c0c0;
-            --money-green-dim: #808080;
             --wealth-gold: #d4af37;
-            /* Classic Royal Gold */
+            --silver-plate: #c0c0c0;
             --rich-black: #050505;
             --charcoal: #121212;
-            --stock-red: #8a0303;
-            /* Darker red, less bright */
-            --steel: #b0c4de;
+            --stock-red: #ff3b3b;
+            --stock-green: #00ff41;
+            --glass-white: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
         }
 
         body {
             background-color: var(--rich-black);
-            color: var(--steel);
-            font-family: 'Cinzel', serif;
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
             margin: 0;
             overflow-x: hidden;
         }
 
-        /* Video Background - Persistent */
+        /* Video Background */
         #bg-video {
             position: fixed;
             top: 0;
@@ -43,11 +41,10 @@
             object-fit: cover;
             z-index: -2;
             pointer-events: none;
-            /* Increased brightness significantly, removed sepia/contrast boost */
-            filter: brightness(1.3) contrast(1.0);
+            filter: brightness(1.2) contrast(1.1);
         }
 
-        /* Money Rain Canvas - Overlay */
+        /* Money Rain Canvas */
         #money-canvas {
             position: fixed;
             top: 0;
@@ -66,264 +63,205 @@
             align-items: center;
             text-align: center;
             position: relative;
-            background: radial-gradient(circle at center, rgba(0, 50, 0, 0.2) 0%, rgba(0, 0, 0, 0.8) 100%);
-            border-bottom: 3px solid var(--money-green);
-            box-shadow: 0 10px 50px rgba(0, 255, 65, 0.1);
-        }
-
-        .universe-hero::after {
-            content: '$';
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 30px;
-            height: 30px;
-            background: var(--money-green);
-            color: black;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            border: 2px solid #000;
-            box-shadow: 0 0 15px var(--money-green);
+            background: transparent;
+            padding: 4rem 2rem;
         }
 
         .universe-title {
-            font-size: 4.5rem;
-            color: var(--money-green);
-            font-family: 'Cinzel Decorative', cursive;
-            text-transform: uppercase;
-            letter-spacing: 5px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 4rem;
+            color: #fff;
+            letter-spacing: 12px;
             margin-bottom: 2rem;
             margin-top: 8rem;
-            text-shadow: 0 0 20px rgba(0, 255, 65, 0.6);
-            position: relative;
-            z-index: 10;
-            opacity: 0;
-            animation: fadeInDown 1.5s ease-out forwards;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
+            text-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            animation: slideDownFade 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+            text-align: center;
         }
 
-        /* Animated Dollar Sign */
-        .dollar-anim {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 60px;
-            height: 60px;
-            border: 3px solid var(--wealth-gold);
-            border-radius: 50%;
+        .title-accent {
+            font-family: 'Cinzel Decorative', cursive;
             color: var(--wealth-gold);
-            font-size: 2.5rem;
-            box-shadow: 0 0 15px var(--wealth-gold);
-            animation: pulse-gold 2s infinite alternate;
-            background: rgba(0, 0, 0, 0.5);
-        }
-
-        @keyframes pulse-gold {
-            0% {
-                box-shadow: 0 0 10px var(--wealth-gold);
-                transform: scale(1);
-            }
-
-            100% {
-                box-shadow: 0 0 30px var(--wealth-gold), 0 0 10px var(--money-green);
-                transform: scale(1.1);
-            }
+            font-size: 1rem;
+            letter-spacing: 15px;
+            margin-top: 5px;
+            text-transform: uppercase;
+            opacity: 0.8;
+            animation: fadeIn 2s 0.5s forwards;
+            text-align: center;
         }
 
         .universe-desc {
-            max-width: 900px;
-            padding: 3rem;
-            color: #fff;
-            font-size: 1.3rem;
-            line-height: 1.8;
-            border: 1px solid rgba(0, 255, 65, 0.3);
-            border-left: 5px solid var(--wealth-gold);
-            border-right: 5px solid var(--wealth-gold);
-            /* Glassmorphism */
-            background: rgba(5, 20, 5, 0.7);
-            backdrop-filter: blur(8px);
-            margin-top: 2rem;
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
-            opacity: 0;
-            animation: fadeInUp 1.5s ease-out 0.5s forwards;
-        }
-
-        /* Minimized Back Button */
-        .back-link {
-            position: fixed;
-            top: 30px;
-            left: 30px;
-            color: var(--money-green);
-            text-decoration: none;
-            font-size: 2rem;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 2px solid var(--money-green);
-            border-radius: 50%;
+            max-width: 800px;
+            padding: 2.5rem;
             background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(4px);
-            z-index: 100;
-            transition: all 0.4s ease;
+            /* Matched Universe 2 */
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--glass-border);
+            border-top: 5px solid var(--wealth-gold);
+            margin-top: 2rem;
+            opacity: 0;
+            animation: slideUpFade 1.2s 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
         }
 
-        .back-link:hover {
-            background: var(--money-green);
-            color: #000;
-            box-shadow: 0 0 20px var(--money-green);
-            transform: scale(1.1);
+        .section-header {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.5rem;
+            color: var(--wealth-gold);
+            letter-spacing: 3px;
+            margin-bottom: 0.5rem;
+        }
+
+        .sub-header {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.4rem;
+            color: var(--silver-plate);
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
         }
 
         .spa-section {
-            padding-top: 8rem;
-            padding-bottom: 8rem;
-            text-align: center;
-            background: rgba(5, 5, 5, 0.85);
+            padding: 8rem 2rem;
+            background: rgba(10, 10, 10, 0.7);
+            /* Matched Universe 2 */
         }
 
-        /* Glass Cards */
-        .round-container {
-            background: rgba(10, 20, 10, 0.6);
+        /* Custom Panels */
+        .panel {
+            max-width: 900px;
+            margin: 0 auto 4rem;
+            background: rgba(0, 0, 0, 0.5);
+            /* Matched Universe 2 */
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 255, 65, 0.2);
-            padding: 4rem;
-            border-radius: 8px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+            border: 1px solid var(--glass-border);
+            padding: 2.5rem;
             position: relative;
-            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
         }
 
-        /* Stock Ticker style decoration */
-        .round-container::before {
+        .panel::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--money-green), transparent);
-            animation: shine 3s infinite linear;
+            width: 5px;
+            height: 100%;
+            background: var(--wealth-gold);
         }
 
-        @keyframes shine {
+        .ticker-border {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--wealth-gold), transparent);
+            animation: tickerFlow 4s linear infinite;
+        }
+
+        @keyframes tickerFlow {
             0% {
-                transform: translateX(-100%);
+                background-position: -1000px 0;
             }
 
             100% {
-                transform: translateX(100%);
+                background-position: 1000px 0;
             }
         }
 
-        .decree-list {
+        /* Rules List */
+        .rules-list {
             list-style: none;
             padding: 0;
             text-align: left;
-            margin-top: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
         }
 
-        .decree-list li {
-            padding: 1rem 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            color: #ddd;
-            font-size: 1.1rem;
-            display: flex;
-            align-items: flex-start;
+        .rules-list li {
+            padding: 0.8rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 2px solid var(--silver-plate);
+            font-size: 0.9rem;
+            line-height: 1.5;
         }
 
-        .decree-list li::before {
-            content: '▲';
-            color: var(--money-green);
-            margin-right: 15px;
-            font-size: 0.8rem;
-            margin-top: 4px;
+        .rules-list li strong {
+            color: var(--wealth-gold);
+            display: block;
+            margin-bottom: 0.3rem;
         }
 
-        .cta-btn {
+        /* Criteria Cards */
+        .criteria-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
             margin-top: 3rem;
-            padding: 20px 60px;
-            background: linear-gradient(45deg, var(--money-green-dim), var(--money-green));
-            border: 2px solid var(--wealth-gold);
-            color: #000;
-            font-family: 'Cinzel Decorative', cursive;
+        }
+
+        .criteria-card {
+            padding: 1.5rem;
+            border: 1px solid var(--glass-border);
+            background: rgba(255, 255, 255, 0.02);
+            transition: 0.3s;
+        }
+
+        .criteria-card:hover {
+            border-color: var(--wealth-gold);
+            background: rgba(212, 175, 55, 0.05);
+            transform: translateY(-5px);
+        }
+
+        .criteria-card strong {
+            font-family: 'Bebas Neue', sans-serif;
             font-size: 1.5rem;
-            font-weight: 900;
+            color: var(--wealth-gold);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* CTA */
+        .cta-btn {
+            background: var(--wealth-gold);
+            color: #000;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            padding: 0.8rem 3rem;
+            border: none;
             cursor: pointer;
-            box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
-            transition: all 0.5s;
-            text-transform: uppercase;
-            letter-spacing: 3px;
+            transition: 0.4s;
+            letter-spacing: 2px;
+            margin-top: 2rem;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
         }
 
         .cta-btn:hover {
+            background: #fff;
             transform: scale(1.05);
-            box-shadow: 0 0 40px rgba(255, 215, 0, 0.6);
-            background: var(--wealth-gold);
-            color: #000;
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.4);
         }
 
-        /* Card Grid Styles for Criteria/Features */
-        .criteria-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            text-align: left;
-            margin-top: 3rem;
-        }
-
-        .card-item {
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            background: rgba(20, 30, 20, 0.6);
-            backdrop-filter: blur(5px);
-            padding: 2rem;
-            transition: 0.3s;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            border-radius: 4px;
-        }
-
-        .card-item:hover {
-            border-color: var(--money-green);
-            transform: translateY(-5px);
-            box-shadow: 0 5px 25px rgba(0, 255, 65, 0.2);
-            background: rgba(30, 40, 30, 0.8);
-        }
-
-        .card-title {
+        /* Back Link */
+        .back-link {
+            position: fixed;
+            top: 40px;
+            left: 40px;
             color: var(--wealth-gold);
-            font-size: 1.3rem;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            text-decoration: none;
+            font-size: 2.5rem;
+            z-index: 100;
+            transition: 0.3s;
         }
 
-        /* Scroll Reveal Animation Classes */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 1s ease-out;
+        .back-link:hover {
+            transform: scale(1.2);
+            filter: drop-shadow(0 0 10px var(--wealth-gold));
         }
 
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Keyframes */
-        @keyframes fadeInDown {
+        /* Animations */
+        @keyframes slideDownFade {
             from {
                 opacity: 0;
                 transform: translateY(-50px);
@@ -335,7 +273,7 @@
             }
         }
 
-        @keyframes fadeInUp {
+        @keyframes slideUpFade {
             from {
                 opacity: 0;
                 transform: translateY(50px);
@@ -346,37 +284,66 @@
                 transform: translateY(0);
             }
         }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .universe-title {
+                font-size: 4rem;
+                letter-spacing: 8px;
+            }
+
+            .rules-list {
+                grid-template-columns: 1fr;
+            }
+
+            .panel {
+                padding: 2rem;
+            }
+        }
     </style>
 </head>
 
 <body>
 
-    <!-- Persistent Backgrounds -->
     <video id="bg-video" autoplay muted loop playsinline>
         <source src="../assets/wolf.mp4" type="video/mp4">
-        Your browser does not support the video tag.
     </video>
     <canvas id="money-canvas"></canvas>
 
-    <!-- Arrow only -->
-    <a href="../index.html#events" class="back-link"
-        onclick="if(document.referrer.indexOf(window.location.host) !== -1) { event.preventDefault(); history.back(); }">←</a>
+    <a href="../index.html#events" class="back-link">←</a>
 
-    <section class="universe-hero" id="hero">
-        <h1 class="universe-title">
-            <div class="dollar-anim">$</div>
-            WOLF OF TECH STREET
-            <div class="dollar-anim">$</div>
-        </h1>
+    <section class="universe-hero">
+        <h1 class="universe-title">WOLF OF TECH STREET</h1>
+        <div class="title-accent">Sell me this algorithm</div>
+
         <div class="universe-desc">
-            <h2 style="color: var(--wealth-gold); font-size: 2rem; margin-bottom: 1rem;">Electronics meets Strategy</h2>
-            <p>
-                Wolf of Tech Street is a high-energy, two-round technical showdown that blends core Electronics and
-                Communication Engineering (ECE) knowledge with strategic thinking and real-world problem-solving.
-                <br><br>
-                Inspired by market dynamics and innovation-driven decision-making, this event challenges participants to
-                decode technical fundamentals, analyze constraints, and build practical solutions under budget
-                limitations. It’s where technology meets strategy — and only the smartest players thrive.
+            <h2 class="sub-header" style="color: var(--wealth-gold); margin-bottom: 1rem;">About the Event</h2>
+            <p style="font-size: 1.1rem; line-height: 1.8; color: #eee;">
+                Wolf of Tech Street is a high-energy technical showdown that blends analytical thinking, strategic
+                decision-making, and real-world problem-solving. Participants are challenged to decode technical
+                fundamentals, evaluate constraints, and build practical solutions under budget limitations. Inspired by
+                market-style dynamics, the event rewards smart planning, innovation, and confident execution.
             </p>
         </div>
     </section>
@@ -384,176 +351,106 @@
     <section class="spa-section">
 
         <!-- Round 1 -->
-        <div class="round-container reveal"
-            style="margin-bottom: 6rem; max-width: 900px; margin-left: auto; margin-right: auto; text-align: center;">
-            <h2
-                style="color: var(--money-green); font-family: 'Cinzel Decorative', serif; font-size: 3rem; margin-bottom: 1rem;">
-                Round I
-            </h2>
-            <h3 style="color: var(--wealth-gold); font-size: 2rem; margin-bottom: 2rem;">JUMBLED WORDS (ECE BASICS)</h3>
-
-            <p style="font-size: 1.2rem; line-height: 1.8; color: #ddd; margin-bottom: 2rem;">
-                Participants will compete in a rapid-fire round featuring jumbled words based on fundamental concepts in
-                the world of Electronics and Communication Engineering.
-                This round tests core technical knowledge, familiarity with ECE terminology, and quick analytical
-                thinking.
+        <div class="panel reveal">
+            <h2 class="section-header">ROUND 1: JUMBLED WORDS</h2>
+            <p class="sub-header">THE ELIMINATION PIT</p>
+            <p style="color: #ccc; font-size: 1.1rem; line-height: 1.8; margin-bottom: 3rem;">
+                This rapid-fire round tests participants’ familiarity with essential technical terminology and concepts.
+                Teams must quickly decode jumbled words within the given time, emphasizing accuracy and speed.
             </p>
 
-            <div
-                style="background: rgba(255, 215, 0, 0.1); border: 1px solid var(--wealth-gold); padding: 1.5rem; display: inline-block; margin-top: 1rem;">
-                <strong style="color: var(--wealth-gold); font-size: 1.2rem;">QUALIFICATION</strong>
-                <p style="margin: 0.5rem 0 0; color: #eee;">Based on performance, the top six teams will qualify for
-                    Round 2.</p>
-            </div>
+            <ul class="rules-list">
+                <li><strong>Elimination Round</strong> Survival of the fittest. Only the sharpest advance.</li>
+                <li><strong>Technical Core</strong> Teams solve jumbled words based on technical fundamentals.</li>
+                <li><strong>The Clock</strong> Accuracy and speed determine your final market standing.</li>
+                <li><strong>Final Six</strong> Only the top six teams qualify for Round 2.</li>
+            </ul>
+            <div class="ticker-border"></div>
         </div>
-
-        <hr
-            style="border: 0; border-top: 1px solid var(--money-green); margin: 6rem auto; max-width: 300px; opacity: 0.5;">
 
         <!-- Round 2 -->
-        <div class="round-container reveal"
-            style="margin-bottom: 6rem; max-width: 1000px; margin-left: auto; margin-right: auto;">
-            <h2
-                style="color: var(--money-green); font-family: 'Cinzel Decorative', serif; font-size: 3rem; margin-bottom: 1rem;">
-                Round II
-            </h2>
-            <h3 style="color: var(--wealth-gold); font-size: 2rem; margin-bottom: 3rem;">PROBLEM STATEMENT, BIDDING &
-                PITCH</h3>
-
-            <div style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; text-align: left;">
-
-                <div class="card-item" style="flex: 1; min-width: 300px;">
-                    <div class="card-title">
-                        <span style="font-size: 2rem;">💼</span> The Challenge
-                    </div>
-                    <p style="color: #ccc; line-height: 1.6;">
-                        The final six teams will be revealed a real-world problem statement. Using purchased products
-                        and services, teams must design a viable solution.
-                    </p>
-                </div>
-
-                <div class="card-item" style="flex: 1; min-width: 300px;">
-                    <div class="card-title">
-                        <span style="font-size: 2rem;">💰</span> The Capital
-                    </div>
-                    <p style="color: #ccc; line-height: 1.6;">
-                        Each team will be provided with a virtual capital of <strong>₹1,00,000</strong> to strategically
-                        bid for resources.
-                    </p>
-                </div>
-
-                <div class="card-item" style="flex: 1; min-width: 300px;">
-                    <div class="card-title">
-                        <span style="font-size: 2rem;">📈</span> The Market
-                    </div>
-                    <p style="color: #ccc; line-height: 1.6;">
-                        A list of companies offering various technologies, products, and services will be displayed on
-                        the screen for bidding.
-                    </p>
-                </div>
-
-            </div>
-
-            <p
-                style="margin-top: 3rem; font-size: 1.2rem; line-height: 1.8; color: #fff; max-width: 800px; margin-left: auto; margin-right: auto;">
-                Teams must strategically bid within the allocated budget to acquire the companies most relevant to their
-                solution.
-                They will then pitch their solution to the judging panel, emphasizing feasibility, practicality, and
-                impact.
+        <div class="panel reveal">
+            <h2 class="section-header">ROUND 2: THE PROBLEM STATEMENT</h2>
+            <p class="sub-header">BID, BUILD & PITCH</p>
+            <p style="color: #ccc; font-size: 1.1rem; line-height: 1.8; margin-bottom: 3rem;">
+                Shortlisted teams face a real-world problem that must be solved through strategic planning and resource
+                allocation. Teams are given a fixed virtual budget and must bid on companies offering relevant
+                technologies to build their solution.
             </p>
 
-            <h3 style="color: var(--wealth-gold); margin-top: 4rem; font-size: 1.8rem;">JUDGING CRITERIA</h3>
+            <ul class="rules-list" style="grid-template-columns: 1fr;">
+                <li><strong>The Capital</strong> Each team receives a virtual capital of ₹1,00,000. Don't waste it.</li>
+                <li><strong>The Market</strong> A list of companies and offerings will be displayed for bidding.</li>
+                <li><strong>Strategy</strong> Teams must bid strategically within the allocated budget.</li>
+                <li><strong>Innovation</strong> Using acquired resources, teams design a feasible solution.</li>
+                <li><strong>The Pitch</strong> Each team must pitch to the panel, highlighting practicality and impact.
+                </li>
+            </ul>
+            <div class="ticker-border"></div>
+        </div>
+
+        <!-- Criteria -->
+        <div class="panel reveal" style="text-align: center; border-top: 1px solid var(--wealth-gold);">
+            <h2 class="section-header">JUDGING CRITERIA</h2>
             <div class="criteria-grid">
-                <div class="card-item">
-                    <strong style="color: var(--money-green);">Technical Understanding</strong>
-                    <span style="color: #bbb; font-size: 0.9rem;">Depth of ECE concepts used in solution</span>
+                <div class="criteria-card">
+                    <strong>TECH CONCEPTS</strong>
+                    <p style="font-size: 0.85rem; color: #bbb;">Understanding of fundamentals</p>
                 </div>
-                <div class="card-item">
-                    <strong style="color: var(--money-green);">Innovation</strong>
-                    <span style="color: #bbb; font-size: 0.9rem;">Creativity and uniqueness of approach</span>
+                <div class="criteria-card">
+                    <strong>INNOVATION</strong>
+                    <p style="font-size: 0.85rem; color: #bbb;">Creativity of the solution</p>
                 </div>
-                <div class="card-item">
-                    <strong style="color: var(--money-green);">Feasibility</strong>
-                    <span style="color: #bbb; font-size: 0.9rem;">Real-world applicability and practicality</span>
+                <div class="criteria-card">
+                    <strong>FEASIBILITY</strong>
+                    <p style="font-size: 0.85rem; color: #bbb;">Real-world applicability</p>
                 </div>
-                <div class="card-item">
-                    <strong style="color: var(--money-green);">Strategy</strong>
-                    <span style="color: #bbb; font-size: 0.9rem;">Smart bidding and resource utilization</span>
+                <div class="criteria-card">
+                    <strong>STRATEGY</strong>
+                    <p style="font-size: 0.85rem; color: #bbb;">Resource utilization</p>
                 </div>
-                <div class="card-item">
-                    <strong style="color: var(--money-green);">Presentation</strong>
-                    <span style="color: #bbb; font-size: 0.9rem;">Clarity, confidence, and pitch quality</span>
-                </div>
-            </div>
-
-            <p style="margin-top: 3rem; font-style: italic; color: var(--wealth-gold);">
-                "The team presenting the most feasible and practical solution will be crowned the winner."
-            </p>
-        </div>
-
-        <hr
-            style="border: 0; border-top: 1px solid var(--money-green); margin: 6rem auto; max-width: 300px; opacity: 0.5;">
-
-        <!-- Rules & Register -->
-        <div class="reveal"
-            style="max-width: 800px; margin: 0 auto; background: rgba(5, 5, 5, 0.8); padding: 3rem; border-radius: 8px; border: 1px solid var(--money-green-dim);">
-            <h2 style="margin-bottom: 2rem; color: var(--wealth-gold);">EVENT RULES</h2>
-
-            <div style="text-align: left; display: grid; gap: 2rem; grid-template-columns: 1fr 1fr;">
-                <div>
-                    <h4 style="color: var(--money-green); border-bottom: 1px solid #333; padding-bottom: 10px;">TEAM
-                        RULES</h4>
-                    <ul class="decree-list" style="margin-top: 1rem;">
-                        <li>Team Size: Maximum 4 members.</li>
-                        <li>Round 1 is an elimination round.</li>
-                        <li>Strict adherence to time limits.</li>
-                        <li>Plagiarism strictly prohibited.</li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 style="color: var(--money-green); border-bottom: 1px solid #333; padding-bottom: 10px;">GENERAL
-                        RULES</h4>
-                    <ul class="decree-list" style="margin-top: 1rem;">
-                        <li>Registration before deadline.</li>
-                        <li>Report 30 mins prior to event.</li>
-                        <li>Professional conduct mandatory.</li>
-                        <li>No unauthorized recording.</li>
-                    </ul>
+                <div class="criteria-card">
+                    <strong>CONFIDENCE</strong>
+                    <p style="font-size: 0.85rem; color: #bbb;">Clarity in presentation</p>
                 </div>
             </div>
-
-            <p style="margin-top: 2rem; color: var(--stock-red); font-weight: bold;">
-                Any misconduct or rule violation will lead to immediate disqualification. The judges’ decision will be
-                final.
-            </p>
-
-            <button class="cta-btn">ENTER THE MARKET</button>
         </div>
+
+        <!-- Event Rules -->
+        <div class="panel reveal">
+            <h2 class="section-header">THE FIRM'S RULES</h2>
+            <ul class="rules-list" style="margin-bottom: 2rem;">
+                <li><strong>Squad Size</strong> Maximum of 4 members per team allowed.</li>
+                <li><strong>Compliance</strong> Strictly adhere to time limits and format.</li>
+                <li><strong>Integrity</strong> Plagiarism is strictly prohibited.</li>
+                <li><strong>Punctuality</strong> Report 30 minutes prior to event start.</li>
+                <li><strong>Exclusivity</strong> No recording or reproduction without permission.</li>
+            </ul>
+            <p style="color: var(--stock-red); font-weight: bold; letter-spacing: 2px;">ANY MISCONDUCT LEADS TO
+                IMMEDIATE LIQUIDATION (DISQUALIFICATION).</p>
+        </div>
+
+        <!-- Coordinators -->
+        <div class="reveal" style="text-align: center; margin-top: 4rem;">
+            <h3 class="sub-header" style="color: var(--wealth-gold);">EVENT COORDINATORS</h3>
+            <p style="font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: 5px;">
+                RITHVIK R &nbsp; | &nbsp; ROHITH KANNA S &nbsp; | &nbsp; AARTI B S
+            </p>
+            <button class="cta-btn">ENTER THE AUDITORIUM</button>
+        </div>
+
     </section>
 
     <script>
-        // 1. Scroll Reveal Logic
-        const observerOptions = { threshold: 0.1 };
+        // Scroll Reveal
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
+                if (entry.isIntersecting) entry.target.classList.add('active');
             });
-        }, observerOptions);
+        }, { threshold: 0.1 });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        // 2. Parallax
-        const heroTitle = document.querySelector('.universe-title');
-        window.addEventListener('scroll', () => {
-            const scrollY = window.scrollY;
-            if (scrollY < 800) {
-                heroTitle.style.transform = `translateY(${scrollY * 0.4}px)`;
-                heroTitle.style.opacity = `${1 - scrollY / 600}`;
-            }
-        });
-
-        // 3. Money/Ticker Particle System (Canvas)
+        // Money Rain
         const canvas = document.getElementById('money-canvas');
         const ctx = canvas.getContext('2d');
         let width, height;
@@ -565,58 +462,41 @@
         window.addEventListener('resize', resize);
         resize();
 
-        class Particle {
+        class Bill {
             constructor() {
                 this.reset();
             }
-
             reset() {
                 this.x = Math.random() * width;
-                this.y = Math.random() * -height; // Start well above
-                this.width = Math.random() * 15 + 10; // Rectangular money shape
-                this.height = this.width * 0.5;
-                this.speed = Math.random() * 3 + 1;
-                this.rotation = Math.random() * 360;
-                this.rotationSpeed = (Math.random() - 0.5) * 5;
-                this.drift = (Math.random() - 0.5) * 2;
-
-                // Colors: Silver or Gold (No Green)
-                const isGold = Math.random() > 0.5;
-                this.color = isGold
-                    ? `rgba(212, 175, 55, ${Math.random() * 0.4 + 0.2})`  // Gold
-                    : `rgba(192, 192, 192, ${Math.random() * 0.3 + 0.1})`; // Silver
+                this.y = Math.random() * -height;
+                this.w = Math.random() * 15 + 10;
+                this.h = this.w * 0.5;
+                this.speed = Math.random() * 3 + 2;
+                this.rot = Math.random() * 360;
+                this.rotSpeed = (Math.random() - 0.5) * 10;
+                this.color = Math.random() > 0.5 ? '#d4af37' : '#c0c0c0';
+                this.opacity = Math.random() * 0.4 + 0.1;
             }
-
             update() {
                 this.y += this.speed;
-                this.x += this.drift;
-                this.rotation += this.rotationSpeed;
-
-                if (this.y > height) {
-                    this.reset();
-                }
+                this.rot += this.rotSpeed;
+                if (this.y > height) this.reset();
             }
-
             draw() {
                 ctx.save();
                 ctx.translate(this.x, this.y);
-                ctx.rotate(this.rotation * Math.PI / 180);
+                ctx.rotate(this.rot * Math.PI / 180);
+                ctx.globalAlpha = this.opacity;
                 ctx.fillStyle = this.color;
-                ctx.fillRect(-this.width / 2, -this.height / 2, this.width, this.height);
+                ctx.fillRect(-this.w / 2, -this.h / 2, this.w, this.h);
                 ctx.restore();
             }
         }
 
-        const particles = [];
-        // 80 "Bills"
-        for (let i = 0; i < 80; i++) particles.push(new Particle());
-
+        const bills = Array.from({ length: 100 }, () => new Bill());
         function animate() {
             ctx.clearRect(0, 0, width, height);
-            particles.forEach(p => {
-                p.update();
-                p.draw();
-            });
+            bills.forEach(b => { b.update(); b.draw(); });
             requestAnimationFrame(animate);
         }
         animate();
