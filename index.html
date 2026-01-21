@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Michroma&family=Rajdhani:wght@300;500;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Michroma&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap"
         rel="stylesheet">
 
     <!-- GSAP -->
@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/hero.css">
+    <link rel="stylesheet" href="css/bg-glitch.css">
     <link rel="stylesheet" href="css/timeline.css">
     <link rel="stylesheet" href="css/events.css">
     <link rel="stylesheet" href="css/footer.css">
@@ -83,36 +84,17 @@
 
         <!-- Hero Image Container: Fixed during scroll, then docks to About -->
         <div class="hero-image-container" id="hero-container">
-            <img src="assets/hero_main.png" alt="Loki Sacred Timeline" class="hero-bg-image" id="hero-image">
+            <!-- Background: Loki-Green.png (predominant), glitches to Loki-Red.png every 2 seconds -->
             <div class="hero-vignette"></div>
 
             <!-- Hero Content Overlay -->
             <div class="hero-content-overlay">
-                <!-- Top: Department Label (moved from below SVCE badge) -->
-                <div class="hero-top-info">
-                    <span class="department-label">Department of Electronics & Communication Engineering</span>
-                </div>
-
-                <!-- Center: Title with multiverse styling -->
+                <!-- Center: Title -->
                 <div class="hero-title-block">
                     <h1 class="hero-main-title">
                         <span class="title-main">UPAGRAHA</span>
                         <span class="title-year">'26</span>
                     </h1>
-                    <p class="hero-tagline">NATIONAL LEVEL TECHNICAL SYMPOSIUM</p>
-                </div>
-
-                <!-- Club Logos -->
-                <div class="hero-clubs">
-                    <div class="club-logo-container" data-club="IETE">
-                        <img src="assets/Logo/iete.png" alt="IETE Logo" class="club-logo">
-                    </div>
-                    <div class="club-logo-container" data-club="RACE">
-                        <img src="assets/Logo/race.png" alt="RACE Logo" class="club-logo">
-                    </div>
-                    <div class="club-logo-container" data-club="ECEA">
-                        <img src="assets/Logo/ecea.png" alt="ECEA Logo" class="club-logo">
-                    </div>
                 </div>
 
                 <!-- Countdown Timer -->
@@ -150,12 +132,6 @@
             </div>
         </div>
 
-        <!-- Scroll indicator -->
-        <div class="scroll-indicator">
-            <span>SCROLL</span>
-            <div class="scroll-arrow"></div>
-        </div>
-
         <!-- ABOUT SECTION - Visible during hero transition -->
         <section id="about" class="about-section">
             <div class="about-container">
@@ -163,51 +139,37 @@
                 <!-- About text - enters from left during hero shrink -->
                 <div class="about-text">
                     <div class="about-header-row">
-                        <h2 class="about-title"><span style="color:white">THE</span> <br> CORE <br> MISSION</h2>
+                        <h2 class="about-title"><span class="about-prefix">About</span> <span
+                                class="about-event-name">UPAGRAHA'26</span></h2>
                     </div>
                     <p class="about-description">
-                        The Electronics Department stands at the forefront of technological innovation, bridging the gap
-                        between theoretical excellence and practical engineering mastery.
-                    </p>
-                    <p class="about-description">
-                        Our commitment to <span class="highlight-gold">hardware excellence</span> drives every
-                        initiative—from precision circuit design to cutting-edge embedded systems. We cultivate
-                        engineers who don't just understand technology; they <span class="highlight-gold">shape its
-                            future</span>.
-                    </p>
-                    <p class="about-description">
-                        Through rigorous training, collaborative research, and industry partnerships, we forge the next
-                        generation of innovators ready to tackle global challenges with <span
-                            class="highlight-gold">technical precision</span> and creative vision.
+                        UPAGRAHA'26 is a national-level technical symposium conducted by the student clubs of the
+                        Department of Electronics and Communication Engineering, Sri Venkateswara College of
+                        Engineering. Designed as a space for curiosity, creativity, and technical exploration, the
+                        symposium invites students to step beyond textbooks and experience learning through challenge
+                        and innovation. With a dynamic blend of technical events, presentations, and interactive
+                        activities, UPAGRAHA'26 offers an exciting platform to test ideas, collaborate with peers, and
+                        dive into the evolving world of technology.
                     </p>
 
-                    <!-- Stats Section Moved to Header -->
-                </div>
-
-                <!-- Right Column: Stats + Hero Card Destination -->
-                <div class="about-right-column">
-                    <!-- Stats Section (Above the card landing zone) -->
-                    <div class="stats-grid">
-                        <div class="stat-card">
-                            <div class="stat-number" data-target="500">0</div>
-                            <div class="stat-label">PARTICIPANTS</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-number" data-target="20">0</div>
-                            <div class="stat-label">EVENTS</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-number" data-target="100">0</div>
-                            <div class="stat-label">PROJECTS</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-number" data-target="80">0</div>
-                            <div class="stat-label">SUCCESS</div>
-                        </div>
+                    <!-- About Us Section -->
+                    <div class="about-header-row" style="margin-top: 60px;">
+                        <h2 class="about-title"><span class="about-prefix">About</span> <span
+                                class="about-event-name">Us</span></h2>
                     </div>
+                    <p class="about-description">
+                        This symposium is organized by the student associations of the Department of Electronics and
+                        Communication Engineering at Sri Venkateswara College of Engineering - The Electronics and
+                        Communication Engineers Association (ECEA) in association with the Institution of
+                        Telecommunication Engineers - Students' Forum (IETE-SF, SVCE) and the Research Association for
+                        Innovative Design in Communication and Electronics (RACE) - working together to promote
+                        innovation, collaboration, and technical excellence. Through symposiums, hackathons, workshops,
+                        robotics events, and research-driven initiatives in embedded systems, machine learning, and
+                        VLSI, the clubs bridge the gap between academic learning and real-world application, empowering
+                        students to grow into future-ready engineers and technology leaders.
+                    </p>
 
-                    <!-- Card landing zone -->
-                    <div class="about-card-space" id="card-landing-zone"></div>
+                    <!-- Stats Section Removed -->
                 </div>
             </div>
         </section>
