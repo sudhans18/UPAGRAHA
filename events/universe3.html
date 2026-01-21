@@ -469,7 +469,7 @@
 
     <canvas id="ash-canvas"></canvas>
 
-    <a href="../index.html#events" class="back-link">←</a>
+    <a href="../index.html#events" class="back-link" onclick="if(document.referrer.indexOf(window.location.host) !== -1) { event.preventDefault(); history.back(); }">←</a>
 
     <section class="universe-hero">
         <div class="glitch-wrapper">

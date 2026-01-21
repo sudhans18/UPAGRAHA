@@ -1,54 +1,154 @@
 // ===========================================
-// HERO.JS - Hero Effects (Background Glitch)
+// HERO.JS - Hero Parallax, Floating, Transition
 // ===========================================
 
+import { isTabActive } from './utils.js';
+
 const heroContainer = document.querySelector('#hero-container');
+const heroImage = document.querySelector('#hero-image');
+const heroSection = document.querySelector('#hero-cinematic');
 
-export function initHeroEffects() {
-    // Continuous glitch effect - Loki-Green for 3s, Loki-Red for 2s
-    // Glitch animation plays consistently on BOTH transitions
-    // Colors sync permanently, no scroll lock
+let isInCardMode = false;
+let floatingOffset = { y: 0 };
+let mouseX = 0, mouseY = 0;
+let currentX = 0, currentY = 0;
 
-    // Total cycle: 5 seconds (3s Green + 2s Red)
-    setInterval(() => {
-        if (heroContainer) {
-            // GREEN → RED transition
-            // 1. Add glitch animation
-            heroContainer.classList.add('glitching');
-            // 2. Change to red background
-            heroContainer.classList.add('glitch-red');
-            heroContainer.classList.remove('glitch-green');
+// Mouse Parallax listener
+document.addEventListener('mousemove', (e) => {
+    mouseX = (e.clientX / window.innerWidth) - 0.5;
+    mouseY = (e.clientY / window.innerHeight) - 0.5;
+});
 
-            // 3. Add theme-red class to body for UI color sync
-            document.body.classList.add('theme-red');
+function initHeroFloating() {
+    if (!heroImage) return;
 
-            // Remove glitch animation after 0.5s
-            setTimeout(() => {
-                heroContainer.classList.remove('glitching');
-            }, 500);
+    gsap.to(floatingOffset, {
+        y: -20,
+        duration: 6,
+        ease: "sine.inOut",
+        yoyo: true,
+        repeat: -1
+    });
+    console.log('🎈 Floating animation initialized (12s cycle, 20px range)');
+}
 
-            // After 2 seconds, transition back to GREEN
-            setTimeout(() => {
-                // RED → GREEN transition
-                // 1. Add glitch animation
-                heroContainer.classList.add('glitching');
-                // 2. Change to green background
-                heroContainer.classList.add('glitch-green');
-                heroContainer.classList.remove('glitch-red');
+function updateParallax() {
+    if (!isTabActive || !heroImage) {
+        requestAnimationFrame(updateParallax);
+        return;
+    }
 
-                // 3. Remove theme-red class for green UI
-                document.body.classList.remove('theme-red');
+    const lerpFactor = 0.05;
+    currentX += (mouseX - currentX) * lerpFactor;
+    currentY += (mouseY - currentY) * lerpFactor;
 
-                // Remove glitch animation after 0.5s
-                setTimeout(() => {
-                    heroContainer.classList.remove('glitching');
-                }, 500);
-            }, 2000); // Red shows for 2 seconds
-        }
-    }, 5000); // Repeat every 5 seconds (3s green + 2s red)
+    const rangeMultiplier = isInCardMode ? 0.3 : 1;
+    const xVal = currentX * 50 * rangeMultiplier;
+    const yVal = currentY * 30 * rangeMultiplier;
+
+    gsap.set(heroImage, {
+        x: xVal,
+        y: yVal + floatingOffset.y
+    });
+
+    requestAnimationFrame(updateParallax);
 }
 
 export function initHeroTransition() {
-    // Transition disabled - hero section scrolls normally
-    return;
+    const scrollIndicator = document.querySelector('.scroll-indicator');
+    const heroAboutWrapper = document.querySelector('#hero-about-wrapper');
+    const aboutSection = document.querySelector('#about');
+    const aboutText = document.querySelector('.about-text');
+
+    if (!heroAboutWrapper || !heroContainer) {
+        console.warn('Hero elements not found, skipping transition');
+        return;
+    }
+
+    // 1) Precompute card dimensions - adjust cardWidth for final size
+    // cardScale = 0.5 means hero shrinks to 50% of viewport width
+    const cardScale = 0.5;
+    const cardRight = window.innerWidth * 0.03;
+    const cardBottom = window.innerHeight * 0.05;
+
+    // 2) About section offset setup
+    const aboutOffsetX = -100;
+    gsap.set(aboutSection, { x: aboutOffsetX, opacity: 0 });
+
+    // 3) Stats cards setup
+    const statCards = document.querySelectorAll('.stat-card');
+    gsap.set(statCards, { opacity: 0, y: 30 });
+
+    // 4) Create the pinned timeline
+    const heroTl = gsap.timeline({
+        scrollTrigger: {
+            trigger: heroAboutWrapper,
+            start: "top top",
+            end: "+=100%",
+            pin: true,
+            pinSpacing: true,
+            scrub: 1,
+            anticipatePin: 1,
+            onUpdate: self => {
+                if (self.progress > 0.3 && !isInCardMode) {
+                    isInCardMode = true;
+                    heroContainer.classList.add('is-card');
+                }
+            }
+        }
+    });
+
+    // 5) Calculate final position
+    // The card should end up at bottom-right: 3vw from right, 5vh from bottom
+    // Since we scale from center, we need to calculate the offset
+    const finalX = (window.innerWidth * (1 - cardScale)) / 2 - cardRight;
+    const finalY = (window.innerHeight * (1 - cardScale)) / 2 - cardBottom;
+
+    // 6) Animations in parallel
+    heroTl
+        .to(heroContainer, {
+            scale: cardScale,
+            x: finalX,
+            y: finalY,
+            borderRadius: '20px',
+            duration: 1,
+            ease: "power2.inOut"
+        }, 0)
+        .to(scrollIndicator, { opacity: 0, duration: 0.2 }, 0)
+        .to(aboutSection, {
+            x: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: "power2.out"
+        }, 0.2)
+        .to(statCards, {
+            opacity: 1,
+            y: 0,
+            stagger: 0.1,
+            duration: 0.5,
+            ease: "power2.out",
+            onStart: animateStatCounters
+        }, 0.5); // Adjust this value: higher = cards appear later in scroll
+}
+
+function animateStatCounters() {
+    document.querySelectorAll('.stat-number').forEach(el => {
+        const target = parseInt(el.dataset.target, 10);
+        if (!target || isNaN(target)) return;
+
+        gsap.fromTo(el,
+            { innerText: 0 },
+            {
+                innerText: target,
+                snap: { innerText: 1 },
+                duration: 2.5,
+                ease: "power2.out"
+            }
+        );
+    });
+}
+
+export function initHeroEffects() {
+    updateParallax();
+    initHeroFloating();
 }

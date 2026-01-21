@@ -18,14 +18,19 @@
     background: transparent;
 }
 
-/* Image container - Normal scroll, no transition */
+/* Image container - FIXED during transition, then switches to ABSOLUTE when docked */
 .hero-image-container {
-    position: relative;
-    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
     height: 100vh;
     overflow: hidden;
-    background: url('../assets/Loki-Green.png') center center / cover no-repeat;
-    transition: background 0.3s ease;
+    z-index: 50;
+    transform-origin: center center;
+    transform: scale(1);
+    border-radius: 0;
+    clip-path: none;
 }
 
 /* When docked to about section (applied by JS) */
@@ -63,7 +68,7 @@
     opacity: 0.6;
 }
 
-/* Hero Background Image - REMOVED (using gradient background instead)
+/* Hero Background Image - oversized for floating + parallax buffer */
 .hero-bg-image {
     width: 115%;
     height: 125%;
@@ -76,7 +81,6 @@
     pointer-events: none;
     will-change: transform;
 }
-*/
 
 /* Vignette Overlay with breathing animation */
 .hero-vignette {
@@ -106,9 +110,53 @@
 }
 
 /* Scroll Indicator */
-/* Scroll Indicator - HIDDEN */
 .scroll-indicator {
-    display: none !important;
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 150;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0.8;
+    pointer-events: none;
+}
+
+.scroll-indicator span {
+    font-family: var(--font-cyber);
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.scroll-arrow {
+    width: 24px;
+    height: 24px;
+    border-right: 2px solid rgba(255, 255, 255, 0.7);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.7);
+    transform: rotate(45deg);
+    animation: scrollBounce 2s ease-in-out infinite;
+}
+
+@keyframes scrollBounce {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: rotate(45deg) translateY(0);
+    }
+
+    40% {
+        transform: rotate(45deg) translateY(10px);
+    }
+
+    60% {
+        transform: rotate(45deg) translateY(5px);
+    }
 }
 
 /* ============================================
@@ -117,43 +165,70 @@
 
 .hero-content-overlay {
     position: absolute;
-    top: auto;
-    bottom: 0;
+    top: 0;
     left: 0;
     width: 100%;
-    height: auto;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
     z-index: 10;
-    padding: 20px 20px 50px;
+    padding: 80px 20px 40px;
     pointer-events: none;
     text-align: center;
-    gap: 25px;
 }
 
 .hero-content-overlay * {
     pointer-events: auto;
 }
 
-/* Top Info - HIDDEN */
+/* Top Info - College & Department */
 .hero-top-info {
-    display: none !important;
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.college-badge {
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    padding: 8px 24px;
+    border-radius: 30px;
+    border: 1px solid rgba(138, 43, 226, 0.4);
+}
+
+.college-name {
+    font-family: var(--font-cyber);
+    font-size: 0.9rem;
+    letter-spacing: 4px;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(138, 43, 226, 0.8);
 }
 
 .department-label {
-    display: none !important;
-}
-
-/* Tagline - HIDDEN */
-.hero-tagline {
-    display: none !important;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    letter-spacing: 3px;
+    color: rgba(255, 255, 255, 0.9);
+    text-transform: uppercase;
+    text-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.8),
+        0 0 20px rgba(138, 43, 226, 0.4);
+    background: rgba(0, 0, 0, 0.25);
+    padding: 8px 20px;
+    border-radius: 4px;
+    backdrop-filter: blur(5px);
 }
 
 /* Title Block */
 .hero-title-block {
-    margin-bottom: 0;
+    margin-bottom: 24px;
 }
 
 .hero-main-title {
@@ -169,47 +244,28 @@
 }
 
 .title-main {
-    color: var(--neon-green);
+    color: #ce8eff;
     text-shadow:
         0 2px 2px #000,
-        0 0 20px rgba(0, 255, 65, 0.8),
-        0 0 40px rgba(0, 143, 17, 0.6);
-    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.9));
+        0 0 20px rgba(80, 0, 80, 0.8),
+        0 0 40px rgba(40, 0, 80, 0.6);
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.8));
     background: none;
     -webkit-text-fill-color: initial;
     background-clip: content-box;
     -webkit-background-clip: initial;
     animation: none;
     letter-spacing: 0.05em;
-    transition: color 0.3s ease, text-shadow 0.3s ease;
-}
-
-/* Red theme when Loki-Red background is active */
-.theme-red .title-main {
-    color: var(--theme-red);
-    text-shadow:
-        0 2px 2px #000,
-        0 0 20px var(--theme-red-glow),
-        0 0 40px rgba(200, 0, 40, 0.6);
-}
-
-/* Lock to green after scrolling past hero */
-body.scrolled-past-hero .title-main {
-    color: var(--neon-green) !important;
-    text-shadow:
-        0 2px 2px #000,
-        0 0 20px rgba(0, 255, 65, 0.8),
-        0 0 40px rgba(0, 143, 17, 0.6) !important;
 }
 
 .title-year {
     font-family: var(--font-cyber);
     font-size: clamp(2rem, 5vw, 3.5rem);
-    color: #ffffff;
+    color: #c4a000;
     -webkit-text-stroke: 1px rgba(0, 0, 0, 0.8);
     text-shadow:
         0 2px 4px #000,
-        0 0 15px rgba(255, 255, 255, 0.4);
+        0 0 15px rgba(100, 80, 0, 0.6);
     animation: none;
 }
 
@@ -256,19 +312,19 @@ body.scrolled-past-hero .title-main {
     letter-spacing: 6px;
     color: rgba(255, 255, 255, 0.7);
     margin-top: 24px;
-    margin-bottom: 0;
     text-shadow: 0 2px 4px #000;
-    text-align: center;
 }
 
-/* Club Logos - HIDDEN */
+/* Club Logos */
 .hero-clubs {
-    display: none !important;
+    display: flex;
+    gap: 24px;
+    margin-bottom: 32px;
 }
 
 .club-logo-container {
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -359,35 +415,24 @@ body.scrolled-past-hero .title-main {
 .hero-countdown {
     display: flex;
     align-items: center;
-    gap: 6px;
-    margin-bottom: 25px;
+    gap: 8px;
+    margin-bottom: 40px;
 }
 
 .countdown-block {
-    background: var(--glass-bg);
+    background: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(10px);
-    padding: 8px 12px;
-    border-radius: 6px;
-    border: 1px solid var(--glass-border);
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid rgba(80, 80, 80, 0.5);
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-width: 55px;
+    min-width: 70px;
     position: relative;
     overflow: hidden;
     transition: all 0.3s ease;
-    box-shadow:
-        0 4px 10px rgba(0, 0, 0, 0.5),
-        0 0 20px rgba(0, 255, 65, 0.1);
-}
-
-/* Red theme for countdown boxes */
-.theme-red .countdown-block {
-    background: var(--theme-red-glass);
-    border-color: var(--theme-red-border);
-    box-shadow:
-        0 4px 10px rgba(0, 0, 0, 0.5),
-        0 0 20px var(--theme-red-border);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
 .countdown-block::before {
@@ -397,74 +442,38 @@ body.scrolled-past-hero .title-main {
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, var(--neon-green), transparent);
-}
-
-/* Red theme for top line */
-.theme-red .countdown-block::before {
-    background: linear-gradient(90deg, transparent, var(--theme-red), transparent);
+    background: linear-gradient(90deg, transparent, #888, transparent);
 }
 
 .countdown-block:hover {
-    border-color: var(--neon-green);
-    background: rgba(0, 40, 10, 0.5);
-    box-shadow:
-        0 4px 10px rgba(0, 0, 0, 0.5),
-        0 0 30px rgba(0, 255, 65, 0.3);
-}
-
-/* Red theme hover */
-.theme-red .countdown-block:hover {
-    border-color: var(--theme-red);
-    background: rgba(40, 0, 10, 0.5);
-    box-shadow:
-        0 4px 10px rgba(0, 0, 0, 0.5),
-        0 0 30px var(--theme-red-glow);
+    border-color: rgba(100, 100, 100, 0.8);
+    background: rgba(20, 20, 20, 0.8);
 }
 
 .count-value {
     font-family: var(--font-cyber);
-    font-size: 1.4rem;
+    font-size: 2rem;
     font-weight: 700;
-    color: var(--neon-green);
+    color: #e0e0e0;
     background: none;
     -webkit-text-fill-color: initial;
-    text-shadow:
-        0 2px 4px rgba(0, 0, 0, 0.9),
-        0 0 10px rgba(0, 255, 65, 0.5);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
     line-height: 1;
-    transition: color 0.3s ease, text-shadow 0.3s ease;
-}
-
-/* Red theme - countdown numbers */
-.theme-red .count-value {
-    color: var(--theme-red);
-    text-shadow:
-        0 2px 4px rgba(0, 0, 0, 0.9),
-        0 0 10px var(--theme-red-glow);
 }
 
 .count-label {
     font-family: var(--font-body);
     font-size: 0.65rem;
     letter-spacing: 2px;
-    color: var(--text-color);
+    color: rgba(255, 255, 255, 0.6);
     margin-top: 6px;
 }
 
 .countdown-divider {
     font-family: var(--font-cyber);
-    font-size: 1.5rem;
-    color: var(--neon-green);
+    font-size: 2rem;
+    color: rgba(188, 19, 254, 0.7);
     animation: dividerPulse 1s ease-in-out infinite;
-    text-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
-    transition: color 0.3s ease, text-shadow 0.3s ease;
-}
-
-/* Red theme */
-.theme-red .countdown-divider {
-    color: var(--theme-red);
-    text-shadow: 0 0 10px var(--theme-red-glow);
 }
 
 @keyframes dividerPulse {
@@ -499,36 +508,12 @@ body.scrolled-past-hero .title-main {
 }
 
 .hero-btn.primary {
-    background: var(--glass-bg);
-    color: var(--neon-green);
-    border: 2px solid var(--neon-green);
+    background: rgba(10, 5, 20, 0.8);
+    color: #ce8eff;
+    border: 1px solid #8a2be2;
     box-shadow:
         0 2px 10px rgba(0, 0, 0, 0.8),
-        0 0 20px rgba(0, 255, 65, 0.2),
-        inset 0 0 20px rgba(0, 25, 5, 0.3);
-    transition: all 0.3s ease;
-}
-
-/* Red theme */
-.theme-red .hero-btn.primary {
-    background: var(--theme-red-glass);
-    color: var(--theme-red);
-    border-color: var(--theme-red);
-    box-shadow:
-        0 2px 10px rgba(0, 0, 0, 0.8),
-        0 0 20px var(--theme-red-border),
-        inset 0 0 20px rgba(25, 0, 5, 0.3);
-}
-
-/* Lock to green */
-body.scrolled-past-hero .hero-btn.primary {
-    background: var(--glass-bg) !important;
-    color: var(--neon-green) !important;
-    border-color: var(--neon-green) !important;
-    box-shadow:
-        0 2px 10px rgba(0, 0, 0, 0.8),
-        0 0 20px rgba(0, 255, 65, 0.2),
-        inset 0 0 20px rgba(0, 25, 5, 0.3) !important;
+        inset 0 0 20px rgba(80, 0, 120, 0.2);
 }
 
 .hero-btn.primary::before {
@@ -541,28 +526,28 @@ body.scrolled-past-hero .hero-btn.primary {
 
 .hero-btn.primary:hover {
     transform: translateY(-2px);
-    background: rgba(0, 40, 10, 0.8);
+    background: rgba(20, 10, 30, 0.9);
     box-shadow:
         0 5px 15px rgba(0, 0, 0, 0.9),
-        0 0 30px rgba(0, 255, 65, 0.4);
-    border-color: var(--neon-green);
+        0 0 20px rgba(138, 43, 226, 0.3);
+    border-color: #bc13fe;
 }
 
 .hero-btn.secondary {
     background: transparent;
-    color: #ffffff;
-    border: 2px solid #ffffff;
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    color: #fff;
+    border: 2px solid rgba(0, 247, 255, 0.6);
+    box-shadow: 0 0 15px rgba(0, 247, 255, 0.2);
 }
 
 .hero-btn.secondary:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: #ffffff;
+    background: rgba(0, 247, 255, 0.1);
+    border-color: #00f7ff;
     transform: translateY(-3px);
     box-shadow:
-        0 0 25px rgba(255, 255, 255, 0.4),
+        0 0 25px rgba(0, 247, 255, 0.4),
         0 8px 20px rgba(0, 0, 0, 0.3);
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+    text-shadow: 0 0 10px #00f7ff;
 }
 
 /* ============================================
@@ -572,36 +557,28 @@ body.scrolled-past-hero .hero-btn.primary {
 .about-section {
     position: relative;
     z-index: 10;
-    background: transparent;
-    /* Allow starfield to show through */
+    background: var(--bg-color);
     min-height: 100vh;
     padding: 100px 5vw;
     display: flex;
     align-items: center;
-    opacity: 1;
-    /* Visible by default since transition is disabled */
 }
 
 .about-container {
     display: flex;
-    flex-direction: column;
     width: 100%;
-    max-width: 1200px;
+    max-width: 1600px;
     margin: 0 auto;
     gap: 4vw;
-    align-items: center;
+    align-items: flex-start;
     padding-top: 5vh;
 }
 
 /* About text - left side */
 .about-text {
     flex: 1;
-    max-width: 100%;
+    max-width: 45%;
     opacity: 1;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
 .about-title {
@@ -614,23 +591,6 @@ body.scrolled-past-hero .hero-btn.primary {
         0 0 20px rgba(0, 255, 65, 0.3);
     letter-spacing: 0.1em;
     line-height: 1.1;
-    text-align: center;
-    white-space: nowrap;
-}
-
-/* About prefix styling - white color */
-.about-prefix {
-    color: #ffffff;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
-}
-
-/* Event name styling - green with Orbitron font */
-.about-event-name {
-    font-family: 'Orbitron', var(--font-cyber), sans-serif;
-    color: var(--neon-green);
-    text-shadow:
-        0 2px 0 #000,
-        0 0 20px rgba(0, 255, 65, 0.5);
 }
 
 .about-description {
@@ -640,9 +600,7 @@ body.scrolled-past-hero .hero-btn.primary {
     color: #e0e0e0;
     margin-bottom: 1rem;
     opacity: 0.9;
-    max-width: 800px;
-    text-align: justify;
-    text-justify: inter-word;
+    max-width: 600px;
 }
 
 .highlight-gold {
@@ -695,10 +653,8 @@ body.scrolled-past-hero .hero-btn.primary {
     position: relative;
     z-index: 5;
     background: var(--bg-color);
-    /* #020b04 - Dark green-black */
     min-height: 100vh;
     padding-top: 80px;
-    padding-bottom: 80px;
 }
 
 #about .section-title {

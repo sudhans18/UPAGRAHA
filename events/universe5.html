@@ -65,7 +65,9 @@
 </head>
 
 <body>
-    <a href="../index.html#events" class="back-link">Return to Multiverse</a>
+    <a href="../index.html#events" class="back-link"
+        onclick="if(document.referrer.indexOf(window.location.host) !== -1) { event.preventDefault(); history.back(); }">Return
+        to Multiverse</a>
 
     <section class="universe-hero">
         <h1 class="universe-title">BRAIN STORM</h1>

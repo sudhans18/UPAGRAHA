@@ -67,5 +67,20 @@ export function initTimelineAnimation() {
                 behavior: 'smooth'
             });
         }, 500);
+
     }
+
+    // Scroll Reveal Observer for Mobile Animation
+    // This runs on all screens but effects are only visible via CSS media query
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.15 });
+
+    timelineEvents.forEach(event => {
+        observer.observe(event);
+    });
 }

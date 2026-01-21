@@ -66,7 +66,13 @@ function initAnimations() {
     // Initialize hero transition
     initHeroTransition();
 
-    // Scroll indicator animation - REMOVED
+    // Scroll indicator animation
+    gsap.from('.scroll-indicator', {
+        duration: 1,
+        opacity: 0,
+        y: 20,
+        delay: 1.5
+    });
 
     // Section titles animation
     gsap.utils.toArray('.spa-section h2').forEach(title => {

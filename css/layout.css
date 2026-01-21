@@ -158,21 +158,9 @@
     left: 0;
     width: 0;
     height: 2px;
-    background: var(--neon-green);
-    transition: width 0.3s, background 0.3s ease;
-    box-shadow: 0 0 8px rgba(0, 255, 65, 0.6);
-}
-
-/* Red theme */
-.theme-red .nav-link::after {
-    background: var(--theme-red);
-    box-shadow: 0 0 8px var(--theme-red-glow);
-}
-
-/* Lock to green */
-body.scrolled-past-hero .nav-link::after {
-    background: var(--neon-green) !important;
-    box-shadow: 0 0 8px rgba(0, 255, 65, 0.6) !important;
+    background: linear-gradient(90deg, #bc13fe, #00f7ff);
+    transition: width 0.3s;
+    box-shadow: 0 0 8px rgba(188, 19, 254, 0.6);
 }
 
 .nav-link:hover,
@@ -199,27 +187,18 @@ body.scrolled-past-hero .nav-link::after {
     letter-spacing: 2px;
     text-decoration: none;
     padding: 10px 20px;
-    background: var(--neon-green);
-    color: #000;
+    background: #bc13fe;
+    color: #fff;
     border: 2px solid #000;
     border-radius: 4px;
     transition: all 0.3s ease;
     box-shadow: 4px 4px 0 #000;
 }
 
-/* Red theme */
-.theme-red .nav-register-btn {
-    background: var(--theme-red);
-}
-
-/* Lock to green after scroll */
-body.scrolled-past-hero .nav-register-btn {
-    background: var(--neon-green) !important;
-}
-
 .nav-register-btn:hover {
     transform: translate(-2px, -2px);
     box-shadow: 6px 6px 0 #000;
+    background: #d041ff;
 }
 
 .nav-toggle {

@@ -346,13 +346,13 @@
 <body>
     <!-- Persistent Backgrounds -->
     <video id="bg-video" autoplay muted loop playsinline>
-        <source src="../assets/bg_video_final.mp4" type="video/mp4">
+        <source src="../assets/got.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
     <canvas id="ash-canvas"></canvas>
 
     <!-- Arrow only -->
-    <a href="../index.html#events" class="back-link">←</a>
+    <a href="../index.html#events" class="back-link" onclick="if(document.referrer.indexOf(window.location.host) !== -1) { event.preventDefault(); history.back(); }">←</a>
 
     <section class="universe-hero" id="hero">
         <h1 class="universe-title">
