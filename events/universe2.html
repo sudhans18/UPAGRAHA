@@ -80,7 +80,7 @@
         }
 
         .universe-title {
-            font-size: 5rem;
+            font-size: 4rem;
             color: var(--royal-gold);
             font-family: 'Cinzel Decorative', cursive;
             text-transform: uppercase;
@@ -124,63 +124,91 @@
             }
         }
 
-        /* CSS Real Torch Animation */
-        .torch {
+        /* Viking Shield Header Element */
+        .viking-shield {
             position: relative;
-            width: 30px;
-            height: 100px;
-            background: linear-gradient(to bottom, #4a0000, #220000);
-            border-radius: 5px 5px 20px 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.8) inset;
-            border: 2px solid #5a2e00;
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle at 30% 30%, #555 0%, #222 70%, #000 100%);
+            border: 4px solid #3d2b1f;
+            /* Dark wood-like border */
+            border-radius: 50%;
+            box-shadow:
+                0 0 20px rgba(0, 0, 0, 0.8),
+                inset 0 0 15px rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: shieldFloat 4s ease-in-out infinite;
         }
 
-        /* Torch Top/Holder */
-        .torch::before {
+        /* Metal Rim */
+        .viking-shield::before {
             content: '';
             position: absolute;
-            top: -15px;
-            left: -5px;
-            width: 40px;
-            height: 20px;
-            background: #444;
-            border: 2px solid #222;
-            border-radius: 4px;
+            inset: -4px;
+            border: 6px solid #444;
+            /* Iron rim */
+            border-radius: 50%;
+            box-shadow: inset 0 0 5px #000;
         }
 
-        .flame {
+        /* Rune in Center */
+        .rune {
+            font-family: 'Cinzel Decorative', cursive;
+            font-size: 2.2rem;
+            color: var(--royal-gold);
+            text-shadow:
+                0 0 10px var(--royal-gold),
+                0 0 25px rgba(212, 175, 55, 0.6);
+            animation: runePulse 2s ease-in-out infinite alternate;
+            user-select: none;
+            z-index: 2;
+        }
+
+        /* Shield Center Boss (Metal) */
+        .shield-boss {
             position: absolute;
-            bottom: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 30px;
-            height: 50px;
-            background: radial-gradient(ellipse at bottom, #ffcc00 0%, #ff4500 50%, transparent 80%);
-            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-            filter: blur(2px);
-            animation: flicker 0.1s infinite alternate;
-            box-shadow: 0 -10px 30px #ff4500;
+            width: 35px;
+            height: 35px;
+            background: radial-gradient(circle at 30% 30%, #888, #333);
+            border-radius: 50%;
+            border: 2px solid #222;
+            z-index: 1;
         }
 
-        @keyframes flicker {
+        @keyframes shieldFloat {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-10px) rotate(5deg);
+            }
+        }
+
+        @keyframes runePulse {
             0% {
-                transform: translateX(-50%) scale(1);
-                opacity: 1;
-                height: 50px;
+                opacity: 0.7;
+                transform: scale(0.95);
+                text-shadow: 0 0 10px var(--royal-gold);
             }
 
             100% {
-                transform: translateX(-50%) scale(1.1);
-                opacity: 0.9;
-                height: 55px;
+                opacity: 1;
+                transform: scale(1.05);
+                text-shadow: 0 0 25px var(--royal-gold), 0 0 45px var(--royal-gold);
             }
         }
 
         .universe-desc {
             max-width: 800px;
-            padding: 3rem;
+            max-width: 800px;
+            padding: 2rem;
             color: #fff;
-            font-size: 1.4rem;
+            font-size: 1.15rem;
             line-height: 1.8;
             border: 1px solid rgba(212, 175, 55, 0.3);
             border-left: 5px solid var(--blood-red);
@@ -236,7 +264,10 @@
             background: rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(212, 175, 55, 0.2);
-            padding: 4rem;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 3rem;
             border-radius: 8px;
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
         }
@@ -251,8 +282,9 @@
         .decree-list li {
             padding: 1rem 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             color: #ddd;
-            font-size: 1.1rem;
+            font-size: 1rem;
         }
 
         .decree-list li::before {
@@ -262,8 +294,8 @@
         }
 
         .cta-btn {
-            margin-top: 3rem;
-            padding: 20px 60px;
+            margin-top: 2rem;
+            padding: 15px 40px;
             background: linear-gradient(45deg, var(--deep-crimson), var(--blood-red));
             border: 2px solid var(--royal-gold);
             color: var(--royal-gold);
@@ -346,31 +378,31 @@
 <body>
     <!-- Persistent Backgrounds -->
     <video id="bg-video" autoplay muted loop playsinline>
-        <source src="../assets/got.mp4" type="video/mp4">
+        <source src="../assets/bg_video_final.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
     <canvas id="ash-canvas"></canvas>
 
     <!-- Arrow only -->
-    <a href="../index.html#events" class="back-link" onclick="if(document.referrer.indexOf(window.location.host) !== -1) { event.preventDefault(); history.back(); }">←</a>
+    <a href="../index.html#events" class="back-link"
+        onclick="if(document.referrer.indexOf(window.location.host) !== -1) { event.preventDefault(); history.back(); }">←</a>
 
     <section class="universe-hero" id="hero">
         <h1 class="universe-title">
-            <div class="torch">
-                <div class="flame"></div>
+            <div class="viking-shield">
+                <div class="shield-boss"></div>
+                <div class="rune">᚛</div>
             </div>
             GAME OF CODES
-            <div class="torch">
-                <div class="flame"></div>
+            <div class="viking-shield">
+                <div class="shield-boss"></div>
+                <div class="rune">᚜</div>
             </div>
         </h1>
         <p class="universe-desc">
-            Step into a high-energy fusion of logic, electronics, and strategy with “GAME OF CODES”, a two-round
-            technical competition designed to test analytical thinking, multitasking ability, and teamwork.
-            <br><br>
-            From cracking logic puzzles to building circuits under unpredictable constraints, this event challenges
-            participants to stay sharp under pressure. With problem-solving on one side and strategic gameplay on the
-            other, success depends on communication, adaptability, and technical precision.
+            Game of Codes is a high-energy technical competition that blends logical reasoning, circuit problem-solving,
+            and strategic gameplay. Participants must think quickly, coordinate as a team, and adapt under pressure as
+            technical challenges are influenced by real-time game actions.
         </p>
     </section>
 
@@ -381,30 +413,20 @@
         <div class="round-container reveal"
             style="margin-bottom: 6rem; max-width: 900px; margin-left: auto; margin-right: auto; text-align: left;">
             <h2
-                style="text-align: center; margin-bottom: 2rem; color: var(--royal-gold); font-family: 'Cinzel Decorative', serif; font-size: 3rem;">
+                style="text-align: center; margin-bottom: 1.5rem; color: var(--royal-gold); font-family: 'Cinzel Decorative', serif; font-size: 2.2rem;">
                 Round I: CROSSWORD CONQUEST</h2>
-            <p style="font-size: 1.2rem; line-height: 1.8; color: #ddd; margin-bottom: 1.5rem;">
-                In this round, teams take on a timed technical crossword puzzle focused on concepts from Electronics and
-                Communication Engineering. The crossword tests participants’ technical vocabulary, conceptual clarity,
-                and logical connections between topics. Team members must collaborate effectively to decode clues and
-                complete the grid within the stipulated time.
-            </p>
-            <p style="font-size: 1.2rem; line-height: 1.8; color: #ddd; margin-bottom: 2rem;">
-                The crossword puzzles are designed with increasing complexity, ensuring that only teams with strong
-                reasoning skills, coordination, and subject understanding advance.
+            <p style="font-size: 1.05rem; line-height: 1.7; color: #ddd; margin-bottom: 1.5rem;">
+                In this round, teams take on a timed technical crossword designed to test conceptual understanding and
+                technical vocabulary. Success depends on logical thinking, speed, and effective teamwork.
             </p>
 
-            <h3 style="color: var(--royal-gold); font-family: 'Cinzel', serif; margin-bottom: 1rem;">Evaluation
-                Criteria:</h3>
+            <h3 style="color: var(--royal-gold); font-family: 'Cinzel', serif; margin-bottom: 1rem;">Round 1 Rules</h3>
             <ul class="decree-list" style="margin: 0;">
-                <li>Accuracy of answers</li>
-                <li>Number of correct entries</li>
-                <li>Time taken to complete the crossword</li>
+                <li>Teams must complete a timed technical crossword.</li>
+                <li>Evaluation is based on accuracy, number of correct entries, and completion time.</li>
+                <li>Crossword difficulty increases progressively.</li>
+                <li>Top-performing teams advance to Round 2.</li>
             </ul>
-            <p style="margin-top: 2rem; color: #aaa; font-style: italic;">
-                At the end of the round, the top-performing teams with the highest accuracy and fastest completion time
-                will qualify for Round 2.
-            </p>
         </div>
 
         <hr
@@ -414,97 +436,50 @@
         <div class="round-container reveal"
             style="margin-bottom: 6rem; max-width: 1000px; margin-left: auto; margin-right: auto;">
             <h2
-                style="text-align: center; margin-bottom: 2rem; color: var(--royal-gold); font-family: 'Cinzel Decorative', serif; font-size: 3rem;">
+                style="text-align: center; margin-bottom: 1.5rem; color: var(--royal-gold); font-family: 'Cinzel Decorative', serif; font-size: 2.2rem;">
                 Round II: UNO-CONTROLLED CIRCUIT CHALLENGE</h2>
 
             <p
-                style="font-size: 1.3rem; line-height: 1.8; margin-bottom: 3rem; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto; color: #fff;">
-                Each team consists of two members with distinct roles:
+                style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 2rem; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto; color: #fff;">
+                This round combines hands-on circuit problem-solving with a live UNO game running in parallel. Gameplay
+                directly affects the technical task, adding an element of unpredictability.
             </p>
+
+            <h3
+                style="color: var(--royal-gold); font-family: 'Cinzel', serif; font-size: 1.5rem; margin-bottom: 1.5rem; text-align: center;">
+                Round 2 Format</h3>
 
             <div style="display: flex; justify-content: center; gap: 3rem; margin-bottom: 4rem; flex-wrap: wrap;">
                 <div
                     style="border: 1px solid var(--royal-gold); padding: 2rem; background: rgba(0,0,0,0.6); backdrop-filter: blur(5px); flex: 1; min-width: 300px; border-radius: 4px;">
                     <h3
-                        style="color: var(--royal-gold); font-family: 'Cinzel', serif; font-size: 1.8rem; margin-bottom: 1rem;">
+                        style="color: var(--royal-gold); font-family: 'Cinzel', serif; font-size: 1.3rem; margin-bottom: 0.5rem;">
                         Task Solver</h3>
-                    <p style="color: #ccc; font-size: 1.1rem; line-height: 1.6;">
-                        Works on a given electronics problem statement using simulation platforms such as (Wokwi or
-                        equivalent tools— yet to be decided ).
+                    <p style="color: #ccc; font-size: 1rem; line-height: 1.5;">
+                        Works on a circuit-based problem using simulation tools.
                     </p>
                 </div>
                 <div
                     style="border: 1px solid var(--blood-red); padding: 2rem; background: rgba(0,0,0,0.6); backdrop-filter: blur(5px); flex: 1; min-width: 300px; border-radius: 4px;">
                     <h3
-                        style="color: var(--blood-red); font-family: 'Cinzel', serif; font-size: 1.8rem; margin-bottom: 1rem;">
+                        style="color: var(--blood-red); font-family: 'Cinzel', serif; font-size: 1.3rem; margin-bottom: 0.5rem;">
                         UNO Player</h3>
-                    <p style="color: #ccc; font-size: 1.1rem; line-height: 1.6;">
-                        Plays an active UNO game against opponents.
+                    <p style="color: #ccc; font-size: 1rem; line-height: 1.5;">
+                        Competes in a live UNO game.
                     </p>
                 </div>
             </div>
 
             <p
                 style="font-size: 1.2rem; line-height: 1.8; color: #dcdcdc; text-align: center; max-width: 800px; margin: 0 auto 4rem auto; border-left: 2px solid var(--royal-gold); border-right: 2px solid var(--royal-gold); padding: 0 2rem; background: rgba(0,0,0,0.4);">
-                <strong style="color: var(--royal-gold);">The Twist:</strong> every UNO card played directly affects the
-                task solver’s ability to work. While the UNO match and technical task run in parallel, the solver must
-                strictly follow the penalties and advantages imposed by the UNO gameplay.
+                UNO cards trigger penalties or advantages such as freezes, key restrictions, role swaps, and temporary
+                immunity.
             </p>
 
-            <h3
-                style="color: var(--royal-gold); font-family: 'Cinzel Decorative', cursive; font-size: 2.5rem; margin-bottom: 3rem; text-align: center;">
-                UNO Card Effects</h3>
-
-            <div class="card-grid"
-                style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2rem; text-align: left;">
-
-                <div class="card-item reveal">
-                    <strong style="color: var(--royal-gold); font-size: 1.3rem;">Draw 2</strong><br>
-                    <span style="color: #ccc;">A random task solver freezes (no typing) for 2 minutes.</span>
-                </div>
-
-                <div class="card-item reveal">
-                    <strong style="color: var(--blood-red); font-size: 1.3rem;">Draw 4</strong><br>
-                    <span style="color: #ccc;">A random task solver freezes for 4 minutes.</span>
-                </div>
-
-                <div class="card-item reveal">
-                    <strong style="color: #b0c4de; font-size: 1.3rem;">Wild (Colour Change)</strong><br>
-                    <span style="color: #ccc;">Opponent team’s solver loses access to one specific key (e.g., spacebar,
-                        backspace, or enter) for 5 minutes.</span>
-                </div>
-
-                <div class="card-item reveal">
-                    <strong style="color: var(--royal-gold-dim); font-size: 1.3rem;">Reverse</strong><br>
-                    <span style="color: #ccc;">Roles swap: UNO player becomes the task solver and vice versa.</span>
-                </div>
-
-                <div class="card-item reveal">
-                    <strong style="color: #aaa; font-size: 1.3rem;">Skip</strong><br>
-                    <span style="color: #ccc;">All task solvers receive a 1-minute timeout.</span>
-                </div>
-
-                <div class="card-item reveal">
-                    <strong style="color: var(--royal-gold); font-size: 1.3rem;">UNO Call (at 1 card)</strong><br>
-                    <span style="color: #ccc;">Solver earns a Safe Round and becomes immune to the next penalty.</span>
-                </div>
-
-                <div class="card-item reveal">
-                    <strong style="color: #d44; font-size: 1.3rem;">Failure to Call UNO</strong><br>
-                    <span style="color: #ccc;">Team’s solver loses 30 seconds of active coding time.</span>
-                </div>
-
-                <div class="card-item reveal">
-                    <strong style="color: #a0f; font-size: 1.3rem;">Crazy 8</strong><br>
-                    <span style="color: #ccc;">Solver gains immunity from all timeouts for a limited duration.</span>
-                </div>
-
-            </div>
-
             <p
-                style="margin-top: 4rem; font-size: 1.2rem; line-height: 1.8; color: #fff; background: rgba(50,10,10,0.5); backdrop-filter: blur(5px); padding: 1.5rem; border: 1px solid var(--royal-gold);">
-                The first team to successfully complete the given technical task wins the round. If no team completes
-                the task, the winner is decided based on maximum progress achieved with the fewest penalties incurred.
+                style="margin-top: 3rem; font-size: 1.1rem; line-height: 1.7; color: #fff; background: rgba(50,10,10,0.5); backdrop-filter: blur(5px); padding: 1rem; border: 1px solid var(--royal-gold);">
+                The first team to complete the technical task wins.<br>
+                If no team completes the task, results are decided based on maximum progress with minimum penalties.
             </p>
         </div>
 
@@ -512,21 +487,28 @@
             style="border: 0; border-top: 1px solid var(--royal-gold); margin: 6rem auto; max-width: 300px; opacity: 0.5;">
 
         <!-- Rules & Register -->
+        <!-- Rules & Register -->
         <div class="reveal"
-            style="max-width: 800px; margin: 0 auto; background: rgba(0,0,0,0.6); padding: 3rem; border-radius: 8px;">
-            <h2 style="margin-bottom: 2rem; color: var(--royal-gold);">RULES</h2>
-            <ul class="decree-list" style="margin-bottom: 4rem;">
-                <li>Each team must consist of exactly two members.</li>
-                <li>Prior registration is mandatory through the official event portal. On-spot registrations will not be
-                    permitted.</li>
-                <li>The decision of the judges is final and binding. Any violation of rules may lead to immediate
-                    disqualification.</li>
+            style="max-width: 800px; margin: 0 auto; background: rgba(0,0,0,0.6); padding: 2.2rem; border-radius: 8px; margin-bottom: 6rem;">
+            <h2 style="margin-bottom: 1.5rem; color: var(--royal-gold); text-align: center; font-size: 2rem;">EVENT
+                RULES</h2>
+            <ul class="decree-list">
+                <li>Each team must consist of exactly 2 members.</li>
+                <li>Teams must strictly follow the given format and time limits.</li>
+                <li>Any rule violation may lead to disqualification.</li>
+                <li>The judges’ decision is final.</li>
             </ul>
+        </div>
 
-            <h3 style="color: var(--royal-gold); font-family: 'Cinzel', serif; margin-bottom: 2rem;">TIMINGS: 10:45 AM -
-                2:00 PM</h3>
-
-            <button class="cta-btn">Register Alliance</button>
+        <div class="reveal"
+            style="max-width: 800px; margin: 0 auto; background: rgba(0,0,0,0.6); padding: 2rem; border-radius: 8px; text-align: center;">
+            <h2 style="margin-bottom: 1.5rem; color: var(--royal-gold); font-size: 2rem;">EVENT COORDINATORS</h2>
+            <p style="font-size: 1.2rem; line-height: 1.8; color: #fff;">
+                HARINI C<br>
+                PRATHIBA MSK<br>
+                SHRIRAM KUMAR V
+            </p>
+            <button class="cta-btn" style="margin-top: 2rem;">Register Alliance</button>
         </div>
     </section>
 
