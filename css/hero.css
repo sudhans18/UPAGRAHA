@@ -694,8 +694,8 @@ body.scrolled-past-hero .hero-btn.primary {
 #about {
     position: relative;
     z-index: 5;
-    background: var(--bg-color);
-    /* #020b04 - Dark green-black */
+    background: transparent;
+    /* Allow starfield to show through */
     min-height: 100vh;
     padding-top: 80px;
     padding-bottom: 80px;
