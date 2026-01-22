@@ -101,29 +101,18 @@
         /* Custom Cursor */
         .custom-cursor {
             position: fixed;
-            width: 12px;
-            height: 12px;
-            background: var(--electric-blue);
-            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            background: url('../assets/crosshair.svg') no-repeat center center;
+            background-size: contain;
             pointer-events: none;
             z-index: 9999;
             transform: translate(-50%, -50%);
-            mix-blend-mode: screen;
-            transition: width 0.3s ease, height 0.3s ease, background 0.3s ease;
+            mix-blend-mode: normal;
+            transition: width 0.3s ease, height 0.3s ease, background 0.3s ease, border-radius 0.3s ease;
         }
 
-        .cursor-glow {
-            position: fixed;
-            width: 40px;
-            height: 40px;
-            background: rgba(0, 212, 255, 0.15);
-            border-radius: 50%;
-            filter: blur(8px);
-            pointer-events: none;
-            z-index: 9998;
-            transform: translate(-50%, -50%);
-            transition: transform 0.1s ease-out;
-        }
+
 
         /* Layout */
         .viewport {
@@ -384,9 +373,38 @@
     </video>
 
     <div class="grain-overlay"></div>
-    <div class="custom-cursor" id="cursor"></div>
-    <div class="cursor-glow" id="cursor-glow"></div>
 
+    <!-- Complex Sci-Fi Cursor Structure -->
+    <div id="cursor-system"
+        style="position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; mix-blend-mode: screen;">
+        <!-- Outer Ring -->
+        <svg id="cursor-outer" width="60" height="60" viewBox="0 0 100 100"
+            style="position: absolute; overflow: visible;">
+            <circle cx="50" cy="50" r="48" fill="none" stroke="#00d4ff" stroke-width="1" stroke-opacity="0.5"
+                stroke-dasharray="10 5" />
+            <circle cx="50" cy="50" r="42" fill="none" stroke="#00d4ff" stroke-width="0.5" stroke-opacity="0.3" />
+            <path d="M50,2 L50,10 M50,90 L50,98 M2,50 L10,50 M90,50 L98,50" stroke="#00d4ff" stroke-width="2" />
+        </svg>
+
+        <!-- Inner Ring (Rotates Text/Shapes) -->
+        <svg id="cursor-inner" width="30" height="30" viewBox="0 0 100 100"
+            style="position: absolute; overflow: visible;">
+            <path d="M20,20 L20,30 L30,20 Z M80,20 L80,30 L70,20 Z M20,80 L20,70 L30,80 Z M80,80 L80,70 L70,80 Z"
+                fill="#00d4ff" fill-opacity="0.8" />
+            <circle cx="50" cy="50" r="2" fill="#fff" />
+        </svg>
+
+        <!-- Lock-on Brackets (Hidden by default, show on hover) -->
+        <svg id="cursor-lock" width="80" height="80" viewBox="0 0 100 100"
+            style="position: absolute; overflow: visible; opacity: 0; transform: scale(1.5);">
+            <path d="M10,30 L10,10 L30,10" fill="none" stroke="#fff" stroke-width="2" />
+            <path d="M90,30 L90,10 L70,10" fill="none" stroke="#fff" stroke-width="2" />
+            <path d="M10,70 L10,90 L30,90" fill="none" stroke="#fff" stroke-width="2" />
+            <path d="M90,70 L90,90 L70,90" fill="none" stroke="#fff" stroke-width="2" />
+        </svg>
+    </div>
+
+    <!-- Glow Backing -->
     <div class="background-container"></div>
     <div class="video-overlay"></div>
     <div class="light-sweep"></div>
@@ -514,37 +532,114 @@
     </main>
 
     <script>
-        // Custom Cursor Movement
-        const cursor = document.getElementById('cursor');
-        const cursorGlow = document.getElementById('cursor-glow');
+        // =========================================
+        // ADVANCED SCI-FI CURSOR LOGIC
+        // =========================================
+        const cursorSystem = document.getElementById('cursor-system');
+        const cursorOuter = document.getElementById('cursor-outer');
+        const cursorInner = document.getElementById('cursor-inner');
+        const cursorLock = document.getElementById('cursor-lock');
+
+        // Initial Setters to center elements
+        gsap.set([cursorOuter, cursorInner, cursorLock], { xPercent: -50, yPercent: -50, left: 0, top: 0 });
+
+        // Mouse Move Follower
+        let mouseX = window.innerWidth / 2;
+        let mouseY = window.innerHeight / 2;
 
         document.addEventListener('mousemove', (e) => {
-            gsap.to(cursor, {
-                x: e.clientX,
-                y: e.clientY,
-                duration: 0.1
-            });
-            gsap.to(cursorGlow, {
-                x: e.clientX,
-                y: e.clientY,
-                duration: 0.2
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+
+            // System follows mouse tightly
+            gsap.to(cursorSystem, {
+                x: mouseX,
+                y: mouseY,
+                duration: 0.1,
+                ease: 'power2.out'
             });
         });
 
-        // Cursor Effects on Links/Buttons
-        const interactives = document.querySelectorAll('a, button, .pill, .glass-card');
+        // Idle Animations
+        gsap.to(cursorOuter, { rotation: 360, duration: 20, repeat: -1, ease: 'linear' });
+        gsap.to(cursorInner, { rotation: -360, duration: 10, repeat: -1, ease: 'linear' });
+
+        // Interaction Logic
+        const interactives = document.querySelectorAll('a, button, .pill');
+
         interactives.forEach(el => {
             el.addEventListener('mouseenter', () => {
-                gsap.to(cursor, { scale: 3, background: 'transparent', border: '1px solid var(--electric-blue)' });
-                gsap.to(cursorGlow, { scale: 2, opacity: 0.4 });
+                // LOCK ON EFFECT
+
+                // 1. Expand Outer Ring and make it spin faster
+                gsap.to(cursorOuter, {
+                    scale: 1.5,
+                    opacity: 0.8,
+                    duration: 0.3
+                });
+                gsap.to(cursorOuter, {
+                    rotation: '+=180',
+                    duration: 1,
+                    repeat: -1,
+                    ease: 'linear',
+                    overwrite: 'auto'
+                });
+
+                // 2. Inner ring pulses
+                gsap.to(cursorInner, {
+                    scale: 0.5,
+                    duration: 0.3
+                });
+
+                // 3. Show Lock brackets
+                gsap.to(cursorLock, {
+                    scale: 1,
+                    opacity: 1,
+                    duration: 0.4,
+                    ease: 'back.out(1.7)'
+                });
             });
+
             el.addEventListener('mouseleave', () => {
-                gsap.to(cursor, { scale: 1, background: 'var(--electric-blue)', border: 'none' });
-                gsap.to(cursorGlow, { scale: 1, opacity: 0.15 });
+                // REVERT TO IDLE
+
+                // 1. Reset Outer Ring
+                gsap.to(cursorOuter, {
+                    scale: 1,
+                    opacity: 1,
+                    duration: 0.3
+                });
+                // Return to slow spin
+                gsap.to(cursorOuter, {
+                    rotation: '+=360',
+                    duration: 20,
+                    repeat: -1,
+                    ease: 'linear',
+                    overwrite: 'auto'
+                });
+
+                // 2. Reset Inner
+                gsap.to(cursorInner, {
+                    scale: 1,
+                    duration: 0.3
+                });
+
+                // 3. Hide Lock brackets
+                gsap.to(cursorLock, {
+                    scale: 1.5,
+                    opacity: 0,
+                    duration: 0.3
+                });
             });
         });
 
-        // Magnetic Button Effect
+        // Click Effect (Pulse)
+        document.addEventListener('mousedown', () => {
+            gsap.to([cursorOuter, cursorInner], { scale: 0.8, duration: 0.1, yoyo: true, repeat: 1 });
+            gsap.to(cursorLock, { rotation: 45, duration: 0.2, yoyo: true, repeat: 1 });
+        });
+
+        // Magnetic Button Effect (Preserved)
         const magnetWrap = document.getElementById('magnet-box');
         const magnetBtn = magnetWrap.querySelector('.magnetic-btn');
 
@@ -570,7 +665,7 @@
             });
         });
 
-        // Animation Entrances
+        // Animation Entrances (Preserved)
         gsap.registerPlugin(ScrollTrigger);
 
         // Hero Reveal
