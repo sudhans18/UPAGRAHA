@@ -12,7 +12,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #000;
+    background-color: transparent;
+    /* Allow starfield to show through */
     padding: 2rem 0;
     overflow: hidden;
 }

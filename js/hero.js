@@ -5,47 +5,52 @@
 const heroContainer = document.querySelector('#hero-container');
 
 export function initHeroEffects() {
-    // Continuous glitch effect - Loki-Green for 3s, Loki-Red for 2s
-    // Glitch animation plays consistently on BOTH transitions
-    // Colors sync permanently, no scroll lock
+    // Hover-triggered glitch effect on interactive hero elements
+    // When user hovers -> switch to red theme with glitch
+    // When user moves away -> switch back to green theme with glitch
 
-    // Total cycle: 5 seconds (3s Green + 2s Red)
-    setInterval(() => {
-        if (heroContainer) {
-            // GREEN → RED transition
-            // 1. Add glitch animation
-            heroContainer.classList.add('glitching');
-            // 2. Change to red background
-            heroContainer.classList.add('glitch-red');
-            heroContainer.classList.remove('glitch-green');
+    if (!heroContainer) return;
 
-            // 3. Add theme-red class to body for UI color sync
-            document.body.classList.add('theme-red');
+    // Helper function to trigger RED glitch
+    function triggerRedGlitch() {
+        heroContainer.classList.add('glitching');
+        heroContainer.classList.add('glitch-red');
+        heroContainer.classList.remove('glitch-green');
+        document.body.classList.add('theme-red');
 
-            // Remove glitch animation after 0.5s
-            setTimeout(() => {
-                heroContainer.classList.remove('glitching');
-            }, 500);
+        setTimeout(() => {
+            heroContainer.classList.remove('glitching');
+        }, 500);
+    }
 
-            // After 2 seconds, transition back to GREEN
-            setTimeout(() => {
-                // RED → GREEN transition
-                // 1. Add glitch animation
-                heroContainer.classList.add('glitching');
-                // 2. Change to green background
-                heroContainer.classList.add('glitch-green');
-                heroContainer.classList.remove('glitch-red');
+    // Helper function to trigger GREEN glitch (return to normal)
+    function triggerGreenGlitch() {
+        heroContainer.classList.add('glitching');
+        heroContainer.classList.add('glitch-green');
+        heroContainer.classList.remove('glitch-red');
+        document.body.classList.remove('theme-red');
 
-                // 3. Remove theme-red class for green UI
-                document.body.classList.remove('theme-red');
+        setTimeout(() => {
+            heroContainer.classList.remove('glitching');
+        }, 500);
+    }
 
-                // Remove glitch animation after 0.5s
-                setTimeout(() => {
-                    heroContainer.classList.remove('glitching');
-                }, 500);
-            }, 2000); // Red shows for 2 seconds
+    // Elements that trigger the glitch effect on hover
+    const glitchTriggers = [
+        '.hero-main-title',      // UPAGRAHA '26 title
+        '.hero-btn.primary',     // Register button
+        '.hero-btn.secondary'    // Events button
+    ];
+
+    // Add hover listeners to all trigger elements
+    glitchTriggers.forEach(selector => {
+        const element = document.querySelector(selector);
+        if (element) {
+            element.addEventListener('mouseenter', triggerRedGlitch);
+            element.addEventListener('mouseleave', triggerGreenGlitch);
+            element.style.cursor = 'pointer';
         }
-    }, 5000); // Repeat every 5 seconds (3s green + 2s red)
+    });
 }
 
 export function initHeroTransition() {

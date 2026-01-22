@@ -4,366 +4,597 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TECH TANK | Steel Forge</title>
+    <title>Tech Tank | Premium Event Experience</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;800&family=Orbitron:wght@400;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Syncopate:wght@400;700&display=swap"
         rel="stylesheet">
+
+    <!-- GSAP for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
     <style>
         :root {
-            --steel-blue: #4da3ff;
-            --deep-steel: #1a2a3a;
-            --gunmetal: #0b0f14;
-            --dark-metal: #05080c;
-            --steel-glow: rgba(77, 163, 255, 0.6);
-            --glass-panel: rgba(15, 25, 35, 0.85);
-            --text-white: #e8f1ff;
-            --neon-cyan: #00f3ff;
+            --bg-black: #000000;
+            --navy-deep: #050a18;
+            --electric-blue: #00d4ff;
+            --icy-blue: #e0f7fa;
+            --glass-white: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(0, 212, 255, 0.2);
+            --text-muted: #8fa3b0;
+            --font-main: 'Outfit', sans-serif;
+            --font-accent: 'Syncopate', sans-serif;
         }
 
         * {
-            box-sizing: border-box
+            box-sizing: border-box;
+            cursor: none !important;
+            /* Hide default cursor */
         }
 
         body {
             margin: 0;
-            background: #020407;
-            color: var(--text-white);
-            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-black);
+            color: var(--icy-blue);
+            font-family: var(--font-main);
             overflow-x: hidden;
-            background-image:
-                radial-gradient(circle at 10% 20%, rgba(0, 243, 255, 0.05) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(77, 163, 255, 0.05) 0%, transparent 20%),
-                linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
-            background-size: 100% 100%, 100% 100%, 50px 50px, 50px 50px;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* BACKGROUND VIDEO */
-        #bg-video {
+        /* Cinematic Background */
+        .background-container {
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            background: var(--bg-black);
+        }
+
+        .bg-video {
             position: fixed;
             inset: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
-            opacity: 0.15;
-            filter: contrast(1.3) saturate(0) hue-rotate(190deg);
-            /* Blue-shifted desaturated look */
-            z-index: -3;
-        }
-
-        /* SPARK CANVAS */
-        #spark-canvas {
-            position: fixed;
-            inset: 0;
+            opacity: 0.4;
             z-index: -1;
+            filter: saturate(0.8) contrast(1.1);
             pointer-events: none;
         }
 
-        /* Back Button */
-        .back-link {
+        .video-overlay {
             position: fixed;
-            top: 30px;
-            left: 30px;
-            width: 60px;
-            height: 60px;
-            border-radius: 20px;
-            /* Squircle */
-            background: rgba(0, 0, 0, 0.6);
-            border: 1px solid var(--steel-blue);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            color: var(--steel-blue);
-            text-decoration: none;
-            z-index: 1000;
-            backdrop-filter: blur(5px);
-            transition: 0.3s;
+            inset: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(5, 10, 24, 0.4) 0%, rgba(0, 0, 0, 0.8) 100%);
+            z-index: 0;
+            pointer-events: none;
         }
 
-        .back-link:hover {
-            background: var(--steel-blue);
-            color: black;
-            box-shadow: 0 0 20px var(--steel-blue);
+        .grain-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            background-image: url('../assets/grain.svg');
+            opacity: 0.15;
+            pointer-events: none;
         }
 
-        /* DASHBOARD LAYOUT */
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: auto auto auto;
-            gap: 2rem;
+        .light-sweep {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg at 50% 50%, transparent, rgba(0, 212, 255, 0.05), transparent);
+            animation: sweep 20s linear infinite;
+            top: -50%;
+            left: -50%;
+        }
+
+        @keyframes sweep {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Custom Cursor */
+        .custom-cursor {
+            position: fixed;
+            width: 12px;
+            height: 12px;
+            background: var(--electric-blue);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            mix-blend-mode: screen;
+            transition: width 0.3s ease, height 0.3s ease, background 0.3s ease;
+        }
+
+        .cursor-glow {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 212, 255, 0.15);
+            border-radius: 50%;
+            filter: blur(8px);
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s ease-out;
+        }
+
+        /* Layout */
+        .viewport {
+            width: 100%;
             max-width: 1400px;
-            margin: 4rem auto;
-            padding: 0 2rem;
+            margin: 0 auto;
+            padding: 120px 40px;
         }
 
-        /* Header Span */
-        .grid-header {
-            grid-column: 1 / -1;
-            text-align: center;
-            padding: 4rem 2rem;
-            background: radial-gradient(circle, rgba(77, 163, 255, 0.1), transparent 70%);
+        .back-nav {
+            position: fixed;
+            top: 40px;
+            right: 40px;
+            z-index: 1000;
         }
 
-        .hero-title {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 8rem;
-            letter-spacing: 10px;
-            color: var(--steel-blue);
-            text-shadow: 0 0 30px var(--steel-glow);
-            margin: 0;
-            position: relative;
-            display: inline-block;
+        .back-btn {
+            background: transparent;
+            border: 1px solid var(--glass-border);
+            color: var(--icy-blue);
+            padding: 12px 24px;
+            border-radius: 100px;
+            font-family: var(--font-accent);
+            font-size: 0.75rem;
+            text-decoration: none;
+            letter-spacing: 2px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            backdrop-filter: blur(10px);
         }
 
-        .hero-title::after {
-            content: 'STEEL FORGE';
+        .back-btn:hover {
+            background: var(--electric-blue);
+            color: var(--bg-black);
+            border-color: var(--electric-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 212, 255, 0.2);
+        }
+
+        /* Typography & Content */
+        .hero {
+            margin-bottom: 120px;
+            text-align: left;
+        }
+
+        .label {
+            font-family: var(--font-accent);
+            font-size: 0.8rem;
+            letter-spacing: 0.4em;
+            color: var(--electric-blue);
+            text-transform: uppercase;
+            margin-bottom: 24px;
             display: block;
-            font-size: 1.5rem;
-            letter-spacing: 20px;
-            color: var(--neon-cyan);
-            margin-top: -10px;
             opacity: 0.8;
         }
 
-        /* Floating Glass Panels */
-        .glass-panel {
-            background: var(--glass-panel);
-            border-radius: 50px;
-            /* Heavily Rounded */
-            border: 1px solid rgba(77, 163, 255, 0.2);
-            padding: 3rem;
-            backdrop-filter: blur(15px);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-            transition: 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+        h1 {
+            font-family: var(--font-accent);
+            font-size: clamp(3rem, 8vw, 6rem);
+            line-height: 1;
+            margin: 0;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-desc {
+            font-size: 1.4rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            line-height: 1.6;
+            margin-top: 40px;
+        }
+
+        /* Editorial Sections */
+        .section-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 40px;
+            margin-bottom: 120px;
+        }
+
+        .glass-card {
+            background: var(--glass-white);
+            border: 1px solid var(--glass-border);
+            padding: 60px;
+            border-radius: 40px;
+            backdrop-filter: blur(20px);
             position: relative;
             overflow: hidden;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
         }
 
-        .glass-panel:hover {
-            transform: translateY(-10px) scale(1.01);
-            border-color: var(--steel-blue);
-            box-shadow: 0 20px 60px rgba(77, 163, 255, 0.15);
+        .glass-card:hover {
+            border-color: var(--electric-blue);
+            transform: translateY(-5px);
         }
 
-        /* Intro Panel */
-        .panel-intro {
-            grid-column: 1 / -1;
-            text-align: center;
-            max-width: 1000px;
-            margin: 0 auto;
+        .card-large {
+            grid-column: 1 / 8;
         }
 
-        /* Format Panel */
-        .panel-format {
-            grid-column: 1 / 2;
+        .card-medium {
+            grid-column: 8 / 13;
         }
 
-        /* Criteria Panel */
-        .panel-criteria {
-            grid-column: 2 / 3;
-        }
-
-        /* Rules Panel (Full Width Bottom) */
-        .panel-rules {
-            grid-column: 1 / -1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        .card-full {
+            grid-column: 1 / 13;
         }
 
         h2 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2.5rem;
-            color: var(--neon-cyan);
-            margin-bottom: 1.5rem;
-            border-bottom: 2px solid rgba(77, 163, 255, 0.3);
-            padding-bottom: 1rem;
-            display: inline-block;
+            font-family: var(--font-accent);
+            font-size: 1.8rem;
+            margin-top: 0;
+            margin-bottom: 30px;
+            letter-spacing: 2px;
         }
 
-        p {
-            font-size: 1.1rem;
-            color: #cbdcea;
-            line-height: 1.7;
-        }
-
-        /* Unique List */
-        .tech-list {
+        .details-list {
             list-style: none;
             padding: 0;
+            display: grid;
+            gap: 24px;
         }
 
-        .tech-list li {
-            background: rgba(0, 0, 0, 0.3);
-            margin-bottom: 1rem;
-            padding: 1.2rem 2rem;
-            border-radius: 30px;
-            border-left: 5px solid var(--steel-blue);
+        .detail-item {
             display: flex;
-            align-items: center;
-            font-weight: 600;
+            align-items: flex-start;
+            gap: 20px;
         }
 
-        .tech-list li::before {
-            content: '';
-            width: 10px;
-            height: 10px;
-            background: var(--neon-cyan);
-            border-radius: 50%;
-            margin-right: 15px;
-            box-shadow: 0 0 10px var(--neon-cyan);
+        .item-number {
+            font-family: var(--font-accent);
+            color: var(--electric-blue);
+            font-size: 0.9rem;
+            padding-top: 4px;
         }
 
-        /* Big Button */
-        .cta-btn {
-            margin-top: 3rem;
-            padding: 25px 80px;
-            background: var(--steel-blue);
-            color: #000;
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 800;
-            font-size: 1.5rem;
+        .item-content strong {
+            display: block;
+            margin-bottom: 4px;
+            color: var(--icy-blue);
+        }
+
+        .item-content p {
+            margin: 0;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        /* Criteria Pills */
+        .pills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .pill {
+            padding: 14px 28px;
+            border: 1px solid var(--glass-border);
+            border-radius: 100px;
+            font-family: var(--font-accent);
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .pill:hover {
+            background: var(--glass-border);
+            color: var(--icy-blue);
+        }
+
+        /* Rules Section */
+        .rules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .rule-box {
+            padding: 30px;
+            border-left: 2px solid var(--electric-blue);
+            background: rgba(255, 255, 255, 0.01);
+        }
+
+        .rule-box h3 {
+            font-size: 1rem;
+            margin-top: 0;
+            color: var(--electric-blue);
+            font-family: var(--font-accent);
+        }
+
+        /* Coordinator Footer */
+        .coordinators {
+            margin-top: 100px;
+            text-align: center;
+            border-top: 1px solid var(--glass-border);
+            padding-top: 60px;
+        }
+
+        .coordinator-list {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .coordinator-name {
+            font-family: var(--font-accent);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+        }
+
+        /* Magnetic Button Container */
+        .btn-magnet-wrap {
+            display: inline-block;
+            margin-top: 40px;
+        }
+
+        .magnetic-btn {
+            background: var(--icy-blue);
+            color: var(--bg-black);
+            padding: 24px 60px;
+            border-radius: 100px;
+            font-family: var(--font-accent);
+            font-size: 1rem;
+            letter-spacing: 3px;
             border: none;
-            border-radius: 60px;
-            /* Capsule */
-            cursor: pointer;
-            box-shadow: 0 0 30px var(--steel-glow);
-            transition: 0.3s;
+            transition: transform 0.2s ease-out;
+            font-weight: 700;
         }
 
-        .cta-btn:hover {
-            background: var(--neon-cyan);
-            box-shadow: 0 0 60px var(--neon-cyan);
-            transform: scale(1.05);
-        }
-
-        /* Responsive */
-        @media (max-width: 900px) {
-            .dashboard-grid {
+        /* Mobile Adjustments */
+        @media (max-width: 1024px) {
+            .section-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .card-large,
+            .card-medium,
+            .card-full {
+                grid-column: 1 / -1;
+            }
+
+            .viewport {
+                padding: 80px 20px;
+            }
+
+            .hero-title {
+                font-size: 3.5rem;
             }
         }
     </style>
 </head>
 
 <body>
-
-    <video id="bg-video" autoplay muted loop playsinline>
+    <video class="bg-video" autoplay muted loop playsinline>
         <source src="../assets/Transformers.mp4" type="video/mp4">
     </video>
 
-    <canvas id="spark-canvas"></canvas>
+    <div class="grain-overlay"></div>
+    <div class="custom-cursor" id="cursor"></div>
+    <div class="cursor-glow" id="cursor-glow"></div>
 
-    <a href="../index.html#events" class="back-link"
-        onclick="if(document.referrer.indexOf(window.location.host) !== -1) { event.preventDefault(); history.back(); }">←</a>
+    <div class="background-container"></div>
+    <div class="video-overlay"></div>
+    <div class="light-sweep"></div>
 
-    <div class="dashboard-grid">
+    <nav class="back-nav">
+        <a href="../index.html#events" class="back-btn">RETURN TO INDEX</a>
+    </nav>
 
-        <div class="grid-header">
-            <h1 class="hero-title">TECH TANK</h1>
-        </div>
-
-        <div class="glass-panel panel-intro">
-            <p style="font-size: 1.3rem;">
-                Step into the <strong>Steel Forge</strong> of innovation. Tech Tank is where raw creativity is hammered
-                into reality.
-                From cutting-edge technology to sustainable solutions, we celebrate academic brilliance and
-                future-shaping ideas.
-                <br><br>
-                Connect. Engage. Innovate.
+    <main class="viewport">
+        <section class="hero">
+            <span class="label">Project Showcase</span>
+            <h1 class="reveal-text">TECH TANK</h1>
+            <p class="hero-desc">
+                A project showcase event that celebrates creativity, innovation, and practical problem-solving.
+                Where raw ideas are hammered into impactful solutions.
             </p>
-        </div>
+        </section>
 
-        <div class="glass-panel panel-format">
-            <h2>EVENT FORMAT</h2>
-            <p>
-                <strong>Assembly Phase:</strong> Participants set up projects at vacancy. Bring all hardware/materials.
-                Software must be pre-installed.
-            </p>
-            <p>
-                <strong>Presentation Phase:</strong> 10 Minutes Max.
-                <br>
-                Focus: Innovation, Application, Impact.
-                <br>
-                Followed by Judge Q&A.
-            </p>
-        </div>
-
-        <div class="glass-panel panel-criteria">
-            <h2>JUDGING CRITERIA</h2>
-            <ul class="tech-list">
-                <li>Originality & Innovation</li>
-                <li>Functionality & Depth</li>
-                <li>Practical Impact</li>
-                <li>Presentation Quality</li>
-            </ul>
-        </div>
-
-        <div class="glass-panel panel-rules">
-            <h2>PROTOCOL</h2>
-            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; width: 100%;">
-                <span style="background:rgba(255,255,255,0.1); padding: 10px 20px; border-radius: 20px;">Max Team:
-                    4</span>
-                <span style="background:rgba(255,255,255,0.1); padding: 10px 20px; border-radius: 20px;">No
-                    Plagiarism</span>
-                <span style="background:rgba(255,255,255,0.1); padding: 10px 20px; border-radius: 20px;">Strict
-                    Format</span>
-                <span style="background:rgba(255,255,255,0.1); padding: 10px 20px; border-radius: 20px;">Arrival: -30
-                    Mins</span>
+        <div class="section-grid">
+            <div class="glass-card card-large staggered">
+                <span class="label">Manifesto</span>
+                <h2>ABOUT THE EVENT</h2>
+                <p style="font-size: 1.2rem; color: var(--text-muted); line-height: 1.8;">
+                    Tech Tank is a platform for participants to present working models and prototypes.
+                    It demonstrates impactful ideas, real-world applications, and forward-thinking solutions.
+                    The event provides a space to explore emerging concepts and highlight academic excellence
+                    through hands-on innovation.
+                </p>
             </div>
-            <button class="cta-btn">ENTER THE FORGE</button>
+
+            <div class="glass-card card-medium staggered">
+                <span class="label">Assessment</span>
+                <h2>JUDGING CRITERIA</h2>
+                <div class="pills-container">
+                    <span class="pill">Originality</span>
+                    <span class="pill">Functionality</span>
+                    <span class="pill">Impact</span>
+                    <span class="pill">Presentation</span>
+                </div>
+            </div>
+
+            <div class="glass-card card-full staggered">
+                <span class="label">Execution</span>
+                <h2>EVENT FORMAT</h2>
+                <div class="details-list">
+                    <div class="detail-item">
+                        <span class="item-number">01</span>
+                        <div class="item-content">
+                            <strong>Setup and Assembly</strong>
+                            <p>Teams will be given dedicated time to assemble and set up their projects at the venue.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <span class="item-number">02</span>
+                        <div class="item-content">
+                            <strong>Required Materials</strong>
+                            <p>Teams must bring all necessary hardware components. The college will not provide any
+                                hardware.</p>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <span class="item-number">03</span>
+                        <div class="item-content">
+                            <strong>Software Preparation</strong>
+                            <p>All required software environments must be pre-installed and configured before the
+                                presentation.</p>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <span class="item-number">04</span>
+                        <div class="item-content">
+                            <strong>Presentation & Q&A</strong>
+                            <p>10 minutes maximum for presentation, followed by an interactive Q&A session with the
+                                panel.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-card card-full staggered">
+                <span class="label">Conduct</span>
+                <h2>EVENT PROTOCOL</h2>
+                <div class="rules-grid">
+                    <div class="rule-box">
+                        <h3>CAPACITY</h3>
+                        <p>Maximum 4 members per team.</p>
+                    </div>
+                    <div class="rule-box">
+                        <h3>REPORTING</h3>
+                        <p>Report 30 minutes prior to scheduled slot.</p>
+                    </div>
+                    <div class="rule-box">
+                        <h3>INTEGRITY</h3>
+                        <p>Plagiarism is strictly prohibited.</p>
+                    </div>
+                    <div class="rule-box">
+                        <h3>RESTRICTION</h3>
+                        <p>No recording of sessions without permission.</p>
+                    </div>
+                </div>
+
+                <div class="btn-magnet-wrap" id="magnet-box">
+                    <button class="magnetic-btn">REGISTER NOW</button>
+                </div>
+            </div>
         </div>
 
-    </div>
+        <footer class="coordinators staggered">
+            <span class="label">Leadership</span>
+            <div class="coordinator-list">
+                <div class="coordinator-name">MUHILAN S</div>
+                <div class="coordinator-name">SRIVATSAN S P</div>
+                <div class="coordinator-name">SANJAI P</div>
+            </div>
+        </footer>
+    </main>
 
     <script>
-        /* CURSOR FIRE–STEEL SPARKS */
-        const canvas = document.getElementById("spark-canvas");
-        const ctx = canvas.getContext("2d");
-        let w, h;
-        function resize() {
-            w = canvas.width = window.innerWidth;
-            h = canvas.height = window.innerHeight;
-        }
-        window.addEventListener("resize", resize);
-        resize();
+        // Custom Cursor Movement
+        const cursor = document.getElementById('cursor');
+        const cursorGlow = document.getElementById('cursor-glow');
 
-        let sparks = [];
-        document.addEventListener("mousemove", e => {
-            for (let i = 0; i < 6; i++) {
-                sparks.push({
-                    x: e.clientX,
-                    y: e.clientY,
-                    vx: (Math.random() - 0.5) * 4,
-                    vy: (Math.random() - 0.5) * 4,
-                    life: Math.random() * 40 + 20,
-                    size: Math.random() * 2 + 1
-                });
-            }
+        document.addEventListener('mousemove', (e) => {
+            gsap.to(cursor, {
+                x: e.clientX,
+                y: e.clientY,
+                duration: 0.1
+            });
+            gsap.to(cursorGlow, {
+                x: e.clientX,
+                y: e.clientY,
+                duration: 0.2
+            });
         });
 
-        function animate() {
-            ctx.clearRect(0, 0, w, h);
-            sparks.forEach((s, i) => {
-                s.x += s.vx;
-                s.y += s.vy;
-                s.life--;
-                ctx.beginPath();
-                ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(0, 243, 255, ${s.life / 60})`; /* Cyan sparks */
-                ctx.fill();
-                if (s.life <= 0) sparks.splice(i, 1);
+        // Cursor Effects on Links/Buttons
+        const interactives = document.querySelectorAll('a, button, .pill, .glass-card');
+        interactives.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                gsap.to(cursor, { scale: 3, background: 'transparent', border: '1px solid var(--electric-blue)' });
+                gsap.to(cursorGlow, { scale: 2, opacity: 0.4 });
             });
-            requestAnimationFrame(animate);
-        }
-        animate();
+            el.addEventListener('mouseleave', () => {
+                gsap.to(cursor, { scale: 1, background: 'var(--electric-blue)', border: 'none' });
+                gsap.to(cursorGlow, { scale: 1, opacity: 0.15 });
+            });
+        });
+
+        // Magnetic Button Effect
+        const magnetWrap = document.getElementById('magnet-box');
+        const magnetBtn = magnetWrap.querySelector('.magnetic-btn');
+
+        magnetWrap.addEventListener('mousemove', (e) => {
+            const rect = magnetWrap.getBoundingClientRect();
+            const x = (e.clientX - rect.left) - rect.width / 2;
+            const y = (e.clientY - rect.top) - rect.height / 2;
+
+            gsap.to(magnetBtn, {
+                x: x * 0.4,
+                y: y * 0.4,
+                duration: 0.3,
+                ease: 'power3.out'
+            });
+        });
+
+        magnetWrap.addEventListener('mouseleave', () => {
+            gsap.to(magnetBtn, {
+                x: 0,
+                y: 0,
+                duration: 0.6,
+                ease: 'elastic.out(1, 0.3)'
+            });
+        });
+
+        // Animation Entrances
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Hero Reveal
+        gsap.from('.reveal-text', {
+            y: 40,
+            opacity: 0,
+            duration: 1.2,
+            ease: 'power4.out',
+            delay: 0.5
+        });
+
+        gsap.from('.hero-desc', {
+            opacity: 0,
+            y: 20,
+            duration: 1,
+            delay: 0.8,
+            ease: 'power3.out'
+        });
+
+        // Staggered Entrance for Cards
+        gsap.from('.staggered', {
+            scrollTrigger: {
+                trigger: '.section-grid',
+                start: 'top 80%'
+            },
+            y: 60,
+            opacity: 0,
+            duration: 1,
+            stagger: 0.2,
+            ease: 'power4.out'
+        });
     </script>
 </body>
 

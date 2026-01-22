@@ -186,6 +186,33 @@
     margin-top: 1rem;
 }
 
+/* Club Contact Sections */
+.club-contact-section {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    border-left: 2px solid #333;
+    padding-left: 10px;
+}
+
+.club-name {
+    color: var(--neon-green);
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.footer-socials {
+    margin-top: 0.5rem;
+    gap: 0.8rem;
+}
+
+.social-icon {
+    width: 30px;
+    height: 30px;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .footer-container {
