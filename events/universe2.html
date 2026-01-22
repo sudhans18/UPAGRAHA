@@ -98,6 +98,18 @@
             gap: 20px;
         }
 
+        .universe-tagline {
+            font-size: 1.5rem;
+            color: var(--blood-red);
+            font-family: 'Cinzel', serif;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-top: -1rem;
+            opacity: 0;
+            animation: fadeInUp 1.5s ease-out 0.3s forwards;
+            text-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+        }
+
         /* Fire Sword Animation */
         .fire-sword {
             display: inline-block;
@@ -229,9 +241,9 @@
             left: 30px;
             color: var(--royal-gold);
             text-decoration: none;
-            font-size: 2rem;
-            width: 50px;
-            height: 50px;
+            font-size: 1.8rem;
+            width: 55px;
+            height: 55px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -388,17 +400,8 @@
         onclick="if(document.referrer.indexOf(window.location.host) !== -1) { event.preventDefault(); history.back(); }">←</a>
 
     <section class="universe-hero" id="hero">
-        <h1 class="universe-title">
-            <div class="viking-shield">
-                <div class="shield-boss"></div>
-                <div class="rune">᚛</div>
-            </div>
-            GAME OF CODES
-            <div class="viking-shield">
-                <div class="shield-boss"></div>
-                <div class="rune">᚜</div>
-            </div>
-        </h1>
+        <h1 class="universe-title">GAME OF CODES</h1>
+        <p class="universe-tagline">Where Logic Meets Strategy</p>
         <p class="universe-desc">
             Game of Codes is a high-energy technical competition that blends logical reasoning, circuit problem-solving,
             and strategic gameplay. Participants must think quickly, coordinate as a team, and adapt under pressure as
@@ -500,15 +503,37 @@
             </ul>
         </div>
 
-        <div class="reveal"
-            style="max-width: 800px; margin: 0 auto; background: rgba(0,0,0,0.6); padding: 2rem; border-radius: 8px; text-align: center;">
-            <h2 style="margin-bottom: 1.5rem; color: var(--royal-gold); font-size: 2rem;">EVENT COORDINATORS</h2>
-            <p style="font-size: 1.2rem; line-height: 1.8; color: #fff;">
-                HARINI C<br>
-                PRATHIBA MSK<br>
-                SHRIRAM KUMAR V
-            </p>
-            <button class="cta-btn" style="margin-top: 2rem;">Register Alliance</button>
+        <div class="reveal" style="text-align: center; margin-top: 4rem;"></div>
+        <h2
+            style="margin-bottom: 1.5rem; color: var(--royal-gold); font-family: 'Cinzel Decorative', serif; font-size: 2rem;">
+            EVENT COORDINATORS</h2>
+        <div style="display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; margin-top: 1rem;">
+            <div style="text-align: center;">
+                <p
+                    style="font-family: 'Cinzel Decorative', cursive; font-size: 1.3rem; letter-spacing: 2px; color: var(--royal-gold); margin: 0;">
+                    HARINI C</p>
+                <p
+                    style="font-family: 'Cinzel', serif; font-size: 1rem; letter-spacing: 1px; color: var(--steel); margin: 0.5rem 0 0 0;">
+                    +91 XXXXX XXXXX</p>
+            </div>
+            <div style="text-align: center;">
+                <p
+                    style="font-family: 'Cinzel Decorative', cursive; font-size: 1.3rem; letter-spacing: 2px; color: var(--royal-gold); margin: 0;">
+                    PRATHIBA MSK</p>
+                <p
+                    style="font-family: 'Cinzel', serif; font-size: 1rem; letter-spacing: 1px; color: var(--steel); margin: 0.5rem 0 0 0;">
+                    +91 XXXXX XXXXX</p>
+            </div>
+            <div style="text-align: center;">
+                <p
+                    style="font-family: 'Cinzel Decorative', cursive; font-size: 1.3rem; letter-spacing: 2px; color: var(--royal-gold); margin: 0;">
+                    SHRIRAM KUMAR V</p>
+                <p
+                    style="font-family: 'Cinzel', serif; font-size: 1rem; letter-spacing: 1px; color: var(--steel); margin: 0.5rem 0 0 0;">
+                    +91 XXXXX XXXXX</p>
+            </div>
+        </div>
+        <button class="cta-btn" style="margin-top: 2rem;">Register Alliance</button>
         </div>
     </section>
 

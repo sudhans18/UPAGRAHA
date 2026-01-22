@@ -122,33 +122,32 @@
             padding: 120px 40px;
         }
 
-        .back-nav {
+        .back-link {
             position: fixed;
-            top: 40px;
-            right: 40px;
-            z-index: 1000;
-        }
-
-        .back-btn {
-            background: transparent;
-            border: 1px solid var(--glass-border);
-            color: var(--icy-blue);
-            padding: 12px 24px;
-            border-radius: 100px;
-            font-family: var(--font-accent);
-            font-size: 0.75rem;
+            top: 30px;
+            left: 30px;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            border: 2px solid var(--electric-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--electric-blue);
             text-decoration: none;
-            letter-spacing: 2px;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            background: rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: all 0.4s ease;
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.2);
         }
 
-        .back-btn:hover {
+        .back-link:hover {
+            transform: scale(1.1) rotate(-360deg);
             background: var(--electric-blue);
             color: var(--bg-black);
-            border-color: var(--electric-blue);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0, 212, 255, 0.2);
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.6);
         }
 
         /* Typography & Content */
@@ -410,9 +409,8 @@
     <div class="video-overlay"></div>
     <div class="light-sweep"></div>
 
-    <nav class="back-nav">
-        <a href="../index.html#events" class="back-btn">RETURN TO INDEX</a>
-    </nav>
+    <a href="../index.html#events" class="back-link"
+        onclick="if(document.referrer.indexOf(window.location.host) !== -1) { event.preventDefault(); history.back(); }">←</a>
 
     <main class="viewport">
         <section class="hero">
@@ -517,9 +515,18 @@
         <footer class="coordinators staggered">
             <span class="label">Leadership</span>
             <div class="coordinator-list">
-                <div class="coordinator-name">MUHILAN S</div>
-                <div class="coordinator-name">SRIVATSAN S P</div>
-                <div class="coordinator-name">SANJAI P</div>
+                <div style="text-align: center;">
+                    <div class="coordinator-name">MUHILAN S</div>
+                    <div style="font-size: 0.9rem; color: var(--text-muted); margin-top: 5px;">+91 77081 75457</div>
+                </div>
+                <div style="text-align: center;">
+                    <div class="coordinator-name">SRIVATSAN S P</div>
+                    <div style="font-size: 0.9rem; color: var(--text-muted); margin-top: 5px;">+91 70101 49756</div>
+                </div>
+                <div style="text-align: center;">
+                    <div class="coordinator-name">SANJAI P</div>
+                    <div style="font-size: 0.9rem; color: var(--text-muted); margin-top: 5px;">+91 63747 55978</div>
+                </div>
             </div>
         </footer>
     </main>
