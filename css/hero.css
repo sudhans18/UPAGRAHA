@@ -548,6 +548,16 @@ body.scrolled-past-hero .hero-btn.primary {
     border-color: var(--neon-green);
 }
 
+/* Fix for Red Theme Hover Clash */
+.theme-red .hero-btn.primary:hover {
+    background: rgba(40, 0, 10, 0.8);
+    border-color: var(--theme-red);
+    color: var(--theme-red);
+    box-shadow:
+        0 5px 15px rgba(0, 0, 0, 0.9),
+        0 0 30px var(--theme-red-glow);
+}
+
 .hero-btn.secondary {
     background: transparent;
     color: #ffffff;
