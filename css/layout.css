@@ -207,10 +207,10 @@ body.scrolled-past-hero .nav-link::after {
     box-shadow: 4px 4px 0 #000;
 }
 
-/* Red theme - DISABLED to keep button green always
+/* Red theme - DISABLED to keep button green always */
 .theme-red .nav-register-btn {
     background: var(--theme-red);
-} */
+}
 
 /* Lock to green after scroll */
 body.scrolled-past-hero .nav-register-btn {

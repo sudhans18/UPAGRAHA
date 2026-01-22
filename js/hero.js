@@ -38,7 +38,6 @@ export function initHeroEffects() {
     // Elements that trigger the glitch effect on hover
     const glitchTriggers = [
         '.hero-main-title',      // UPAGRAHA '26 title
-        '.hero-countdown',       // Countdown timer
         '.hero-btn.primary',     // Register button
         '.hero-btn.secondary'    // Events button
     ];

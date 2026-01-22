@@ -29,7 +29,7 @@ function initTeamSection() {
         { name: "N YAAZHINII", img: "N YAAZHINII ECE.jpg", linkedin: "https://www.linkedin.com/in/yaazhinii-narayanan-89b954326?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", email: "n.yaazhinii@gmail.com" },
         { name: "PRATHIBA S", img: "PRATHIBA S.png", linkedin: "https://www.linkedin.com/in/m-s-k-prathiba-608588329?utm_source=share_via&utm_content=profile&utm_medium=member_android", email: "2024ec0664@svce.ac.in" },
         { name: "PREETHIKA R", img: "PREETHIKA R ECE.jpg", linkedin: "www.linkedin.com/in/preethika-radhakrishnan-269958336", email: "preethiradha13@gmail.com" },
-        { name: "SUDESH SHRIKANT PILLAI", img: "SUDESH SHRIKANT PILLAI ECE.jpg", linkedin: "https://www.linkedin.com/in/sudesh-pillai-9bbb16292/" },
+        { name: "SUDESH SHRIKANT PILLAI", img: "SUDESH SHRIKANT PILLAI ECE.jpg", linkedin: "https://www.linkedin.com/in/sudesh-pillai-9bbb16292/", email: "sudesh120305@gmail.com" },
         { name: "SURYA K", img: "SURYA K ECE.jpg", linkedin: "www.linkedin.com/in/suryak23", github: "https://github.com/suryak26", email: "2023ec0546@svce.ac.in" }
     ].map(m => ({ ...m, club: "ECEA", role: "Core Member", path: `assets/ECEA-MEMBERS/${m.img}` }));
 
