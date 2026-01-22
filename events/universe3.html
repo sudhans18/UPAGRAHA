@@ -242,35 +242,32 @@
         .decree-list {
             list-style: none;
             padding: 0;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1rem;
+            margin-top: 1.5rem;
         }
 
         .decree-list li {
-            background: rgba(40, 0, 0, 0.6);
-            padding: 1rem 1.5rem;
-            border-radius: 100px;
-            /* Fully rounded pills */
-            border: 1px solid var(--deep-blood);
-            font-family: 'Share Tech Mono', monospace;
+            padding: 0.8rem 0;
+            font-family: 'Montserrat', sans-serif;
             font-size: 1rem;
             color: #ffcccc;
-            transition: 0.3s;
+            border-bottom: 1px solid rgba(255, 0, 0, 0.1);
         }
 
-        .decree-list li:hover {
-            background: var(--blood-red);
-            color: black;
-            box-shadow: 0 0 15px var(--blood-red);
-            transform: translateY(-2px);
+        .decree-list li:last-child {
+            border-bottom: none;
         }
 
-        /* Card Grid */
+        .decree-list li::before {
+            content: "•";
+            color: var(--blood-red);
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        /* Card Grid - 2x2 layout */
         .card-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 1.5rem;
             margin-top: 3rem;
         }
@@ -546,6 +543,7 @@
             <h2>EVENT COORDINATORS</h2>
             <ul class="decree-list">
                 <li>LAVANYA P</li>
+                <li>PREETHIKA R</li>
                 <li>PREETHIKA R</li>
             </ul>
         </div>
