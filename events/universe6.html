@@ -246,18 +246,32 @@
         /* Back Link */
         .back-link {
             position: fixed;
-            top: 40px;
-            left: 40px;
+            top: 30px;
+            left: 30px;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            border: 2px solid var(--wealth-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
             color: var(--wealth-gold);
             text-decoration: none;
-            font-size: 2.5rem;
-            z-index: 100;
-            transition: 0.3s;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: all 0.4s ease;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
         }
 
         .back-link:hover {
-            transform: scale(1.2);
-            filter: drop-shadow(0 0 10px var(--wealth-gold));
+            transform: scale(1.1) rotate(-360deg);
+            background: var(--wealth-gold);
+            color: #000;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.6);
+            border-color: var(--wealth-gold);
+            filter: none;
         }
 
         /* Animations */
@@ -436,16 +450,28 @@
             <h3 class="sub-header" style="color: var(--wealth-gold);">EVENT COORDINATORS</h3>
             <div style="display: flex; justify-content: center; gap: 3rem; margin-top: 1rem;">
                 <div style="text-align: center;">
-                    <p style="font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 3px; color: var(--wealth-gold); margin: 0;">RITHVIK R</p>
-                    <p style="font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; letter-spacing: 1px; color: var(--silver-plate); margin: 0.5rem 0 0 0;">+91 63693 31447</p>
+                    <p
+                        style="font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 3px; color: var(--wealth-gold); margin: 0;">
+                        RITHVIK R</p>
+                    <p
+                        style="font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; letter-spacing: 1px; color: var(--silver-plate); margin: 0.5rem 0 0 0;">
+                        +91 63693 31447</p>
                 </div>
                 <div style="text-align: center;">
-                    <p style="font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 3px; color: var(--wealth-gold); margin: 0;">ROHITH KANNA S</p>
-                    <p style="font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; letter-spacing: 1px; color: var(--silver-plate); margin: 0.5rem 0 0 0;">+91 72004 26125</p>
+                    <p
+                        style="font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 3px; color: var(--wealth-gold); margin: 0;">
+                        ROHITH KANNA S</p>
+                    <p
+                        style="font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; letter-spacing: 1px; color: var(--silver-plate); margin: 0.5rem 0 0 0;">
+                        +91 72004 26125</p>
                 </div>
                 <div style="text-align: center;">
-                    <p style="font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 3px; color: var(--wealth-gold); margin: 0;">AARTI B S</p>
-                    <p style="font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; letter-spacing: 1px; color: var(--silver-plate); margin: 0.5rem 0 0 0;">+91 99419 03348</p>
+                    <p
+                        style="font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 3px; color: var(--wealth-gold); margin: 0;">
+                        AARTI B S</p>
+                    <p
+                        style="font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; letter-spacing: 1px; color: var(--silver-plate); margin: 0.5rem 0 0 0;">
+                        +91 99419 03348</p>
                 </div>
             </div>
             <button class="cta-btn">ENTER THE AUDITORIUM</button>

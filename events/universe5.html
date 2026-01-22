@@ -4,8 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sorcerer Realm</title>
-
+    <title>Sorcerer Realm | Universe V</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -22,31 +21,30 @@
             --silver: #bcd4ff;
             --emerald: #5ee7c8;
             --crimson: #d86a6a;
-            --glass: rgba(12, 10, 22, 0.75);
-        }
-
-        * {
-            box-sizing: border-box;
+            --glass: rgba(12, 10, 22, 0.65);
+            --glass-border: rgba(245, 201, 106, 0.3);
         }
 
         body {
-            margin: 0;
-            min-height: 100vh;
+            background-color: var(--midnight);
             color: var(--moonlight);
-            font-family: "Cormorant Garamond", serif;
-            background: radial-gradient(circle at top, #1a142a 0%, var(--midnight) 50%, #020108 100%);
+            font-family: 'Cormorant Garamond', serif;
+            margin: 0;
             overflow-x: hidden;
         }
 
+        /* Video Background */
         #bg-video {
             position: fixed;
-            inset: 0;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
+            z-index: -2;
+            pointer-events: none;
             opacity: 0.35;
             filter: contrast(1.1) saturate(0.8) brightness(0.7);
-            z-index: -4;
         }
 
         .veil-layer {
@@ -56,321 +54,469 @@
                 radial-gradient(circle at 20% 10%, rgba(255, 255, 255, 0.05), transparent 45%),
                 radial-gradient(circle at 80% 20%, rgba(95, 193, 255, 0.08), transparent 45%),
                 linear-gradient(180deg, rgba(6, 6, 18, 0.2), rgba(6, 6, 20, 0.85));
-            z-index: -3;
+            z-index: -1;
             pointer-events: none;
         }
 
-        .mist-layer {
-            position: fixed;
-            inset: 0;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='900' viewBox='0 0 900 900'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='2'/%3E%3C/filter%3E%3Crect width='900' height='900' filter='url(%23n)' opacity='.08'/%3E%3C/svg%3E");
-            mix-blend-mode: screen;
-            z-index: -2;
-            pointer-events: none;
-        }
-
+        /* Spark Canvas */
         #spark-canvas {
             position: fixed;
             inset: 0;
             pointer-events: none;
-            z-index: 5;
+            z-index: -1;
         }
 
+        .universe-hero {
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            background: transparent;
+            padding: 4rem 2rem;
+        }
+
+        .universe-title {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            color: var(--gold);
+            letter-spacing: 6px;
+            margin-bottom: 2rem;
+            margin-top: 8rem;
+            text-shadow: 0 0 30px rgba(245, 201, 106, 0.4);
+            animation: slideDownFade 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+            text-align: center;
+        }
+
+        .title-accent {
+            font-family: 'IM Fell English', serif;
+            color: var(--silver);
+            font-size: 1.2rem;
+            letter-spacing: 5px;
+            margin-top: 5px;
+            text-transform: uppercase;
+            opacity: 0.8;
+            animation: fadeIn 2s 0.5s forwards;
+            text-align: center;
+        }
+
+        .universe-desc {
+            max-width: 800px;
+            padding: 2.5rem;
+            background: var(--glass);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--glass-border);
+            border-top: 5px solid var(--gold);
+            margin-top: 2rem;
+            opacity: 0;
+            animation: slideUpFade 1.2s 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+            border-radius: 4px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .section-header {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 2.2rem;
+            color: var(--gold);
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+        }
+
+        .sub-header {
+            font-family: 'IM Fell English', serif;
+            font-size: 1.4rem;
+            color: var(--silver);
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .spa-section {
+            padding: 8rem 2rem;
+            background: linear-gradient(to bottom, transparent, rgba(5, 3, 12, 0.8));
+        }
+
+        /* Custom Panels */
+        .panel {
+            max-width: 900px;
+            margin: 0 auto 4rem;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            padding: 2.5rem;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            border-radius: 12px;
+        }
+
+        .panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--gold), transparent);
+            border-radius: 4px 0 0 4px;
+        }
+
+        .magical-border {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            box-shadow: 0 0 10px var(--gold);
+            opacity: 0.5;
+        }
+
+        /* Rules List */
+        .rules-list {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .rules-list li {
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 2px solid var(--silver);
+            font-size: 1.1rem;
+            line-height: 1.6;
+            transition: 0.3s ease;
+        }
+
+        .rules-list li:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-left-color: var(--gold);
+        }
+
+        .rules-list li strong {
+            color: var(--gold);
+            display: block;
+            margin-bottom: 0.4rem;
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 1rem;
+            letter-spacing: 1px;
+        }
+
+        /* Criteria/Domain Cards */
+        .criteria-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .criteria-card {
+            padding: 1.5rem;
+            border: 1px solid rgba(188, 212, 255, 0.2);
+            background: rgba(255, 255, 255, 0.02);
+            transition: 0.4s ease;
+            text-align: center;
+            border-radius: 8px;
+        }
+
+        .criteria-card:hover {
+            border-color: var(--gold);
+            background: rgba(245, 201, 106, 0.08);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .criteria-card strong {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 1.3rem;
+            color: var(--gold);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .criteria-card p {
+            font-size: 1.05rem;
+            color: var(--silver);
+            margin: 0;
+        }
+
+        /* CTA */
+        .cta-btn {
+            background: linear-gradient(135deg, rgba(245, 201, 106, 0.15), rgba(188, 212, 255, 0.1));
+            color: var(--gold);
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 1.1rem;
+            padding: 1rem 3rem;
+            border: 1px solid var(--gold);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.4s ease;
+            letter-spacing: 3px;
+            margin-top: 2rem;
+            text-transform: uppercase;
+        }
+
+        .cta-btn:hover {
+            background: var(--gold);
+            color: var(--midnight);
+            box-shadow: 0 0 30px rgba(245, 201, 106, 0.4);
+            transform: scale(1.05);
+        }
+
+        /* Back Link */
         .back-link {
             position: fixed;
-            top: 24px;
-            left: 24px;
-            padding: 10px 18px;
-            border: 1px solid rgba(245, 201, 106, 0.6);
-            border-radius: 999px;
-            text-decoration: none;
-            font-family: "IM Fell English", serif;
+            top: 30px;
+            left: 30px;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            border: 2px solid var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
             color: var(--gold);
+            text-decoration: none;
             background: rgba(6, 6, 15, 0.7);
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            font-size: 0.75rem;
-            z-index: 10;
-            transition: 0.3s ease;
-            backdrop-filter: blur(6px);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: all 0.4s ease;
+            box-shadow: 0 0 20px rgba(245, 201, 106, 0.2);
         }
 
         .back-link:hover {
             background: var(--gold);
             color: #120b0b;
-            box-shadow: 0 0 20px rgba(245, 201, 106, 0.6);
+            box-shadow: 0 0 40px rgba(245, 201, 106, 0.6);
+            transform: scale(1.1) rotate(-360deg);
         }
 
-        .page {
-            position: relative;
-            z-index: 2;
-            padding: 8rem 6vw 6rem;
-            display: flex;
-            flex-direction: column;
-            gap: 4rem;
+        /* Animations */
+        @keyframes slideDownFade {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .hero {
-            text-align: center;
-            padding: 4rem 2rem 2rem;
+        @keyframes slideUpFade {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .hero-eyebrow {
-            font-family: "IM Fell English", serif;
-            text-transform: uppercase;
-            letter-spacing: 5px;
-            font-size: 0.9rem;
-            color: var(--silver);
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
-        .hero-title {
-            margin: 1.2rem 0 0.8rem;
-            font-family: "Cinzel Decorative", serif;
-            font-size: clamp(2.8rem, 6vw, 6rem);
-            color: var(--gold);
-            text-shadow: 0 0 20px rgba(245, 201, 106, 0.5);
-            letter-spacing: 6px;
-        }
-
-        .hero-subtitle {
-            font-size: 1.3rem;
-            max-width: 720px;
-            margin: 0 auto;
-            color: rgba(232, 219, 178, 0.85);
-            line-height: 1.6;
-        }
-
-        .hero-divider {
-            width: 220px;
-            height: 2px;
-            margin: 2rem auto 0;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent);
-            box-shadow: 0 0 12px rgba(245, 201, 106, 0.6);
-        }
-
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            gap: 2rem;
-        }
-
-        .card {
-            grid-column: span 4;
-            background: var(--glass);
-            border: 1px solid rgba(188, 212, 255, 0.2);
-            border-radius: 28px;
-            padding: 2.5rem;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
-            backdrop-filter: blur(12px);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at top, rgba(255, 255, 255, 0.08), transparent 60%);
+        .reveal {
             opacity: 0;
-            transition: 0.4s ease;
+            transform: translateY(30px);
+            transition: all 1s ease-out;
         }
 
-        .card:hover::after {
+        .reveal.active {
             opacity: 1;
+            transform: translateY(0);
         }
 
-        .card-wide {
-            grid-column: span 6;
-        }
-
-        .card-title {
-            font-family: "Cinzel Decorative", serif;
-            font-size: 1.6rem;
-            margin: 0 0 1rem;
-            color: var(--silver);
-        }
-
-        .card p,
-        .card li {
-            font-size: 1.1rem;
-            color: rgba(232, 219, 178, 0.85);
-            line-height: 1.7;
-        }
-
-        .card ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: grid;
-            gap: 0.8rem;
-        }
-
-        .card ul li::before {
-            content: "✦";
-            color: var(--emerald);
-            margin-right: 10px;
-        }
-
-        .sigil {
-            display: inline-block;
-            font-family: "IM Fell English", serif;
-            color: var(--crimson);
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            font-size: 0.75rem;
-        }
-
-        .cta-btn {
-            margin-top: 1.5rem;
-            padding: 14px 34px;
-            border-radius: 999px;
-            border: 1px solid rgba(245, 201, 106, 0.8);
-            background: linear-gradient(135deg, rgba(245, 201, 106, 0.25), rgba(188, 212, 255, 0.15));
-            color: var(--gold);
-            font-family: "Cinzel Decorative", serif;
-            font-size: 0.95rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            cursor: pointer;
-            transition: 0.3s ease;
-        }
-
-        .cta-btn:hover {
-            background: var(--gold);
-            color: #120b0b;
-            box-shadow: 0 0 25px rgba(245, 201, 106, 0.6);
-        }
-
-        @media (max-width: 1100px) {
-            .card {
-                grid-column: span 6;
-            }
-        }
-
-        @media (max-width: 900px) {
-            .page {
-                padding: 7rem 6vw 5rem;
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .universe-title {
+                font-size: 3.5rem;
+                letter-spacing: 4px;
             }
 
-            .cards {
+            .rules-list {
                 grid-template-columns: 1fr;
             }
 
-            .card,
-            .card-wide {
-                grid-column: span 1;
+            .panel {
+                padding: 2rem;
             }
         }
     </style>
 </head>
 
 <body>
+
     <video id="bg-video" autoplay muted loop playsinline>
         <source src="../assets/potter.mp4" type="video/mp4">
     </video>
     <div class="veil-layer"></div>
-    <div class="mist-layer"></div>
     <canvas id="spark-canvas"></canvas>
 
     <a href="../index.html#events" class="back-link"
         onclick="if(document.referrer.indexOf(window.location.host) !== -1) { event.preventDefault(); history.back(); }">←</a>
 
-    <main class="page">
-        <section class="hero">
-            <span class="hero-eyebrow">ECE Symposium - Universe V</span>
-            <h1 class="hero-title">Sorcerer Realm</h1>
-            <p class="hero-subtitle">
-                Sorcerer Realm is a paper presentation event that provides a platform for students and researchers to showcase innovative ideas, research outcomes, and technical solutions. Participants present their work through a structured review and presentation process, encouraging originality, clarity, and technical depth in emerging and impactful domains.
+    <section class="universe-hero">
+        <h1 class="universe-title">SORCERER REALM</h1>
+        <div class="title-accent">Paper Presentation</div>
+
+        <div class="universe-desc">
+            <h2 class="sub-header" style="color: var(--gold); margin-bottom: 1rem;">About the Event</h2>
+            <p style="font-size: 1.2rem; line-height: 1.8; color: var(--moonlight);">
+                Sorcerer Realm is a paper presentation event that provides a platform for students and researchers to
+                showcase innovative ideas, research outcomes, and technical solutions. Participants present their work
+                through a structured review and presentation process, encouraging originality, clarity, and technical
+                depth in emerging and impactful domains.
             </p>
-            <div class="hero-divider"></div>
-        </section>
+        </div>
+    </section>
 
-        <section class="cards">
-            <article class="card card-wide">
-                <span class="sigil">About</span>
-                <h2 class="card-title">Event</h2>
-                <p>
-                    Sorcerer Realm is a paper presentation event that provides a platform for students and researchers to showcase innovative ideas, research outcomes, and technical solutions. Participants present their work through a structured review and presentation process, encouraging originality, clarity, and technical depth in emerging and impactful domains.
-                </p>
-            </article>
+    <section class="spa-section">
 
-            <article class="card">
-                <span class="sigil">Round I</span>
-                <h2 class="card-title">Abstract Submission & Screening</h2>
-                <p>
-                    In this round, participants submit an abstract outlining their idea or research. The abstracts are evaluated for relevance, originality, and clarity. Only shortlisted teams will advance to presentation round and will be required to submit their full paper in prescribed format.
-                </p>
-            </article>
+        <!-- Round 1 -->
+        <div class="panel reveal">
+            <h2 class="section-header">ROUND 1: ABSTRACT SUBMISSION</h2>
+            <p class="sub-header">THE SCREENING</p>
+            <p style="color: var(--silver); font-size: 1.15rem; line-height: 1.7; margin-bottom: 3rem;">
+                In this preliminary phrase, participants must submit an abstract outlining their idea or research.
+                The abstracts are evaluated for relevance, originality, and clarity. Only the worthy shall pass through
+                the veil to the next round.
+            </p>
 
-            <article class="card">
-                <span class="sigil">Round I Rules</span>
-                <h2 class="card-title">Abstract & Paper Evaluation</h2>
-                <ul>
-                    <li>Participants must submit an abstract for initial screening.</li>
-                    <li>Only shortlisted abstracts qualify for Round 2.</li>
-                    <li>Shortlisted teams must submit full paper before event.</li>
-                    <li>The paper must strictly follow IEEE format.</li>
-                </ul>
-            </article>
+            <ul class="rules-list">
+                <li><strong>Initial Casting</strong> Participants must submit an abstract for initial screening.</li>
+                <li><strong>The Selection</strong> Only shortlisted abstracts will qualify for Round 2.</li>
+                <li><strong>The Scroll</strong> Shortlisted teams must submit their full paper before the event day.
+                </li>
+                <li><strong>The Law</strong> The paper must strictly follow the IEEE format.</li>
+            </ul>
+            <div class="magical-border"></div>
+        </div>
 
-            <article class="card">
-                <span class="sigil">Round II</span>
-                <h2 class="card-title">Paper Presentation</h2>
-                <p>
-                    Shortlisted teams will present their work before a panel of judges. The presentation evaluates technical understanding, clarity of explanation, and ability to answer questions effectively.
-                </p>
-            </article>
+        <!-- Round 2 -->
+        <div class="panel reveal">
+            <h2 class="section-header">ROUND 2: PAPER PRESENTATION</h2>
+            <p class="sub-header">THE REVELATION</p>
+            <p style="color: var(--silver); font-size: 1.15rem; line-height: 1.7; margin-bottom: 3rem;">
+                Shortlisted teams will present their work before a panel of judges.
+                The presentation evaluates technical understanding, clarity of explanation,
+                and the ability to answer questions effectively under scrutiny.
+            </p>
 
-            <article class="card">
-                <span class="sigil">Round II Rules</span>
-                <h2 class="card-title">Presentation & Q&A</h2>
-                <ul>
-                    <li>Each team is allotted 10 minutes for presentation.</li>
-                    <li>A 3-minute Q&A session follows presentation.</li>
-                    <li>Final results are based on judges' evaluation.</li>
-                </ul>
-            </article>
+            <ul class="rules-list" style="grid-template-columns: 1fr;">
+                <li><strong>The Stage</strong> Each team is allotted 10 minutes for their presentation.</li>
+                <li><strong>The Inquisition</strong> A 3-minute Q&A session follows the presentation.</li>
+                <li><strong>The Verdict</strong> Final results are based on the judges' evaluation.</li>
+            </ul>
+            <div class="magical-border"></div>
+        </div>
 
-            <article class="card card-wide">
-                <span class="sigil">Domains</span>
-                <h2 class="card-title">Focus Areas</h2>
-                <ul>
-                    <li>VLSI Design</li>
-                    <li>Machine Learning</li>
-                    <li>Internet of Things (IoT)</li>
-                    <li>Antenna Design and Applications</li>
-                    <li>Signal Processing and Communication</li>
-                    <li>Optical Communication</li>
-                </ul>
-            </article>
+        <!-- Domains -->
+        <div class="panel reveal" style="text-align: center; border-top: 1px solid var(--glass-border);">
+            <h2 class="section-header">FOCUS AREAS</h2>
+            <p class="sub-header">CHOOSE YOUR DISCIPLINE</p>
+            <div class="criteria-grid">
+                <div class="criteria-card">
+                    <strong>VLSI Design</strong>
+                </div>
+                <div class="criteria-card">
+                    <strong>Machine Learning</strong>
+                </div>
+                <div class="criteria-card">
+                    <strong>Internet of Things</strong>
+                </div>
+                <div class="criteria-card">
+                    <strong>Antenna Design</strong>
+                </div>
+                <div class="criteria-card">
+                    <strong>Signal Processing</strong>
+                </div>
+                <div class="criteria-card">
+                    <strong>Optical Comm.</strong>
+                </div>
+            </div>
+        </div>
 
-            <article class="card card-wide">
-                <span class="sigil">Protocol</span>
-                <h2 class="card-title">Event Rules</h2>
-                <ul>
-                    <li>Teams must consist of 2–3 members.</li>
-                    <li>Participants should report 30 minutes before their scheduled slot.</li>
-                    <li>Professional conduct is mandatory throughout event.</li>
-                    <li>Recording of sessions is prohibited without prior permission.</li>
-                </ul>
-            </article>
+        <!-- Event Rules -->
+        <div class="panel reveal">
+            <h2 class="section-header">REALM PROTOCOLS</h2>
+            <ul class="rules-list" style="margin-bottom: 2rem;">
+                <li><strong>Fellowship</strong> Teams must consist of 2–3 members.</li>
+                <li><strong>Punctuality</strong> Participants should report 30 minutes before their scheduled slot.</li>
+                <li><strong>Decorum</strong> Professional conduct is mandatory throughout the event.</li>
+                <li><strong>Secrecy</strong> Recording of sessions is prohibited without prior permission.</li>
+                <li><strong>Identity</strong> College ID cards are mandatory for entry.</li>
+            </ul>
+        </div>
 
-            <article class="card card-wide">
-                <span class="sigil">Masters</span>
-                <h2 class="card-title">Event Coordinators</h2>
-                <p style="text-align: center; font-family: 'Cinzel Decorative', serif; font-size: 1.3rem; color: var(--gold); margin: 1rem 0;">
-                    KARUNYA D &nbsp;|&nbsp; ANUSHRI V &nbsp;|&nbsp; VISHWANATHAN L
-                </p>
-                <button class="cta-btn">Enter the Realm</button>
-            </article>
-        </section>
-    </main>
+        <!-- Coordinators -->
+        <div class="reveal" style="text-align: center; margin-top: 4rem;">
+            <h3 class="sub-header" style="color: var(--gold);">EVENT COORDINATORS</h3>
+            <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 3rem; margin-top: 1rem;">
+                <div style="text-align: center;">
+                    <p
+                        style="font-family: 'Cinzel Decorative', serif; font-size: 1.4rem; color: var(--gold); margin: 0;">
+                        KARUNYA D
+                    </p>
+                    <p
+                        style="font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; margin: 0.5rem 0 0 0; color: var(--silver);">
+                        +91 63813 61263
+                    </p>
+                </div>
+                <div style="text-align: center;">
+                    <p
+                        style="font-family: 'Cinzel Decorative', serif; font-size: 1.4rem; color: var(--gold); margin: 0;">
+                        ANUSHRI V
+                    </p>
+                    <p
+                        style="font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; margin: 0.5rem 0 0 0; color: var(--silver);">
+                        +91 80159 69221
+                    </p>
+                </div>
+                <div style="text-align: center;">
+                    <p
+                        style="font-family: 'Cinzel Decorative', serif; font-size: 1.4rem; color: var(--gold); margin: 0;">
+                        VISHWANATHAN L
+                    </p>
+                    <p
+                        style="font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; margin: 0.5rem 0 0 0; color: var(--silver);">
+                        +91 94454 07204
+                    </p>
+                </div>
+            </div>
+            <button class="cta-btn">ENTER THE REALM</button>
+        </div>
+
+    </section>
 
     <script>
+        // Scroll Reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Spark Animation (Preserved from Universe 5)
         const canvas = document.getElementById("spark-canvas");
         const ctx = canvas.getContext("2d");
-        let w;
-        let h;
+        let w, h;
 
         function resize() {
             w = canvas.width = window.innerWidth;
@@ -383,7 +529,7 @@
         const hues = ["rgba(245, 201, 106,", "rgba(188, 212, 255,", "rgba(94, 231, 200,"];
 
         document.addEventListener("mousemove", (e) => {
-            for (let i = 0; i < 8; i++) {
+            for (let i = 0; i < 4; i++) { // Slightly reduced density for performance
                 const angle = Math.random() * Math.PI * 2;
                 const speed = Math.random() * 2.2 + 0.6;
                 sparks.push({
@@ -407,12 +553,14 @@
                 s.y += s.vy;
                 s.life -= 1.2;
                 const alpha = Math.max(s.life / 90, 0);
-                ctx.beginPath();
-                ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
-                ctx.shadowColor = `${s.color}${alpha})`;
-                ctx.fillStyle = `${s.color}${alpha})`;
-                ctx.fill();
-                if (s.life <= 0) {
+
+                if (s.life > 0) {
+                    ctx.beginPath();
+                    ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+                    ctx.shadowColor = `${s.color}${alpha})`;
+                    ctx.fillStyle = `${s.color}${alpha})`;
+                    ctx.fill();
+                } else {
                     sparks.splice(i, 1);
                 }
             }
