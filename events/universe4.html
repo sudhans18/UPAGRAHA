@@ -20,7 +20,6 @@
     <style>
         :root {
             --bg-black: #000000;
-            --navy-deep: #050a18;
             --electric-blue: #00d4ff;
             --icy-blue: #e0f7fa;
             --glass-white: rgba(255, 255, 255, 0.03);
@@ -32,8 +31,13 @@
 
         * {
             box-sizing: border-box;
-            cursor: none !important;
-            /* Hide default cursor */
+        }
+
+        /* Hide cursor only on desktop */
+        @media (min-width: 769px) {
+            * {
+                cursor: none !important;
+            }
         }
 
         body {
@@ -72,47 +76,6 @@
             z-index: 0;
             pointer-events: none;
         }
-
-        .grain-overlay {
-            position: fixed;
-            inset: 0;
-            z-index: 100;
-            background-image: url('../assets/grain.svg');
-            opacity: 0.15;
-            pointer-events: none;
-        }
-
-        .light-sweep {
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            background: conic-gradient(from 0deg at 50% 50%, transparent, rgba(0, 212, 255, 0.05), transparent);
-            animation: sweep 20s linear infinite;
-            top: -50%;
-            left: -50%;
-        }
-
-        @keyframes sweep {
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
-        /* Custom Cursor */
-        .custom-cursor {
-            position: fixed;
-            width: 32px;
-            height: 32px;
-            background: url('../assets/crosshair.svg') no-repeat center center;
-            background-size: contain;
-            pointer-events: none;
-            z-index: 9999;
-            transform: translate(-50%, -50%);
-            mix-blend-mode: normal;
-            transition: width 0.3s ease, height 0.3s ease, background 0.3s ease, border-radius 0.3s ease;
-        }
-
-
 
         /* Layout */
         .viewport {
@@ -262,7 +225,6 @@
         .pills-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            /* Force 2x2 */
             gap: 20px;
             margin-top: 10px;
         }
@@ -344,11 +306,11 @@
             font-family: var(--font-accent);
             font-size: 1rem;
             letter-spacing: 5px;
-            /* Increased spacing */
             border: none;
             font-weight: 700;
             transition: all 0.3s ease;
             box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+            cursor: pointer;
         }
 
         .magnetic-btn:hover {
@@ -357,7 +319,7 @@
             transform: scale(1.05);
         }
 
-        /* Mobile Adjustments */
+        /* Tablet and Mobile Adjustments */
         @media (max-width: 1024px) {
             .section-grid {
                 grid-template-columns: 1fr;
@@ -373,8 +335,45 @@
                 padding: 80px 20px;
             }
 
-            .hero-title {
+            h1 {
                 font-size: 3.5rem;
+            }
+        }
+
+        /* Mobile-specific styles */
+        @media (max-width: 768px) {
+            .pills-container {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+
+            .pill {
+                padding: 14px 10px;
+                font-size: 0.65rem;
+                letter-spacing: 0.5px;
+                word-break: break-word;
+            }
+
+            .glass-card {
+                padding: 25px;
+            }
+
+            /* Hide custom cursor on mobile */
+            #cursor-system {
+                display: none !important;
+            }
+        }
+
+        /* Very small screens */
+        @media (max-width: 400px) {
+            .pills-container {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .pill {
+                font-size: 0.7rem;
+                padding: 16px 12px;
             }
         }
     </style>
@@ -385,12 +384,9 @@
         <source src="../assets/Transformers.mp4" type="video/mp4">
     </video>
 
-    <div class="grain-overlay"></div>
-
-    <!-- Complex Sci-Fi Cursor Structure -->
+    <!-- Custom Sci-Fi Cursor (Desktop only) -->
     <div id="cursor-system"
         style="position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; mix-blend-mode: screen;">
-        <!-- Outer Ring -->
         <svg id="cursor-outer" width="60" height="60" viewBox="0 0 100 100"
             style="position: absolute; overflow: visible;">
             <circle cx="50" cy="50" r="48" fill="none" stroke="#00d4ff" stroke-width="1" stroke-opacity="0.5"
@@ -398,16 +394,12 @@
             <circle cx="50" cy="50" r="42" fill="none" stroke="#00d4ff" stroke-width="0.5" stroke-opacity="0.3" />
             <path d="M50,2 L50,10 M50,90 L50,98 M2,50 L10,50 M90,50 L98,50" stroke="#00d4ff" stroke-width="2" />
         </svg>
-
-        <!-- Inner Ring (Rotates Text/Shapes) -->
         <svg id="cursor-inner" width="30" height="30" viewBox="0 0 100 100"
             style="position: absolute; overflow: visible;">
             <path d="M20,20 L20,30 L30,20 Z M80,20 L80,30 L70,20 Z M20,80 L20,70 L30,80 Z M80,80 L80,70 L70,80 Z"
                 fill="#00d4ff" fill-opacity="0.8" />
             <circle cx="50" cy="50" r="2" fill="#fff" />
         </svg>
-
-        <!-- Lock-on Brackets (Hidden by default, show on hover) -->
         <svg id="cursor-lock" width="80" height="80" viewBox="0 0 100 100"
             style="position: absolute; overflow: visible; opacity: 0; transform: scale(1.5);">
             <path d="M10,30 L10,10 L30,10" fill="none" stroke="#fff" stroke-width="2" />
@@ -417,10 +409,9 @@
         </svg>
     </div>
 
-    <!-- Glow Backing -->
+    <!-- Background layers -->
     <div class="background-container"></div>
     <div class="video-overlay"></div>
-    <div class="light-sweep"></div>
 
     <a href="../index.html#events" class="back-link"
         onclick="if(document.referrer.indexOf(window.location.host) !== -1) { event.preventDefault(); history.back(); }">←</a>
@@ -545,119 +536,64 @@
     </main>
 
     <script>
+        // Check if device is mobile/touch
+        const isMobile = window.innerWidth <= 768 || 'ontouchstart' in window;
+
         // =========================================
-        // ADVANCED SCI-FI CURSOR LOGIC
+        // CUSTOM CURSOR (Desktop only)
         // =========================================
-        const cursorSystem = document.getElementById('cursor-system');
-        const cursorOuter = document.getElementById('cursor-outer');
-        const cursorInner = document.getElementById('cursor-inner');
-        const cursorLock = document.getElementById('cursor-lock');
+        if (!isMobile) {
+            const cursorSystem = document.getElementById('cursor-system');
+            const cursorOuter = document.getElementById('cursor-outer');
+            const cursorInner = document.getElementById('cursor-inner');
+            const cursorLock = document.getElementById('cursor-lock');
 
-        // Initial Setters to center elements
-        gsap.set([cursorOuter, cursorInner, cursorLock], { xPercent: -50, yPercent: -50, left: 0, top: 0 });
+            gsap.set([cursorOuter, cursorInner, cursorLock], { xPercent: -50, yPercent: -50, left: 0, top: 0 });
 
-        // Mouse Move Follower
-        let mouseX = window.innerWidth / 2;
-        let mouseY = window.innerHeight / 2;
-
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-
-            // System follows mouse tightly
-            gsap.to(cursorSystem, {
-                x: mouseX,
-                y: mouseY,
-                duration: 0.1,
-                ease: 'power2.out'
-            });
-        });
-
-        // Idle Animations
-        gsap.to(cursorOuter, { rotation: 360, duration: 20, repeat: -1, ease: 'linear' });
-        gsap.to(cursorInner, { rotation: -360, duration: 10, repeat: -1, ease: 'linear' });
-
-        // Interaction Logic
-        const interactives = document.querySelectorAll('a, button, .pill');
-
-        interactives.forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                // LOCK ON EFFECT
-
-                // 1. Expand Outer Ring and make it spin faster
-                gsap.to(cursorOuter, {
-                    scale: 1.5,
-                    opacity: 0.8,
-                    duration: 0.3
-                });
-                gsap.to(cursorOuter, {
-                    rotation: '+=180',
-                    duration: 1,
-                    repeat: -1,
-                    ease: 'linear',
-                    overwrite: 'auto'
-                });
-
-                // 2. Inner ring pulses
-                gsap.to(cursorInner, {
-                    scale: 0.5,
-                    duration: 0.3
-                });
-
-                // 3. Show Lock brackets
-                gsap.to(cursorLock, {
-                    scale: 1,
-                    opacity: 1,
-                    duration: 0.4,
-                    ease: 'back.out(1.7)'
+            document.addEventListener('mousemove', (e) => {
+                gsap.to(cursorSystem, {
+                    x: e.clientX,
+                    y: e.clientY,
+                    duration: 0.1,
+                    ease: 'power2.out'
                 });
             });
 
-            el.addEventListener('mouseleave', () => {
-                // REVERT TO IDLE
+            // Idle rotation animations
+            gsap.to(cursorOuter, { rotation: 360, duration: 20, repeat: -1, ease: 'linear' });
+            gsap.to(cursorInner, { rotation: -360, duration: 10, repeat: -1, ease: 'linear' });
 
-                // 1. Reset Outer Ring
-                gsap.to(cursorOuter, {
-                    scale: 1,
-                    opacity: 1,
-                    duration: 0.3
-                });
-                // Return to slow spin
-                gsap.to(cursorOuter, {
-                    rotation: '+=360',
-                    duration: 20,
-                    repeat: -1,
-                    ease: 'linear',
-                    overwrite: 'auto'
+            // Interactive element hover effects
+            const interactives = document.querySelectorAll('a, button, .pill');
+            interactives.forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    gsap.to(cursorOuter, { scale: 1.5, opacity: 0.8, duration: 0.3 });
+                    gsap.to(cursorOuter, { rotation: '+=180', duration: 1, repeat: -1, ease: 'linear', overwrite: 'auto' });
+                    gsap.to(cursorInner, { scale: 0.5, duration: 0.3 });
+                    gsap.to(cursorLock, { scale: 1, opacity: 1, duration: 0.4, ease: 'back.out(1.7)' });
                 });
 
-                // 2. Reset Inner
-                gsap.to(cursorInner, {
-                    scale: 1,
-                    duration: 0.3
-                });
-
-                // 3. Hide Lock brackets
-                gsap.to(cursorLock, {
-                    scale: 1.5,
-                    opacity: 0,
-                    duration: 0.3
+                el.addEventListener('mouseleave', () => {
+                    gsap.to(cursorOuter, { scale: 1, opacity: 1, duration: 0.3 });
+                    gsap.to(cursorOuter, { rotation: '+=360', duration: 20, repeat: -1, ease: 'linear', overwrite: 'auto' });
+                    gsap.to(cursorInner, { scale: 1, duration: 0.3 });
+                    gsap.to(cursorLock, { scale: 1.5, opacity: 0, duration: 0.3 });
                 });
             });
-        });
 
-        // Click Effect (Pulse)
-        document.addEventListener('mousedown', () => {
-            gsap.to([cursorOuter, cursorInner], { scale: 0.8, duration: 0.1, yoyo: true, repeat: 1 });
-            gsap.to(cursorLock, { rotation: 45, duration: 0.2, yoyo: true, repeat: 1 });
-        });
+            // Click pulse effect
+            document.addEventListener('mousedown', () => {
+                gsap.to([cursorOuter, cursorInner], { scale: 0.8, duration: 0.1, yoyo: true, repeat: 1 });
+                gsap.to(cursorLock, { rotation: 45, duration: 0.2, yoyo: true, repeat: 1 });
+            });
+        }
 
-        // Magnetic Button Effect DISABLED per user request (JS removed)
-
-        // Animation Entrances (Preserved)
+        // =========================================
+        // SCROLL ANIMATIONS
+        // =========================================
         gsap.registerPlugin(ScrollTrigger);
 
-        // Hero Reveal
+        // Hero entrance animations
         gsap.from('.reveal-text', {
             y: 40,
             opacity: 0,
@@ -674,17 +610,17 @@
             ease: 'power3.out'
         });
 
-        // Individual Entrance for Cards for perfect reliability
+        // Scroll-triggered card animations (works on both mobile and desktop)
         gsap.utils.toArray('.staggered').forEach(card => {
             gsap.from(card, {
                 scrollTrigger: {
                     trigger: card,
-                    start: 'top 90%',
+                    start: isMobile ? 'top 95%' : 'top 90%',
                     toggleActions: 'play none none none'
                 },
-                y: 30,
+                y: isMobile ? 20 : 30,
                 autoAlpha: 0,
-                duration: 0.8,
+                duration: isMobile ? 0.5 : 0.8,
                 ease: 'power2.out'
             });
         });
