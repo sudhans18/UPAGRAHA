@@ -207,7 +207,7 @@
    Sponsorship Tiers Page
    ========================================= */
 .sponsorship-page-body {
-    background: #000;
+    background: var(--bg-color);
     padding-top: 100px;
     /* Space for fixed nav */
     min-height: 100vh;
