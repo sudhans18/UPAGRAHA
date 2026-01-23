@@ -1,0 +1,476 @@
+/* =========================================
+   ABOUT SECTION REDESIGN - LOKI / MULTIVERSE THEME
+   Enhanced Design with Better Typography
+   ========================================= */
+
+/* Root Variables for this section */
+:root {
+    --loki-green: #00d93a;
+    --loki-green-dim: #00aa2e;
+    --loki-gold: #e6c200;
+    --loki-gold-dim: #c4a500;
+    --loki-dark: #0a0a0a;
+    --glass-bg: rgba(12, 15, 12, 0.9);
+    --glass-border: rgba(0, 180, 50, 0.12);
+    --card-glow: 0 0 20px rgba(0, 180, 50, 0.05);
+}
+
+/* Section Container */
+section#about {
+    position: relative;
+    width: 100%;
+    min-height: auto;
+    padding: 100px 5% 80px;
+    background: transparent;
+    overflow: visible;
+    color: #fff;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 80px;
+}
+
+/* Decorative top border */
+section#about::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--loki-green), transparent);
+}
+
+/* ============================================
+   TWO-COLUMN ROW LAYOUT
+   ============================================ */
+.about-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: center;
+    gap: 50px;
+    width: 100%;
+    max-width: 1300px;
+}
+
+.about-col-left {
+    flex: 1 1 480px;
+    max-width: 580px;
+    display: flex;
+    flex-direction: column;
+}
+
+.about-col-right {
+    flex: 1 1 380px;
+    max-width: 480px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+}
+
+/* ============================================
+   HEADINGS - Enhanced Typography
+   ============================================ */
+.about-header-row {
+    text-align: left;
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.about-title {
+    font-family: 'Orbitron', 'Michroma', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin: 0;
+    color: var(--loki-green);
+    text-shadow:
+        0 0 12px rgba(0, 180, 50, 0.25),
+        0 0 25px rgba(0, 180, 50, 0.1);
+    position: relative;
+    display: inline-block;
+}
+
+/* Underline accent */
+.about-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--loki-green), transparent);
+}
+
+/* Gold accent for "Us" heading */
+.about-title span[style*="gold"],
+.about-title span[style*="ffd700"] {
+    text-shadow:
+        0 0 20px rgba(255, 215, 0, 0.4),
+        0 0 40px rgba(255, 215, 0, 0.2);
+}
+
+/* ============================================
+   TEXT CARDS - Glassmorphic with Accent Border
+   ============================================ */
+.about-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 28px 30px;
+    border-radius: 4px;
+    box-shadow: var(--card-glow);
+    position: relative;
+    transition: all 0.4s ease;
+    border-left: 3px solid var(--loki-green);
+    flex-grow: 1;
+}
+
+/* Corner accents */
+.about-card::before,
+.about-card::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-color: var(--loki-green);
+    border-style: solid;
+    opacity: 0.4;
+    transition: opacity 0.3s ease;
+}
+
+.about-card::before {
+    top: -1px;
+    right: -1px;
+    border-width: 2px 2px 0 0;
+}
+
+.about-card::after {
+    bottom: -1px;
+    right: -1px;
+    border-width: 0 2px 2px 0;
+}
+
+.about-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0, 255, 65, 0.15);
+    border-left-color: var(--loki-gold);
+}
+
+.about-card:hover::before,
+.about-card:hover::after {
+    opacity: 0.8;
+    border-color: var(--loki-gold);
+}
+
+.about-card p {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1rem;
+    line-height: 1.85;
+    color: #d0d0d0;
+    margin: 0;
+    text-align: justify;
+    font-weight: 400;
+}
+
+/* ============================================
+   STAT CARDS - 2x2 CUBE GRID with Depth Effects
+   ============================================ */
+.stats-grid-cube {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    width: 100%;
+}
+
+.stat-card {
+    background: rgba(12, 18, 12, 0.95);
+    border: 1px solid rgba(100, 120, 100, 0.25);
+    border-radius: 4px;
+    padding: 25px 18px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+/* Corner brackets - top left */
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    width: 12px;
+    height: 12px;
+    border-left: 2px solid var(--loki-green-dim);
+    border-top: 2px solid var(--loki-green-dim);
+    opacity: 0.5;
+    transition: all 0.3s ease;
+}
+
+/* Corner brackets - bottom right */
+.stat-card::after {
+    content: '';
+    position: absolute;
+    bottom: 6px;
+    right: 6px;
+    width: 12px;
+    height: 12px;
+    border-right: 2px solid var(--loki-green-dim);
+    border-bottom: 2px solid var(--loki-green-dim);
+    opacity: 0.5;
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    background: rgba(15, 25, 15, 0.98);
+    border-color: rgba(0, 180, 50, 0.4);
+    transform: translateY(-3px);
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.5),
+        0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.stat-card:hover::before,
+.stat-card:hover::after {
+    opacity: 0.9;
+    border-color: var(--loki-green);
+}
+
+/* Scan line animation on hover */
+.stat-card .stat-number::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.03), transparent);
+    pointer-events: none;
+}
+
+.stat-card:hover .stat-number::after {
+    animation: scanLine 0.6s ease-out;
+}
+
+@keyframes scanLine {
+    0% {
+        left: -100%;
+    }
+
+    100% {
+        left: 100%;
+    }
+}
+
+.stat-number {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--loki-green);
+    margin-bottom: 8px;
+    display: block;
+    position: relative;
+    letter-spacing: 2px;
+}
+
+.stat-label {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.85rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 500;
+}
+
+/* ============================================
+   ORGANIZERS (Logos)
+   ============================================ */
+.organizers-wrapper {
+    text-align: center;
+    width: 100%;
+    padding: 15px 0;
+}
+
+.logos-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 35px;
+    flex-wrap: wrap;
+}
+
+.organizer-logo {
+    height: 95px;
+    width: auto;
+    filter: brightness(1.1) drop-shadow(0 0 5px rgba(255, 255, 255, 0.2));
+    transition: all 0.35s ease;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.organizer-logo:hover {
+    transform: scale(1.08) translateY(-3px);
+    filter: brightness(1.2) drop-shadow(0 0 12px var(--loki-gold));
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 215, 0, 0.3);
+}
+
+/* ============================================
+   ACTION BUTTONS - Angular Sci-Fi Style
+   ============================================ */
+.about-actions {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
+
+.loki-btn {
+    position: relative;
+    padding: 16px 38px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    color: var(--loki-green);
+    text-decoration: none;
+    text-transform: uppercase;
+    background: rgba(0, 255, 65, 0.05);
+    border: 1px solid var(--loki-green);
+    overflow: hidden;
+    transition: all 0.35s ease;
+    clip-path: polygon(0 0,
+            calc(100% - 12px) 0,
+            100% 12px,
+            100% 100%,
+            12px 100%,
+            0 calc(100% - 12px));
+}
+
+/* Scan line effect */
+.loki-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.loki-btn:hover::before {
+    left: 100%;
+}
+
+.loki-btn:hover {
+    background: rgba(0, 255, 65, 0.15);
+    box-shadow:
+        0 0 20px rgba(0, 255, 65, 0.3),
+        inset 0 0 20px rgba(0, 255, 65, 0.05);
+    color: #fff;
+    text-shadow: 0 0 10px var(--loki-green);
+}
+
+.loki-btn.secondary {
+    border-color: var(--loki-gold);
+    color: var(--loki-gold);
+    background: rgba(255, 215, 0, 0.05);
+}
+
+.loki-btn.secondary:hover {
+    background: rgba(255, 215, 0, 0.15);
+    box-shadow:
+        0 0 20px rgba(255, 215, 0, 0.3),
+        inset 0 0 20px rgba(255, 215, 0, 0.05);
+    color: #fff;
+    text-shadow: 0 0 10px var(--loki-gold);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 950px) {
+    .about-row {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .about-col-left,
+    .about-col-right {
+        max-width: 600px;
+        flex-basis: 100%;
+    }
+
+    .about-header-row {
+        text-align: center;
+    }
+
+    .about-title::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .stats-grid-cube {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 500px) {
+    section#about {
+        padding: 60px 4% 50px;
+        gap: 50px;
+    }
+
+    .about-title {
+        font-size: 1.5rem;
+        letter-spacing: 2px;
+    }
+
+    .stats-grid-cube {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .stat-number {
+        font-size: 1.6rem;
+    }
+
+    .stat-label {
+        font-size: 0.7rem;
+    }
+
+    .logos-container {
+        gap: 15px;
+    }
+
+    .organizer-logo {
+        height: 55px;
+        padding: 8px;
+    }
+
+    .about-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .loki-btn {
+        text-align: center;
+        padding: 12px 25px;
+    }
+}
