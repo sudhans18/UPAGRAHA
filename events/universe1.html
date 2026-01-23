@@ -292,6 +292,32 @@
             color: #000;
         }
 
+        /* Thematic CTA Button - Standardized with Universe 4 structure */
+        .cta-btn {
+            background: var(--rust-orange);
+            color: var(--bg-black);
+            padding: 18px 45px;
+            /* Small registration size */
+            border-radius: 100px;
+            font-family: var(--font-accent);
+            font-size: 1rem;
+            letter-spacing: 4px;
+            border: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(193, 68, 14, 0.3);
+            text-transform: uppercase;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .cta-btn:hover {
+            background: #fff;
+            color: #000;
+            box-shadow: 0 0 40px rgba(193, 68, 14, 0.6);
+            transform: scale(1.05);
+        }
+
         /* Coordinators / Footer */
         .coordinators {
             margin-top: 100px;
@@ -381,6 +407,7 @@
                 A technical event where teams identify what information matters and ignore distractions.
                 It tests core ECE knowledge, logical thinking, and decision-making under time pressure.
             </p>
+            <button class="cta-btn">ENTER THE ARENA</button>
         </section>
 
         <div class="section-grid">
@@ -444,7 +471,7 @@
             <!-- Arena Marshals -->
             <div class="glass-card card-full staggered">
                 <span class="label">Ground Command</span>
-                <h2>ARENA MARSHALS</h2>
+                <h2>EVENT COORDINATORS</h2>
                 <div class="reveal-grid" style="grid-template-columns: repeat(3, 1fr);">
                     <div class="reveal-card">
                         <strong>SUDHAN S</strong>
