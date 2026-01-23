@@ -171,8 +171,12 @@
     }
 
     .hero-main-title {
-        flex-direction: column;
-        gap: 0;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        gap: 5px;
+        font-size: clamp(2rem, 11vw, 4rem);
+        justify-content: center;
+        align-items: baseline;
     }
 
     .hero-tagline {
