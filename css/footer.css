@@ -186,9 +186,17 @@
     margin-top: 1rem;
 }
 
-/* Club Contact Sections */
+/* Club Contact Sections - Wrapper for layout */
+.contact-col .club-contacts-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 2.5rem;
+    justify-content: flex-start;
+}
+
+/* All club sections have the same styling */
 .club-contact-section {
-    margin-top: 1rem;
+    margin-top: 0.5rem;
     margin-bottom: 0.5rem;
     border-left: 2px solid #333;
     padding-left: 10px;

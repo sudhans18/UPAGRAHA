@@ -30,6 +30,8 @@
     <link rel="stylesheet" href="css/gallery.css">
     <link rel="stylesheet" href="css/team.css">
     <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/about-new.css">
+
 </head>
 
 <body class="loading">
@@ -131,18 +133,19 @@
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- ABOUT SECTION - Visible during hero transition -->
-        <section id="about" class="about-section">
-            <div class="about-container">
-                <!-- About text - enters from left during hero shrink -->
-                <!-- About text - enters from left during hero shrink -->
-                <div class="about-text">
-                    <div class="about-header-row">
-                        <h2 class="about-title"><span class="about-prefix">About</span> <span
-                                class="about-event-name">UPAGRAHA'26</span></h2>
-                    </div>
-                    <p class="about-description">
+    <!-- ABOUT SECTION - Redesigned & Unpinned -->
+    <section id="about">
+        <!-- Row 1: About UPAGRAHA (Left) + Stats (Right) -->
+        <div class="about-row">
+            <!-- Left Column: About Event -->
+            <div class="about-col-left">
+                <div class="about-header-row">
+                    <h2 class="about-title">About UPAGRAHA <span style="color:#00ff41">'26</span></h2>
+                </div>
+                <div class="about-card">
+                    <p>
                         UPAGRAHA'26 is a national-level technical symposium conducted by the student clubs of the
                         Department of Electronics and Communication Engineering, Sri Venkateswara College of
                         Engineering. Designed as a space for curiosity, creativity, and technical exploration, the
@@ -151,13 +154,41 @@
                         activities, UPAGRAHA'26 offers an exciting platform to test ideas, collaborate with peers, and
                         dive into the evolving world of technology.
                     </p>
+                </div>
+            </div>
 
-                    <!-- About Us Section -->
-                    <div class="about-header-row" style="margin-top: 60px;">
-                        <h2 class="about-title"><span class="about-prefix">About</span> <span
-                                class="about-event-name">Us</span></h2>
+            <!-- Right Column: Stats Grid (2x2 Cube) -->
+            <div class="about-col-right">
+                <div class="stats-grid-cube">
+                    <div class="stat-card">
+                        <span class="stat-number" id="stat-registrations">0</span>
+                        <span class="stat-label">Registrations</span>
                     </div>
-                    <p class="about-description">
+                    <div class="stat-card">
+                        <span class="stat-number" id="stat-colleges">0</span>
+                        <span class="stat-label">Colleges</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" id="stat-prizepool">0</span>
+                        <span class="stat-label">Prizepool</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" id="stat-partners">0</span>
+                        <span class="stat-label">Industry Partners</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Row 2: About Us (Left) + Logos & Buttons (Right) -->
+        <div class="about-row">
+            <!-- Left Column: About Us -->
+            <div class="about-col-left">
+                <div class="about-header-row">
+                    <h2 class="about-title">About <span style="color:#ffd700">Us</span></h2>
+                </div>
+                <div class="about-card" style="border-left-color: var(--loki-gold);">
+                    <p>
                         This symposium is organized by the student associations of the Department of Electronics and
                         Communication Engineering at Sri Venkateswara College of Engineering - The Electronics and
                         Communication Engineers Association (ECEA) in association with the Institution of
@@ -168,12 +199,26 @@
                         VLSI, the clubs bridge the gap between academic learning and real-world application, empowering
                         students to grow into future-ready engineers and technology leaders.
                     </p>
-
-                    <!-- Stats Section Removed -->
                 </div>
             </div>
-        </section>
-    </div>
+
+            <!-- Right Column: Logos & Buttons -->
+            <div class="about-col-right">
+                <div class="organizers-wrapper">
+                    <div class="logos-container">
+                        <img src="assets/Logo/ecea.png" alt="ECEA Logo" class="organizer-logo">
+                        <img src="assets/Logo/iete.png" alt="IETE SF Logo" class="organizer-logo">
+                        <img src="assets/Logo/race.png" alt="RACE Logo" class="organizer-logo">
+                    </div>
+                </div>
+                <div class="about-actions">
+                    <a href="#team" class="loki-btn">Meet the Team</a>
+                    <a href="#gallery" class="loki-btn secondary">View Gallery</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
 
 
     <!-- TIMELINE SECTION - The Sacred Timeline -->
@@ -713,125 +758,132 @@
                         <p>Tamil Nadu, India</p>
                     </div>
 
-                    <!-- ECEA -->
-                    <div class="club-contact-section">
-                        <h5 class="club-name">ECEA</h5>
-                        <div class="footer-socials">
-                            <!-- Instagram -->
-                            <a href="https://www.instagram.com/eceasvce/" class="social-icon" aria-label="Instagram">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                                </svg>
-                            </a>
-                            <!-- LinkedIn -->
-                            <a href="linkedin.com/in/ecea-svce-2b49062b7" class="social-icon" aria-label="LinkedIn">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <path
-                                        d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
-                                    </path>
-                                    <rect x="2" y="9" width="4" height="12"></rect>
-                                    <circle cx="4" cy="4" r="2"></circle>
-                                </svg>
-                            </a>
-                            <!-- Email -->
-                            <a href="mailto:ecea@svce.ac.in" class="social-icon" aria-label="Email">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <path
-                                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
-                                    </path>
-                                    <polyline points="22,6 12,13 2,6"></polyline>
-                                </svg>
-                            </a>
+                    <!-- Club Contacts Wrapper for Layout -->
+                    <div class="club-contacts-wrapper">
+                        <!-- ECEA -->
+                        <div class="club-contact-section">
+                            <h5 class="club-name">ECEA</h5>
+                            <div class="footer-socials">
+                                <!-- Instagram -->
+                                <a href="https://www.instagram.com/eceasvce/" class="social-icon"
+                                    aria-label="Instagram">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                                    </svg>
+                                </a>
+                                <!-- LinkedIn -->
+                                <a href="linkedin.com/in/ecea-svce-2b49062b7" class="social-icon" aria-label="LinkedIn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path
+                                            d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
+                                        </path>
+                                        <rect x="2" y="9" width="4" height="12"></rect>
+                                        <circle cx="4" cy="4" r="2"></circle>
+                                    </svg>
+                                </a>
+                                <!-- Email -->
+                                <a href="mailto:ecea@svce.ac.in" class="social-icon" aria-label="Email">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path
+                                            d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                                        </path>
+                                        <polyline points="22,6 12,13 2,6"></polyline>
+                                    </svg>
+                                </a>
+                            </div>
                         </div>
-                    </div>
 
-                    <!-- IETE -->
-                    <div class="club-contact-section">
-                        <h5 class="club-name">IETE-SF</h5>
-                        <div class="footer-socials">
-                            <!-- Instagram -->
-                            <a href="https://www.instagram.com/ietesf_svce/" class="social-icon" aria-label="Instagram">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                                </svg>
-                            </a>
-                            <!-- LinkedIn -->
-                            <a href="linkedin.com/in/iete-sf-svce-3199351b7" class="social-icon" aria-label="LinkedIn">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <path
-                                        d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
-                                    </path>
-                                    <rect x="2" y="9" width="4" height="12"></rect>
-                                    <circle cx="4" cy="4" r="2"></circle>
-                                </svg>
-                            </a>
-                            <!-- Email -->
-                            <a href="mailto:ietesf@svce.ac.in" class="social-icon" aria-label="Email">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <path
-                                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
-                                    </path>
-                                    <polyline points="22,6 12,13 2,6"></polyline>
-                                </svg>
-                            </a>
+                        <!-- IETE -->
+                        <div class="club-contact-section">
+                            <h5 class="club-name">IETE-SF</h5>
+                            <div class="footer-socials">
+                                <!-- Instagram -->
+                                <a href="https://www.instagram.com/ietesf_svce/" class="social-icon"
+                                    aria-label="Instagram">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                                    </svg>
+                                </a>
+                                <!-- LinkedIn -->
+                                <a href="linkedin.com/in/iete-sf-svce-3199351b7" class="social-icon"
+                                    aria-label="LinkedIn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path
+                                            d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
+                                        </path>
+                                        <rect x="2" y="9" width="4" height="12"></rect>
+                                        <circle cx="4" cy="4" r="2"></circle>
+                                    </svg>
+                                </a>
+                                <!-- Email -->
+                                <a href="mailto:ietesf@svce.ac.in" class="social-icon" aria-label="Email">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path
+                                            d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                                        </path>
+                                        <polyline points="22,6 12,13 2,6"></polyline>
+                                    </svg>
+                                </a>
+                            </div>
                         </div>
-                    </div>
 
-                    <!-- RACE -->
-                    <div class="club-contact-section">
-                        <h5 class="club-name">RACE</h5>
-                        <div class="footer-socials">
-                            <!-- Instagram -->
-                            <a href="https://www.instagram.com/race_svce/" class="social-icon" aria-label="Instagram">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                                </svg>
-                            </a>
-                            <!-- LinkedIn -->
-                            <a href="linkedin.com/in/raic-svce" class="social-icon" aria-label="LinkedIn">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <path
-                                        d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
-                                    </path>
-                                    <rect x="2" y="9" width="4" height="12"></rect>
-                                    <circle cx="4" cy="4" r="2"></circle>
-                                </svg>
-                            </a>
-                            <!-- Email -->
-                            <a href="mailto:race@svce.ac.in" class="social-icon" aria-label="Email">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <path
-                                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
-                                    </path>
-                                    <polyline points="22,6 12,13 2,6"></polyline>
-                                </svg>
-                            </a>
+                        <!-- RACE -->
+                        <div class="club-contact-section">
+                            <h5 class="club-name">RACE</h5>
+                            <div class="footer-socials">
+                                <!-- Instagram -->
+                                <a href="https://www.instagram.com/race_svce/" class="social-icon"
+                                    aria-label="Instagram">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                                    </svg>
+                                </a>
+                                <!-- LinkedIn -->
+                                <a href="linkedin.com/in/raic-svce" class="social-icon" aria-label="LinkedIn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path
+                                            d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
+                                        </path>
+                                        <rect x="2" y="9" width="4" height="12"></rect>
+                                        <circle cx="4" cy="4" r="2"></circle>
+                                    </svg>
+                                </a>
+                                <!-- Email -->
+                                <a href="mailto:race@svce.ac.in" class="social-icon" aria-label="Email">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path
+                                            d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                                        </path>
+                                        <polyline points="22,6 12,13 2,6"></polyline>
+                                    </svg>
+                                </a>
+                            </div>
                         </div>
-                    </div>
+                    </div> <!-- End club-contacts-wrapper -->
                 </div>
             </div>
 
@@ -842,6 +894,7 @@
 
         <script type="module" src="js/main.js"></script>
         <script src="js/team.js"></script>
+        <script src="js/about-stats.js"></script>
 </body>
 
 </html>
