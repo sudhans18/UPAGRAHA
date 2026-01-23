@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SIGNAL SYNDICATE | Redline Arena</title>
+    <title>SIGNAL GAMBIT | Redline Arena</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,8 +30,6 @@
             color: var(--signal-white);
             font-family: 'Montserrat', sans-serif;
             overflow-x: hidden;
-            cursor: crosshair;
-            /* Thematic cursor */
         }
 
         /* Scanline Overlay */
@@ -60,8 +58,8 @@
             height: 100%;
             object-fit: cover;
             z-index: -2;
-            opacity: 0.4;
-            filter: contrast(1.4) saturate(1.5) hue-rotate(-10deg);
+            opacity: 0.5;
+            filter: contrast(1.2) saturate(1.2);
         }
 
         /* Ash Canvas */
@@ -109,7 +107,6 @@
             align-items: center;
             text-align: center;
             padding: 4rem 2rem;
-            background: radial-gradient(circle, rgba(50, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.95) 80%);
             position: relative;
         }
 
@@ -131,7 +128,7 @@
         /* Glitch Effect */
         .universe-title::before,
         .universe-title::after {
-            content: "SIGNAL SYNDICATE";
+            content: "SIGNAL GAMBIT";
             position: absolute;
             top: 0;
             left: 0;
@@ -221,13 +218,6 @@
             border: 1px solid rgba(255, 0, 0, 0.3);
             position: relative;
             box-shadow: 0 0 50px rgba(138, 0, 0, 0.1);
-            transition: transform 0.3s;
-        }
-
-        .round-container:hover {
-            transform: scale(1.01);
-            border-color: var(--blood-red);
-            box-shadow: 0 0 60px rgba(255, 0, 0, 0.2);
         }
 
         h2 {
@@ -252,35 +242,32 @@
         .decree-list {
             list-style: none;
             padding: 0;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1rem;
+            margin-top: 1.5rem;
         }
 
         .decree-list li {
-            background: rgba(40, 0, 0, 0.6);
-            padding: 1rem 1.5rem;
-            border-radius: 100px;
-            /* Fully rounded pills */
-            border: 1px solid var(--deep-blood);
-            font-family: 'Share Tech Mono', monospace;
+            padding: 0.8rem 0;
+            font-family: 'Montserrat', sans-serif;
             font-size: 1rem;
             color: #ffcccc;
-            transition: 0.3s;
+            border-bottom: 1px solid rgba(255, 0, 0, 0.1);
         }
 
-        .decree-list li:hover {
-            background: var(--blood-red);
-            color: black;
-            box-shadow: 0 0 15px var(--blood-red);
-            transform: translateY(-2px);
+        .decree-list li:last-child {
+            border-bottom: none;
         }
 
-        /* Card Grid */
+        .decree-list li::before {
+            content: "•";
+            color: var(--blood-red);
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        /* Card Grid - 2x2 layout */
         .card-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 1.5rem;
             margin-top: 3rem;
         }
@@ -474,17 +461,14 @@
 
     <section class="universe-hero">
         <div class="glitch-wrapper">
-            <h1 class="universe-title">SIGNAL SYNDICATE</h1>
+            <h1 class="universe-title">SIGNAL GAMBIT</h1>
         </div>
         <div class="universe-desc">
             <p style="margin:0; text-align: left;">
-                <strong style="color:var(--blood-red)">[INCOMING TRANSMISSION]</strong><br><br>
-                Signal Syndicate is a high-intensity technical battleground fusing Electronics fundamentals with
-                strategic risk management.
-                Teams must analyze signals, circuits, and systems while betting on their confidence under extreme time
-                constraints.
-                <br><br>
-                Precision. Speed. Instinct. Every choice carries a consequence. Do you have the nerve to bet it all?
+                <strong style="color:var(--blood-red)">[ABOUT THE EVENT]</strong><br><br>
+                Signal Gambit is a fast-paced technical event that combines analytical problem-solving with strategic
+                risk management. Participants analyze technical scenarios, perform accurate calculations, and make
+                confident decisions under strict time limits, emphasizing precision, judgment, and adaptability.
             </p>
         </div>
     </section>
@@ -492,79 +476,98 @@
     <!-- Marquee Filler -->
     <div class="marquee-bar">
         <div class="marquee-content">
-            ⚠ WARNING: HIGH VOLTAGE DETECTED // UNAUTHORIZED SIGNAL // DO NOT PROCEED WITHOUT CLEARANCE // SYSTEM
-            OVERLOAD IMMINENT // ⚠
+            ⚠ SIGNAL GAMBIT // PRECISION UNDER PRESSURE // CALCULATE. BID. WIN. // TIME IS TICKING // ⚠
         </div>
         <div class="marquee-content" style="position:absolute; top:8px; left:100%;">
-            ⚠ WARNING: HIGH VOLTAGE DETECTED // UNAUTHORIZED SIGNAL // DO NOT PROCEED WITHOUT CLEARANCE // SYSTEM
-            OVERLOAD IMMINENT // ⚠
+            ⚠ SIGNAL GAMBIT // PRECISION UNDER PRESSURE // CALCULATE. BID. WIN. // TIME IS TICKING // ⚠
         </div>
     </div>
 
     <section class="spa-section">
 
         <div class="round-container">
-            <h2>ROUND I: TOLERANCE TEST</h2>
-            <p>Compute outcome. Lock tolerance band. Survive the cut.</p>
+            <h2>ROUND I: THE SIGNAL TOLERANCE TEST</h2>
+            <p>Teams quickly analyze technical scenarios and estimate accurate numerical results. Questions are
+                displayed via PPT, and participants must calculate the answer, write it on paper, and lock a tolerance
+                band within the given time.</p>
             <ul class="decree-list">
-                <li>⚪ Silver (±5%) :: +10 PTS</li>
-                <li>🟠 Copper (±20%) :: +5 PTS</li>
-                <li>⚫ Iron (±50%) :: +2 PTS</li>
-                <li>❌ ERROR :: 0 PTS</li>
+                <li>90 seconds per question</li>
+                <li>Write answer + lock tolerance band</li>
+                <li>⚪ Silver (±5%) = 10 PTS</li>
+                <li>Points awarded only if within range</li>
+                <li>Out-of-range = 0 PTS</li>
+                <li>Top teams advance to Round 2</li>
             </ul>
         </div>
 
         <div class="round-container">
-            <h2>ROUND II: BID & SOLVE</h2>
-            <p>8 Problems. High Stakes. Bet your survival points.</p>
+            <h2>ROUND II: THE RELAY (BID & SOLVE)</h2>
+            <p>This round blends strategic betting with rapid problem-solving. Teams assess topics and difficulty
+                levels, decide how many points to risk, and solve problems under tight time constraints.</p>
 
             <div class="card-grid">
                 <div class="card-item">
-                    <strong>01 // REVEAL</strong>
-                    Topic & Difficulty exposed.
+                    <strong>8 PROBLEMS</strong>
+                    Technical problems from various domains
                 </div>
                 <div class="card-item">
-                    <strong>02 // BET</strong>
-                    Stake your Round I points.
+                    <strong>BID STRATEGY</strong>
+                    Only topic & difficulty revealed before betting
                 </div>
                 <div class="card-item">
-                    <strong>03 // SOLVE</strong>
-                    60-second countdown.
+                    <strong>60 SECONDS</strong>
+                    Solving window per problem
                 </div>
                 <div class="card-item">
-                    <strong>04 // EXECUTE</strong>
-                    Win: Double Bet | Lose: Zero.
+                    <strong>DOUBLE OR NOTHING</strong>
+                    Correct = 2x bet | Wrong = Lose bet
                 </div>
             </div>
 
             <p style="margin-top: 3rem; font-family: 'Share Tech Mono', monospace; color: var(--blood-red);">
-                >>> FINAL OVERDRIVE: FIRST RESPONSE WINS ALL <<< </p>
+                >>> FINAL QUESTION: First-to-respond sprint with bonus! <<< </p>
         </div>
 
         <div class="round-container" style="text-align: center;">
-            <h2>PROTOCOL</h2>
+            <h2>EVENT RULES</h2>
             <ul class="decree-list">
-                <li>Team Size: 2-3 Units</li>
-                <li>Valid ID Required</li>
-                <li>Calculators: Authorized</li>
-                <li>Decision: Final</li>
+                <li>Teams: 2-3 members</li>
+                <li>Calculators allowed</li>
+                <li>Bets cannot be changed</li>
+                <li>Coordinators' decision is final</li>
             </ul>
-            <button class="cta-btn">ENTER THE SYNDICATE</button>
+            <button class="cta-btn">ENTER THE GAMBIT</button>
+        </div>
+
+        <div class="round-container" style="text-align: center;">
+            <h2>EVENT COORDINATORS</h2>
+            <div style="display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; margin-top: 2rem;">
+                <div style="text-align: center;">
+                    <p
+                        style="font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 2px; color: var(--blood-red); margin: 0;">
+                        LAVANYA P</p>
+                </div>
+                <div style="text-align: center;">
+                    <p
+                        style="font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 2px; color: var(--blood-red); margin: 0;">
+                        PREETHIKA R</p>
+                </div>
+                <div style="text-align: center;">
+                    <p
+                        style="font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 2px; color: var(--blood-red); margin: 0;">
+                        PREETHIKA R</p>
+                </div>
+            </div>
         </div>
 
     </section>
 
-    <div class="bio-footer">
-        SIGNAL SYNDICATE // SYSTEM ID: UNIVERSE-03 // AUTHORIZED PERSONNEL ONLY
-    </div>
 
     <script>
-        // Particles tailored for "Redline" theme
+        // Particles animation
         const canvas = document.getElementById('ash-canvas');
         const ctx = canvas.getContext('2d');
         let w, h;
-        let mouseX = 0, mouseY = 0;
-        let points = [];
 
         function resize() {
             w = canvas.width = window.innerWidth;
@@ -573,26 +576,16 @@
         window.addEventListener('resize', resize);
         resize();
 
-        // Track Mouse
-        window.addEventListener('mousemove', e => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            // Add point to trail
-            points.push({ x: mouseX, y: mouseY, age: 0 });
-        });
-
-        const particles = Array.from({ length: 150 }, () => ({
+        const particles = Array.from({ length: 120 }, () => ({
             x: Math.random() * w,
             y: Math.random() * h,
             r: Math.random() * 2 + 1,
-            s: Math.random() * 2 + 0.5,
+            s: Math.random() * 1 + 0.5,
             color: Math.random() > 0.8 ? '#ff0000' : '#4a0000'
         }));
 
         function animate() {
             ctx.clearRect(0, 0, w, h);
-
-            // 1. Animate Particles (Background)
             particles.forEach(p => {
                 p.y += p.s;
                 if (p.y > h) p.y = 0;
@@ -602,38 +595,7 @@
                 ctx.globalAlpha = Math.random() * 0.5 + 0.2;
                 ctx.fill();
             });
-
-            // 2. Animate Electric Cursor Trail
-            if (points.length > 2) {
-                ctx.beginPath();
-                ctx.moveTo(points[0].x, points[0].y);
-
-                for (let i = 1; i < points.length; i++) {
-                    const p = points[i];
-                    p.age++;
-
-                    // Jitter for electric effect
-                    const jitterX = (Math.random() - 0.5) * 10;
-                    const jitterY = (Math.random() - 0.5) * 10;
-
-                    ctx.lineTo(p.x + jitterX, p.y + jitterY);
-                }
-
-                ctx.strokeStyle = '#ff0000';
-                ctx.lineWidth = 2;
-                ctx.shadowBlur = 10;
-                ctx.shadowColor = '#ff0000';
-                ctx.globalAlpha = 0.8;
-                ctx.stroke();
-
-                // Reset shadow/alpha for loops
-                ctx.shadowBlur = 0;
-                ctx.globalAlpha = 1;
-
-                // Remove old points
-                points = points.filter(p => p.age < 15);
-            }
-
+            ctx.globalAlpha = 1;
             requestAnimationFrame(animate);
         }
         animate();
