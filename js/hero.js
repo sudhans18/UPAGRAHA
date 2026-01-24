@@ -52,8 +52,3 @@ export function initHeroEffects() {
         }
     });
 }
-
-export function initHeroTransition() {
-    // Transition disabled - hero section scrolls normally
-    return;
-}

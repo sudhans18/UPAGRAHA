@@ -8,7 +8,7 @@
 
 import { initCountdown } from './countdown.js';
 import { initStarfield, resizeStarfield } from './starfield.js';
-import { initHeroEffects, initHeroTransition } from './hero.js';
+import { initHeroEffects } from './hero.js';
 import { initTimelineAnimation } from './timeline.js';
 import { initEventsAnimation, resizeEventsCanvas } from './events.js';
 import { debounce } from './utils.js';
@@ -68,10 +68,7 @@ function initPreloader() {
 function initAnimations() {
     gsap.registerPlugin(ScrollTrigger);
 
-    // Initialize hero transition
-    initHeroTransition();
 
-    // Scroll indicator animation - REMOVED
 
     // Section titles animation
     gsap.utils.toArray('.spa-section h2').forEach(title => {
@@ -114,13 +111,14 @@ function initMobileNav() {
     }
 
     // HOME button should scroll to absolute top (full-screen hero)
-    const homeLink = document.querySelector('.nav-link[href="#hero-about-wrapper"]');
+    const homeLink = document.querySelector('.nav-link[href="#hero"]');
     if (homeLink) {
         homeLink.addEventListener('click', (e) => {
             e.preventDefault();
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     }
+
 
     // ABOUT button should scroll to trigger hero shrink animation
     const aboutLink = document.querySelector('.nav-link[href="#about"]');

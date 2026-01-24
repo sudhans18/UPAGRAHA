@@ -1,22 +1,7 @@
 /* ===========================================
-   HERO.CSS - Hero Section + About Wrapper
+   HERO.CSS - Hero Section Styles
    =========================================== */
 
-/* ============================================
-   HERO + ABOUT PINNED WRAPPER STYLES
-   ============================================
-   
-   Both sections are inside a wrapper that gets pinned.
-   Hero shrinks while About content animates in simultaneously.
-   ============================================ */
-
-/* Wrapper that contains both hero container and about section */
-.hero-about-wrapper {
-    position: relative;
-    width: 100%;
-    min-height: 100vh;
-    background: transparent;
-}
 
 /* Image container - Normal scroll, no transition */
 .hero-image-container {
@@ -63,20 +48,7 @@
     opacity: 0.6;
 }
 
-/* Hero Background Image - REMOVED (using gradient background instead)
-.hero-bg-image {
-    width: 115%;
-    height: 125%;
-    object-fit: cover;
-    object-position: center 30%;
-    margin-left: -7.5%;
-    margin-top: -5%;
-    user-select: none;
-    -webkit-user-drag: none;
-    pointer-events: none;
-    will-change: transform;
-}
-*/
+
 
 /* Vignette Overlay with breathing animation */
 .hero-vignette {
@@ -105,12 +77,6 @@
     }
 }
 
-/* Scroll Indicator */
-/* Scroll Indicator - HIDDEN */
-.scroll-indicator {
-    display: none !important;
-}
-
 /* ============================================
    HERO CONTENT OVERLAY STYLES
    ============================================ */
@@ -135,20 +101,6 @@
 
 .hero-content-overlay * {
     pointer-events: auto;
-}
-
-/* Top Info - HIDDEN */
-.hero-top-info {
-    display: none !important;
-}
-
-.department-label {
-    display: none !important;
-}
-
-/* Tagline - HIDDEN */
-.hero-tagline {
-    display: none !important;
 }
 
 /* Title Block */
@@ -263,112 +215,8 @@ body.scrolled-past-hero .title-main {
     }
 }
 
-.hero-tagline {
-    font-family: var(--font-cyber);
-    font-size: clamp(0.7rem, 2vw, 1rem);
-    letter-spacing: 6px;
-    color: rgba(255, 255, 255, 0.7);
-    margin-top: 24px;
-    margin-bottom: 0;
-    text-shadow: 0 2px 4px #000;
-    text-align: center;
-}
-
-/* Club Logos - HIDDEN */
-.hero-clubs {
-    display: none !important;
-}
-
-.club-logo-container {
-    width: 50px;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    background: rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(5px);
-}
-
-.club-logo {
-    width: 70%;
-    height: 70%;
-    object-fit: contain;
-    filter: none;
-    opacity: 0.9;
-    transition: 0.3s;
-}
-
-.club-logo-container:hover {
-    transform: translateY(-3px);
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.3);
-}
-
-.club-logo-container:hover .club-logo {
-    opacity: 1;
-    filter: brightness(1.2);
-}
-
-.club-logo-container::before {
-    display: none;
-}
-
-/* Old placeholder styles - kept for backward compatibility */
-.club-placeholder {
-    width: 70px;
-    height: 70px;
-    background: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(10px);
-    border: 2px solid transparent;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-        linear-gradient(135deg, #bc13fe, #00f7ff, #00ff41);
-    background-origin: border-box;
-    background-clip: padding-box, border-box;
-}
-
-.club-placeholder span {
-    font-family: var(--font-cyber);
-    font-size: 0.65rem;
-    letter-spacing: 1px;
-    color: #fff;
-    text-shadow: 0 0 8px rgba(188, 19, 254, 0.8);
-}
-
-.club-placeholder:hover {
-    transform: scale(1.1);
-    box-shadow:
-        0 0 20px rgba(188, 19, 254, 0.5),
-        0 0 40px rgba(0, 247, 255, 0.3);
-}
-
-.club-placeholder::before {
-    content: '';
-    position: absolute;
-    inset: -4px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, rgba(188, 19, 254, 0.3), rgba(0, 247, 255, 0.3));
-    z-index: -1;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.club-placeholder:hover::before {
-    opacity: 1;
-}
-
 /* Countdown Timer */
+
 .hero-countdown {
     display: flex;
     align-items: center;
@@ -586,214 +434,4 @@ body.scrolled-past-hero .hero-btn.primary {
         0 0 25px rgba(255, 255, 255, 0.4),
         0 8px 20px rgba(0, 0, 0, 0.3);
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
-}
-
-/* ============================================
-   ABOUT SECTION STYLES
-   ============================================ */
-
-.about-section {
-    position: relative;
-    z-index: 10;
-    background: transparent;
-    /* Allow starfield to show through */
-    min-height: 100vh;
-    padding: 100px 5vw;
-    display: flex;
-    align-items: center;
-    opacity: 1;
-    /* Visible by default since transition is disabled */
-}
-
-.about-container {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    gap: 4vw;
-    align-items: center;
-    padding-top: 5vh;
-}
-
-/* About text - left side */
-.about-text {
-    flex: 1;
-    max-width: 100%;
-    opacity: 1;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.about-title {
-    font-family: var(--font-heading);
-    font-size: clamp(2rem, 4vw, 3.5rem);
-    color: var(--neon-green);
-    margin-bottom: 0;
-    text-shadow:
-        0 2px 0 #000,
-        0 0 20px rgba(0, 255, 65, 0.3);
-    letter-spacing: 0.1em;
-    line-height: 1.1;
-    text-align: center;
-    white-space: nowrap;
-}
-
-/* About prefix styling - white color */
-.about-prefix {
-    color: #ffffff;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
-}
-
-/* Event name styling - green with Orbitron font */
-.about-event-name {
-    font-family: 'Orbitron', var(--font-cyber), sans-serif;
-    color: var(--neon-green);
-    text-shadow:
-        0 2px 0 #000,
-        0 0 20px rgba(0, 255, 65, 0.5);
-}
-
-.about-description {
-    font-family: var(--font-body);
-    font-size: clamp(0.9rem, 1.2vw, 1.1rem);
-    line-height: 1.6;
-    color: #e0e0e0;
-    margin-bottom: 1rem;
-    opacity: 0.9;
-    max-width: 800px;
-    text-align: justify;
-    text-justify: inter-word;
-}
-
-.highlight-gold {
-    color: var(--accent-gold);
-    font-weight: 700;
-    text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
-}
-
-.about-header-row {
-    margin-bottom: 20px;
-    width: 100%;
-}
-
-.about-right-column {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-}
-
-.about-card-space {
-    flex: 1;
-    min-height: 50vh;
-}
-
-/* About content (legacy) */
-.about-content {
-    width: 100%;
-    max-width: 800px;
-    text-align: center;
-    padding: 2rem;
-    padding-right: 40vw;
-}
-
-.legacy-description {
-    font-size: 1.3rem;
-    line-height: 1.8;
-    color: var(--text-color);
-}
-
-.legacy-description p {
-    margin-bottom: 1.5rem;
-}
-
-.about-gallery {
-    display: none;
-}
-
-#about {
-    position: relative;
-    z-index: 5;
-    background: transparent;
-    /* Allow starfield to show through */
-    min-height: 100vh;
-    padding-top: 80px;
-    padding-bottom: 80px;
-}
-
-#about .section-title {
-    margin-bottom: 3rem;
-}
-
-/* Home Section (legacy) */
-.home-logos-container {
-    display: flex;
-    gap: 3rem;
-    margin-bottom: 2rem;
-    z-index: 2;
-}
-
-.placeholder-logo {
-    width: 60px;
-    height: 60px;
-    border: 1px solid var(--neon-green);
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--neon-green);
-    font-size: 0.7rem;
-    background: rgba(0, 255, 65, 0.1);
-}
-
-.hero-center {
-    text-align: center;
-    z-index: 2;
-    background: rgba(0, 0, 0, 0.6);
-    padding: 3rem;
-    border-radius: 20px;
-    border: 1px solid rgba(0, 255, 65, 0.2);
-    box-shadow: 0 0 50px rgba(0, 255, 65, 0.1);
-}
-
-.dept-title {
-    color: #aad4b5;
-    font-family: var(--font-body);
-    letter-spacing: 3px;
-    margin-bottom: 1rem;
-    font-size: 1rem;
-}
-
-.main-title {
-    font-size: 6rem;
-    color: #fff;
-    text-shadow: 0 0 20px var(--neon-dark);
-    margin: 1rem 0;
-}
-
-.countdown-wrapper {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    margin-top: 2rem;
-}
-
-.countdown-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.countdown-item span {
-    font-size: 2.5rem;
-    font-family: var(--font-cyber);
-    color: var(--neon-green);
-}
-
-.countdown-item label {
-    font-size: 0.8rem;
-    color: #aaa;
 }

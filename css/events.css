@@ -205,20 +205,3 @@
     right: 13%;
     color: #a020f0;
 }
-
-.revert-link {
-    position: absolute;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: #aaa;
-    font-family: var(--font-body);
-    font-size: 0.8rem;
-    text-decoration: underline;
-    z-index: 30;
-    cursor: pointer;
-}
-
-.revert-link:hover {
-    color: var(--neon-green);
-}
