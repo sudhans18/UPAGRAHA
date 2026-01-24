@@ -9,12 +9,13 @@
     font-family: 'Rajdhani', sans-serif;
     position: relative;
     z-index: 20;
-    /* Ensure it sits above other sections */
+    /* Ensure it sits above other sections including starfield */
     width: 100%;
     margin-bottom: 0;
 }
 
 /* Prevent page overflow below footer */
+html,
 body {
     overflow-x: hidden;
     margin-bottom: 0 !important;

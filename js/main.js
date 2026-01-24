@@ -23,9 +23,14 @@ function initPreloader() {
         document.body.classList.remove('loading');
         initAnimations();
 
-        // Scroll to hash immediately
+        // Allow layout to settle, then refresh ScrollTrigger and scroll to hash
         const target = document.querySelector(window.location.hash);
-        if (target) setTimeout(() => target.scrollIntoView(), 100);
+        if (target) {
+            setTimeout(() => {
+                ScrollTrigger.refresh();
+                target.scrollIntoView();
+            }, 200);
+        }
         return;
     }
 
@@ -126,6 +131,23 @@ function initMobileNav() {
             const aboutSection = document.querySelector('#about');
             if (aboutSection) {
                 aboutSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    }
+
+    // EVENTS button - refresh ScrollTrigger before scrolling to handle pinned section correctly
+    const eventsLink = document.querySelector('.nav-link[href="#events"]');
+    if (eventsLink) {
+        eventsLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            const eventsSection = document.querySelector('#events');
+            if (eventsSection) {
+                // Refresh ScrollTrigger to recalculate pin positions
+                ScrollTrigger.refresh();
+                // Small delay to allow refresh to complete
+                setTimeout(() => {
+                    eventsSection.scrollIntoView({ behavior: 'smooth' });
+                }, 50);
             }
         });
     }
