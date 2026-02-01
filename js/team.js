@@ -21,13 +21,13 @@ function initTeamSection() {
     // Club Members Lists
     const eceaMembers = [
         { name: "M Raef", role: "President", img: "MOHAMMED RAEEF ECE.jpeg", linkedin: "https://www.linkedin.com/in/raeef-ibrahim-3b721125a/", email: "2022ec0449@svce.ac.in" },
-        { name: "Harinee V T", role: "Vice President", img: "HARINEE V T ECE.jpg" },
-        { name: "Balaji S", role: "Secretary", img: "BALAJI S ECE.jpg" },
+        { name: "Harinee V T", role: "Vice President", img: "HARINEE V T ECE.jpg", linkedin: "https://www.linkedin.com/in/harineevt", github: "https://github.com/Harinee827", email: "harineevt27@gmail.com" },
+        { name: "Balaji S", role: "Secretary", img: "BALAJI S ECE.jpg", linkedin: "https://www.linkedin.com/in/balaji-santhanam008/", github: "https://github.com/Balajisanthanam205", email: "balajisanthanam205@gmail.com" },
         { name: "Surya K", role: "Treasurer", img: "SURYA K ECE.jpg", linkedin: "www.linkedin.com/in/suryak23", github: "https://github.com/suryak26", email: "2023ec0546@svce.ac.in" },
         { name: "Anushri P", role: "Executive Member", img: "ANUSHRI V ECE.jpg", linkedin: "https://www.linkedin.com/in/anu-shri?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", email: "anushri0705@gmail.com" },
         { name: "Preethika R", role: "Executive Member", img: "PREETHIKA R ECE.jpg", linkedin: "www.linkedin.com/in/preethika-radhakrishnan-269958336", email: "preethiradha13@gmail.com" },
         { name: "Sudesh Pilla", role: "Executive Member", img: "SUDESH SHRIKANT PILLAI ECE.jpg", linkedin: "https://www.linkedin.com/in/sudesh-pillai-9bbb16292/", email: "sudesh120305@gmail.com" },
-        { name: "Lavanya P", role: "Executive Member", img: "LAVANYA P ECE.jpg" },
+        { name: "Lavanya P", role: "Executive Member", img: "LAVANYA P ECE.jpg", linkedin: "https://www.linkedin.com/in/lavanya-p-6745ab322/", github:"https://github.com/LavanyaGKP", email: "2023ec0234@svce.ac.in" },
         { name: "N. Yazhini", role: "Joint Secretary", img: "N YAAZHINII ECE.jpg", linkedin: "https://www.linkedin.com/in/yaazhinii-narayanan-89b954326?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", email: "n.yaazhinii@gmail.com" },
         { name: "Abhimanyu Singh Bhati", role: "Joint Secretary", img: "ABHIMANYU SINGH BHATI ECE.jpg", linkedin: "https://www.linkedin.com/in/abhimanyu-singh-bhati-7255a0328?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", email: "abhimanyubhati22@gmail.com" },
         { name: "Prathiba MSK", role: "Joint Secretary", img: "PRATHIBA S.png", linkedin: "https://www.linkedin.com/in/m-s-k-prathiba-608588329?utm_source=share_via&utm_content=profile&utm_medium=member_android", email: "2024ec0664@svce.ac.in" }
@@ -43,7 +43,7 @@ function initTeamSection() {
         { name: "Karunya D", role: "Executive Member", img: "KARUNYA D ECE.jpg", linkedin: "https://www.linkedin.com/in/karunya-d-a96bb5357?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", email: "2023ec0240@svce.ac.in" },
         { name: "Sanjana Praveen", role: "Executive Member", img: "SANJANA PRAVEEN KUMAR ECE.jpg", linkedin: "https://www.linkedin.com/in/sanjana-praveen-kumar-588b7a354?utm_source=share_via&utm_content=profile&utm_medium=member_android", email: "2023ec0531@svce.ac.in" },
         { name: "A Aadhithya Narayanan", role: "Joint Secretary", img: "A AADHITHYA NARAYANAN ECE.jpg", linkedin: "LinkedIn.com/in/aadhithyanarayanan/", github: "github.com/Axdhi.07", email: "aadhithya0106@gmail.com" },
-        { name: "Mahalakshmi L", role: "Joint Secretary", img: "MAHALAKSHMI L ECE.jpg" },
+        { name: "Mahalakshmi L", role: "Joint Secretary", img: "MAHALAKSHMI L ECE.jpg", linkedin: "https://www.linkedin.com/in/maha-lakshmi-l-756594329/", github: "https://github.com/Maha03-03", email: "2024ec0167@svce.ac.in" },
         { name: "Viswanathan L", role: "Joint Secretary", img: "VISWANATHAN L ECE.jpg", linkedin: "https://www.linkedin.com/in/viswanathan-l-159423384?utm_source=share_via&utm_content=profile&utm_medium=member_android", github: "https://github.com/viswa-007", email: "viswanathan.26217@gmail.com" }
     ].map(m => ({ ...m, club: "IETE", path: `assets/IETE-MEMBERS/${m.img}` }));
 
