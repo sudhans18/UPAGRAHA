@@ -6,13 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game of Codes</title>
     <link rel="icon" type="image/x-icon" href="./favicon.ico">
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="../css/base.css">
+    <!-- GSAP for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
     <style>
         :root {
             --royal-gold: #D4AF37;
@@ -21,14 +25,21 @@
             --blood-red: #8a0303;
             --obsidian: #0a0a0a;
             --steel: #b0c4de;
+            --glass-white: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(212, 175, 55, 0.3);
+            --text-muted: #b0c4de;
+
+            --font-main: 'Cinzel', serif;
+            --font-accent: 'Cinzel Decorative', cursive;
         }
 
         body {
             background-color: var(--obsidian);
             color: var(--steel);
-            font-family: 'Cinzel', serif;
+            font-family: var(--font-main);
             margin: 0;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
         /* Video Background - Persistent */
@@ -41,8 +52,7 @@
             object-fit: cover;
             z-index: -2;
             pointer-events: none;
-            filter: brightness(0.8) contrast(1.1);
-            /* Enhanced brightness */
+            filter: brightness(0.6) contrast(1.1);
         }
 
         /* Ash & Fire Canvas - Overlay */
@@ -56,184 +66,21 @@
             pointer-events: none;
         }
 
-        .universe-hero {
-            min-height: 90vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            position: relative;
-            background: radial-gradient(circle at center, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.7) 100%);
-            border-bottom: 3px solid var(--royal-gold);
-            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.8);
+        .video-overlay {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(74, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.8) 100%);
+            z-index: -1;
+            pointer-events: none;
         }
 
-        .universe-hero::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%) rotate(45deg);
-            width: 20px;
-            height: 20px;
-            background: var(--royal-gold);
-            border: 2px solid #000;
-        }
-
-        .universe-title {
-            font-size: 4rem;
-            color: var(--royal-gold);
-            font-family: 'Cinzel Decorative', cursive;
-            text-transform: uppercase;
-            letter-spacing: 5px;
-            margin-bottom: 2rem;
-            margin-top: 8rem;
-            /* Brought down as requested */
-            text-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
-            position: relative;
-            z-index: 10;
-            opacity: 0;
-            animation: fadeInDown 1.5s ease-out forwards;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .universe-tagline {
-            font-size: 1.5rem;
-            color: var(--blood-red);
-            font-family: 'Cinzel', serif;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            margin-top: -1rem;
-            opacity: 0;
-            animation: fadeInUp 1.5s ease-out 0.3s forwards;
-            text-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
-        }
-
-        /* Fire Sword Animation */
-        .fire-sword {
-            display: inline-block;
-            color: #ff4500;
-            text-shadow:
-                0 0 10px #ff0000,
-                0 0 20px #ff8800,
-                0 0 30px #ff4500;
-            animation: burn 2s infinite alternate;
-            margin: 0 20px;
-        }
-
-        @keyframes burn {
-            0% {
-                text-shadow: 0 0 5px #ff0000, 0 0 15px #ff4500;
-                transform: scale(1);
-                filter: hue-rotate(0deg);
-            }
-
-            100% {
-                text-shadow: 0 0 20px #ff0000, 0 0 40px #ffcc00;
-                transform: scale(1.1);
-                filter: hue-rotate(15deg);
-            }
-        }
-
-        /* Viking Shield Header Element */
-        .viking-shield {
-            position: relative;
-            width: 80px;
-            height: 80px;
-            background: radial-gradient(circle at 30% 30%, #555 0%, #222 70%, #000 100%);
-            border: 4px solid #3d2b1f;
-            /* Dark wood-like border */
-            border-radius: 50%;
-            box-shadow:
-                0 0 20px rgba(0, 0, 0, 0.8),
-                inset 0 0 15px rgba(0, 0, 0, 0.5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            animation: shieldFloat 4s ease-in-out infinite;
-        }
-
-        /* Metal Rim */
-        .viking-shield::before {
-            content: '';
-            position: absolute;
-            inset: -4px;
-            border: 6px solid #444;
-            /* Iron rim */
-            border-radius: 50%;
-            box-shadow: inset 0 0 5px #000;
-        }
-
-        /* Rune in Center */
-        .rune {
-            font-family: 'Cinzel Decorative', cursive;
-            font-size: 2.2rem;
-            color: var(--royal-gold);
-            text-shadow:
-                0 0 10px var(--royal-gold),
-                0 0 25px rgba(212, 175, 55, 0.6);
-            animation: runePulse 2s ease-in-out infinite alternate;
-            user-select: none;
-            z-index: 2;
-        }
-
-        /* Shield Center Boss (Metal) */
-        .shield-boss {
-            position: absolute;
-            width: 35px;
-            height: 35px;
-            background: radial-gradient(circle at 30% 30%, #888, #333);
-            border-radius: 50%;
-            border: 2px solid #222;
-            z-index: 1;
-        }
-
-        @keyframes shieldFloat {
-
-            0%,
-            100% {
-                transform: translateY(0) rotate(0deg);
-            }
-
-            50% {
-                transform: translateY(-10px) rotate(5deg);
-            }
-        }
-
-        @keyframes runePulse {
-            0% {
-                opacity: 0.7;
-                transform: scale(0.95);
-                text-shadow: 0 0 10px var(--royal-gold);
-            }
-
-            100% {
-                opacity: 1;
-                transform: scale(1.05);
-                text-shadow: 0 0 25px var(--royal-gold), 0 0 45px var(--royal-gold);
-            }
-        }
-
-        .universe-desc {
-            max-width: 800px;
-            max-width: 800px;
-            padding: 2rem;
-            color: #fff;
-            font-size: 1.15rem;
-            line-height: 1.8;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            border-left: 5px solid var(--blood-red);
-            border-right: 5px solid var(--blood-red);
-            /* Glassmorphism */
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(8px);
-            margin-top: 2rem;
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
-            opacity: 0;
-            animation: fadeInUp 1.5s ease-out 0.5s forwards;
+        /* Layout */
+        .viewport {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 40px;
+            box-sizing: border-box;
         }
 
         /* Minimized Back Button - Arrow Only */
@@ -251,139 +98,278 @@
             justify-content: center;
             border: 2px solid var(--royal-gold);
             border-radius: 50%;
-            /* Circle */
             background: rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(4px);
-            z-index: 100;
-            transition: all 0.4s ease;
+            z-index: 1000;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .back-link:hover {
             background: var(--royal-gold);
             color: #000;
             box-shadow: 0 0 20px var(--royal-gold);
-            transform: scale(1.1);
+            transform: scale(1.1) rotate(-360deg);
         }
 
-        .spa-section {
-            padding-top: 8rem;
-            padding-bottom: 8rem;
-            text-align: center;
-            /* Transparent enough to see video/ash behind */
-            background: rgba(10, 10, 10, 0.7);
+        /* Typography & Content */
+        .hero {
+            margin-bottom: 80px;
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
         }
 
-        /* Glass Cards */
-        .round-container {
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            padding: 3rem;
-            border-radius: 8px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        .label {
+            font-family: var(--font-main);
+            font-size: 0.8rem;
+            letter-spacing: 0.4em;
+            color: var(--royal-gold);
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            display: block;
+            opacity: 0.9;
         }
 
+        h1 {
+            font-family: var(--font-accent);
+            font-size: clamp(3.5rem, 8vw, 6rem);
+            line-height: 0.9;
+            margin: 0;
+            font-weight: 400;
+            letter-spacing: 2px;
+            color: var(--royal-gold);
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-desc {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            line-height: 1.8;
+            margin-top: 40px;
+            margin-left: auto;
+            font-weight: 500;
+        }
+
+        .tagline {
+            font-size: 1.5rem;
+            color: var(--blood-red);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-top: 20px;
+            font-family: var(--font-main);
+            text-shadow: 0 0 10px rgba(138, 3, 3, 0.5);
+            font-weight: 700;
+        }
+
+        /* Editorial Sections */
+        .section-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 30px;
+            margin-bottom: 120px;
+        }
+
+        .glass-card {
+            background: rgba(10, 5, 5, 0.5);
+            border: 1px solid var(--glass-border);
+            padding: 40px;
+            border-radius: 24px;
+            backdrop-filter: blur(20px);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+        }
+
+        .glass-card:hover {
+            border-color: var(--royal-gold);
+            transform: translateY(-5px);
+            box-shadow: 0 30px 60px rgba(212, 175, 55, 0.15);
+        }
+
+        /* Equal Split Layout */
+        .card-large {
+            grid-column: 1 / 7;
+        }
+
+        .card-medium {
+            grid-column: 7 / 13;
+        }
+
+        .card-full {
+            grid-column: 1 / 13;
+        }
+
+        h2 {
+            font-family: var(--font-accent);
+            font-size: 2.2rem;
+            margin-top: 0;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+            color: var(--royal-gold);
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+            text-transform: uppercase;
+        }
+
+        /* List Styles */
         .decree-list {
             list-style: none;
             padding: 0;
-            text-align: left;
-            margin-top: 2rem;
+            display: grid;
+            gap: 15px;
         }
 
-        .decree-list li {
-            padding: 1rem 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            color: #ddd;
+        .decree-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 15px 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: 0.3s;
             font-size: 1rem;
+            color: #ececec;
         }
 
-        .decree-list li::before {
-            content: '❖';
-            color: var(--royal-gold);
-            margin-right: 15px;
+        .decree-item:hover {
+            background: rgba(212, 175, 55, 0.15);
+            border-color: var(--royal-gold);
+            transform: translateX(5px);
         }
 
-        .cta-btn {
-            margin-top: 2rem;
-            padding: 15px 40px;
-            background: linear-gradient(45deg, var(--deep-crimson), var(--blood-red));
-            border: 2px solid var(--royal-gold);
+        .decree-item::before {
+            content: "❖";
             color: var(--royal-gold);
-            font-family: 'Cinzel Decorative', cursive;
-            font-size: 1.5rem;
-            font-weight: 900;
-            cursor: pointer;
-            box-shadow: 0 0 20px rgba(138, 3, 3, 0.5);
-            transition: all 0.5s;
+            font-size: 1.2rem;
+            line-height: 0;
+        }
+
+        /* Card Grid for Round 2 */
+        .reveal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .reveal-card {
+            background: rgba(212, 175, 55, 0.05);
+            padding: 24px;
+            border-radius: 16px;
+            text-align: center;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: 0.3s;
+            backdrop-filter: blur(5px);
+        }
+
+        .reveal-card:hover {
+            background: var(--royal-gold);
+            color: #000;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        .reveal-card strong {
+            display: block;
+            margin-bottom: 8px;
+            font-family: var(--font-accent);
+            font-size: 1.2rem;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            letter-spacing: 3px;
+        }
+
+        .reveal-card:hover strong {
+            color: #000;
+        }
+
+        /* Thematic CTA Button */
+        .cta-btn {
+            background: linear-gradient(45deg, var(--deep-crimson), var(--blood-red));
+            color: var(--royal-gold);
+            padding: 18px 45px;
+            border-radius: 100px;
+            font-family: var(--font-accent);
+            font-size: 1.2rem;
+            letter-spacing: 4px;
+            border: 2px solid var(--royal-gold);
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(138, 3, 3, 0.5);
+            text-transform: uppercase;
+            cursor: pointer;
+            display: inline-block;
         }
 
         .cta-btn:hover {
-            transform: scale(1.05);
+            background: var(--royal-gold);
+            color: #000;
             box-shadow: 0 0 40px rgba(212, 175, 55, 0.8);
-            text-shadow: 0 0 10px #fff;
+            transform: scale(1.05);
         }
 
-        /* Card Grid Styles */
-        .card-item {
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            background: rgba(20, 20, 20, 0.6);
-            /* Semi-transparent */
-            backdrop-filter: blur(5px);
-            padding: 2rem;
-            transition: 0.3s;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
+        /* Coordinators / Footer */
+        .coordinators {
+            margin-top: 100px;
+            text-align: center;
+            border-top: 1px solid var(--glass-border);
+            padding-top: 60px;
         }
 
-        .card-item:hover {
-            border-color: var(--royal-gold);
-            transform: translateY(-5px);
-            box-shadow: 0 5px 25px rgba(212, 175, 55, 0.3);
-            background: rgba(30, 30, 30, 0.8);
-        }
-
-        /* Scroll Reveal Animation Classes */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 1s ease-out;
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Keyframes */
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-50px);
+        /* Mobile */
+        @media (max-width: 1024px) {
+            .section-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
             }
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
+            .card-large,
+            .card-medium,
+            .card-full {
+                grid-column: 1 / -1;
             }
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
+            .viewport {
+                padding: 150px 20px 60px;
+            }
+
+            .hero {
+                text-align: center;
+                align-items: center;
+                margin-bottom: 60px;
+            }
+
+            .hero-desc {
+                margin: 30px auto 0;
+                font-size: 1.1rem;
+            }
+
+            h1 {
+                font-size: 3.2rem;
+            }
+
+            .back-link {
+                top: 25px;
+                left: 20px;
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+
+            .reveal-grid {
+                grid-template-columns: 1fr !important;
+                gap: 20px;
+            }
+
+            .glass-card {
+                padding: 40px 20px;
+            }
+
+            .decree-item {
+                padding: 15px;
+                font-size: 0.95rem;
             }
         }
     </style>
@@ -393,168 +379,108 @@
     <!-- Persistent Backgrounds -->
     <video id="bg-video" autoplay muted loop playsinline>
         <source src="../assets/bg_video_final.mp4" type="video/mp4">
-        Your browser does not support the video tag.
     </video>
     <canvas id="ash-canvas"></canvas>
+    <div class="video-overlay"></div>
 
-    <!-- Arrow only -->
+    <!-- Navigation -->
     <a href="../index.html#events" class="back-link"
         onclick="if(document.referrer.indexOf(window.location.host) !== -1) { event.preventDefault(); history.back(); }">←</a>
 
-    <section class="universe-hero" id="hero">
-        <h1 class="universe-title">GAME OF CODES</h1>
-        <p class="universe-tagline">Where Logic Meets Strategy</p>
-        <p class="universe-desc">
-            Game of Codes is a high-energy technical competition that blends logical reasoning, circuit problem-solving,
-            and strategic gameplay. Participants must think quickly, coordinate as a team, and adapt under pressure as
-            technical challenges are influenced by real-time game actions.
-        </p>
-    </section>
-
-    <!-- Content Sections (Preserved Text) -->
-    <section class="spa-section">
-
-        <!-- Round 1 -->
-        <div class="round-container reveal"
-            style="margin-bottom: 6rem; max-width: 900px; margin-left: auto; margin-right: auto; text-align: left;">
-            <h2
-                style="text-align: center; margin-bottom: 1.5rem; color: var(--royal-gold); font-family: 'Cinzel Decorative', serif; font-size: 2.2rem;">
-                Round I: CROSSWORD CONQUEST</h2>
-            <p style="font-size: 1.05rem; line-height: 1.7; color: #ddd; margin-bottom: 1.5rem;">
-                In this round, teams take on a timed technical crossword designed to test conceptual understanding and
-                technical vocabulary. Success depends on logical thinking, speed, and effective teamwork.
+    <!-- Main Content -->
+    <main class="viewport">
+        <section class="hero">
+            <h1 class="reveal-text">GAME OF CODES</h1>
+            <p class="tagline stagger-text">Where Logic Meets Strategy</p>
+            <p class="hero-desc">
+                Where technical precision meets strategic gameplay. Game of Codes challenges teams to navigate circuit
+                simulations while adapting to the unpredictable influences of real-time card-based mechanics.
             </p>
+            <button class="cta-btn">REGISTER ALLIANCE</button>
+        </section>
 
-            <h3 style="color: var(--royal-gold); font-family: 'Cinzel', serif; margin-bottom: 1rem;">Round 1 Rules</h3>
-            <ul class="decree-list" style="margin: 0;">
-                <li>Teams must complete a timed technical crossword.</li>
-                <li>Evaluation is based on accuracy, number of correct entries, and completion time.</li>
-                <li>Crossword difficulty increases progressively.</li>
-                <li>Top-performing teams advance to Round 2.</li>
-            </ul>
-        </div>
-
-        <hr
-            style="border: 0; border-top: 1px solid var(--royal-gold); margin: 6rem auto; max-width: 300px; opacity: 0.5;">
-
-        <!-- Round 2 -->
-        <div class="round-container reveal"
-            style="margin-bottom: 6rem; max-width: 1000px; margin-left: auto; margin-right: auto;">
-            <h2
-                style="text-align: center; margin-bottom: 1.5rem; color: var(--royal-gold); font-family: 'Cinzel Decorative', serif; font-size: 2.2rem;">
-                Round II: UNO-CONTROLLED CIRCUIT CHALLENGE</h2>
-
-            <p
-                style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 2rem; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto; color: #fff;">
-                This round combines hands-on circuit problem-solving with a live UNO game running in parallel. Gameplay
-                directly affects the technical task, adding an element of unpredictability.
-            </p>
-
-            <h3
-                style="color: var(--royal-gold); font-family: 'Cinzel', serif; font-size: 1.5rem; margin-bottom: 1.5rem; text-align: center;">
-                Round 2 Format</h3>
-
-            <div style="display: flex; justify-content: center; gap: 3rem; margin-bottom: 4rem; flex-wrap: wrap;">
-                <div
-                    style="border: 1px solid var(--royal-gold); padding: 2rem; background: rgba(0,0,0,0.6); backdrop-filter: blur(5px); flex: 1; min-width: 300px; border-radius: 4px;">
-                    <h3
-                        style="color: var(--royal-gold); font-family: 'Cinzel', serif; font-size: 1.3rem; margin-bottom: 0.5rem;">
-                        Task Solver</h3>
-                    <p style="color: #ccc; font-size: 1rem; line-height: 1.5;">
-                        Works on a circuit-based problem using simulation tools.
-                    </p>
-                </div>
-                <div
-                    style="border: 1px solid var(--blood-red); padding: 2rem; background: rgba(0,0,0,0.6); backdrop-filter: blur(5px); flex: 1; min-width: 300px; border-radius: 4px;">
-                    <h3
-                        style="color: var(--blood-red); font-family: 'Cinzel', serif; font-size: 1.3rem; margin-bottom: 0.5rem;">
-                        UNO Player</h3>
-                    <p style="color: #ccc; font-size: 1rem; line-height: 1.5;">
-                        Competes in a live UNO game.
-                    </p>
+        <div class="section-grid">
+            <!-- Round 1 -->
+            <div class="glass-card card-large staggered">
+                <h2>Round I: CROSSWORD CONQUEST</h2>
+                <p style="font-size: 1rem; color: var(--text-muted); margin-bottom: 20px;">
+                    A timed technical crossword designed to test conceptual understanding and technical vocabulary.
+                    Success depends on logical thinking, speed, and effective teamwork.
+                </p>
+                <div class="decree-list">
+                    <div class="decree-item">Timed technical crossword challenge</div>
+                    <div class="decree-item">Evaluation based on accuracy and speed</div>
+                    <div class="decree-item">Progressive level of difficulty</div>
+                    <div class="decree-item">Top-performing teams advance to Round 2</div>
                 </div>
             </div>
 
-            <p
-                style="font-size: 1.2rem; line-height: 1.8; color: #dcdcdc; text-align: center; max-width: 800px; margin: 0 auto 4rem auto; border-left: 2px solid var(--royal-gold); border-right: 2px solid var(--royal-gold); padding: 0 2rem; background: rgba(0,0,0,0.4);">
-                UNO cards trigger penalties or advantages such as freezes, key restrictions, role swaps, and temporary
-                immunity.
-            </p>
-
-            <p
-                style="margin-top: 3rem; font-size: 1.1rem; line-height: 1.7; color: #fff; background: rgba(50,10,10,0.5); backdrop-filter: blur(5px); padding: 1rem; border: 1px solid var(--royal-gold);">
-                The first team to complete the technical task wins.<br>
-                If no team completes the task, results are decided based on maximum progress with minimum penalties.
-            </p>
-        </div>
-
-        <hr
-            style="border: 0; border-top: 1px solid var(--royal-gold); margin: 6rem auto; max-width: 300px; opacity: 0.5;">
-
-        <!-- Rules & Register -->
-        <!-- Rules & Register -->
-        <div class="reveal"
-            style="max-width: 800px; margin: 0 auto; background: rgba(0,0,0,0.6); padding: 2.2rem; border-radius: 8px; margin-bottom: 6rem;">
-            <h2 style="margin-bottom: 1.5rem; color: var(--royal-gold); text-align: center; font-size: 2rem;">EVENT
-                RULES</h2>
-            <ul class="decree-list">
-                <li>Each team must consist of exactly 2 members.</li>
-                <li>Teams must strictly follow the given format and time limits.</li>
-                <li>Any rule violation may lead to disqualification.</li>
-                <li>The judges’ decision is final.</li>
-            </ul>
-        </div>
-
-        <div class="reveal"
-            style="max-width: 800px; margin: 0 auto; background: rgba(0,0,0,0.6); padding: 2rem; border-radius: 8px; text-align: center;">
-            <h2 style="margin-bottom: 1.5rem; color: var(--royal-gold); font-size: 2rem;">EVENT COORDINATORS</h2>
-            <div style="display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; margin-bottom: 1rem;">
-                <div style="text-align: center;">
-                    <div
-                        style="color: var(--royal-gold); font-family: 'Cinzel', serif; font-size: 1.3rem; margin-bottom: 0.5rem;">
-                        HARINI C</div>
-                    <div style="color: #ccc; font-size: 1.1rem;">+91 86101 63433</div>
-                </div>
-                <div style="text-align: center;">
-                    <div
-                        style="color: var(--royal-gold); font-family: 'Cinzel', serif; font-size: 1.3rem; margin-bottom: 0.5rem;">
-                        PRATHIBA MSK</div>
-                    <div style="color: #ccc; font-size: 1.1rem;">+91 63749 77382</div>
-                </div>
-                <div style="text-align: center;">
-                    <div
-                        style="color: var(--royal-gold); font-family: 'Cinzel', serif; font-size: 1.3rem; margin-bottom: 0.5rem;">
-                        SHRIRAM KUMAR V</div>
-                    <div style="color: #ccc; font-size: 1.1rem;">+91 99945 81889</div>
+            <!-- Round 2 -->
+            <div class="glass-card card-medium staggered">
+                <h2>Round II: UNO-CONTROLLED CIRCUIT</h2>
+                <p style="font-size: 1rem; color: var(--text-muted); margin-bottom: 20px;">
+                    Combines hands-on circuit problem-solving with a live UNO game. Gameplay directly affects the
+                    technical task with freezes, swaps, and immunities.
+                </p>
+                <div class="decree-list">
+                    <div class="decree-item">Task Solver: Simulation-based circuit solving</div>
+                    <div class="decree-item">UNO Player: Competes in parallel gameplay</div>
+                    <div class="decree-item">Cards trigger real-time penalties or advantages</div>
+                    <div class="decree-item">Victory determined by task completion time</div>
                 </div>
             </div>
-            <button class="cta-btn" style="margin-top: 2rem;">Register Alliance</button>
+
+            <!-- Event Rules -->
+            <div class="glass-card card-full staggered">
+                <h2>EVENT RULES</h2>
+                <p style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: 30px; text-align: center;">
+                    Standard operational procedures for all participants.
+                </p>
+                <div class="reveal-grid" style="grid-template-columns: repeat(2, 1fr);">
+                    <div class="reveal-card">
+                        <strong>Team Size</strong>
+                        Exactly 2 members
+                    </div>
+                    <div class="reveal-card">
+                        <strong>Conduct</strong>
+                        Strict adherence to format and timing
+                    </div>
+                    <div class="reveal-card">
+                        <strong>Integrity</strong>
+                        Rule violations lead to disqualification
+                    </div>
+                    <div class="reveal-card">
+                        <strong>Decision</strong>
+                        Judges' word is final
+                    </div>
+                </div>
+            </div>
+
+            <!-- Coordinators -->
+            <div class="glass-card card-full staggered">
+                <h2>EVENT COORDINATORS</h2>
+                <div class="reveal-grid" style="grid-template-columns: repeat(3, 1fr);">
+                    <div class="reveal-card">
+                        <strong>HARINI C</strong>
+                        +91 86101 63433
+                    </div>
+                    <div class="reveal-card">
+                        <strong>PRATHIBA MSK</strong>
+                        +91 63749 77382
+                    </div>
+                    <div class="reveal-card">
+                        <strong>SHRIRAM KUMAR V</strong>
+                        +91 99945 81889
+                    </div>
+                </div>
+            </div>
         </div>
-    </section>
+    </main>
 
     <script>
-        // 1. Scroll Reveal Logic
-        const observerOptions = { threshold: 0.1 };
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, observerOptions);
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-        // 2. Parallax
-        const heroTitle = document.querySelector('.universe-title');
-        window.addEventListener('scroll', () => {
-            const scrollY = window.scrollY;
-            if (scrollY < 800) {
-                heroTitle.style.transform = `translateY(${scrollY * 0.4}px)`;
-                heroTitle.style.opacity = `${1 - scrollY / 600}`;
-            }
-        });
-
-        // 3. Ash & Fire Particle System (Canvas)
+        // =========================================
+        // ASH & FIRE PARTICLE SYSTEM
+        // =========================================
         const canvas = document.getElementById('ash-canvas');
         const ctx = canvas.getContext('2d');
         let width, height;
@@ -577,17 +503,16 @@
                     this.x = Math.random() * width;
                     this.y = Math.random() * -100;
                     this.size = Math.random() * 2 + 1;
-                    this.speed = Math.random() * 1.5 + 0.5; // Down
+                    this.speed = Math.random() * 1.5 + 0.5;
                     this.drift = Math.random() * 0.5 - 0.25;
                     this.color = `rgba(200, 200, 200, ${Math.random() * 0.3 + 0.1})`;
                 } else {
-                    // Fire Embers (Rising)
                     this.x = Math.random() * width;
-                    this.y = height + Math.random() * 100; // Start below
+                    this.y = height + Math.random() * 100;
                     this.size = Math.random() * 3 + 1;
-                    this.speed = (Math.random() * 2 + 1) * -1; // Up
+                    this.speed = (Math.random() * 2 + 1) * -1;
                     this.drift = Math.random() * 1 - 0.5;
-                    this.color = `rgba(255, ${Math.floor(Math.random() * 100)}, 0, ${Math.random() * 0.6 + 0.4})`; // Orange/Red
+                    this.color = `rgba(255, ${Math.floor(Math.random() * 100)}, 0, ${Math.random() * 0.6 + 0.4})`;
                     this.life = 1.0;
                 }
             }
@@ -600,7 +525,7 @@
                     if (this.y > height) this.reset();
                 } else {
                     this.life -= 0.01;
-                    this.size *= 0.99; // Shrink
+                    this.size *= 0.99;
                     if (this.y < -10 || this.life <= 0) this.reset();
                 }
             }
@@ -614,9 +539,7 @@
         }
 
         const particles = [];
-        // 100 Ash particles
         for (let i = 0; i < 100; i++) particles.push(new Particle('ash'));
-        // 50 Fire Embers
         for (let i = 0; i < 50; i++) particles.push(new Particle('fire'));
 
         function animate() {
@@ -628,7 +551,55 @@
             requestAnimationFrame(animate);
         }
         animate();
+
+        // =========================================
+        // GSAP ANIMATIONS
+        // =========================================
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Hero Reveal
+        gsap.from('.reveal-text', {
+            y: 50,
+            opacity: 0,
+            duration: 1.5,
+            ease: 'power4.out',
+            delay: 0.2
+        });
+
+        gsap.from('.hero-desc', {
+            opacity: 0,
+            y: 30,
+            duration: 1.2,
+            delay: 0.8,
+            ease: 'power3.out'
+        });
+
+        gsap.from('.tagline', {
+            opacity: 0,
+            y: 20,
+            duration: 1.2,
+            delay: 0.5,
+            ease: 'power3.out'
+        });
+
+        // Individual Entrance for Cards
+        gsap.utils.toArray('.staggered').forEach(card => {
+            gsap.from(card, {
+                scrollTrigger: {
+                    trigger: card,
+                    start: 'top 90%',
+                    toggleActions: 'play none none none'
+                },
+                y: 30,
+                autoAlpha: 0,
+                duration: 0.8,
+                ease: 'power2.out'
+            });
+        });
     </script>
+</body>
+
+</html>
 </body>
 
 </html>

@@ -86,32 +86,28 @@
         .back-link {
             position: fixed;
             top: 30px;
-            right: 30px;
-            left: auto;
+            left: 30px;
             color: var(--wealth-gold);
             text-decoration: none;
-            font-size: 1rem;
-            font-family: var(--font-tech);
-            letter-spacing: 2px;
-            padding: 12px 25px;
+            font-size: 1.8rem;
+            width: 55px;
+            height: 55px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 1px solid var(--wealth-gold);
-            border-radius: 4px;
+            border: 2px solid var(--wealth-gold);
+            border-radius: 50%;
             background: rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(4px);
             z-index: 1000;
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
-            text-transform: uppercase;
         }
 
         .back-link:hover {
             background: var(--wealth-gold);
             color: #000;
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.6);
-            transform: translateY(-2px);
+            box-shadow: 0 0 20px var(--wealth-gold);
+            transform: scale(1.1) rotate(-360deg);
         }
 
         /* Typography & Content - LEFT ALIGNED */
@@ -411,7 +407,7 @@
 
     <!-- Navigation -->
     <a href="../index.html#events" class="back-link"
-        onclick="if(document.referrer.indexOf(window.location.host) !== -1) { event.preventDefault(); history.back(); }">EXIT</a>
+        onclick="if(document.referrer.indexOf(window.location.host) !== -1) { event.preventDefault(); history.back(); }">←</a>
 
     <!-- Main Content -->
     <main class="viewport">
@@ -429,7 +425,6 @@
         <div class="section-grid">
             <!-- Round 1 -->
             <div class="glass-card card-large staggered">
-                <span class="label">Step 01</span>
                 <h2>ROUND 1: JUMBLED WORDS</h2>
                 <p class="sub-header">THE ELIMINATION PIT</p>
                 <p style="font-size: 1rem; color: var(--text-muted); margin-bottom: 20px;">
@@ -451,7 +446,6 @@
 
             <!-- Round 2 -->
             <div class="glass-card card-medium staggered">
-                <span class="label">Step 02</span>
                 <h2>ROUND 2: THE PROBLEM STATEMENT</h2>
                 <p class="sub-header">BID, BUILD & PITCH</p>
                 <p style="font-size: 1rem; color: var(--text-muted); margin-bottom: 20px;">
@@ -475,7 +469,6 @@
 
             <!-- Judging Criteria -->
             <div class="glass-card card-full staggered">
-                <span class="label">Evaluation</span>
                 <h2>JUDGING CRITERIA</h2>
                 <div class="reveal-grid" style="grid-template-columns: repeat(5, 1fr);">
                     <div class="reveal-card">
@@ -503,7 +496,6 @@
 
             <!-- Event Rules -->
             <div class="glass-card card-full staggered">
-                <span class="label">Protocol</span>
                 <h2>THE FIRM'S RULES</h2>
                 <p style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: 30px; text-align: center;">
                     Standard operational procedures for all participants.
@@ -537,7 +529,6 @@
 
             <!-- Coordinators -->
             <div class="glass-card card-full staggered">
-                <span class="label">Ground Command</span>
                 <h2>EVENT COORDINATORS</h2>
                 <div class="reveal-grid" style="grid-template-columns: repeat(3, 1fr);">
                     <div class="reveal-card">
