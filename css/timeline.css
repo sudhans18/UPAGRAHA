@@ -108,18 +108,27 @@
     top: 59%;
     left: 0;
     width: 100%;
-    /* Spans the full scroll track */
     height: 3px;
-    background: linear-gradient(90deg,
-            rgba(255, 215, 0, 0.1) 0%,
-            #ffd700 20%,
-            #ffd700 80%,
-            rgba(255, 215, 0, 0.1) 100%);
+    background: rgba(255, 255, 255, 0.1);
+    /* Dim background track */
     transform: translateY(-50%);
     z-index: 1;
-    box-shadow:
-        0 0 10px rgba(255, 215, 0, 0.5),
-        0 0 20px rgba(255, 215, 0, 0.2);
+}
+
+/* Progress Fill */
+.timeline-progress-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0%;
+    /* JS will calculate this */
+    background: linear-gradient(90deg,
+            rgba(255, 215, 0, 0.5) 0%,
+            #ffd700 100%);
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+    transition: width 1s ease-out;
+    border-radius: 2px;
 }
 
 /* Individual Event Node */
@@ -163,40 +172,8 @@
     /* Glow upwards */
 }
 
-/* 2. Yellow Swoops/Branches for other events (simulating the reference image) */
-
-/* Branch Down (e.g., for Past events) - Swoop under the line */
-.timeline-event.past:nth-child(odd)::before {
-    content: '';
-    position: absolute;
-    top: 59%;
-    left: 0%;
-    width: 100px;
-    height: 80px;
-    border: 2px solid transparent;
-    border-bottom-color: rgba(255, 215, 0, 0.6);
-    /* Gold swoop */
-    border-right-color: rgba(255, 215, 0, 0.3);
-    border-radius: 50%;
-    transform: translateY(-10%) rotate(20deg);
-    z-index: 0;
-}
-
-/* Branch Down Alternate (e.g. for Future events) */
-.timeline-event.future:nth-child(even)::before {
-    content: '';
-    position: absolute;
-    top: 59%;
-    right: 10%;
-    width: 90px;
-    height: 90px;
-    border: 2px solid transparent;
-    border-bottom-color: rgba(255, 215, 0, 0.6);
-    border-left-color: rgba(255, 215, 0, 0.3);
-    border-radius: 50%;
-    transform: translateY(-10%) rotate(-20deg);
-    z-index: 0;
-}
+/* 2. Yellow Swoops/Branches - REMOVED per user request */
+/* .timeline-event.past:nth-child(odd)::before, .timeline-event.future:nth-child(even)::before styles removed */
 
 /* The node/dot on the line */
 .timeline-node {
@@ -276,6 +253,10 @@
     display: block;
     margin-bottom: 4px;
     letter-spacing: 2px;
+    line-height: 1.4;
+    /* Better spacing for multiline */
+    text-align: center;
+    /* Ensure stacked text is centered */
 }
 
 /* Title styling */
@@ -358,9 +339,9 @@
 /* Scroll Hint Indicator */
 .scroll-hint {
     position: absolute;
-    bottom: 30%;
+    top: 30%;
     /* Positioned strictly inside the screen */
-    right: 45%;
+    right: 46%;
     /* Positioned strictly inside the screen */
     color: rgba(255, 215, 0, 0.7);
     font-family: var(--font-rajdhani);
