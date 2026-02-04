@@ -1,79 +1,83 @@
 # UPAGRAHA '26
 
-Official website for the UPAGRAHA '26 symposium, organized by the Department of Electronics and Communication Engineering at SVCE, Chennai. This project is built using HTML, CSS, and JavaScript, featuring cinematic scroll animations and interactive elements.
+Official website for **UPAGRAHA '26**, a national-level technical symposium organized by the Department of Electronics and Communication Engineering at **Sri Venkateswara College of Engineering (SVCE)**, Chennai.
 
-## 🚀 Getting Started
+**Presented by:** IETE Students' Forum (IETE-SF), Electronics and Communication Engineering Association (ECEA), and Robotics and Automation Club of ECE (RACE).
 
-Follow this detailed guide to set up the project locally on your machine.
+---
 
-### 📋 Prerequisites
+## About
 
-Before you begin, ensure you have the following installed:
+UPAGRAHA '26 is an annual flagship technical symposium that brings together students, researchers, and industry professionals to explore cutting-edge innovations in electronics, communication, and robotics. The event features competitive technical events, workshops, guest lectures, and networking opportunities.
 
-1.  **Git**: Version control system to clone the repository.
-    *   [Download Git](https://git-scm.com/downloads)
-2.  **Node.js**: JavaScript runtime (includes `npm`).
-    *   [Download Node.js](https://nodejs.org/) (LTS version recommended)
-3.  **Antigravity**: The AI-powered IDE used for this project.
-    *   Ensure you have the Antigravity application installed and running.
+This repository contains the source code for the official symposium website, featuring:
+- **Cinematic scroll animations** powered by GSAP
+- **Interactive event showcases** with immersive UI/UX
+- **Responsive design** optimized for all devices
+- **Dynamic timeline** tracking event schedules
 
-### 🛠️ Installation & Setup
+---
 
-1.  **Clone the Repository**
-    Open your terminal or command prompt (CMD/PowerShell on Windows, Terminal on Mac/Linux) and run the following command to download the code:
-    ```bash
-    git clone https://github.com/sudhans18/UPAGRAHA.git
-    ```
-    Then, navigate into the project directory:
-    ```bash
-    cd UPAGRAHA
-    ```
+## Tech Stack
 
-2.  **Open in Antigravity**
-    *   Launch the **Antigravity** application.
-    *   Click on **Open Folder** (or File > Open).
-    *   Navigate to the folder where you cloned the repository (`UPAGRAHA`) and select it.
-    *   The project should now be loaded in the Antigravity editor.
+- **Frontend:** HTML5, CSS3, Vanilla JavaScript
+- **Animation:** GSAP (GreenSock Animation Platform)
+- **Hosting:** GitHub Pages
+- **Build Tool:** Node.js with `serve` for local development
 
-3.  **Install Dependencies**
-    The project uses `npm` to manage development dependencies (specifically a local server).
-    *   Open the terminal within Antigravity (View > Terminal or `Ctrl+``).
-    *   Run the following command:
-    ```bash
-    npm install
-    ```
-    This will install the packages listed in `package.json` (e.g., `serve`) into a `node_modules` folder.
+---
 
-### ▶️ Running the Project
+## Quick Start
 
-To view the website locally, you need to run a local web server.
+```bash
+git clone https://github.com/sudhans18/UPAGRAHA.git
+cd UPAGRAHA
+npm install
+npm start
+```
 
-1.  In the terminal, run:
-    ```bash
-    npm start
-    ```
-    *Note: This command runs the `serve` utility as defined in `package.json`.*
+Access the website at `http://localhost:3000`
 
-2.  The terminal will show a local address, usually:
-    *   `http://localhost:3000`
+---
 
-    Click the link or copy-paste it into your web browser to see the UPAGRAHA '26 website in action!
+## Project Structure
 
-### 🛑 Stopping the Server
-To stop the server, go to the terminal where it is running and press `Ctrl + C`.
+```
+UPAGRAHA/
+├── index.html              # Main landing page
+├── css/                    # Stylesheets
+├── js/                     # JavaScript modules
+├── assets/                 # Images, frame sequences, media
+├── events/                 # Individual event pages
+└── sponsorship_tiers.html  # Sponsorship information
+```
 
-## 📂 Project Structure
+---
 
-*   **`index.html`**: The main landing page of the website.
-*   **`css/`**: usage-specific stylesheets (e.g., `events.css` for the events section).
-*   **`js/`**: JavaScript logic for animations and interactivity (e.g., `hero.js`).
-*   **`assets/`**: Contains images, frame sequences for animations, and other media.
-*   **`events/`**: HTML files for individual event details or sub-sections.
+## Events
 
-## 🤝 Contributing
+UPAGRAHA '26 features six competitive technical events:
+1. **Fast and Curious** - Circuit debugging challenge
+2. **Kaun Banega ECE Champ** - Technical quiz competition
+3. **The Wolf of Tech Street** - Stock market simulation
+4. **TechXplainer** - Technical presentation event
+5. **Papermania** - Research paper presentation
+6. **Ideathon** - Innovation and ideation challenge
 
-1.  Fork the project.
-2.  Create your feature branch (`git checkout -b feature/AmazingFeature`).
-3.  Commit your changes (`git commit -m 'Add some AmazingFeature'`).
-4.  Push to the branch (`git push origin feature/AmazingFeature`).
-5.  Open a Pull Request.
+---
+
+## Contributing
+
+This is a closed project for UPAGRAHA '26. For inquiries, contact the organizing committee.
+
+---
+
+## License
+
+© 2026 UPAGRAHA '26 | SVCE ECE Department. All rights reserved.
+
+---
+
+**Organized by:** IETE-SF, ECEA, RACE  
+**Department:** Electronics and Communication Engineering  
+**Institution:** Sri Venkateswara College of Engineering, Chennai
