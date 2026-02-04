@@ -83,36 +83,40 @@ export function initTimelineAnimation() {
             const index = allEvents.indexOf(activeEvent);
 
             if (index !== -1) {
-                // Calculate percentage position of the center of this event relative to the total track width?
-                // The track width depends on scroll content width.
-                // Simpler approach: 
-                // event.offsetLeft gives distance from start of container (timeline-scroll-track)
-                // event.clientWidth / 2 gives center
+                // Check if mobile view (vertical timeline)
+                const isMobile = window.matchMedia('(max-width: 768px)').matches;
 
-                const centerPos = activeEvent.offsetLeft + (activeEvent.clientWidth / 2);
-                // Add some padding/margin offset if needed. 
-                // Since timeline-line starts at 0 relative to scroll-track padding...
-                // Wait, scroll-track has padding: 0 80px.
-                // Use offsetLeft directly.
-
-                progressBar.style.width = `${centerPos}px`;
+                if (isMobile) {
+                    // Mobile: use height-based calculation for vertical timeline
+                    const centerPos = activeEvent.offsetTop + (activeEvent.clientHeight / 2);
+                    progressBar.style.height = `${centerPos}px`;
+                    progressBar.style.width = ''; // Clear any inline width
+                } else {
+                    // Desktop: use width-based calculation for horizontal timeline
+                    const centerPos = activeEvent.offsetLeft + (activeEvent.clientWidth / 2);
+                    progressBar.style.width = `${centerPos}px`;
+                    progressBar.style.height = ''; // Clear any inline height
+                }
             }
         }
 
-        // Scroll to center the current event
-        setTimeout(() => {
-            const containerWidth = scrollContainer.clientWidth;
-            const eventLeft = activeEvent.offsetLeft;
-            const eventWidth = activeEvent.clientWidth;
+        // Scroll to center the current event (only on desktop)
+        const isMobileForScroll = window.matchMedia('(max-width: 768px)').matches;
+        if (!isMobileForScroll) {
+            setTimeout(() => {
+                const containerWidth = scrollContainer.clientWidth;
+                const eventLeft = activeEvent.offsetLeft;
+                const eventWidth = activeEvent.clientWidth;
 
-            // Calculate scroll position to center the element
-            const scrollPos = eventLeft - (containerWidth / 2) + (eventWidth / 2);
+                // Calculate scroll position to center the element
+                const scrollPos = eventLeft - (containerWidth / 2) + (eventWidth / 2);
 
-            scrollContainer.scrollTo({
-                left: Math.max(0, scrollPos),
-                behavior: 'smooth'
-            });
-        }, 500);
+                scrollContainer.scrollTo({
+                    left: Math.max(0, scrollPos),
+                    behavior: 'smooth'
+                });
+            }, 500);
+        }
 
     }
 

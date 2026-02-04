@@ -20,22 +20,22 @@ function initTeamSection() {
 
     // Club Members Lists
     const eceaMembers = [
-        { name: "M Raef", role: "President", img: "MOHAMMED RAEEF ECE.jpeg", linkedin: "https://www.linkedin.com/in/raeef-ibrahim-3b721125a/", email: "2022ec0449@svce.ac.in" },
+        { name: "M Raeef", role: "President", img: "MOHAMMED RAEEF ECE.jpeg", linkedin: "https://www.linkedin.com/in/raeef-ibrahim-3b721125a/", email: "2022ec0449@svce.ac.in" },
         { name: "Harinee V T", role: "Vice President", img: "HARINEE V T ECE.jpg", linkedin: "https://www.linkedin.com/in/harineevt", github: "https://github.com/Harinee827", email: "harineevt27@gmail.com" },
         { name: "Balaji S", role: "Secretary", img: "BALAJI S ECE.jpg", linkedin: "https://www.linkedin.com/in/balaji-santhanam008/", github: "https://github.com/Balajisanthanam205", email: "balajisanthanam205@gmail.com" },
         { name: "Surya K", role: "Treasurer", img: "SURYA K ECE.jpg", linkedin: "www.linkedin.com/in/suryak23", github: "https://github.com/suryak26", email: "2023ec0546@svce.ac.in" },
-        { name: "Anushri P", role: "Executive Member", img: "ANUSHRI V ECE.jpg", linkedin: "https://www.linkedin.com/in/anu-shri?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", email: "anushri0705@gmail.com" },
+        { name: "Anushri V", role: "Executive Member", img: "ANUSHRI V ECE.jpg", linkedin: "https://www.linkedin.com/in/anu-shri?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", email: "anushri0705@gmail.com" },
         { name: "Preethika R", role: "Executive Member", img: "PREETHIKA R ECE.jpg", linkedin: "www.linkedin.com/in/preethika-radhakrishnan-269958336", email: "preethiradha13@gmail.com" },
-        { name: "Sudesh Pilla", role: "Executive Member", img: "SUDESH SHRIKANT PILLAI ECE.jpg", linkedin: "https://www.linkedin.com/in/sudesh-pillai-9bbb16292/", email: "sudesh120305@gmail.com" },
+        { name: "Sudesh Pillai", role: "Executive Member", img: "SUDESH SHRIKANT PILLAI ECE.jpg", linkedin: "https://www.linkedin.com/in/sudesh-pillai-9bbb16292/", email: "sudesh120305@gmail.com" },
         { name: "Lavanya P", role: "Executive Member", img: "LAVANYA P ECE.jpg", linkedin: "https://www.linkedin.com/in/lavanya-p-6745ab322/", github:"https://github.com/LavanyaGKP", email: "2023ec0234@svce.ac.in" },
-        { name: "N. Yazhini", role: "Joint Secretary", img: "N YAAZHINII ECE.jpg", linkedin: "https://www.linkedin.com/in/yaazhinii-narayanan-89b954326?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", email: "n.yaazhinii@gmail.com" },
+        { name: "N. Yaazhinii", role: "Joint Secretary", img: "N YAAZHINII ECE.jpg", linkedin: "https://www.linkedin.com/in/yaazhinii-narayanan-89b954326?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", email: "n.yaazhinii@gmail.com" },
         { name: "Abhimanyu Singh Bhati", role: "Joint Secretary", img: "ABHIMANYU SINGH BHATI ECE.jpg", linkedin: "https://www.linkedin.com/in/abhimanyu-singh-bhati-7255a0328?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", email: "abhimanyubhati22@gmail.com" },
         { name: "Prathiba MSK", role: "Joint Secretary", img: "PRATHIBA S.png", linkedin: "https://www.linkedin.com/in/m-s-k-prathiba-608588329?utm_source=share_via&utm_content=profile&utm_medium=member_android", email: "2024ec0664@svce.ac.in" }
     ].map(m => ({ ...m, club: "ECEA", path: `assets/ECEA-MEMBERS/${m.img}` }));
 
     const ieteMembers = [
-        { name: "Yaminiy S K", role: "Chairman", img: "YAAMINY S K ECE.JPG", linkedin: "linkedin.com/in/yaaminy-karthikeyan", email: "yaaminykarthik@gmail.com" },
-        { name: "Roobuck Ganeshwara Rao C V", role: "Vice Chairman", img: "Roobuck ganeshwara rao C.jpg", linkedin: "https://www.linkedin.com/in/roobuck/", github: "https://github.com/ROOBUCK22", email: "roobuckrao2205@gmail.com" },
+        { name: "Yaaminiy S K", role: "Chairman", img: "YAAMINY S K ECE.JPG", linkedin: "linkedin.com/in/yaaminy-karthikeyan", email: "yaaminykarthik@gmail.com" },
+        { name: "Roobuck Ganeshwara Rao C", role: "Vice Chairman", img: "Roobuck ganeshwara rao C.jpg", linkedin: "https://www.linkedin.com/in/roobuck/", github: "https://github.com/ROOBUCK22", email: "roobuckrao2205@gmail.com" },
         { name: "Harini Chinnasamy", role: "Honorary Secretary", img: "HARINI C ECE.jpeg", linkedin: "https://www.linkedin.com/in/harini-chinnasamy-577209291/", github: "https://github.com/harini1208", email: "harinichinnasamy@gmail.com" },
         { name: "Bawadharini Sree R", role: "Honorary Treasurer", img: "BAWADHARANI.jpg", linkedin: "https://www.linkedin.com/in/bawadharani-sree-ramakrishnan-97a638218?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3B0NRmV%2FcNQQ6cAOudo99G%2FA%3D%3D", github: "https://github.com/BawadharaniSree", email: "bawadharanisree@gmail.com" },
         { name: "Tejaswi S", role: "Executive Member", img: "TEJASWI S ECE.jpeg", linkedin: "https://www.linkedin.com/in/tejaswi-s-361876293/", email: "2023ec0576@svce.ac.in" },
@@ -58,7 +58,7 @@ function initTeamSection() {
         { name: "Muhilan S", role: "Mentor", img: "MUHILAN S ECE.jpg", linkedin: "https://www.linkedin.com/in/muhilan-selvakumar-a294a2353?utm_source=share_via&utm_content=profile&utm_medium=member_android", github: "https://github.com/Muhilan30", email: "www.muhilan30@gmail.com" },
         { name: "Srivatsan S P", role: "Mentor", img: "SRIVATSAN S P ECE.jpg", linkedin: "https://www.linkedin.com/in/srivatsan-sp-849a592a5?utm_source=share_via&utm_content=profile&utm_medium=member_android", email: "2023ec0033@svce.ac.in" },
         { name: "Shriram Kumar V", role: "Mentor", img: "SHRIRAM KUMAR V ECE.jpg", linkedin: "https://www.linkedin.com/in/shriram-kumar-v-383b0228b/", email: "2023ec0881@svce.ac.in" },
-        { name: "Vinayaga murthi", role: "Mentor", img: "VINAYAGAMURTHI E ECE.jpg", linkedin: "www.linkedin.com/in/ vinayagamurthi1212", email: "vinayagamurthire@gmail.com" },
+        { name: "Vinayagamurthi E", role: "Mentor", img: "VINAYAGAMURTHI E ECE.jpg", linkedin: "www.linkedin.com/in/ vinayagamurthi1212", email: "vinayagamurthire@gmail.com" },
         { name: "Sudhan S", role: "Mentor", img: "SUDHAN S ECE.png", linkedin: "https://www.linkedin.com/in/sudhan18/", github: "https://github.com/sudhans18", email: "sudhan4843@gmail.com" },
         { name: "Rithvik R", role: "Mentor", img: "RITHVIK R ECE.jpg", linkedin: "https://www.linkedin.com/in/rithvik-r-008663292/", github: "https://github.com/WhiteDevil1716", email: "rithvikr86@gmail.com" },
         { name: "B S. Aarthi", role: "Joint Secretary", img: "B S AARTI ECE.jpg", linkedin: "https://www.linkedin.com/in/aarti-swaminathan-a55327375?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", email: "2024ec0223@svce.ac.in" },

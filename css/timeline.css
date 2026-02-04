@@ -428,11 +428,23 @@
         /* Center the line */
         transform: translateX(-50%);
         bottom: 0;
+        /* Dim background - progress bar will show bright color */
+        background: rgba(255, 255, 255, 0.15);
+    }
+
+    /* Progress Bar - Vertical for Mobile */
+    .timeline-progress-bar {
+        width: 100% !important;
+        /* Full width of the 3px line */
+        height: 0;
+        /* JS will set this */
+        left: 0;
+        top: 0;
         background: linear-gradient(180deg,
-                rgba(255, 215, 0, 0.1) 0%,
-                #ffd700 20%,
-                #ffd700 80%,
-                rgba(255, 215, 0, 0.1) 100%);
+                rgba(255, 215, 0, 0.6) 0%,
+                #ffd700 100%);
+        box-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
+        transition: height 1s ease-out;
     }
 
     /* Hide extra horizontal bounds */

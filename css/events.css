@@ -171,37 +171,37 @@
 /* Left Branch */
 #stone-space {
     top: 16%;
-    left: 28%;
+    left: 32%;
     color: #00e5ff;
 }
 
-#stone-mind {
-    top: 35%;
+#stone-time {
+    top: 34%;
     left: 15%;
-    color: #ffd700;
+    color: #00ff41;
 }
 
 #stone-reality {
-    top: 65%;
+    top: 68%;
     left: 17%;
     color: #ff0000;
 }
 
 /* Right Branch */
-#stone-soul {
-    top: 18%;
-    right: 28%;
-    color: #ff8c00;
-}
-
-#stone-time {
-    top: 36%;
-    right: 15%;
-    color: #00ff41;
-}
-
 #stone-power {
-    top: 68%;
-    right: 13%;
+    top: 18%;
+    right: 31%;
     color: #a020f0;
+}
+
+#stone-mind {
+    top: 35%;
+    right: 15%;
+    color: #ffd700;
+}
+
+#stone-soul {
+    top: 69%;
+    right: 15%;
+    color: #ff8c00;
 }
