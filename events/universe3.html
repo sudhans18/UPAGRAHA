@@ -486,6 +486,16 @@
                 width: 100%;
                 box-sizing: border-box;
             }
+
+            /* Venue and timing line break on mobile */
+            .venue-timing .separator {
+                display: none;
+            }
+
+            .venue-timing .timing-part {
+                display: block;
+                margin-top: 5px;
+            }
         }
 
         .bio-footer {
@@ -519,9 +529,11 @@
         <p
             style="font-family: 'Share Tech Mono', monospace; color: var(--blood-red); letter-spacing: 5px; margin-top: -15px; margin-bottom: 1rem; text-transform: uppercase; font-weight: 700; opacity: 0.8;">
             PRECISION IS THE ONLY ESCAPE.</p>
-        <p
+        <p class="venue-timing"
             style="font-family: 'Share Tech Mono', monospace; font-size: 0.9rem; color: var(--signal-white); opacity: 0.7; margin-bottom: 2rem;">
-            📍 Venue: CB 313, CB 314 &nbsp;|&nbsp; 🕐 Timing: 10:30 AM – 12:00 PM
+            <span class="venue-part">📍 Venue: CB 313, CB 314</span>
+            <span class="separator">&nbsp;|&nbsp;</span>
+            <span class="timing-part">🕐 Timing: 10:30 AM – 12:00 PM</span>
         </p>
 
         <div class="universe-desc">

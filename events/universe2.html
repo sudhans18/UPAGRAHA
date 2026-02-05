@@ -372,6 +372,16 @@
                 padding: 15px;
                 font-size: 0.95rem;
             }
+
+            /* Venue and timing line break on mobile */
+            .venue-timing .separator {
+                display: none;
+            }
+
+            .venue-timing .timing-part {
+                display: block;
+                margin-top: 5px;
+            }
         }
     </style>
 </head>
@@ -395,7 +405,9 @@
             <p class="tagline stagger-text">Where Logic Meets Strategy</p>
             <p class="venue-timing"
                 style="font-size: 0.9rem; color: var(--text-muted); margin-top: 15px; letter-spacing: 1px;">
-                📍 Venue: Block V (R1) + DSP Lab (R2) &nbsp;|&nbsp; 🕐 Timing: 12:30 PM – 2:00 PM
+                <span class="venue-part">📍 Venue: Block V (R1) + DSP Lab (R2)</span>
+                <span class="separator">&nbsp;|&nbsp;</span>
+                <span class="timing-part">🕐 Timing: 12:30 PM – 2:00 PM</span>
             </p>
             <p class="hero-desc">
                 Where technical precision meets strategic gameplay. Game of Codes challenges teams to navigate circuit

@@ -387,6 +387,16 @@
                 padding: 15px;
                 font-size: 0.95rem;
             }
+
+            /* Venue and timing line break on mobile */
+            .venue-timing .separator {
+                display: none;
+            }
+
+            .venue-timing .timing-part {
+                display: block;
+                margin-top: 5px;
+            }
         }
     </style>
 </head>
@@ -411,7 +421,9 @@
             <h1 class="reveal-text">SORCERER REALM</h1>
             <p class="venue-timing"
                 style="font-size: 0.9rem; color: var(--text-muted); margin-top: 15px; letter-spacing: 1px;">
-                📍 Venue: Microcontroller Systems Lab &nbsp;|&nbsp; 🕐 Timing: 10:30 AM – 2:00 PM
+                <span class="venue-part">📍 Venue: Microcontroller Systems Lab</span>
+                <span class="separator">&nbsp;|&nbsp;</span>
+                <span class="timing-part">🕐 Timing: 10:30 AM – 2:00 PM</span>
             </p>
             <p class="hero-desc">
                 Sorcerer Realm is a paper presentation event that provides a platform for students and researchers to
