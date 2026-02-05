@@ -56,7 +56,7 @@ function animateCounters() {
     const stats = [
         { id: "stat-registrations", val: 350, suffix: "+" },
         { id: "stat-colleges", val: 23, suffix: "+" },
-        { id: "stat-prizepool", val: 20, suffix: "k+" },
+        { id: "stat-prizepool", val: 25, suffix: "k+" },
         { id: "stat-partners", val: 9, suffix: "+" }
     ];
 

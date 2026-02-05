@@ -405,7 +405,8 @@
         <section class="hero">
             <span class="label">Wasteland Arena</span>
             <h1 class="reveal-text">FAST & CURIOUS</h1>
-            <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 15px; letter-spacing: 1px;">
+            <p class="venue-timing"
+                style="font-size: 0.9rem; color: var(--text-muted); margin-top: 15px; letter-spacing: 1px;">
                 📍 Venue: CB311, CB312 &nbsp;|&nbsp; 🕐 Timing: 12:30 PM – 2:00 PM
             </p>
             <p class="hero-desc">
@@ -558,6 +559,14 @@
             duration: 1.5,
             ease: 'power4.out',
             delay: 0.2
+        });
+
+        gsap.from('.venue-timing', {
+            opacity: 0,
+            y: 20,
+            duration: 1,
+            delay: 0.35,
+            ease: 'power3.out'
         });
 
         gsap.from('.hero-desc', {

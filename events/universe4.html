@@ -438,7 +438,8 @@
         <section class="hero">
             <span class="label">Project Showcase</span>
             <h1 class="reveal-text">TECH TANK</h1>
-            <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 15px; letter-spacing: 1px;">
+            <p class="venue-timing"
+                style="font-size: 0.9rem; color: var(--text-muted); margin-top: 15px; letter-spacing: 1px;">
                 📍 Venue: Embedded Systems Lab &nbsp;|&nbsp; 🕐 Timing: 10:30 AM – 2:00 PM
             </p>
             <p class="hero-desc">
@@ -625,6 +626,14 @@
             duration: 1.2,
             ease: 'power4.out',
             delay: 0.5
+        });
+
+        gsap.from('.venue-timing', {
+            opacity: 0,
+            y: 20,
+            duration: 1,
+            delay: 0.65,
+            ease: 'power3.out'
         });
 
         gsap.from('.hero-desc', {

@@ -414,7 +414,8 @@
         <section class="hero">
             <span class="label">Sell me this algorithm</span>
             <h1 class="reveal-text">WOLF OF TECH STREET</h1>
-            <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 15px; letter-spacing: 1px;">
+            <p class="venue-timing"
+                style="font-size: 0.9rem; color: var(--text-muted); margin-top: 15px; letter-spacing: 1px;">
                 📍 Venue: Antenna and Microwave Engineering Lab &nbsp;|&nbsp; 🕐 Timing: 10:30 AM – 12:00 PM
             </p>
             <p class="hero-desc">
@@ -453,9 +454,11 @@
                     <div class="detail-item"><strong>Phase 1: Drafting</strong> Select 3 companies through snake draft
                         (one from each tier: Giants, Innovators, Wildcards)</div>
                     <div class="detail-item"><strong>Phase 2: Product Ideation</strong> Design an innovative
-                        product / solution to the given problem statement by merging the strengths of your drafted companies
+                        product / solution to the given problem statement by merging the strengths of your drafted
+                        companies
                     </div>
-                    <div class="detail-item"><strong>Phase 3: Solution Pitch</strong> Present your merged product idea to the
+                    <div class="detail-item"><strong>Phase 3: Solution Pitch</strong> Present your merged product idea
+                        to the
                         judges and defend your strategy</div>
                 </div>
             </div>
@@ -590,6 +593,14 @@
             duration: 1.5,
             ease: 'power4.out',
             delay: 0.2
+        });
+
+        gsap.from('.venue-timing', {
+            opacity: 0,
+            y: 20,
+            duration: 1,
+            delay: 0.35,
+            ease: 'power3.out'
         });
 
         gsap.from('.hero-desc', {
