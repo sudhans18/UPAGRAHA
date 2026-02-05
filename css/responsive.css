@@ -239,33 +239,33 @@
     }
 
     #stone-space {
-        top: 20%;
-        left: 10%;
-    }
-
-    #stone-mind {
-        top: 40%;
-        left: 5%;
-    }
-
-    #stone-reality {
-        top: 60%;
-        left: 10%;
-    }
-
-    #stone-soul {
-        top: 20%;
-        right: 10%;
+        top: 18%;
+        left: 8%;
     }
 
     #stone-time {
-        top: 40%;
-        right: 5%;
+        top: 38%;
+        left: -4%;
+    }
+
+    #stone-reality {
+        top: 62%;
+        left: 5%;
     }
 
     #stone-power {
-        top: 60%;
-        right: 10%;
+        top: 18%;
+        right: 8%;
+    }
+
+    #stone-mind {
+        top: 38%;
+        right: 3%;
+    }
+
+    #stone-soul {
+        top: 62%;
+        right: 8%;
     }
 
     /* Stats Grid */

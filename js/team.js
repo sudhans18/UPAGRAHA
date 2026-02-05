@@ -20,7 +20,7 @@ function initTeamSection() {
 
     // Club Members Lists
     const eceaMembers = [
-        { name: "M Raeef", role: "President", img: "MOHAMMED RAEEF ECE.jpeg", linkedin: "https://www.linkedin.com/in/raeef-ibrahim-3b721125a/", email: "2022ec0449@svce.ac.in" },
+        { name: "Mohammed Raeef", role: "President", img: "MOHAMMED RAEEF ECE.jpeg", linkedin: "https://www.linkedin.com/in/raeef-ibrahim-3b721125a/", email: "2022ec0449@svce.ac.in" },
         { name: "Harinee V T", role: "Vice President", img: "HARINEE V T ECE.jpg", linkedin: "https://www.linkedin.com/in/harineevt", github: "https://github.com/Harinee827", email: "harineevt27@gmail.com" },
         { name: "Balaji S", role: "Secretary", img: "BALAJI S ECE.jpg", linkedin: "https://www.linkedin.com/in/balaji-santhanam008/", github: "https://github.com/Balajisanthanam205", email: "balajisanthanam205@gmail.com" },
         { name: "Surya K", role: "Treasurer", img: "SURYA K ECE.jpg", linkedin: "www.linkedin.com/in/suryak23", github: "https://github.com/suryak26", email: "2023ec0546@svce.ac.in" },
@@ -34,14 +34,14 @@ function initTeamSection() {
     ].map(m => ({ ...m, club: "ECEA", path: `assets/ECEA-MEMBERS/${m.img}` }));
 
     const ieteMembers = [
-        { name: "Yaaminiy S K", role: "Chairman", img: "YAAMINY S K ECE.JPG", linkedin: "linkedin.com/in/yaaminy-karthikeyan", email: "yaaminykarthik@gmail.com" },
-        { name: "Roobuck Ganeshwara Rao C", role: "Vice Chairman", img: "Roobuck ganeshwara rao C.jpg", linkedin: "https://www.linkedin.com/in/roobuck/", github: "https://github.com/ROOBUCK22", email: "roobuckrao2205@gmail.com" },
+        { name: "Yaaminiy S K", role: "Chair Person", img: "YAAMINY S K ECE.JPG", linkedin: "linkedin.com/in/yaaminy-karthikeyan", email: "yaaminykarthik@gmail.com" },
+        { name: "Roobuck Ganeshwara Rao C", role: "Vice Chair Person", img: "Roobuck ganeshwara rao C.jpg", linkedin: "https://www.linkedin.com/in/roobuck/", github: "https://github.com/ROOBUCK22", email: "roobuckrao2205@gmail.com" },
         { name: "Harini Chinnasamy", role: "Honorary Secretary", img: "HARINI C ECE.jpeg", linkedin: "https://www.linkedin.com/in/harini-chinnasamy-577209291/", github: "https://github.com/harini1208", email: "harinichinnasamy@gmail.com" },
         { name: "Bawadharini Sree R", role: "Honorary Treasurer", img: "BAWADHARANI.jpg", linkedin: "https://www.linkedin.com/in/bawadharani-sree-ramakrishnan-97a638218?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3B0NRmV%2FcNQQ6cAOudo99G%2FA%3D%3D", github: "https://github.com/BawadharaniSree", email: "bawadharanisree@gmail.com" },
         { name: "Tejaswi S", role: "Executive Member", img: "TEJASWI S ECE.jpeg", linkedin: "https://www.linkedin.com/in/tejaswi-s-361876293/", email: "2023ec0576@svce.ac.in" },
         { name: "Rohith Kanna S", role: "Executive Member", img: "ROHITH KANNA S ECE.JPG", linkedin: "https://www.linkedin.com/in/rohith4510/", github: "https://github.com/Rohithkannas", email: "2023ec0574@svce.ac.in" },
         { name: "Karunya D", role: "Executive Member", img: "KARUNYA D ECE.jpg", linkedin: "https://www.linkedin.com/in/karunya-d-a96bb5357?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", email: "2023ec0240@svce.ac.in" },
-        { name: "Sanjana Praveen", role: "Executive Member", img: "SANJANA PRAVEEN KUMAR ECE.jpg", linkedin: "https://www.linkedin.com/in/sanjana-praveen-kumar-588b7a354?utm_source=share_via&utm_content=profile&utm_medium=member_android", email: "2023ec0531@svce.ac.in" },
+        { name: "Sanjana Praveen Kumar", role: "Executive Member", img: "SANJANA PRAVEEN KUMAR ECE.jpg", linkedin: "https://www.linkedin.com/in/sanjana-praveen-kumar-588b7a354?utm_source=share_via&utm_content=profile&utm_medium=member_android", email: "2023ec0531@svce.ac.in" },
         { name: "A Aadhithya Narayanan", role: "Joint Secretary", img: "A AADHITHYA NARAYANAN ECE.jpg", linkedin: "LinkedIn.com/in/aadhithyanarayanan/", github: "github.com/Axdhi.07", email: "aadhithya0106@gmail.com" },
         { name: "Mahalakshmi L", role: "Joint Secretary", img: "MAHALAKSHMI L ECE.jpg", linkedin: "https://www.linkedin.com/in/maha-lakshmi-l-756594329/", github: "https://github.com/Maha03-03", email: "2024ec0167@svce.ac.in" },
         { name: "Viswanathan L", role: "Joint Secretary", img: "VISWANATHAN L ECE.jpg", linkedin: "https://www.linkedin.com/in/viswanathan-l-159423384?utm_source=share_via&utm_content=profile&utm_medium=member_android", github: "https://github.com/viswa-007", email: "viswanathan.26217@gmail.com" }
