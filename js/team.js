@@ -27,7 +27,7 @@ function initTeamSection() {
         { name: "Anushri V", role: "Executive Member", img: "ANUSHRI V ECE.jpg", linkedin: "https://www.linkedin.com/in/anu-shri?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", email: "anushri0705@gmail.com" },
         { name: "Preethika R", role: "Executive Member", img: "PREETHIKA R ECE.jpg", linkedin: "www.linkedin.com/in/preethika-radhakrishnan-269958336", email: "preethiradha13@gmail.com" },
         { name: "Sudesh Pillai", role: "Executive Member", img: "SUDESH SHRIKANT PILLAI ECE.jpg", linkedin: "https://www.linkedin.com/in/sudesh-pillai-9bbb16292/", email: "sudesh120305@gmail.com" },
-        { name: "Lavanya P", role: "Executive Member", img: "LAVANYA P ECE.jpg", linkedin: "https://www.linkedin.com/in/lavanya-p-6745ab322/", github:"https://github.com/LavanyaGKP", email: "2023ec0234@svce.ac.in" },
+        { name: "Lavanya P", role: "Executive Member", img: "LAVANYA P ECE.jpg", linkedin: "https://www.linkedin.com/in/lavanya-p-6745ab322/", github: "https://github.com/LavanyaGKP", email: "2023ec0234@svce.ac.in" },
         { name: "N. Yaazhinii", role: "Joint Secretary", img: "N YAAZHINII ECE.jpg", linkedin: "https://www.linkedin.com/in/yaazhinii-narayanan-89b954326?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", email: "n.yaazhinii@gmail.com" },
         { name: "Abhimanyu Singh Bhati", role: "Joint Secretary", img: "ABHIMANYU SINGH BHATI ECE.jpg", linkedin: "https://www.linkedin.com/in/abhimanyu-singh-bhati-7255a0328?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", email: "abhimanyubhati22@gmail.com" },
         { name: "Prathiba MSK", role: "Joint Secretary", img: "PRATHIBA S.png", linkedin: "https://www.linkedin.com/in/m-s-k-prathiba-608588329?utm_source=share_via&utm_content=profile&utm_medium=member_android", email: "2024ec0664@svce.ac.in" }
@@ -37,7 +37,7 @@ function initTeamSection() {
         { name: "Yaaminy S K", role: "Chair Person", img: "YAAMINY S K ECE.JPG", linkedin: "linkedin.com/in/yaaminy-karthikeyan", email: "yaaminykarthik@gmail.com" },
         { name: "Roobuck Ganeshwara Rao C", role: "Vice Chair Person", img: "Roobuck ganeshwara rao C.jpg", linkedin: "https://www.linkedin.com/in/roobuck/", github: "https://github.com/ROOBUCK22", email: "roobuckrao2205@gmail.com" },
         { name: "Harini Chinnasamy", role: "Honorary Secretary", img: "HARINI C ECE.jpeg", linkedin: "https://www.linkedin.com/in/harini-chinnasamy-577209291/", github: "https://github.com/harini1208", email: "harinichinnasamy@gmail.com" },
-        { name: "Bawadharini Sree R", role: "Honorary Treasurer", img: "BAWADHARANI.jpg", linkedin: "https://www.linkedin.com/in/bawadharani-sree-ramakrishnan-97a638218?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3B0NRmV%2FcNQQ6cAOudo99G%2FA%3D%3D", github: "https://github.com/BawadharaniSree", email: "bawadharanisree@gmail.com" },
+        { name: "Bawadharani Sree R", role: "Honorary Treasurer", img: "BAWADHARANI.jpg", linkedin: "https://www.linkedin.com/in/bawadharani-sree-ramakrishnan-97a638218?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3B0NRmV%2FcNQQ6cAOudo99G%2FA%3D%3D", github: "https://github.com/BawadharaniSree", email: "bawadharanisree@gmail.com" },
         { name: "Tejaswi S", role: "Executive Member", img: "TEJASWI S ECE.jpeg", linkedin: "https://www.linkedin.com/in/tejaswi-s-361876293/", email: "2023ec0576@svce.ac.in" },
         { name: "Rohith Kanna S", role: "Executive Member", img: "ROHITH KANNA S ECE.JPG", linkedin: "https://www.linkedin.com/in/rohith4510/", github: "https://github.com/Rohithkannas", email: "2023ec0574@svce.ac.in" },
         { name: "Karunya D", role: "Executive Member", img: "KARUNYA D ECE.jpg", linkedin: "https://www.linkedin.com/in/karunya-d-a96bb5357?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", email: "2023ec0240@svce.ac.in" },
@@ -134,10 +134,97 @@ function initTeamSection() {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
+        
+        /* Highlighted member card */
+        .member-card.highlighted {
+            transform: scale(1.08);
+            z-index: 10;
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.5), 0 0 60px rgba(0, 255, 0, 0.3);
+            border: 2px solid var(--neon-green, #00ff00);
+            animation: pulseGlow 1.5s ease-in-out 3;
+        }
+        
+        /* Show social links when highlighted (same as hover) */
+        .member-card.highlighted .member-socials {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+            visibility: visible !important;
+            height: 35px !important;
+            overflow: visible !important;
+        }
+        
+        /* Also colorize image when highlighted */
+        .member-card.highlighted .member-img {
+            filter: grayscale(0%) contrast(1);
+            transform: scale(1.05);
+        }
+        
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 30px rgba(0, 255, 0, 0.5), 0 0 60px rgba(0, 255, 0, 0.3); }
+            50% { box-shadow: 0 0 50px rgba(0, 255, 0, 0.7), 0 0 80px rgba(0, 255, 0, 0.5); }
+        }
     `;
     document.head.appendChild(styleSheet);
 
     // Initial Render (Default to ECEA or First Tab)
     // Let's default to the first tab's data (ECEA)
     renderMembers('ECEA');
+
+    // --- Website Team Footer Links Handler ---
+    // When a dev link is clicked, scroll to team section, switch to correct tab, and highlight member
+    function highlightTeamMember(memberName) {
+        // Find the member's club from the data
+        const member = allMembers.find(m => m.name === memberName);
+        if (!member) return;
+
+        // Switch to the member's club tab
+        const clubTab = document.querySelector(`.team-tab-btn[data-club="${member.club}"]`);
+        if (clubTab) {
+            tabs.forEach(t => t.classList.remove('active'));
+            clubTab.classList.add('active');
+            renderMembers(member.club);
+        }
+
+        // Wait for render, then find and highlight the member card
+        setTimeout(() => {
+            const cards = document.querySelectorAll('.member-card');
+            cards.forEach(card => {
+                const nameEl = card.querySelector('.member-name');
+                if (nameEl && nameEl.textContent.trim() === memberName) {
+                    // Remove any existing highlights
+                    document.querySelectorAll('.member-card.highlighted').forEach(c => c.classList.remove('highlighted'));
+
+                    // Add highlight class
+                    card.classList.add('highlighted');
+
+                    // Scroll the card into view (centered)
+                    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+                    // Remove highlight after animation completes
+                    setTimeout(() => {
+                        card.classList.remove('highlighted');
+                    }, 5000);
+                }
+            });
+        }, 100);
+    }
+
+    // Attach click handlers to footer dev links
+    document.querySelectorAll('.dev-link[data-member]').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const memberName = link.getAttribute('data-member');
+
+            // Scroll to team section first
+            const teamSection = document.getElementById('team');
+            if (teamSection) {
+                teamSection.scrollIntoView({ behavior: 'smooth' });
+            }
+
+            // Then highlight member after scroll completes
+            setTimeout(() => {
+                highlightTeamMember(memberName);
+            }, 600);
+        });
+    });
 }
